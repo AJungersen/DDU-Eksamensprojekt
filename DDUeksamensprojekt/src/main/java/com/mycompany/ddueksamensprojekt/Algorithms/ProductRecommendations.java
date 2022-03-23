@@ -5,6 +5,8 @@
  */
 package com.mycompany.ddueksamensprojekt.Algorithms;
 
+import Classes.Product;
+import Classes.ProductScore;
 import java.util.ArrayList;
 
 /**
@@ -12,17 +14,30 @@ import java.util.ArrayList;
  * @author danie
  */
 public class ProductRecommendations {
-    public ArrayList<Item> getBestItem(Item userItem){
-        ArrayList<Item> items = getListOfItems();
-        ArrayList<Item> rankedList = new ArrayList();
-        for(Item I: items){
-            if(I.getItemID != userItem.getItemID){
-                I.setScore(getFitnessOff(I,userItem));
-                
+    public ArrayList<Product> getBestProduct(Product userProduct){
+        ArrayList<Product> products = getListOfProducts();
+        ArrayList<ProductScore> rankedList = new ArrayList();
+        ArrayList<Product> returnList = new ArrayList();
+        for(Product I: products){
+            if(rankedList.isEmpty()){
+                rankedList.add(new ProductScore(I,(getFitnessOff(I,userProduct))));
+            } else {
+            if(I.getProductID != userProduct.getProductID){
+                ProductScore PS = new ProductScore(I,(getFitnessOff(I,userProduct)));
+                for(ProductScore P: rankedList){
+                    if(PS.getScore() > P.getScore()){
+                        rankedList.add(new ProductScore(PS.getI(),PS.getScore()));
+                        break;
+                    }
+                }}
             }
         }
+        for(int i = 0; i < 5; i++){
+            returnList.add(rankedList.get(i).getI());
+        }
+        return returnList;
     }
-    public float getFitnessOff(Item I, Item U){
+    public float getFitnessOff(Product I, Product U){
         
     }
 }
