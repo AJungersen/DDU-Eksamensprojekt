@@ -5,6 +5,7 @@
  */
 package com.mycompany.ddueksamensprojekt.Algorithms;
 
+import Classes.Cart;
 import Classes.Product;
 import Classes.ProductScore;
 import java.util.ArrayList;
@@ -15,14 +16,14 @@ import java.util.ArrayList;
  */
 public class ProductRecommendations {
     public ArrayList<Product> getBestProduct(Product userProduct){
-        ArrayList<Product> products = getListOfProducts();
+        ArrayList<Product> products = db.getListOfProducts();
         ArrayList<ProductScore> rankedList = new ArrayList();
         ArrayList<Product> returnList = new ArrayList();
         for(Product I: products){
             if(rankedList.isEmpty()){
                 rankedList.add(new ProductScore(I,(getFitnessOff(I,userProduct))));
             } else {
-            if(I.getProductID != userProduct.getProductID){
+            if(I.getProductID() != userProduct.getProductID()){
                 ProductScore PS = new ProductScore(I,(getFitnessOff(I,userProduct)));
                 for(ProductScore P: rankedList){
                     if(PS.getScore() > P.getScore()){
@@ -38,6 +39,28 @@ public class ProductRecommendations {
         return returnList;
     }
     public float getFitnessOff(Product I, Product U){
-        
+        ArrayList<Cart> userCarts = db.getUsersCarts();
+        ArrayList<Cart> allCarts = db.getAllCarts();
+        int h = 0;
+        int tot = 0;
+        for(Cart C: userCarts){
+            tot += 1;
+            if(C.getProducts().contains(I) && C.getProducts().contains(U)){
+                h += 1;
+            }
+        }
+        float uf = h/tot;
+        h = 0;
+        tot = 0;
+        for(Cart C: allCarts){
+            tot += 1;
+            if(C.getProducts().contains(I) && C.getProducts().contains(U)){
+                h += 1;
+            }
+        }
+        float af = h/tot;
+        // 10 skal erstattes af variabel
+        float score = 10*uf+10*af;
+        return score;
     }
 }
