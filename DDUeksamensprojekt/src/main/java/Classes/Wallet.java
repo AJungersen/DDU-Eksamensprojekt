@@ -13,13 +13,13 @@ import java.util.ArrayList;
  */
 public class Wallet {
     private int wallet_ID;
-    private int fonds;
+    private int funds;
     private ArrayList<CreditCard> creditCards;
     private ArrayList<Coupon> cupons;
 
-    public Wallet(int wallet_ID, int fonds, ArrayList<CreditCard> creditCards, ArrayList<Coupon> cupons) {
+    public Wallet(int wallet_ID, int funds, ArrayList<CreditCard> creditCards, ArrayList<Coupon> cupons) {
         this.wallet_ID = wallet_ID;
-        this.fonds = fonds;
+        this.funds = funds;
         this.creditCards = creditCards;
         this.cupons = cupons;
     }
@@ -28,12 +28,12 @@ public class Wallet {
         return wallet_ID;
     }
 
-    public int getFonds() {
-        return fonds;
+    public int getFunds() {
+        return funds;
     }
 
-    public void setFonds(int fonds) {
-        this.fonds = fonds;
+    public void setFunds(int fonds) {
+        this.funds = fonds;
     }
 
     public ArrayList<CreditCard> getCreditCards() {
