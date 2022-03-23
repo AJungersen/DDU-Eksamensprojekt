@@ -7,6 +7,8 @@ package repository;
 
 import java.sql.*;
 import Classes.*;
+import java.time.LocalDate;
+import java.util.ArrayList;
 
 /**
  *
@@ -144,23 +146,49 @@ public class UserDatabaseMethods {
         try {
             Statement stat = conn.createStatement();
 
-            ResultSet rs = stat.executeQuery("select * from Users WHERE email = ('" + _email + "');");
-
+            ResultSet rs = stat.executeQuery("SELECT *, Wallets.fonds FROM Users "
+                    + "INNER JOIN Wallets ON Users.wallet_ID = Wallets.wallet_ID "
+                    + "WHERE email = = ('" + _email + "');");
+            
             rs.next();
 
-            loggedInUser = new User(rs.getInt("user_ID"), rs.getString("name"), rs.getString("email"), null);
+            loggedInUser = new User(rs.getInt("user_ID"), rs.getString("name"), rs.getString("email"), 
+                    new Wallet(rs.getInt("wallet_ID"), rs.getInt("funds"), null, null));
 
             rs.close();
-
+            
             try {
-                rs = stat.executeQuery("SELECT creditCard_ID, cardNumber, cvv, experationDate, "
-                        + "Wallets.fonds, Coupons.Coupon_ID FROM CreditCards "
-                        + "INNER JOIN Wallets ON CreditCards.wallet_ID = Wallets.wallet_ID "
-                        + "INNER JOIN Coupons ON Coupons.Wallet_ID = Wallets.wallet_ID "
-                        + "WHERE (CreditCards.wallet_ID = ('" + rs.getInt("wallet_ID") + "') AND "
-                        + "Coupons.Coupon_ID = ('" + rs.getInt("wallet_ID") + "'))");
+                rs = stat.executeQuery("SELECT * FROM Creditcards "
+                        + "WHERE wallet_ID = ('"+ loggedInUser.getWallet().getWallet_ID() +"')");
+                
+                ArrayList<CreditCard> creditCards = new ArrayList<>();
+                
+                while(rs.next()){
+                    creditCards.add(new CreditCard(rs.getInt("creditCard_ID"), 
+                            LocalDate.parse(rs.getString("experationDate")), 
+                            rs.getString("cardNumber"), rs.getString("cvv")));
+                }
+                
+                loggedInUser.getWallet().setCreditCards(creditCards);
+                
+            } catch (SQLException e) {
+                System.out.println("\n Database error (get logged ind user (get wallet creditcards)): " + e.getMessage() + "\n");
+            }
+            
+            try {
+                rs = stat.executeQuery("SELEC * FROM Coupons "
+                        + "WHERE wallet_ID = ('" + loggedInUser.getWallet().getWallet_ID() + "') ");
+                
+                ArrayList<Coupon> coupons = new ArrayList<>();
+                
+                while(rs.next()) {
+                    coupons.add(new Coupon());
+                }
+                
+                loggedInUser.getWallet().setCupons(coupons);
 
-            } catch (Exception e) {
+            } catch (SQLException e) {
+                System.out.println("\n Database error (get logged ind user (get wallet coupons)): " + e.getMessage() + "\n");
             }
 
         } catch (SQLException e) {
@@ -168,44 +196,5 @@ public class UserDatabaseMethods {
         }
         conn.close();
         return loggedInUser;
-    }
-
-    //---------------------------------------------------
-    //---------- chekc for existing school key ----------
-    //---------------------------------------------------
-    public boolean checkForExistingKey(String _key) throws SQLException, Exception {
-        String databasekey = "";
-
-        Connection conn = null;
-        Class.forName("org.sqlite.JDBC");
-
-        //Skab forbindelse til databasen...
-        try {
-            conn = DriverManager.getConnection(connectionString);
-        } catch (SQLException e) {
-            //Skrive fejlhåndtering her
-            System.out.println("\n Database error (check for matching key (connection)): " + e.getMessage() + "\n");
-        }
-
-        try {
-            Statement stat = conn.createStatement();
-
-            ResultSet rs = stat.executeQuery("select key from Schools WHERE key = ('" + _key + "');");
-
-            rs.next();
-
-            databasekey = rs.getString("key");
-
-            rs.close();
-        } catch (SQLException e) {
-            //Skrive fejlhåndtering her
-            System.out.println("\n Database error (check for matching key (result set)): " + e.getMessage() + "\n");
-        }
-
-        if (_key.equals(databasekey)) {
-            return true;
-        }
-
-        return false;
     }
 }
