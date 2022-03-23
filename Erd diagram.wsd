@@ -1,0 +1,40 @@
+@startuml
+!define table(x) class x << (T,#FFAAAA) >>
+hide methods
+hide stereotypes
+
+table(Users) {
+    PK user_ID
+    FK wallet_ID
+    String name
+    String email
+}
+
+table(Products) {
+    PK item_ID
+    String name
+    blob image
+    float price
+    int stock
+}
+
+table(Wallets) {
+    PK wallet_ID
+    int fonds
+}
+
+table(CreditCards) {
+    PK creditCard_ID
+    FK wallet_ID
+}
+
+table(Coupons) {
+    PK coupon_ID
+    FK wallet_ID
+}
+
+Wallets ||--|| Users
+Wallets ||--{ CreditCards
+Wallets ||--{ Coupons
+
+@enduml

@@ -1,0 +1,45 @@
+@startuml
+class Products {
+    int item_ID
+    String name
+    Image image
+    float price
+    int stock
+}
+
+class User {
+    int user_ID
+    String name
+    String email
+    Wallet wallet
+}
+
+Class Wallet {
+    int fonds
+    ArrayList<Coupon> Coupons
+    ArrayList<CreditCard> CreditCards
+}
+
+class CreditCard {
+    LocalDate experetionDate
+}
+
+class Coupon {
+    
+}
+
+enum ProductCategory {
+
+}
+
+enum SubProductCategory {
+
+    getProductCategory()
+}
+
+Wallet "1" o-- "0..*" Coupon
+Wallet "1" *-- "1..*" CreditCard
+User "1" o-- "0..1" Wallet
+ProductCategory "1" *-- "0..*" SubProductCategory
+
+@enduml
