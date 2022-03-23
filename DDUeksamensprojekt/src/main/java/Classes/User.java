@@ -22,6 +22,12 @@ public class User {
         this.email = email;
         this.wallet = wallet;
     }
+    
+    //sign up
+    public User(String name, String email) {
+        this.name = name;
+        this.email = email;
+    }
 
     public User() {
     }
