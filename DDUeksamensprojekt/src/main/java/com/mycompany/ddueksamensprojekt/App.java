@@ -1,5 +1,6 @@
 package com.mycompany.ddueksamensprojekt;
 
+import Classes.User;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -12,7 +13,8 @@ import java.io.IOException;
  * JavaFX App
  */
 public class App extends Application {
-
+    
+    private static User loggedInUser = new User();
     private static Scene scene;
 
     @Override
@@ -35,4 +37,11 @@ public class App extends Application {
         launch();
     }
 
+    public static User getLoggedInUser() {
+        return loggedInUser;
+    }
+
+    public static void setLoggedInUser(User loggedInUser) {
+        App.loggedInUser = loggedInUser;
+    }
 }
