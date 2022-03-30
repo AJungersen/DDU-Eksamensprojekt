@@ -198,6 +198,7 @@ public class UserDatabaseMethods {
         conn.close();
         return loggedInUser;
     }
+    
     public Wallet getUsersWallet() throws SQLException, Exception{
         Wallet loggedInUserWallet = new Wallet();
 
