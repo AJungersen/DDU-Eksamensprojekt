@@ -61,7 +61,7 @@ public class LoginController {
             if (udm.checkForMatchingPassword(textFieldEmail.getText(),
                     sm.hexString(passwordFieldPassword.getText()))) {
 
-                App.setLoggedInUser(udm.getoggedInUser(textFieldEmail.getText()));
+                App.setLoggedInUser(udm.getLoggedInUser(textFieldEmail.getText()));
 
                 //login
             } else {

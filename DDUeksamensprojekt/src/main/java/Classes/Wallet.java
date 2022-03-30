@@ -17,6 +17,9 @@ public class Wallet {
     private ArrayList<CreditCard> creditCards;
     private ArrayList<Coupon> cupons;
 
+    public Wallet() {
+    }
+    
     public Wallet(int wallet_ID, int funds, ArrayList<CreditCard> creditCards, ArrayList<Coupon> cupons) {
         this.wallet_ID = wallet_ID;
         this.funds = funds;
