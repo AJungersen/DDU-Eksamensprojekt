@@ -5,6 +5,7 @@ class Products {
     Image image
     float price
     int stock
+    SubProductCategory subProductCategory
 }
 
 class User {
