@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
@@ -25,7 +26,7 @@
                   <Insets />
                </opaqueInsets>
                <VBox.margin>
-                  <Insets left="70.0" right="70.0" top="50.0" />
+                  <Insets left="70.0" right="70.0" top="30.0" />
                </VBox.margin>
                <effect>
                   <DropShadow height="11.0" offsetY="2.0" radius="4.165" width="7.66">
@@ -93,13 +94,16 @@
             </Text>
             <Text fx:id="textErrorMessage1" strokeType="OUTSIDE" strokeWidth="0.0" text="Har du en bruger?" textAlignment="CENTER" wrappingWidth="159.63671875">
                <VBox.margin>
-                  <Insets left="150.0" />
+                  <Insets left="150.0" top="30.0" />
                </VBox.margin>
             </Text>
-            <Button fx:id="logInButton" mnemonicParsing="false" onAction="#switchToLoginScreen" prefHeight="27.0" prefWidth="97.0" styleClass="signupbutton" stylesheets="@design.css" text="Login" textFill="#116606">
+            <Button fx:id="logInButton" mnemonicParsing="false" onAction="#switchToLoginScreen" prefHeight="27.0" prefWidth="97.0" style="-fx-background-color: transparent;" text="Login" textFill="#116606">
                <VBox.margin>
                   <Insets left="180.0" />
                </VBox.margin>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Button>
          </children>
       </VBox>
