@@ -4,11 +4,15 @@
  */
 package com.mycompany.ddueksamensprojekt;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.input.MouseEvent;
+import javafx.stage.Popup;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -31,5 +35,20 @@ public class WalletController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
+    
+    @FXML
+    public void openCreateCard(MouseEvent event) throws IOException{
+        Stage stage = App.getStage();
+
+            Popup popup = new Popup();
+            popup.getContent().addAll(App.loadFXML("walletCreate").getChildrenUnmodifiable());
+            popup.setX(stage.getWidth()/1.4);
+            popup.setY(stage.getHeight()/2);
+
+            App.setPopup(popup);
+
+            App.openPopup();
+    }
+    
     
 }
