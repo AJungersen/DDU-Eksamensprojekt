@@ -17,7 +17,7 @@ import java.util.ArrayList;
  */
 public class UserDatabaseMethods {
 
-    private final String connectionString = "jdbc:sqlite:C:\\Users\\chris\\Desktop\\Pogramerings projekter\\Netbeans\\DDU prøve eksamens projekt\\Database.db";
+    private final String connectionString = "jdbc:sqlite:Database.db";
 
     //---------------------------------------------
     //---------- check for matching user ----------
