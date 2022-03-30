@@ -9,12 +9,23 @@ import Classes.User;
 import repository.*;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.animation.Interpolator;
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
+import javafx.util.Duration;
 import repository.UserDatabaseMethods;
 
 /**
@@ -29,6 +40,12 @@ public class LoginController {
     private PasswordField passwordFieldPassword;
     @FXML
     private Text textErrorMessage;
+    @FXML
+    private Button signUpButton;
+    @FXML
+    private AnchorPane anchor;
+    @FXML
+    private StackPane parent;
 
     private UserDatabaseMethods udm = new UserDatabaseMethods();
     private SecurityMethods sm = new SecurityMethods();
@@ -57,6 +74,19 @@ public class LoginController {
 
     @FXML
     private void switchToSignUp(ActionEvent event) throws Exception {
-        App.setRoot("SignUp");
+        Parent root = FXMLLoader.load(getClass().getResource("signupUser.fxml"));
+        Scene scene = signUpButton.getScene();
+        
+        root.translateYProperty().set(scene.getHeight());
+        parent.getChildren().add(root);
+        
+        Timeline timeline = new Timeline();
+        KeyValue kv = new KeyValue(root.translateYProperty(), 0, Interpolator.EASE_IN);
+        KeyFrame kf = new KeyFrame(Duration.seconds(1),kv);
+        timeline.getKeyFrames().add(kf);
+        timeline.setOnFinished(event1 -> {
+            parent.getChildren().remove(anchor);
+        });
+        timeline.play();
     }
 }

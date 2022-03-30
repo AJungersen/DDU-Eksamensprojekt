@@ -10,11 +10,22 @@ import repository.*;
 import java.io.IOException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import javafx.animation.Interpolator;
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
+import javafx.util.Duration;
 
 /**
  *
@@ -32,6 +43,10 @@ public class SignUpController {
     private PasswordField passwordFieldrepeatPassword;
     @FXML
     private TextField textFieldEmail;
+    @FXML
+    private AnchorPane anchor;
+    @FXML
+    private Button logInButton;
 
     private UserDatabaseMethods udm = new UserDatabaseMethods();
     private SecurityMethods sm = new SecurityMethods();
@@ -104,6 +119,21 @@ public class SignUpController {
 
     @FXML
     private void switchToLoginScreen(ActionEvent event) throws IOException, Exception {
-        App.setRoot("login");
+        Parent root = FXMLLoader.load(getClass().getResource("loginUser.fxml"));
+        Scene scene = logInButton.getScene();
+        
+        root.translateYProperty().set(scene.getHeight());
+        
+        StackPane parent = (StackPane) scene.getRoot();
+        parent.getChildren().add(root);
+        
+        Timeline timeline = new Timeline();
+        KeyValue kv = new KeyValue(root.translateYProperty(), 0, Interpolator.EASE_IN);
+        KeyFrame kf = new KeyFrame(Duration.seconds(1),kv);
+        timeline.getKeyFrames().add(kf);
+        timeline.setOnFinished(event1 -> {
+            parent.getChildren().remove(anchor);
+        });
+        timeline.play();
     }
 }

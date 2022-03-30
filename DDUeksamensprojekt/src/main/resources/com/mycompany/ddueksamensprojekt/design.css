@@ -19,3 +19,11 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
     -fx-background-color: linear-gradient(to top, #C6D54D, #A9D54D);
     -fx-border-color: linear-gradient(to top, #C6D54D, #A9D54D);
 }
+.signupbutton{
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-text-fill: #116606;
+}
+.signupbutton:hover{
+    -fx-underline: true;
+}
