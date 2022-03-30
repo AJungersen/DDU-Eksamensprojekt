@@ -1,0 +1,39 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : 23. mar. 2022, 13.58.07
+    Author     : Clara Maj
+*/
+
+.menubutton:hover {
+    -fx-background-color: linear-gradient(to top, #40C54D, #A9D54D);
+}
+.menubutton {
+    -fx-background-color: transparent;
+    -fx-border-color: linear-gradient(to top, #40C54D, #A9D54D);
+    -fx-border-width: 5px 5px 5px 5px;
+}
+.menubutton:pressed{
+    -fx-background-color: linear-gradient(to top, #C6D54D, #A9D54D);
+    -fx-border-color: linear-gradient(to top, #C6D54D, #A9D54D);
+}
+.signupbutton{
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-text-fill: #116606;
+}
+.signupbutton:hover{
+    -fx-underline: true;
+}
+.button{
+    -fx-background-radius: 0px;
+    -fx-border-color: transparent;
+    -fx-border-width: 0px 0px 0px 0px;
+    -fx-background-color: #40C54D;
+}
+.button:hover{
+    -fx-background-color: #A9D54D;
+    
+}
