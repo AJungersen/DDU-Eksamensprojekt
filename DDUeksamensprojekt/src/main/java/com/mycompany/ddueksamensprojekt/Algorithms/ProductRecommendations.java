@@ -14,7 +14,7 @@ import java.util.ArrayList;
  *
  * @author danie
  */
-public class ProductRecommendations {
+/*public class ProductRecommendations {
     public ArrayList<Product> getBestProduct(Product userProduct){
         ArrayList<Product> products = db.getListOfProducts();
         ArrayList<ProductScore> rankedList = new ArrayList();
@@ -64,3 +64,4 @@ public class ProductRecommendations {
         return score;
     }
 }
+*/
