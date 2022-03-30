@@ -89,7 +89,7 @@ public class SignUpController {
                                         udm.createUser(new User(textFieldName.getText(), textFieldEmail.getText()),
                                                 sm.hexString(passwordFieldPassword.getText()));
 
-                                        App.setLoggedInUser(udm.getoggedInUser(textFieldEmail.getText()));
+                                        App.setLoggedInUser(udm.getLoggedInUser(textFieldEmail.getText()));
 
                                         //hop vider/login mangler fxml App.setRoot("");
                                 } else {

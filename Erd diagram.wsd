@@ -16,6 +16,7 @@ table(Products) {
     blob image
     float price
     int stock
+    String subProductCategory
 }
 
 table(Wallets) {
