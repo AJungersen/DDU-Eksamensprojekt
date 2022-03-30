@@ -36,7 +36,7 @@ public class SignUpController {
     @FXML
     private TextField textFieldName;
     @FXML
-    private Text textErroMessage;
+    private Text textErroMessage = new Text();
     @FXML
     private PasswordField passwordFieldPassword;
     @FXML
