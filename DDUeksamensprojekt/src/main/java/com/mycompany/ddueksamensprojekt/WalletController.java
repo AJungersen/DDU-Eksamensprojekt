@@ -4,12 +4,16 @@
  */
 package com.mycompany.ddueksamensprojekt;
 
+import Classes.CreditCard;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Popup;
 import javafx.stage.Stage;
@@ -27,6 +31,8 @@ public class WalletController implements Initializable {
     private Button createCard;
     @FXML
     private Button viewCard;
+    @FXML
+    private ListView cardview;
     
     /**
      * Initializes the controller class.
@@ -34,6 +40,11 @@ public class WalletController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        ObservableList Cards = FXCollections.observableArrayList();
+        for(CreditCard C: App.getLoggedInUser().getWallet().getCreditCards()){
+            Cards.add(C.getCardNumber());
+            cardview.setItems(Cards);
+        }
     }    
     
     @FXML
