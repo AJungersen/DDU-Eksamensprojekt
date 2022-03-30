@@ -34,7 +34,7 @@ import javafx.util.Duration;
 public class SignUpController {
 
     @FXML
-    private TextField textFieldName;
+    private TextField textFieldName = new TextField();
     @FXML
     private Text textErrorMessage;
     @FXML
@@ -46,7 +46,7 @@ public class SignUpController {
     @FXML
     private AnchorPane anchor;
     @FXML
-    private Button logInButton;
+    private Button logInButton = new Button();
 
     private UserDatabaseMethods udm = new UserDatabaseMethods();
     private SecurityMethods sm = new SecurityMethods();
@@ -118,7 +118,8 @@ public class SignUpController {
     @FXML
     private void switchToLoginScreen(ActionEvent event) throws IOException, Exception {
         Parent root = FXMLLoader.load(getClass().getResource("loginUser.fxml"));
-        Scene scene = logInButton.getScene();
+<
+        Scene scene = App.scene;
 
         root.translateYProperty().set(scene.getHeight());
 

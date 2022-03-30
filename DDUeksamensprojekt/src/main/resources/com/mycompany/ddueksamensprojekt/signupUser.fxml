@@ -9,25 +9,24 @@
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.effect.InnerShadow?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="anchor" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #40C54D;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.ddueksamensprojekt.SignUpController">
+<AnchorPane fx:id="anchor" prefHeight="200.0" prefWidth="471.0" style="-fx-background-color: #40C54D;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.ddueksamensprojekt.SignUpController">
    <children>
-      <VBox layoutX="-3.0" layoutY="173.0" prefHeight="431.0" prefWidth="474.0" style="-fx-background-color: #DFF2E1;" stylesheets="@design.css">
-         <effect>
-            <InnerShadow />
-         </effect>
+      <Label layoutX="55.0" layoutY="57.0" text="OPRET BRUGER">
+         <font>
+            <Font name="System Bold Italic" size="49.0" />
+         </font>
+      </Label>
+      <Pane layoutX="1.0" layoutY="167.0" prefHeight="426.0" prefWidth="478.0" style="-fx-background-color: #DFF2E1;">
          <children>
-            <TextField fx:id="textFieldName" prefHeight="33.0" prefWidth="334.0" promptText="Navn" style="-fx-background-radius: 0px; -fx-border-color: #40C54D; -fx-border-width: 0px 0px 0px 0px; -fx-background-color: #FFFFFF;">
+            <TextField fx:id="textFieldEmail" layoutX="72.0" layoutY="25.0" prefHeight="33.0" prefWidth="334.0" promptText="Navn" style="-fx-background-radius: 0px; -fx-border-color: #40C54D; -fx-border-width: 0px 0px 0px 0px; -fx-background-color: #FFFFFF;">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
-               <VBox.margin>
-                  <Insets left="70.0" right="70.0" top="30.0" />
-               </VBox.margin>
                <effect>
                   <DropShadow height="11.0" offsetY="2.0" radius="4.165" width="7.66">
                      <color>
@@ -36,53 +35,51 @@
                   </DropShadow>
                </effect>
             </TextField>
-            <TextField fx:id="textFieldEmail" prefHeight="33.0" prefWidth="334.0" promptText="Email" style="-fx-background-radius: 0px; -fx-border-color: #40C54D; -fx-border-width: 0px 0px 0px 0px; -fx-background-color: #FFFFFF;">
+            <PasswordField fx:id="passwordFieldPassword" layoutX="72.0" layoutY="135.0" prefHeight="33.0" prefWidth="334.0" promptText="Kodeord" style="-fx-background-radius: 0px; -fx-border-color: #40C54D; -fx-border-width: 0px 0px 0px 0px; -fx-background-color: #FFFFFF;">
+               <effect>
+                  <DropShadow height="7.77" offsetY="2.0" radius="3.3575" width="7.66">
+                     <color>
+                        <Color opacity="0.23999999463558197" />
+                     </color>
+                  </DropShadow>
+               </effect>
+            </PasswordField>
+            <Button layoutX="196.0" layoutY="253.0" mnemonicParsing="false" onAction="#creatUser" prefHeight="41.0" prefWidth="86.0" styleClass="menubutton" stylesheets="@design.css" text="Opret bruger">
+               <effect>
+                  <DropShadow height="7.66" offsetX="2.0" offsetY="2.0" radius="6.665">
+                     <color>
+                        <Color opacity="0.1735357940196991" />
+                     </color>
+                  </DropShadow>
+               </effect>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Text fx:id="textErrorMessage" fill="RED" layoutX="159.0" layoutY="324.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="159.63671875" />
+            <Text fx:id="textErrorMessage1" layoutX="156.0" layoutY="373.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Har du en bruger?" textAlignment="CENTER" wrappingWidth="165.13671875" />
+            <Button fx:id="signUpButton" layoutX="182.0" layoutY="377.0" mnemonicParsing="false" onAction="#switchToLoginScreen" prefHeight="25.0" prefWidth="114.0" style="-fx-background-color: transparent;" text="Login" textFill="#116606">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <PasswordField fx:id="passwordFieldPassword1" layoutX="72.0" layoutY="193.0" prefHeight="33.0" prefWidth="334.0" promptText="Gentag kodeord" style="-fx-background-radius: 0px; -fx-border-color: #40C54D; -fx-border-width: 0px 0px 0px 0px; -fx-background-color: #FFFFFF;">
+               <effect>
+                  <DropShadow height="7.77" offsetY="2.0" radius="3.3575" width="7.66">
+                     <color>
+                        <Color opacity="0.23999999463558197" />
+                     </color>
+                  </DropShadow>
+               </effect>
+            </PasswordField>
+            <TextField fx:id="textFieldEmail1" layoutX="72.0" layoutY="80.0" prefHeight="33.0" prefWidth="334.0" promptText="Email" style="-fx-background-radius: 0px; -fx-border-color: #40C54D; -fx-border-width: 0px 0px 0px 0px; -fx-background-color: #FFFFFF;">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
                <effect>
                   <DropShadow height="11.0" offsetY="2.0" radius="4.165" width="7.66">
                      <color>
-                        <Color opacity="0.24295009672641754" />
-                     </color>
-                  </DropShadow>
-               </effect>
-               <VBox.margin>
-                  <Insets left="70.0" right="70.0" top="30.0" />
-               </VBox.margin>
-            </TextField>
-            <PasswordField fx:id="passwordFieldPassword" prefHeight="33.0" prefWidth="334.0" promptText="Kodeord" style="-fx-background-radius: 0px; -fx-border-color: #40C54D; -fx-border-width: 0px 0px 0px 0px; -fx-background-color: #FFFFFF;">
-               <VBox.margin>
-                  <Insets left="70.0" right="70.0" top="30.0" />
-               </VBox.margin>
-               <effect>
-                  <DropShadow height="7.77" offsetY="2.0" radius="3.3575" width="7.66">
-                     <color>
-                        <Color opacity="0.23999999463558197" />
-                     </color>
-                  </DropShadow>
-               </effect>
-            </PasswordField>
-            <PasswordField fx:id="passwordFieldrepeatPassword" prefHeight="33.0" prefWidth="334.0" promptText="Gentag kodeord" style="-fx-background-radius: 0px; -fx-border-color: #40C54D; -fx-border-width: 0px 0px 0px 0px; -fx-background-color: #FFFFFF;">
-               <effect>
-                  <DropShadow height="7.77" offsetY="2.0" radius="3.3575" width="7.66">
-                     <color>
-                        <Color opacity="0.23999999463558197" />
-                     </color>
-                  </DropShadow>
-               </effect>
-               <VBox.margin>
-                  <Insets left="70.0" right="70.0" top="30.0" />
-               </VBox.margin>
-            </PasswordField>
-            <Button mnemonicParsing="false" onAction="#creatUser" prefHeight="41.0" prefWidth="133.0" styleClass="menubutton" stylesheets="@design.css" text="Opret bruger">
-               <VBox.margin>
-                  <Insets left="165.0" top="20.0" />
-               </VBox.margin>
-               <effect>
-                  <DropShadow height="7.66" offsetX="2.0" offsetY="2.0" radius="6.665">
-                     <color>
-                        <Color opacity="0.1735357940196991" />
+                        <Color opacity="0.24511928856372833" />
                      </color>
                   </DropShadow>
                </effect>
@@ -106,11 +103,9 @@
                </cursor>
             </Button>
          </children>
-      </VBox>
-      <Label layoutX="55.0" layoutY="57.0" text="OPRET BRUGER">
-         <font>
-            <Font name="System Bold Italic" size="49.0" />
-         </font>
-      </Label>
+         <effect>
+            <InnerShadow />
+         </effect>
+      </Pane>
    </children>
 </AnchorPane>
