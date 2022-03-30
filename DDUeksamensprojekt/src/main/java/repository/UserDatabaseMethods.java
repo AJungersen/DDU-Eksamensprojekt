@@ -198,8 +198,7 @@ public class UserDatabaseMethods {
         conn.close();
         return loggedInUser;
     }
-    
-    public Wallet getUsersWallet() throws SQLException, Exception{
+    /*public Wallet getUsersWallet() throws SQLException, Exception{
         Wallet loggedInUserWallet = new Wallet();
 
         Connection conn = null;
@@ -214,7 +213,7 @@ public class UserDatabaseMethods {
         try {
             Statement stat = conn.createStatement();
 
-            ResultSet rs = stat.executeQuery("Select FROM Users WHERE user_ID = " getLoggedInUser.getUser_ID();" wallet_ID");
+            ResultSet rs = stat.executeQuery("Select FROM Users WHERE user_ID = ('"+ getLoggedInUser.getUser_ID() +"') ");
             
             rs.next();
 
@@ -262,5 +261,5 @@ public class UserDatabaseMethods {
         }
         conn.close();
         return loggedInUser;
-    }
+    }*/
 }
