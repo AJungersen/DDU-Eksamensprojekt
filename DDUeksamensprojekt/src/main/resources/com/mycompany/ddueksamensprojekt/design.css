@@ -27,3 +27,13 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
 .signupbutton:hover{
     -fx-underline: true;
 }
+.button{
+    -fx-background-radius: 0px;
+    -fx-border-color: transparent;
+    -fx-border-width: 0px 0px 0px 0px;
+    -fx-background-color: #40C54D;
+}
+.button:hover{
+    -fx-background-color: #A9D54D;
+    
+}
