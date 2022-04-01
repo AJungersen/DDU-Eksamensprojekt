@@ -5,6 +5,8 @@
  */
 package Classes;
 
+import Classes.Coupon;
+import Classes.CreditCard;
 import java.util.ArrayList;
 
 /**
@@ -22,6 +24,12 @@ public class Wallet {
     
     public Wallet(int wallet_ID, int funds, ArrayList<CreditCard> creditCards, ArrayList<Coupon> cupons) {
         this.wallet_ID = wallet_ID;
+        this.funds = funds;
+        this.creditCards = creditCards;
+        this.cupons = cupons;
+    }
+
+    public Wallet(int funds, ArrayList<CreditCard> creditCards, ArrayList<Coupon> cupons) {
         this.funds = funds;
         this.creditCards = creditCards;
         this.cupons = cupons;

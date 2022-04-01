@@ -5,9 +5,14 @@
  */
 package com.mycompany.ddueksamensprojekt;
 
+import Classes.Coupon;
+import Classes.CreditCard;
 import Classes.User;
+import Classes.Wallet;
+import static com.mycompany.ddueksamensprojekt.App.scene;
 import repository.*;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javafx.animation.Interpolator;
@@ -62,7 +67,7 @@ public class SignUpController {
                 && !textFieldEmail.getText().isBlank()) {
 
             //Check if user already exist
-            if (!udm.cehckForMatchingUser(textFieldName.getText())) {
+            if (!udm.checkForMatchingUser(textFieldName.getText())) {
 
                 //Check if email has at @ and . in it and no whitespace
                 if (textFieldEmail.getText().contains("@")
@@ -83,7 +88,7 @@ public class SignUpController {
                                 //passwords is identicel
                                 if (passwordFieldPassword.getText().equals(passwordFieldrepeatPassword.getText())) {
 
-                                    udm.createUser(new User(textFieldName.getText(), textFieldEmail.getText()),
+                                    udm.createUser(new User(textFieldName.getText(), textFieldEmail.getText(), new Wallet(0,new ArrayList<CreditCard>(),new ArrayList<Coupon>())),
                                             sm.hexString(passwordFieldPassword.getText()));
 
                                     App.setLoggedInUser(udm.getLoggedInUser(textFieldEmail.getText()));
@@ -136,3 +141,4 @@ public class SignUpController {
         timeline.play();
     }
 }
+    

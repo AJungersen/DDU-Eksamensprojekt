@@ -55,7 +55,7 @@ public class LoginController {
         textErrorMessage.setText("");
 
         //check if user exist
-        if (udm.cehckForMatchingUser(textFieldEmail.getText())) {
+        if (udm.checkForMatchingUser(textFieldEmail.getText())) {
 
             //check if user and passowrd match
             if (udm.checkForMatchingPassword(textFieldEmail.getText(),
@@ -64,7 +64,7 @@ public class LoginController {
                 App.setLoggedInUser(udm.getLoggedInUser(textFieldEmail.getText()));
 
                 //login
-                App.setRoot("loginUser");
+                App.setRoot("login");
             } else {
                 textErrorMessage.setText("user dosen't exist or password dont match");
             }

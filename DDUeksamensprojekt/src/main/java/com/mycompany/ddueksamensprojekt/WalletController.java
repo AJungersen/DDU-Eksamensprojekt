@@ -40,11 +40,12 @@ public class WalletController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
+        if(App.getLoggedInUser().getWallet().getCreditCards().size() != 0){
         ObservableList Cards = FXCollections.observableArrayList();
         for(CreditCard C: App.getLoggedInUser().getWallet().getCreditCards()){
             Cards.add(C.getCardNumber());
             cardview.setItems(Cards);
+        }
         }
     }
     @FXML
