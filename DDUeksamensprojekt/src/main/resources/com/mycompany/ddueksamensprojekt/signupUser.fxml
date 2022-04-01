@@ -83,7 +83,7 @@
                      </color>
                   </DropShadow>
                </effect>
-            </Button>
+            </TextField>
             <Text fx:id="textErrorMessage" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="diller" textAlignment="CENTER" wrappingWidth="159.63671875">
                <VBox.margin>
                   <Insets left="150.0" top="10.0" />

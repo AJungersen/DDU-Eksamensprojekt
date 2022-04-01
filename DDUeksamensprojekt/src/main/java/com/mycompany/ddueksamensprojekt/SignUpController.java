@@ -118,7 +118,7 @@ public class SignUpController {
     @FXML
     private void switchToLoginScreen(ActionEvent event) throws IOException, Exception {
         Parent root = FXMLLoader.load(getClass().getResource("loginUser.fxml"));
-<
+
         Scene scene = App.scene;
 
         root.translateYProperty().set(scene.getHeight());

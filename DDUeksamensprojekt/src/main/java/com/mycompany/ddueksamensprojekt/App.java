@@ -9,6 +9,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import javafx.stage.Popup;
+import repository.AdminDataBaseMethods;
 
 /**
  * JavaFX App
@@ -21,10 +22,12 @@ public class App extends Application {
     private static Popup popup;
 
     @Override
-    public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("login"));
+    public void start(Stage stage) throws IOException, Exception {
+        scene = new Scene(loadFXML("loginUser"));
         stage.setScene(scene);
         stage.show();
+        
+        AdminDataBaseMethods.setProductCategorysImages();
         
         this.stage = stage;
     }

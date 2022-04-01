@@ -11,12 +11,17 @@ table(Users) {
 }
 
 table(Products) {
-    PK item_ID
+    PK product_ID
     String name
     blob image
     float price
     int stock
     String subProductCategory
+}
+
+table(Favorites) {
+    FK user_ID
+    FK product_ID
 }
 
 table(Wallets) {
@@ -34,8 +39,20 @@ table(Coupons) {
     FK wallet_ID
 }
 
+table(SubProductCategorys) {
+    String category
+    blob image
+}
+
+table(ProductCategorys) {
+    String category
+    blob image
+}
+
 Wallets ||--|| Users
-Wallets ||--{ CreditCards
-Wallets ||--{ Coupons
+Wallets }o--|| CreditCards
+Wallets }o--|| Coupons
+Favorites ||--o{ Users
+Favorites ||--o{ Products
 
 @enduml

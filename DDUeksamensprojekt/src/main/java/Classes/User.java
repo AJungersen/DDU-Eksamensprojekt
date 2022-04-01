@@ -5,6 +5,8 @@
  */
 package Classes;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author chris
@@ -15,12 +17,14 @@ public class User {
     private String name;
     private String email;
     private Wallet wallet;
+    private ArrayList<Product> favorites;
 
-    public User(int user_ID, String name, String email, Wallet wallet) {
+    public User(int user_ID, String name, String email, Wallet wallet, ArrayList<Product> favorites) {
         this.user_ID = user_ID;
         this.name = name;
         this.email = email;
         this.wallet = wallet;
+        this.favorites = favorites;
     }
     
     //sign up
@@ -58,5 +62,13 @@ public class User {
 
     public void setWallet(Wallet wallet) {
         this.wallet = wallet;
+    }
+
+    public ArrayList<Product> getFavorites() {
+        return favorites;
+    }
+
+    public void setFavorites(ArrayList<Product> favorites) {
+        this.favorites = favorites;
     }
 }
