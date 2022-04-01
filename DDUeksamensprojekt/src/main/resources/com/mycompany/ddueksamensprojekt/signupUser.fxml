@@ -83,25 +83,7 @@
                      </color>
                   </DropShadow>
                </effect>
-            </Button>
-            <Text fx:id="textErrorMessage" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="diller" textAlignment="CENTER" wrappingWidth="159.63671875">
-               <VBox.margin>
-                  <Insets left="150.0" top="10.0" />
-               </VBox.margin>
-            </Text>
-            <Text fx:id="textErrorMessage1" strokeType="OUTSIDE" strokeWidth="0.0" text="Har du en bruger?" textAlignment="CENTER" wrappingWidth="159.63671875">
-               <VBox.margin>
-                  <Insets left="150.0" top="30.0" />
-               </VBox.margin>
-            </Text>
-            <Button fx:id="logInButton" mnemonicParsing="false" onAction="#switchToLoginScreen" prefHeight="27.0" prefWidth="97.0" style="-fx-background-color: transparent;" text="Login" textFill="#116606">
-               <VBox.margin>
-                  <Insets left="180.0" />
-               </VBox.margin>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Button>
+            </TextField>
          </children>
          <effect>
             <InnerShadow />
