@@ -11,20 +11,12 @@ import javafx.scene.image.Image;
  *
  * @author chris
  */
-public enum SubProductCategory {
-    test(ProductCategory.test);
+public enum ProductCategory {
+    test;
+    
     
     private Image image;
-    private final ProductCategory productCategory;
-
-    private SubProductCategory(ProductCategory productCategory) {
-        this.productCategory = productCategory;
-    }
-
-    public ProductCategory getProductCategory() {
-        return productCategory;
-    }
-
+    
     public Image getImage() {
         return image;
     }

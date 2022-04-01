@@ -88,7 +88,7 @@ public class SignUpController {
                                 //passwords is identicel
                                 if (passwordFieldPassword.getText().equals(passwordFieldrepeatPassword.getText())) {
 
-                                    udm.createUser(new User(textFieldName.getText(), textFieldEmail.getText(), new Wallet(0,new ArrayList<CreditCard>(),new ArrayList<Coupon>())),
+                                    udm.createUser(new User(textFieldName.getText(), textFieldEmail.getText()),
                                             sm.hexString(passwordFieldPassword.getText()));
 
                                     App.setLoggedInUser(udm.getLoggedInUser(textFieldEmail.getText()));

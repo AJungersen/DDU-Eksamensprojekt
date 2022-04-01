@@ -6,12 +6,19 @@
 package repository;
 
 import Classes.Product;
+import Classes.ProductCategory;
+import Classes.SubProductCategory;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import javax.imageio.ImageIO;
 
 /**
  *
@@ -20,6 +27,7 @@ import java.sql.SQLException;
 public class AdminDataBaseMethods {
 
     private final String connectionString = "jdbc:sqlite:Database.db";
+    private static final String staticConnectionString = "jdbc:sqlite:Database.db";
 
     //------------------------------------
     //---------- Create product ----------
@@ -46,8 +54,66 @@ public class AdminDataBaseMethods {
             pstmt.executeUpdate();
         } catch (SQLException e) {
             System.out.println("\n Database error (insert image (insert image): " + e.getMessage() + "\n");
-            
+
             e.printStackTrace();
+        }
+    }
+
+    //---------------------------------------------------
+    //---------- Bind image to product product ----------
+    //---------------------------------------------------
+    //-------------------------------------------------------
+    //---------- Bind image to sub product product ----------
+    //-------------------------------------------------------
+    //--------------------------------------------------------
+    //---------- Set sub/- product categorys images ----------
+    //--------------------------------------------------------
+    public static void setProductCategorysImages() throws SQLException, Exception{
+        Connection conn = null;
+        Class.forName("org.sqlite.JDBC");
+
+        try {
+            conn = DriverManager.getConnection(staticConnectionString);
+        } catch (SQLException e) {
+            System.out.println("\n Database error (set product categorys images (connection)): " + e.getMessage() + "\n");
+        }
+        
+        //main categorys
+        for (ProductCategory pc : ProductCategory.values()) {
+            try {
+                Statement stat = conn.createStatement();
+                
+                ResultSet rs = stat.executeQuery("SELECT image FROM ProductCategorys "
+                        + "WHERE Category =  ('" + pc.toString() + "') ");
+                
+                byte[] imgBytes = rs.getBytes("image");
+                ByteArrayInputStream bis = new ByteArrayInputStream(imgBytes);
+                BufferedImage bImage = ImageIO.read(bis);
+                
+                pc.setImage(Tools.convertBufferedImageToFxImage(bImage));
+                
+            } catch (SQLException e) {
+                System.out.println("\n Database error (set product categorys images (product category images)): " + e.getMessage() + "\n");
+            }
+        }
+        
+        //sub categorys
+        for (SubProductCategory spc : SubProductCategory.values()) {
+           try {
+                Statement stat = conn.createStatement();
+                
+                ResultSet rs = stat.executeQuery("SELECT image FROM SubProductCategorys "
+                        + "WHERE Category =  ('" + spc.toString() + "') ");
+                
+                byte[] imgBytes = rs.getBytes("image");
+                ByteArrayInputStream bis = new ByteArrayInputStream(imgBytes);
+                BufferedImage bImage = ImageIO.read(bis);
+                
+                spc.setImage(Tools.convertBufferedImageToFxImage(bImage));
+                
+            } catch (SQLException e) {
+                System.out.println("\n Database error (set product categorys images (product sub category images)): " + e.getMessage() + "\n");
+            } 
         }
     }
 }
