@@ -22,7 +22,7 @@ public class UserDatabaseMethods {
     //---------------------------------------------
     //---------- check for matching user ----------
     //---------------------------------------------
-    public boolean cehckForMatchingUser(String _email) throws SQLException, Exception {
+    public boolean checkForMatchingUser(String _email) throws SQLException, Exception {
         String databaseEmail = "";
         _email = _email.toLowerCase();
 

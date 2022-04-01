@@ -5,6 +5,8 @@
  */
 package Classes;
 
+import Classes.Wallet;
+
 /**
  *
  * @author chris
@@ -18,6 +20,12 @@ public class User {
 
     public User(int user_ID, String name, String email, Wallet wallet) {
         this.user_ID = user_ID;
+        this.name = name;
+        this.email = email;
+        this.wallet = wallet;
+    }
+
+    public User(String name, String email, Wallet wallet) {
         this.name = name;
         this.email = email;
         this.wallet = wallet;
