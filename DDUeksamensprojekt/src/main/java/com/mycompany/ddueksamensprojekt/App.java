@@ -16,13 +16,13 @@ import javafx.stage.Popup;
 public class App extends Application {
     
     private static User loggedInUser = new User();
-    private static Scene scene;
+    public static Scene scene;
     private static Stage stage;
     private static Popup popup;
 
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("loginUser"));
+        scene = new Scene(loadFXML("login"));
         stage.setScene(scene);
         stage.show();
         
