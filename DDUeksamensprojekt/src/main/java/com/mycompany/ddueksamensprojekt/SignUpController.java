@@ -6,6 +6,7 @@
 package com.mycompany.ddueksamensprojekt;
 
 import Classes.User;
+import static com.mycompany.ddueksamensprojekt.App.scene;
 import repository.*;
 import java.io.IOException;
 import java.util.regex.Matcher;
