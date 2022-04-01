@@ -78,7 +78,7 @@ public class UserDatabaseMethods {
         try {
             Statement stat = conn.createStatement();
 
-            ResultSet rs = stat.executeQuery("select Password from Users WHERE Username = ('" + _email + "');");
+            ResultSet rs = stat.executeQuery("select Password from Users WHERE Email = ('" + _email + "');");
 
             rs.next();
 
@@ -147,9 +147,9 @@ public class UserDatabaseMethods {
         try {
             Statement stat = conn.createStatement();
 
-            ResultSet rs = stat.executeQuery("SELECT *, Wallets.fonds FROM Users "
+            ResultSet rs = stat.executeQuery("SELECT *, Wallets.funds FROM Users "
                     + "INNER JOIN Wallets ON Users.wallet_ID = Wallets.wallet_ID "
-                    + "WHERE email = = ('" + _email + "');");
+                    + "WHERE email = ('" + _email + "');");
             
             rs.next();
 
