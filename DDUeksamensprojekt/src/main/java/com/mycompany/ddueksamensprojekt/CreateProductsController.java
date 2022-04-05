@@ -6,7 +6,7 @@
 package com.mycompany.ddueksamensprojekt;
 
 import Classes.Product;
-import Classes.SubProductCategory;
+import Classes.ProductCategory;
 import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -37,13 +37,13 @@ public class CreateProductsController implements Initializable {
     @FXML
     private TextField textFieldPrice;
     @FXML
-    private ChoiceBox<SubProductCategory> choiceBoxSubProductCategory;
+    private ChoiceBox<ProductCategory> choiceBoxSubProductCategory;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         try {
             choiceBoxSubProductCategory.getItems().clear();
-            choiceBoxSubProductCategory.getItems().addAll(SubProductCategory.values());
+            choiceBoxSubProductCategory.getItems().addAll(ProductCategory.values());
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
