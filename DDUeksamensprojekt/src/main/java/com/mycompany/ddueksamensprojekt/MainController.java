@@ -16,47 +16,63 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
+import javafx.scene.text.Text;
+import javax.imageio.plugins.tiff.TIFFDirectory;
+import repository.Tools;
 
 /**
  *
  * @author chris
  */
-public class MainController implements Initializable{
-    AnchorPane ap = new AnchorPane();
-    ArrayList<Pane> panes = new ArrayList<>();
-    
-    private float paneX = 0;
-    private float paneY = 0;
-    
+public class MainController implements Initializable {
+
+    Pane pane = new Pane();
+    ArrayList<StackPane> stackPanes = new ArrayList<>();
+
+    private float paneSize_X = 286;
+    private float paneSize_Y = 286;
+    private float PaneSpace_X = 30;
+    private float paneSPace_Y = 30;
+    private int panesPerRow = 0;
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         try {
+            int column = 0;
+            int row = 1;
             for (ProductCategory pc : ProductCategory.values()) {
-                Pane pane = new Pane();
-                
-                pane.setLayoutX(paneX);
-                pane.setLayoutY(paneY);
-                
+                column++;
+                StackPane stackPane = new StackPane();
+
+                //pos
+                stackPane.setLayoutX((PaneSpace_X * column) + (paneSize_X  * column-1));
+                stackPane.setLayoutY((paneSPace_Y * row) + (paneSize_Y * row-1));
+
+                //size
+                stackPane.setMinSize(paneSize_X, paneSize_Y);
+                stackPane.setMaxSize(paneSize_X, paneSize_Y);
+
                 ImageView imgView = new ImageView(pc.getImage());
                 
-                //------------------------------------------------------------
-                //----------------- MISSING WIDHT AND HEIGHT -----------------
-                //------------------------------------------------------------
-                imgView.setFitWidth(0);
-                imgView.setFitHeight(0);
+                imgView.setFitWidth(paneSize_X);
+                imgView.setFitHeight(paneSize_Y);
+
+                Text text = new Text(pc.asFormatedString());
                 
-                Button button = new Button(pc.toString());
+                text.setStyle("-fx-fill-color: #333333");
                 
-                button.setLayoutX(0);
-                button.setLayoutY(0);
+                stackPane.getChildren().add(imgView);
+                stackPane.getChildren().add(text);
                 
-                pane.getChildren().add(imgView);
-                pane.getChildren().add(button);
+                stackPane.setAlignment(text, Pos.BOTTOM_CENTER);
                 
-                panes.add(pane);
+                pane.getChildren().add(stackPane);
+                if(column % panesPerRow == 0) {
+                    column = 0;
+                    row ++;
+                }
             }
-            
-            ap.getChildren().addAll(panes);
         } catch (Exception e) {
             System.err.println(e.getMessage());
         }
