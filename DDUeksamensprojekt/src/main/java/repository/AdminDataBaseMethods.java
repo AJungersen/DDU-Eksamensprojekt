@@ -7,7 +7,6 @@ package repository;
 
 import Classes.Product;
 import Classes.ProductCategory;
-import Classes.SubProductCategory;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.File;
@@ -44,7 +43,7 @@ public class AdminDataBaseMethods {
 
         String sql = "INSERT INTO Images VALUES (?, '" + _product.getName() + "', ?, "
                 + "'" + _product.getPrice() + "', '" + _product.getStock() + "', "
-                + "'" + _product.getSubProductCategory().toString() + "' );";
+                + "'" + _product.getProductCategory().toString() + "' );";
 
         FileInputStream fis = new FileInputStream(_imageFile);
 
@@ -98,11 +97,11 @@ public class AdminDataBaseMethods {
         }
         
         //sub categorys
-        for (SubProductCategory spc : SubProductCategory.values()) {
+        for (ProductCategory spc : ProductCategory.values()) {
            try {
                 Statement stat = conn.createStatement();
                 
-                ResultSet rs = stat.executeQuery("SELECT image FROM SubProductCategorys "
+                ResultSet rs = stat.executeQuery("SELECT image FROM ProductCategorys "
                         + "WHERE Category =  ('" + spc.toString() + "') ");
                 
                 byte[] imgBytes = rs.getBytes("image");
@@ -112,7 +111,7 @@ public class AdminDataBaseMethods {
                 spc.setImage(Tools.convertBufferedImageToFxImage(bImage));
                 
             } catch (SQLException e) {
-                System.out.println("\n Database error (set product categorys images (product sub category images)): " + e.getMessage() + "\n");
+                System.out.println("\n Database error (set product categorys images (product category images)): " + e.getMessage() + "\n");
             } 
         }
     }

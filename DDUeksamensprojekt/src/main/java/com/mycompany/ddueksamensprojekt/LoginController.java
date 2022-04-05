@@ -64,7 +64,7 @@ public class LoginController {
                 App.setLoggedInUser(udm.getLoggedInUser(textFieldEmail.getText()));
 
                 //login
-                App.setRoot("login");
+                App.setRoot("AdminCreateProducts");
             } else {
                 textErrorMessage.setText("user dosen't exist or password dont match");
             }

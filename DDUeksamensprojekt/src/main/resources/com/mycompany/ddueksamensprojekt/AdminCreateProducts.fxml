@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.gluonhq.charm.glisten.control.ToggleButtonGroup?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.TextField?>
@@ -8,16 +7,14 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/16" fx:controller="com.mycompany.ddueksamensprojekt.CreateProductsController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.ddueksamensprojekt.CreateProductsController">
    <children>
       <Button layoutX="52.0" layoutY="151.0" mnemonicParsing="false" onAction="#addImage" text="Add image" />
       <ImageView fx:id="imageViewProductPhoto" fitHeight="207.0" fitWidth="270.0" layoutX="316.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
       <TextField fx:id="textFieldName" layoutX="14.0" layoutY="14.0" promptText="Name" />
       <TextField fx:id="textFieldPrice" layoutX="15.0" layoutY="53.0" promptText="price" />
-      <ChoiceBox fx:id="choiceBoxSubProductCategory" layoutX="14.0" layoutY="111.0" prefWidth="150.0" />
-      <Text layoutX="19.0" layoutY="102.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Vælg sub product kategori" />
+      <ChoiceBox fx:id="choiceBoxProductCategory" layoutX="14.0" layoutY="111.0" prefWidth="150.0" />
+      <Text layoutX="19.0" layoutY="102.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Vælg product kategori" />
       <Button layoutX="42.0" layoutY="187.0" mnemonicParsing="false" onAction="#createProduct" text="Opret produkt" />
-      <ToggleButtonGroup layoutX="316.0" layoutY="139.0" selectionType="SINGLE" />
    </children>
 </AnchorPane>
