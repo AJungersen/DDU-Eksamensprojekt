@@ -61,6 +61,8 @@ public class CreateProductsController implements Initializable {
 
         //selectedFiles = fc.showOpenMultipleDialog(null).get(0);
         selectedFiles = fc.showOpenDialog(null);
+        
+        imageViewProductPhoto.setImage(new Image(selectedFiles.getAbsolutePath()));
     }
 
     @FXML

@@ -16,7 +16,7 @@ table(Products) {
     blob image
     float price
     int stock
-    String subProductCategory
+    String productCategory
 }
 
 table(Favorites) {
@@ -39,20 +39,39 @@ table(Coupons) {
     FK wallet_ID
 }
 
-table(SubProductCategorys) {
-    String category
-    blob image
-}
-
 table(ProductCategorys) {
     String category
     blob image
 }
 
+table(SavedShoppingCarts) {
+    PK savedShoppingCarts_ID
+}
+
+table(SavedShoppingCartsProducts){
+    FK savedShoppingCarts_ID
+    FK product_ID
+    int amount
+}
+
+table(PurchasedShoppingCarts) {
+    PK purchasedShoppingCarts_ID
+}
+
+table(PurchasedShoppingCartsProducts) {
+    FK purchasedShoppingCarts_ID
+    FK product_ID
+    int amount
+}
+
 Wallets ||--|| Users
 Wallets }o--|| CreditCards
 Wallets }o--|| Coupons
+
 Favorites ||--o{ Users
 Favorites ||--o{ Products
+
+SavedShoppingCarts ||--|{ SavedShoppingCartsProducts
+PurchasedShoppingCarts ||--{ PurchasedShoppingCartsProducts
 
 @enduml
