@@ -11,7 +11,7 @@ import javafx.scene.image.Image;
  *
  * @author chris
  */
-public enum SubProductCategory {
+/*public enum SubProductCategory {
     test(ProductCategory.test);
     
     private Image image;
@@ -32,4 +32,4 @@ public enum SubProductCategory {
     public void setImage(Image image) {
         this.image = image;
     }
-}
+}*/

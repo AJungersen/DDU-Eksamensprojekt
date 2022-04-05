@@ -12,7 +12,15 @@ import javafx.scene.image.Image;
  * @author chris
  */
 public enum ProductCategory {
-    test;
+    FRUGT_OG_GRØNT,
+    MEJERIPRODUKTER,
+    KØD_OG_FISK,
+    FROST,
+    PÅLÆG,
+    DRIKKEVARER,
+    BRØD_KIKS_OG_KAGER,
+    SLIK_OG_SNACKS;
+    
     
     
     private Image image;
