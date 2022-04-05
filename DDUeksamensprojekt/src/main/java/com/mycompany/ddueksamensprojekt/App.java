@@ -27,7 +27,7 @@ public class App extends Application {
         stage.setScene(scene);
         stage.show();
         
-        AdminDataBaseMethods.setProductCategorysImages();
+        //AdminDataBaseMethods.setProductCategorysImages();
         
         this.stage = stage;
     }
