@@ -41,7 +41,7 @@ public class AdminDataBaseMethods {
             System.out.println("\n Database error (insert image (connection)): " + e.getMessage() + "\n");
         }
 
-        String sql = "INSERT INTO Images VALUES (?, '" + _product.getName() + "', ?, "
+        String sql = "INSERT INTO Products VALUES (?, '" + _product.getName() + "', ?, "
                 + "'" + _product.getPrice() + "', '" + _product.getStock() + "', "
                 + "'" + _product.getProductCategory().toString() + "' );";
 
