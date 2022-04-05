@@ -4,9 +4,13 @@
  */
 package com.mycompany.ddueksamensprojekt;
 
+import Classes.ProductCategory;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.Initializable;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 
 /**
  * FXML Controller class
@@ -15,12 +19,24 @@ import javafx.fxml.Initializable;
  */
 public class CatelogViewController implements Initializable {
 
+    AnchorPane view = new AnchorPane();
+
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
-    
+        try {
+            /*for (ProductCategory ) {
+                Image img;
+                ImageView imgView = new ImageView(img);
+
+                imgView.setFitWidth(0);
+                imgView.setFitHeight(0);
+            }*/
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
+    }
+
 }
