@@ -9,6 +9,7 @@ import Classes.ProductCategory;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -60,5 +61,13 @@ public class MainController implements Initializable{
         } catch (Exception e) {
             System.err.println(e.getMessage());
         }
+    }
+    @FXML
+    void openProfile() throws Exception {
+       // App.setRoot(profile);
+    }
+    @FXML
+    void openCart() throws Exception {
+        // App.setRoot(cart);
     }
 }
