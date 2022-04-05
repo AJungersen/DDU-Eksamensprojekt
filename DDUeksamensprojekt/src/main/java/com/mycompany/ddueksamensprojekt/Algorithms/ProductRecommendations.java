@@ -14,8 +14,8 @@ import java.util.ArrayList;
  *
  * @author danie
  */
-/*public class ProductRecommendations {
-    public ArrayList<Product> getBestProduct(Product userProduct){
+public class ProductRecommendations {
+    /*public ArrayList<Product> getBestProduct(Product userProduct){
         ArrayList<Product> products = db.getListOfProducts();
         ArrayList<ProductScore> rankedList = new ArrayList();
         ArrayList<Product> returnList = new ArrayList();
@@ -23,7 +23,7 @@ import java.util.ArrayList;
             if(rankedList.isEmpty()){
                 rankedList.add(new ProductScore(I,(getFitnessOff(I,userProduct))));
             } else {
-            if(I.getProductID() != userProduct.getProductID()){
+            if(I.getItem_ID() != userProduct.getItem_ID()){
                 ProductScore PS = new ProductScore(I,(getFitnessOff(I,userProduct)));
                 for(ProductScore P: rankedList){
                     if(PS.getScore() > P.getScore()){
@@ -62,6 +62,5 @@ import java.util.ArrayList;
         // 10 skal erstattes af variabel
         float score = 10*uf+10*af;
         return score;
-    }
+    }*/
 }
-*/
