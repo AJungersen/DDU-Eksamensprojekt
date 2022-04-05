@@ -7,6 +7,7 @@ package com.mycompany.ddueksamensprojekt;
 
 import Classes.Product;
 import Classes.SubProductCategory;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -61,6 +62,8 @@ public class CreateProductsController implements Initializable {
 
         //selectedFiles = fc.showOpenMultipleDialog(null).get(0);
         selectedFiles = fc.showOpenDialog(null);
+        
+        imageViewProductPhoto.setImage(new Image(selectedFiles.getAbsolutePath()));
     }
 
     @FXML
