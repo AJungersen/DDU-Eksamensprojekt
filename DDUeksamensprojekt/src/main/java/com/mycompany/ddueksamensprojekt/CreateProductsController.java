@@ -6,7 +6,7 @@
 package com.mycompany.ddueksamensprojekt;
 
 import Classes.Product;
-import Classes.SubProductCategory;
+import Classes.ProductCategory;
 import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -37,13 +37,13 @@ public class CreateProductsController implements Initializable {
     @FXML
     private TextField textFieldPrice;
     @FXML
-    private ChoiceBox<SubProductCategory> choiceBoxSubProductCategory;
+    private ChoiceBox<ProductCategory> choiceBoxProductCategory;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         try {
-            choiceBoxSubProductCategory.getItems().clear();
-            choiceBoxSubProductCategory.getItems().addAll(SubProductCategory.values());
+            choiceBoxProductCategory.getItems().clear();
+            choiceBoxProductCategory.getItems().addAll(ProductCategory.values());
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
@@ -61,12 +61,14 @@ public class CreateProductsController implements Initializable {
 
         //selectedFiles = fc.showOpenMultipleDialog(null).get(0);
         selectedFiles = fc.showOpenDialog(null);
+        
+        imageViewProductPhoto.setImage(new Image(selectedFiles.getAbsolutePath()));
     }
 
     @FXML
     private void createProduct(ActionEvent event) throws Exception{
         Product product = new Product(textFieldName.getText(), Integer.parseInt(textFieldPrice.getText()), 
-                choiceBoxSubProductCategory.getSelectionModel().getSelectedItem());
+                choiceBoxProductCategory.getSelectionModel().getSelectedItem());
         
         adbm.createProduct(product, selectedFiles);
     }

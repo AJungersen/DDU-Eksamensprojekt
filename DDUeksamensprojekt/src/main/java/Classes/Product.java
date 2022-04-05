@@ -17,22 +17,22 @@ public class Product {
     private Image image;
     private float price;
     private int stock;
-    private SubProductCategory subProductCategory;
+    private ProductCategory ProductCategory;
     
     //create
-    public Product(String name, float price, SubProductCategory subProductCategory) {
+    public Product(String name, float price, ProductCategory ProductCategory) {
         this.name = name;
         this.price = price;
-        this.subProductCategory = subProductCategory;
+        this.ProductCategory = ProductCategory;
     }
 
-    public Product(int item_ID, String name, Image image, float price, int stock, SubProductCategory subProductCategory) {
+    public Product(int item_ID, String name, Image image, float price, int stock, ProductCategory subProductCategory) {
         this.item_ID = item_ID;
         this.name = name;
         this.image = image;
         this.price = price;
         this.stock = stock;
-        this.subProductCategory = subProductCategory;
+        this.ProductCategory = ProductCategory;
     }
     
     public int getItem_ID() {
@@ -71,11 +71,11 @@ public class Product {
         this.stock = stock;
     }
 
-    public SubProductCategory getSubProductCategory() {
-        return subProductCategory;
+    public ProductCategory getProductCategory() {
+        return ProductCategory;
     }
 
-    public void setSubProductCategory(SubProductCategory subProductCategory) {
-        this.subProductCategory = subProductCategory;
+    public void setProductCategory(ProductCategory ProductCategory) {
+        this.ProductCategory = ProductCategory;
     }
 }

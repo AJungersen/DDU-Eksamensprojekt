@@ -18,6 +18,7 @@ class User {
 
 
 Class Wallet {
+    int wallet_ID
     int fonds
     ArrayList<Coupon> Coupons
     ArrayList<CreditCard> CreditCards
@@ -25,28 +26,28 @@ Class Wallet {
 
 class CreditCard {
     LocalDate experetionDate
+    string cardNumber
+    string cvv
+    string cardHoldersName
 }
 
 class Coupon {
-    
+
 }
 
 class shoppingCart {
-    
+    int shoppingCart_ID
+    LocalDate purchaseDate
+    HashMap<Products, Integer> purchasedProducts
 }
 
 enum ProductCategory {
 
 }
 
-enum SubProductCategory {
-
-    getProductCategory()
-}
-
 Wallet "1" o-- "0..*" Coupon
-Wallet "1" *-- "1..*" CreditCard
+Wallet "1" o-- "0..*" CreditCard
 User "1" o-- "0..1" Wallet
-ProductCategory "1" *-- "0..*" SubProductCategory
+shoppingCart "1" o-- "0..*" Products
 
 @enduml
