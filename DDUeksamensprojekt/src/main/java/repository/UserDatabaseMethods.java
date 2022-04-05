@@ -214,7 +214,7 @@ public class UserDatabaseMethods {
 
                     favorites.add(new Product(rs.getInt("product_ID"), rs.getString("name"), 
                             Tools.convertBufferedImageToFxImage(bImage), rs.getInt("price"), 
-                            rs.getInt("stock"), SubProductCategory.valueOf(rs.getString("subProductCategory"))));
+                            rs.getInt("stock"), ProductCategory.valueOf(rs.getString("ProductCategory"))));
                 }
 
                 loggedInUser.setFavorites(favorites);
