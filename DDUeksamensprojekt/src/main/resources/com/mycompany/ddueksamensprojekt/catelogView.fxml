@@ -12,13 +12,13 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="790.0" prefWidth="984.0" style="-fx-background-color: #40C54D;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/16" fx:controller="com.mycompany.ddueksamensprojekt.CatelogViewController">
+<AnchorPane id="AnchorPane" prefHeight="790.0" prefWidth="984.0" style="-fx-background-color: #40C54D;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.ddueksamensprojekt.CatelogViewController">
    <children>
       <Label layoutX="408.0" text="Præcis" textAlignment="CENTER">
          <font>
@@ -31,32 +31,6 @@
          </effect>
          <children>
             <ScrollPane layoutX="2.0" layoutY="94.0" prefHeight="629.0" prefWidth="1002.0">
-              <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="656.0" prefWidth="991.0" style="-fx-background-color: #AAE2AF;">
-                     <children>
-                        <ImageView fitHeight="360.0" fitWidth="996.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@green.jpg" />
-                           </image>
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                        </ImageView>
-                        <Button alignment="CENTER" layoutX="412.0" layoutY="78.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="168.0" style="-fx-background-radius: 0px; -fx-background-color: #DFF2E1;" text="Frugt &amp; Grønt">
-                           <font>
-                              <Font size="16.0" />
-                           </font>
-                           <effect>
-                              <DropShadow>
-                                 <color>
-                                    <Color opacity="0.5184381604194641" />
-                                 </color>
-                              </DropShadow>
-                           </effect>
-                        </Button>
-                     </children>
-                  </AnchorPane>
-              </content>
                <effect>
                   <InnerShadow>
                      <color>
@@ -64,6 +38,29 @@
                      </color>
                   </InnerShadow>
                </effect>
+               <content>
+                  <StackPane prefHeight="661.0" prefWidth="986.0" style="-fx-background-color: #AAE2AF;">
+                     <children>
+                        <ImageView fitHeight="193.0" fitWidth="986.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@green.jpg" />
+                           </image>
+                        </ImageView>
+                        <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="152.0" style="-fx-background-color: #DFF2E1;" stylesheets="@design.css" text="Frugt &amp; Grønt">
+                           <font>
+                              <Font name="Segoe UI Semibold" size="14.0" />
+                           </font>
+                           <effect>
+                              <DropShadow height="9.33" offsetY="2.0" radius="3.7475000000000005" width="7.66">
+                                 <color>
+                                    <Color opacity="0.25" />
+                                 </color>
+                              </DropShadow>
+                           </effect>
+                        </Button>
+                     </children>
+                  </StackPane>
+               </content>
             </ScrollPane>
             <ImageView fitHeight="70.0" fitWidth="68.0" layoutX="920.0" layoutY="14.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true">
                <image>
