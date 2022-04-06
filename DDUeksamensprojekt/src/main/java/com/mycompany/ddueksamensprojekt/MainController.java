@@ -33,19 +33,7 @@ import repository.Tools;
  * @author chris
  */
 public class MainController implements Initializable {
-    public class TableViewDispaly extends Product{
-        private Integer amount;
 
-        public TableViewDispaly(Integer amount, Product product) {
-            super(product);
-            this.amount = amount;
-        }
-
-        public Integer getAmount() {
-            return amount;
-        }
-    }
-    
     StoreDatabaseMethods sdm = new StoreDatabaseMethods();
     ArrayList<StackPane> stackPanes = new ArrayList<>();
 
@@ -108,49 +96,50 @@ public class MainController implements Initializable {
                     row ++;
                 }
             }*/
-            
+
             //insert last purchase
-            
             Product p1 = new Product(0, "test1", null, 1, 4, ProductCategory.DRIKKEVARER);
             Product p2 = new Product(0, "test2", null, 5, 4, ProductCategory.DRIKKEVARER);
-            
+
             HashMap<Product, Integer> hp = new HashMap<>();
-            
+
             hp.put(p1, 1);
             hp.put(p2, 2);
-            
+
             ArrayList<TableViewDispaly> tableViewDispalyData = new ArrayList<>();
-            
+
             HashMap<Product, Integer> hm = sdm.getLatestPurchase(App.getLoggedInUser().getUser_ID()).getPurchasedProducts();
-            
-            for(Product p : hp.keySet()) {
+
+            for (Product p : hp.keySet()) {
                 tableViewDispalyData.add(new TableViewDispaly(hp.get(p), p));
             }
-            
+
             tableColumnImage.setCellValueFactory(new PropertyValueFactory<TableViewDispaly, Image>("image"));
             tableColumnName.setCellValueFactory(new PropertyValueFactory<TableViewDispaly, String>("name"));
             tableColumnPrice.setCellValueFactory(new PropertyValueFactory<TableViewDispaly, Integer>("price"));
             tableColumnAmount.setCellValueFactory(new PropertyValueFactory<TableViewDispaly, Integer>("amount"));
-            
+
             tableViewLastPurchas.getItems().setAll(tableViewDispalyData);
-            
+
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
     }
+
     @FXML
     void openProfile() throws Exception {
-       // App.setRoot(profile);
+        // App.setRoot(profile);
     }
+
     @FXML
     void openCart() throws Exception {
         // App.setRoot(cart);
     }
-    
+
     @FXML
     private void goToSelectedProduct(MouseEvent event) {
-        
-        if(tableViewLastPurchas.getFocusModel().getFocusedCell().getColumn() == 1) {
+
+        if (tableViewLastPurchas.getFocusModel().getFocusedCell().getColumn() == 1) {
             //send to 
             System.out.println(tableViewLastPurchas.getSelectionModel().getSelectedItem().getAmount());
         }
