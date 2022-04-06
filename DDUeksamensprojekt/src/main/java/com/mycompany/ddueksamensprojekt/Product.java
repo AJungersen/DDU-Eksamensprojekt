@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Classes;
+package com.mycompany.ddueksamensprojekt;
 
+import Classes.ProductCategory;
 import javafx.scene.image.Image;
 
 /**
@@ -18,6 +19,9 @@ public class Product {
     private float price;
     private int stock;
     private ProductCategory ProductCategory;
+
+    public Product() {
+    }
     
     //create
     public Product(String name, float price, ProductCategory ProductCategory) {
@@ -33,6 +37,16 @@ public class Product {
         this.price = price;
         this.stock = stock;
         this.ProductCategory = productCategory;
+    }
+    
+    //used for tableview class
+    public Product(Product product) {
+        this.item_ID = product.getItem_ID();
+        this.name = product.getName();
+        this.image = product.getImage();
+        this.price = product.getPrice();
+        this.stock = product.getStock();
+        this.ProductCategory = product.getProductCategory();
     }
     
     public int getItem_ID() {
