@@ -56,6 +56,8 @@ public class AdminDataBaseMethods {
 
             e.printStackTrace();
         }
+        
+        conn.close();
     }
 
     //---------------------------------------------------
@@ -114,5 +116,7 @@ public class AdminDataBaseMethods {
                 System.out.println("\n Database error (set product categorys images (product category images)): " + e.getMessage() + "\n");
             } 
         }
+        
+        conn.close();
     }
 }
