@@ -15,7 +15,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="790.0" prefWidth="984.0" style="-fx-background-color: #40C54D;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.ddueksamensprojekt.CatelogViewController">
+<AnchorPane id="AnchorPane" prefHeight="790.0" prefWidth="984.0" style="-fx-background-color: #40C54D;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.ddueksamensprojekt.SubcatelogViewController">
    <children>
       <Label layoutX="408.0" text="Præcis" textAlignment="CENTER">
          <font>
@@ -36,7 +36,7 @@
                   </InnerShadow>
                </effect>
                <content>
-                  <AnchorPane prefHeight="675.0" prefWidth="990.0" style="-fx-background-color: #AAE2AF;" />
+                  <AnchorPane prefHeight="680.0" prefWidth="1000.0" style="-fx-background-color: #AAE2AF;" />
                </content>
             </ScrollPane>
             <ImageView fitHeight="70.0" fitWidth="68.0" layoutX="920.0" layoutY="14.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true">
@@ -47,12 +47,12 @@
                   <ColorAdjust brightness="0.1" contrast="-0.21" hue="1.0" saturation="-0.68" />
                </effect>
             </ImageView>
-            <Text layoutX="21.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" text="(..overkategori..)">
+            <Text layoutX="21.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" text="(..underkategori..)">
                <font>
                   <Font name="Segoe UI Symbol" size="29.0" />
                </font>
             </Text>
-            <TextField layoutX="592.0" layoutY="28.0" prefHeight="40.0" prefWidth="318.0" promptText="Søg efter kategori" style="-fx-background-radius: 0px; -fx-border-width: 0px 0px 3px 0px; -fx-border-color: #40C54D; -fx-background-color: #DFF2E1;">
+            <TextField layoutX="592.0" layoutY="28.0" prefHeight="40.0" prefWidth="318.0" promptText="Søg efter varer" style="-fx-background-radius: 0px; -fx-border-width: 0px 0px 3px 0px; -fx-border-color: #40C54D; -fx-background-color: #DFF2E1;">
                <font>
                   <Font size="17.0" />
                </font>

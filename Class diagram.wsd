@@ -38,7 +38,7 @@ class Coupon {
 class shoppingCart {
     int shoppingCart_ID
     LocalDate purchaseDate
-    HashMap<Products, Integer> purchasedProducts
+    HashMap<Product, Integer> purchasedProducts
 }
 
 enum ProductCategory {

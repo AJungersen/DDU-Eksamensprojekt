@@ -26,13 +26,13 @@ public class Product {
         this.ProductCategory = ProductCategory;
     }
 
-    public Product(int item_ID, String name, Image image, float price, int stock, ProductCategory subProductCategory) {
+    public Product(int item_ID, String name, Image image, float price, int stock, ProductCategory productCategory) {
         this.item_ID = item_ID;
         this.name = name;
         this.image = image;
         this.price = price;
         this.stock = stock;
-        this.ProductCategory = ProductCategory;
+        this.ProductCategory = productCategory;
     }
     
     public int getItem_ID() {

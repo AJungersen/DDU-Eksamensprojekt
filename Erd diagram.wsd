@@ -46,6 +46,7 @@ table(ProductCategorys) {
 
 table(SavedShoppingCarts) {
     PK savedShoppingCarts_ID
+    FK user_ID
 }
 
 table(SavedShoppingCartsProducts){
@@ -56,6 +57,8 @@ table(SavedShoppingCartsProducts){
 
 table(PurchasedShoppingCarts) {
     PK purchasedShoppingCarts_ID
+    FK user_ID
+    String date
 }
 
 table(PurchasedShoppingCartsProducts) {
