@@ -6,7 +6,7 @@
 package com.mycompany.ddueksamensprojekt.Algorithms;
 
 import Classes.Cart;
-import Classes.Product;
+import com.mycompany.ddueksamensprojekt.Product;
 import Classes.ProductScore;
 import java.util.ArrayList;
 

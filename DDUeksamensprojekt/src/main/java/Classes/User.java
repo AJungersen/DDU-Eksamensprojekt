@@ -5,6 +5,7 @@
  */
 package Classes;
 
+import com.mycompany.ddueksamensprojekt.Product;
 import java.util.ArrayList;
 
 /**

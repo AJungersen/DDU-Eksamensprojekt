@@ -5,7 +5,6 @@
  */
 package com.mycompany.ddueksamensprojekt;
 
-import Classes.Product;
 import Classes.ProductCategory;
 import java.io.File;
 import java.net.URL;

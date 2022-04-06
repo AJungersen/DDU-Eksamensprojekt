@@ -5,7 +5,7 @@
  */
 package Classes;
 
-import Classes.Product;
+import com.mycompany.ddueksamensprojekt.Product;
 import Classes.User;
 import java.util.ArrayList;
 

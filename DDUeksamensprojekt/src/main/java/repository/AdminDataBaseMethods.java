@@ -5,7 +5,7 @@
  */
 package repository;
 
-import Classes.Product;
+import com.mycompany.ddueksamensprojekt.Product;
 import Classes.ProductCategory;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;

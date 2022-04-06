@@ -5,6 +5,7 @@
  */
 package repository;
 
+import com.mycompany.ddueksamensprojekt.Product;
 import java.sql.*;
 import Classes.*;
 import static com.mycompany.ddueksamensprojekt.App.getLoggedInUser;
