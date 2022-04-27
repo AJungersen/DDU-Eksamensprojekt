@@ -5,8 +5,10 @@
 package com.mycompany.ddueksamensprojekt;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.fxml.Initializable;
+import repository.StoreLoadMethods;
 
 /**
  * FXML Controller class
@@ -20,7 +22,6 @@ public class SubcatelogViewController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
     }    
     
 }
