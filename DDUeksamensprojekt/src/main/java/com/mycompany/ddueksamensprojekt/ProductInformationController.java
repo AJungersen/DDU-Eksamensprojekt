@@ -23,6 +23,7 @@ public class ProductInformationController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        
     }    
      @FXML
     private void openProfile() throws IOException {

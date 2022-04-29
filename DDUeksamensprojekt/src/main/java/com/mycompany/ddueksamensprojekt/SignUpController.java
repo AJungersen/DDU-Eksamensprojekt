@@ -66,8 +66,8 @@ public class SignUpController {
                 && !passwordFieldrepeatPassword.getText().isBlank()
                 && !textFieldEmail.getText().isBlank()) {
 
-            //Check if user already exist
-            if (!udm.checkForMatchingUser(textFieldName.getText())) {
+            //Check if email already exist
+            if (!udm.checkForMatchingEmail(textFieldEmail.getText())) {
 
                 //Check if email has at @ and . in it and no whitespace
                 if (textFieldEmail.getText().contains("@")

@@ -6,9 +6,13 @@ package com.mycompany.ddueksamensprojekt;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
+import java.util.regex.Pattern;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.TextField;
+import repository.StoreLoadMethods;
 
 /**
  * FXML Controller class
@@ -16,7 +20,8 @@ import javafx.fxml.Initializable;
  * @author Clara Maj
  */
 public class SubcatelogViewController implements Initializable {
-
+    @FXML
+    private TextField userInput;
     /**
      * Initializes the controller class.
      */
@@ -36,5 +41,17 @@ public class SubcatelogViewController implements Initializable {
     private void openCart() throws IOException {
         App.setRoot("cart");
     }
-    
+
+    @FXML
+    public void search(){
+        ArrayList<Product> allProducts = new ArrayList(); //senere skal dette udskiftes med databasekald
+        ArrayList<Product> products = new ArrayList();
+        String search = userInput.getText();
+        for(Product P: allProducts){
+            if(Pattern.matches(".*" + search + "+.*",P.getName()) == true){
+                products.add(P);
+            }
+        }
+        //Clara noget der smider alle produkter P ind i fxml
+    }
 }
