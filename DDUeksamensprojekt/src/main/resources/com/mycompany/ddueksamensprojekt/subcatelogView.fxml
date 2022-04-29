@@ -17,10 +17,13 @@
 
 <AnchorPane id="AnchorPane" prefHeight="790.0" prefWidth="984.0" style="-fx-background-color: #40C54D;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.ddueksamensprojekt.SubcatelogViewController">
    <children>
-      <Label layoutX="408.0" text="Præcis" textAlignment="CENTER">
+      <Label layoutX="408.0" onMouseClicked="#openMain" text="Præcis" textAlignment="CENTER">
          <font>
             <Font name="Segoe UI Semibold" size="57.0" />
          </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </Label>
       <Pane layoutX="-6.0" layoutY="84.0" prefHeight="708.0" prefWidth="1002.0" style="-fx-background-color: #DFF2E1;">
          <effect>
@@ -60,7 +63,7 @@
          </children>
       </Pane>
       <Circle fill="DODGERBLUE" layoutX="43.0" layoutY="43.0" radius="29.0" stroke="BLACK" strokeType="INSIDE" style="-fx-stroke: transparent; -fx-fill: #DFF2E1;" />
-      <ImageView fitHeight="66.0" fitWidth="58.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="66.0" fitWidth="58.0" layoutX="14.0" layoutY="14.0" onMouseClicked="#openProfile" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@my-profile-icon-png-3.png" />
          </image>
@@ -71,7 +74,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </ImageView>
-      <ImageView fitHeight="58.0" fitWidth="58.0" layoutX="918.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="58.0" fitWidth="58.0" layoutX="918.0" layoutY="14.0" onMouseClicked="#openCart" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@shopping-cart-icon.png" />
          </image>

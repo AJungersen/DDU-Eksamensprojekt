@@ -96,8 +96,11 @@
                      </color>
                   </DropShadow>
                </effect>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Button>
-            <Button layoutX="625.0" layoutY="532.0" mnemonicParsing="false" onAction="#openCatelog" prefHeight="30.0" prefWidth="210.0" stylesheets="@design.css" text="Shop videre">
+            <Button layoutX="625.0" layoutY="532.0" mnemonicParsing="false" onAction="#openMain" prefHeight="30.0" prefWidth="210.0" stylesheets="@design.css" text="Shop videre">
                <font>
                   <Font name="Segoe UI Semibold" size="14.0" />
                </font>
@@ -108,6 +111,9 @@
                      </color>
                   </DropShadow>
                </effect>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Button>
             <Button layoutX="625.0" layoutY="620.0" mnemonicParsing="false" onAction="#openCheckOut" prefHeight="30.0" prefWidth="210.0" stylesheets="@design.css" text="Gå til betaling">
                <font>
@@ -120,6 +126,9 @@
                      </color>
                   </DropShadow>
                </effect>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Button>
             <Button layoutX="683.0" layoutY="15.0" mnemonicParsing="false" onMouseClicked="#openCatelog" prefHeight="30.0" prefWidth="152.0" stylesheets="@design.css" text="Tilbage">
                <font>
@@ -132,6 +141,9 @@
                      </color>
                   </DropShadow>
                </effect>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Button>
             <Text layoutX="30.0" layoutY="599.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Samlede pris:">
                <font>

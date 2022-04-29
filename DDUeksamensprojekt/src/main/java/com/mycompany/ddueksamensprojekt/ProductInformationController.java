@@ -4,8 +4,10 @@
  */
 package com.mycompany.ddueksamensprojekt;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 
 /**
@@ -22,5 +24,17 @@ public class ProductInformationController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
+     @FXML
+    private void openProfile() throws IOException {
+        App.setRoot("profile");
+    }
+    @FXML
+    private void openMain() throws IOException {
+        App.setRoot("main");
+    }
+    @FXML
+    private void openCart() throws IOException {
+        App.setRoot("cart");
+    }
     
 }

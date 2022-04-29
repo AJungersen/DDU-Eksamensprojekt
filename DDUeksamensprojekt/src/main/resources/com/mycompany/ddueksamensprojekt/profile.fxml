@@ -21,7 +21,7 @@
 <AnchorPane id="AnchorPane" prefHeight="813.0" prefWidth="866.0" style="-fx-background-color: #40C54D;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.ddueksamensprojekt.ProfileController">
    <children>
       <Pane prefHeight="104.0" prefWidth="105.0" style="-fx-background-color: #DFF2E1;" />
-      <Label layoutX="349.0" layoutY="10.0" text="Præcis" textAlignment="CENTER">
+      <Label layoutX="349.0" layoutY="10.0" onDragDetected="#openMain" onMouseClicked="#openMain" text="Præcis" textAlignment="CENTER">
          <font>
             <Font name="Segoe UI Semibold" size="57.0" />
          </font>
@@ -41,7 +41,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </ImageView>
-      <ImageView fitHeight="58.0" fitWidth="58.0" layoutX="786.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="58.0" fitWidth="58.0" layoutX="786.0" layoutY="23.0" onMouseClicked="#openCart" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@shopping-cart-icon.png" />
          </image>
@@ -100,7 +100,7 @@
                   </DropShadow>
                </effect>
             </Button>
-            <Button layoutX="328.0" layoutY="585.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="210.0" stylesheets="@design.css" text="Pung">
+            <Button layoutX="328.0" layoutY="585.0" mnemonicParsing="false" onAction="#openWallet" prefHeight="30.0" prefWidth="210.0" stylesheets="@design.css" text="Pung">
                <font>
                   <Font name="Segoe UI Semibold" size="14.0" />
                </font>
@@ -112,7 +112,7 @@
                   </DropShadow>
                </effect>
             </Button>
-            <Button layoutX="80.0" layoutY="585.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="210.0" stylesheets="@design.css" text="Indstillinger">
+            <Button layoutX="80.0" layoutY="585.0" mnemonicParsing="false" onAction="#openSettings" prefHeight="30.0" prefWidth="210.0" stylesheets="@design.css" text="Indstillinger">
                <font>
                   <Font name="Segoe UI Semibold" size="14.0" />
                </font>
@@ -124,7 +124,7 @@
                   </DropShadow>
                </effect>
             </Button>
-            <Button layoutX="572.0" layoutY="585.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="210.0" stylesheets="@design.css" text="Log ud">
+            <Button layoutX="572.0" layoutY="585.0" mnemonicParsing="false" onAction="#openLogin" prefHeight="30.0" prefWidth="210.0" stylesheets="@design.css" text="Log ud">
                <font>
                   <Font name="Segoe UI Semibold" size="14.0" />
                </font>
