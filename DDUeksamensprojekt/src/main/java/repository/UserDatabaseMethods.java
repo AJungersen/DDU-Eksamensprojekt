@@ -23,10 +23,10 @@ public class UserDatabaseMethods {
 
     private final String connectionString = "jdbc:sqlite:Database.db";
 
-    //---------------------------------------------
-    //---------- check for matching user ----------
-    //---------------------------------------------
-    public boolean checkForMatchingUser(String _email) throws SQLException, Exception {
+    //----------------------------------------------
+    //---------- check for matching emial ----------
+    //----------------------------------------------
+    public boolean checkForMatchingEmail(String _email) throws SQLException, Exception {
         String databaseEmail = "";
         _email = _email.toLowerCase();
 
@@ -36,7 +36,7 @@ public class UserDatabaseMethods {
         try {
             conn = DriverManager.getConnection(connectionString);
         } catch (SQLException e) {
-            System.out.println("\n Database error (check for matching user (connection): " + e.getMessage() + "\n");
+            System.out.println("\n Database error (check for matching email (connection): " + e.getMessage() + "\n");
         }
 
         try {
@@ -51,7 +51,7 @@ public class UserDatabaseMethods {
             rs.close();
         } catch (SQLException e) {
             //Skrive fejlhåndtering her
-            System.out.println("\n Database error (check for matching user (resultset): " + e.getMessage() + "\n");
+            System.out.println("\n Database error (check for matching email (resultset): " + e.getMessage() + "\n");
         }
 
         if (_email.equalsIgnoreCase(databaseEmail)) {

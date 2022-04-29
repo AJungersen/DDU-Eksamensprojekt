@@ -55,7 +55,7 @@ public class LoginController {
         textErrorMessage.setText("");
 
         //check if user exist
-        if (udm.checkForMatchingUser(textFieldEmail.getText())) {
+        if (udm.checkForMatchingEmail(textFieldEmail.getText())) {
 
             //check if user and passowrd match
             if (udm.checkForMatchingPassword(textFieldEmail.getText(),
