@@ -5,6 +5,7 @@
 package com.mycompany.ddueksamensprojekt;
 
 import Classes.ProductCategory;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -75,5 +76,26 @@ public class ProfileController implements Initializable {
             //send to product
             System.out.println(tableViewLastPurchas.getSelectionModel().getSelectedItem().getAmount());
         }
+    }
+    
+    @FXML
+    private void openSettings() throws IOException {
+        App.setRoot("settings");
+}
+    @FXML
+    private void openWallet() throws IOException {
+        App.setRoot("wallet");
+    }
+    @FXML
+    private void openLogin() throws IOException {
+        App.setRoot("loginUser");
+    }
+    @FXML
+    private void openCart() throws IOException {
+        App.setRoot("cart");
+    }
+    @FXML
+    private void openMain() throws IOException {
+        App.setRoot("main");
     }
 }

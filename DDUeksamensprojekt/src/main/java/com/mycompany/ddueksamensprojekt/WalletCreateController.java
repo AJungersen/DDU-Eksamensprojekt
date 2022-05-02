@@ -4,6 +4,7 @@
  */
 package com.mycompany.ddueksamensprojekt;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -29,5 +30,9 @@ public class WalletCreateController implements Initializable {
     private void closePopUp(ActionEvent event) throws Exception{
         App.closePopup();
     }
-    
+
+    @FXML
+    private void saveCard() throws IOException {
+        App.closePopup();
+    }
 }

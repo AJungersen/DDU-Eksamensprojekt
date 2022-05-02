@@ -23,9 +23,7 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException, Exception {
-        //scene = new Scene(loadFXML("loginUser"));
-        //scene = new Scene(loadFXML("profile"));
-        scene = new Scene(loadFXML("AdminAddImageToCategorys"));
+        scene = new Scene(loadFXML("loginUser"));
         stage.setScene(scene);
         stage.show();
         
@@ -36,11 +34,13 @@ public class App extends Application {
 
     static void setRoot(String fxml) throws IOException {
         scene.setRoot(loadFXML(fxml));
+        stage.sizeToScene();
+        stage.centerOnScreen();
     }
 
     static Parent loadFXML(String fxml) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
-        return fxmlLoader.load();
+        return fxmlLoader.load(); 
     }
 
     public static void main(String[] args) {

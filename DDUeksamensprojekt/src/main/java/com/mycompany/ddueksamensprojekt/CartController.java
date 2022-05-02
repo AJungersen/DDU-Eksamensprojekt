@@ -45,7 +45,7 @@ public class CartController implements Initializable {
         Stage stage = App.getStage();
         Popup popup = new Popup();
 
-        popup.getContent().addAll(App.loadFXML("settings").getChildrenUnmodifiable());
+        popup.getContent().addAll(App.loadFXML("checkOut").getChildrenUnmodifiable());
         popup.setX(stage.getWidth()*1.3);
         popup.setY(stage.getHeight()/2);
 

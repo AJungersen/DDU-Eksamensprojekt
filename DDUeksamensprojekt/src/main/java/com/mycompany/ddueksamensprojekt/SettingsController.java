@@ -4,6 +4,7 @@
  */
 package com.mycompany.ddueksamensprojekt;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -24,4 +25,13 @@ public class SettingsController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
+    
+    @FXML
+    private void openWallet() throws IOException {
+        App.setRoot("wallet");
+    }
+    @FXML
+    private void openProfile() throws IOException {
+        App.setRoot("profile");
+    }
 }

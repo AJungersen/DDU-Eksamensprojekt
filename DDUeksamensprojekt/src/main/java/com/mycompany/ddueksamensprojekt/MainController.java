@@ -128,12 +128,12 @@ public class MainController implements Initializable {
 
     @FXML
     void openProfile() throws Exception {
-        // App.setRoot(profile);
+         App.setRoot("profile");
     }
 
     @FXML
     void openCart() throws Exception {
-        // App.setRoot(cart);
+         App.setRoot("cart");
     }
 
     @FXML

@@ -27,15 +27,21 @@ public class SubcatelogViewController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-    }    
+        // TODO
+    }   
     @FXML
-    public void toProfile() throws IOException{
+    private void openProfile() throws IOException {
         App.setRoot("profile");
     }
     @FXML
-    public void toCart() throws IOException{
+    private void openMain() throws IOException {
+        App.setRoot("main");
+    }
+    @FXML
+    private void openCart() throws IOException {
         App.setRoot("cart");
     }
+
     @FXML
     public void search(){
         ArrayList<Product> allProducts = new ArrayList(); //senere skal dette udskiftes med databasekald
