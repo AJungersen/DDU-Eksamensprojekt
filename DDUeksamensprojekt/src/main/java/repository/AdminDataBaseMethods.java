@@ -73,8 +73,8 @@ public class AdminDataBaseMethods {
             System.out.println("\n Database error (Bind image to product category (connection)): " + e.getMessage() + "\n");
         }
 
-        String sql = "UPDATE ProductCategorys image = ? "
-                + "WHERE( name = '" + _ProductCategory.toString() + "');";
+        String sql = "UPDATE ProductCategorys SET image = ? "
+                + "WHERE (category = '" + _ProductCategory.toString() + "');";
 
         FileInputStream fis = new FileInputStream(_imageFile);
 
@@ -87,6 +87,7 @@ public class AdminDataBaseMethods {
 
             e.printStackTrace();
         }
+        conn.close();
     }
 
     //-------------------------------------------------------
@@ -105,7 +106,7 @@ public class AdminDataBaseMethods {
             System.out.println("\n Database error (set product categorys images (connection)): " + e.getMessage() + "\n");
         }
 
-        //main categorys
+        //categorys
         for (ProductCategory pc : ProductCategory.values()) {
             try {
                 Statement stat = conn.createStatement();
@@ -113,36 +114,20 @@ public class AdminDataBaseMethods {
                 ResultSet rs = stat.executeQuery("SELECT image FROM ProductCategorys "
                         + "WHERE Category =  ('" + pc.toString() + "') ");
 
-                byte[] imgBytes = rs.getBytes("image");
-                ByteArrayInputStream bis = new ByteArrayInputStream(imgBytes);
-                BufferedImage bImage = ImageIO.read(bis);
+                //check if the query found a matching image
+                if (rs.getBytes("image") != null) {
+                    byte[] imgBytes = rs.getBytes("image");
+                    ByteArrayInputStream bis = new ByteArrayInputStream(imgBytes);
+                    BufferedImage bImage = ImageIO.read(bis);
 
-                pc.setImage(Tools.convertBufferedImageToFxImage(bImage));
-
+                    pc.setImage(Tools.convertBufferedImageToFxImage(bImage));
+                } else {
+                    System.out.println("\nfound no image for the produt category: " + pc.toString() + "\n");
+                }
             } catch (SQLException e) {
                 System.out.println("\n Database error (set product categorys images (product category images)): " + e.getMessage() + "\n");
             }
         }
-
-        //sub categorys
-        for (ProductCategory spc : ProductCategory.values()) {
-            try {
-                Statement stat = conn.createStatement();
-
-                ResultSet rs = stat.executeQuery("SELECT image FROM ProductCategorys "
-                        + "WHERE Category =  ('" + spc.toString() + "') ");
-
-                byte[] imgBytes = rs.getBytes("image");
-                ByteArrayInputStream bis = new ByteArrayInputStream(imgBytes);
-                BufferedImage bImage = ImageIO.read(bis);
-
-                spc.setImage(Tools.convertBufferedImageToFxImage(bImage));
-
-            } catch (SQLException e) {
-                System.out.println("\n Database error (set product categorys images (product category images)): " + e.getMessage() + "\n");
-            }
-        }
-
         conn.close();
     }
 }

@@ -29,15 +29,15 @@ public class ProfileController implements Initializable {
     StoreDatabaseMethods sdm = new StoreDatabaseMethods();
     
     @FXML
-    private TableColumn<TableViewDispaly, Image> tableColumnImage;
+    private TableColumn<TableViewDispalyPurchase, Image> tableColumnImage;
     @FXML
-    private TableColumn<TableViewDispaly, String> tableColumnName;
+    private TableColumn<TableViewDispalyPurchase, String> tableColumnName;
     @FXML
-    private TableColumn<TableViewDispaly, Integer> tableColumnPrice;
+    private TableColumn<TableViewDispalyPurchase, Integer> tableColumnPrice;
     @FXML
-    private TableColumn<TableViewDispaly, Integer> tableColumnAmount;
+    private TableColumn<TableViewDispalyPurchase, Integer> tableColumnAmount;
     @FXML
-    private TableView<TableViewDispaly> tableViewLastPurchas;
+    private TableView<TableViewDispalyPurchase> tableViewLastPurchas;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -50,18 +50,18 @@ public class ProfileController implements Initializable {
             hp.put(p1, 1);
             hp.put(p2, 2);
 
-            ArrayList<TableViewDispaly> tableViewDispalyData = new ArrayList<>();
+            ArrayList<TableViewDispalyPurchase> tableViewDispalyData = new ArrayList<>();
 
             HashMap<Product, Integer> hm = sdm.getLatestPurchase(App.getLoggedInUser().getUser_ID()).getPurchasedProducts();
 
             for (Product p : hp.keySet()) {
-                tableViewDispalyData.add(new TableViewDispaly(hp.get(p), p));
+                tableViewDispalyData.add(new TableViewDispalyPurchase(hp.get(p), p));
             }
 
-            tableColumnImage.setCellValueFactory(new PropertyValueFactory<TableViewDispaly, Image>("image"));
-            tableColumnName.setCellValueFactory(new PropertyValueFactory<TableViewDispaly, String>("name"));
-            tableColumnPrice.setCellValueFactory(new PropertyValueFactory<TableViewDispaly, Integer>("price"));
-            tableColumnAmount.setCellValueFactory(new PropertyValueFactory<TableViewDispaly, Integer>("amount"));
+            tableColumnImage.setCellValueFactory(new PropertyValueFactory<TableViewDispalyPurchase, Image>("image"));
+            tableColumnName.setCellValueFactory(new PropertyValueFactory<TableViewDispalyPurchase, String>("name"));
+            tableColumnPrice.setCellValueFactory(new PropertyValueFactory<TableViewDispalyPurchase, Integer>("price"));
+            tableColumnAmount.setCellValueFactory(new PropertyValueFactory<TableViewDispalyPurchase, Integer>("amount"));
 
             tableViewLastPurchas.getItems().setAll(tableViewDispalyData);
         } catch (Exception e) {

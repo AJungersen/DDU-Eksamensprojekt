@@ -20,9 +20,9 @@ public enum ProductCategory {
     DRIKKEVARER,
     BRØD_KIKS_OG_KAGER,
     SLIK_OG_SNACKS;
-    
+
     private Image image;
-    
+
     public Image getImage() {
         return image;
     }
@@ -30,20 +30,23 @@ public enum ProductCategory {
     public void setImage(Image image) {
         this.image = image;
     }
-    
-    public String asFormatedString(){
+
+    public String asFormatedString() {
         String convertedString = "";
-        
-        String [] bits = ProductCategory.this.toString().split("_");
-        
-        for(int i = 0; i < bits.length; i++) {
-            if(i == 0) {
-                convertedString = bits[i].substring(0).toUpperCase() + bits[i].substring(1, bits[i].length()).toLowerCase();
+
+        String[] bits = ProductCategory.this.toString().split("_");
+
+        for (int i = 0; i < bits.length; i++) {
+            if (i == 0) {
+                convertedString = bits[i].substring(0, 1).toUpperCase() + bits[i].substring(1).toLowerCase();
             } else {
-                convertedString = " " + bits[i].toLowerCase();
+                if (ProductCategory.this == BRØD_KIKS_OG_KAGER && i == 1) {
+                    convertedString += ", " + bits[i].toLowerCase();
+                } else {
+                    convertedString += " " + bits[i].toLowerCase();
+                }
             }
         }
-        
         return convertedString;
     }
 }

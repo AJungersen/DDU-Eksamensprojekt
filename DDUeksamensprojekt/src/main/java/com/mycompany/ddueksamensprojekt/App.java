@@ -1,5 +1,6 @@
 package com.mycompany.ddueksamensprojekt;
 
+import Classes.ProductCategory;
 import Classes.User;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -20,14 +21,18 @@ public class App extends Application {
     public static Scene scene;
     private static Stage stage;
     private static Popup popup;
+    private static ProductCategory currentCategoryDisplaying;
 
     @Override
     public void start(Stage stage) throws IOException, Exception {
-        scene = new Scene(loadFXML("loginUser"));
+        AdminDataBaseMethods.setProductCategorysImages();
+
+        //scene = new Scene(loadFXML("loginUser"));
+        //scene = new Scene(loadFXML("AdminAddImageToCategorys"));
+        scene = new Scene(loadFXML("main"));
+        
         stage.setScene(scene);
         stage.show();
-        
-        //AdminDataBaseMethods.setProductCategorysImages();
         
         this.stage = stage;
     }
@@ -73,5 +78,13 @@ public class App extends Application {
 
     public static void openPopup() {
         popup.show(stage);
+    }
+
+    public static void setCurrentCategoryDisplaying(ProductCategory currentCategoryDisplaying) {
+        App.currentCategoryDisplaying = currentCategoryDisplaying;
+    }
+
+    public static ProductCategory getCurrentCategoryDisplaying() {
+        return currentCategoryDisplaying;
     }
 }
