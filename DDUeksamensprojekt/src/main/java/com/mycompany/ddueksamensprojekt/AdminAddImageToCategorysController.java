@@ -44,7 +44,6 @@ public class AdminAddImageToCategorysController implements Initializable {
             choiceBoxCat.getItems().addAll(ProductCategory.values());
 
             choiceBoxCat.setOnAction(event -> {
-                //System.out.println("test");
                 CategoryImage.setImage(choiceBoxCat.getSelectionModel().getSelectedItem().getImage());
             });
         } catch (Exception e) {
@@ -54,9 +53,11 @@ public class AdminAddImageToCategorysController implements Initializable {
 
     @FXML
     private void SetCategoryImage(ActionEvent event) throws Exception {
-        choiceBoxCat.getSelectionModel().getSelectedItem().setImage(new Image(new FileInputStream(selectedFiles)));
+        choiceBoxCat.getSelectionModel().getSelectedItem().setImage(CategoryImage.getImage());
         
         adbm.bindImageToProductCategory(choiceBoxCat.getSelectionModel().getSelectedItem(), selectedFiles);
+        
+        choiceBoxCat.getSelectionModel().clearSelection();
     }
 
     @FXML
@@ -67,8 +68,8 @@ public class AdminAddImageToCategorysController implements Initializable {
         fc.setInitialDirectory(new File(System.getProperty("user.home")));
 
         //Type filters, since the file we are looking for is json we dont need the others
-        fc.getExtensionFilters().add(new FileChooser.ExtensionFilter("jpg file", "*.jpg"));
-
+        fc.getExtensionFilters().add(new FileChooser.ExtensionFilter("image files", "*.jpg", "*.jpeg", "*.png"));
+        
         //selectedFiles = fc.showOpenMultipleDialog(null).get(0);
         selectedFiles = fc.showOpenDialog(null);
         
