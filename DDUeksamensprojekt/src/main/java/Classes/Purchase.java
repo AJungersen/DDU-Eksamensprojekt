@@ -13,27 +13,27 @@ import java.util.HashMap;
  *
  * @author chris
  */
-public class ShoppingCart {
+public class Purchase {
 
-    private int shoppingCart_ID;
+    private int purchase_ID;
     private LocalDate purchaseDate;
     private HashMap<Product, Integer> purchasedProducts;
 
-    public ShoppingCart() {
+    public Purchase() {
     }
 
-    public ShoppingCart(int shoppingCart_ID, LocalDate purchaseDate, HashMap<Product, Integer> purchasedProducts) {
-        this.shoppingCart_ID = shoppingCart_ID;
+    public Purchase(int shoppingCart_ID, LocalDate purchaseDate, HashMap<Product, Integer> purchasedProducts) {
+        this.purchase_ID = shoppingCart_ID;
         this.purchaseDate = purchaseDate;
         this.purchasedProducts = purchasedProducts;
     }
 
     public int getShoppingCart_ID() {
-        return shoppingCart_ID;
+        return purchase_ID;
     }
 
     public void setShoppingCart_ID(int shoppingCart_ID) {
-        this.shoppingCart_ID = shoppingCart_ID;
+        this.purchase_ID = shoppingCart_ID;
     }
 
     public LocalDate getPurchaseDate() {
