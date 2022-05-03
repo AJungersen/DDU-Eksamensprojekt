@@ -9,6 +9,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Slider;
 
 /**
  * FXML Controller class
@@ -16,7 +17,7 @@ import javafx.fxml.Initializable;
  * @author Clara Maj
  */
 public class ProductInformationController implements Initializable {
-
+    Slider slider;
     /**
      * Initializes the controller class.
      */
@@ -37,5 +38,8 @@ public class ProductInformationController implements Initializable {
     private void openCart() throws IOException {
         App.setRoot("cart");
     }
-    
+    @FXML
+    private void addToCart(){
+        App.currentCart.getPurchasedProducts().put(App.currentProduct, new Integer((int) slider.getValue()));
+    }
 }
