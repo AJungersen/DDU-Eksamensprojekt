@@ -56,20 +56,46 @@ public class AdminDataBaseMethods {
 
             e.printStackTrace();
         }
-        
+
         conn.close();
     }
 
-    //---------------------------------------------------
-    //---------- Bind image to product product ----------
-    //---------------------------------------------------
+    //----------------------------------------------------
+    //---------- Bind image to product category ----------
+    //----------------------------------------------------
+    public static void bindImageToProductCategory(ProductCategory _ProductCategory, File _imageFile) throws SQLException, Exception {
+        Connection conn = null;
+        Class.forName("org.sqlite.JDBC");
+
+        try {
+            conn = DriverManager.getConnection(staticConnectionString);
+        } catch (SQLException e) {
+            System.out.println("\n Database error (Bind image to product category (connection)): " + e.getMessage() + "\n");
+        }
+
+        String sql = "UPDATE ProductCategorys image = ? "
+                + "WHERE( name = '" + _ProductCategory.toString() + "');";
+
+        FileInputStream fis = new FileInputStream(_imageFile);
+
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setBinaryStream(1, fis, fis.available());
+
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println("\n Database error (Bind image to product category (bind image)): " + e.getMessage() + "\n");
+
+            e.printStackTrace();
+        }
+    }
+
     //-------------------------------------------------------
     //---------- Bind image to sub product product ----------
     //-------------------------------------------------------
     //--------------------------------------------------------
     //---------- Set sub/- product categorys images ----------
     //--------------------------------------------------------
-    public static void setProductCategorysImages() throws SQLException, Exception{
+    public static void setProductCategorysImages() throws SQLException, Exception {
         Connection conn = null;
         Class.forName("org.sqlite.JDBC");
 
@@ -78,45 +104,45 @@ public class AdminDataBaseMethods {
         } catch (SQLException e) {
             System.out.println("\n Database error (set product categorys images (connection)): " + e.getMessage() + "\n");
         }
-        
+
         //main categorys
         for (ProductCategory pc : ProductCategory.values()) {
             try {
                 Statement stat = conn.createStatement();
-                
+
                 ResultSet rs = stat.executeQuery("SELECT image FROM ProductCategorys "
                         + "WHERE Category =  ('" + pc.toString() + "') ");
-                
+
                 byte[] imgBytes = rs.getBytes("image");
                 ByteArrayInputStream bis = new ByteArrayInputStream(imgBytes);
                 BufferedImage bImage = ImageIO.read(bis);
-                
+
                 pc.setImage(Tools.convertBufferedImageToFxImage(bImage));
-                
+
             } catch (SQLException e) {
                 System.out.println("\n Database error (set product categorys images (product category images)): " + e.getMessage() + "\n");
             }
         }
-        
+
         //sub categorys
         for (ProductCategory spc : ProductCategory.values()) {
-           try {
+            try {
                 Statement stat = conn.createStatement();
-                
+
                 ResultSet rs = stat.executeQuery("SELECT image FROM ProductCategorys "
                         + "WHERE Category =  ('" + spc.toString() + "') ");
-                
+
                 byte[] imgBytes = rs.getBytes("image");
                 ByteArrayInputStream bis = new ByteArrayInputStream(imgBytes);
                 BufferedImage bImage = ImageIO.read(bis);
-                
+
                 spc.setImage(Tools.convertBufferedImageToFxImage(bImage));
-                
+
             } catch (SQLException e) {
                 System.out.println("\n Database error (set product categorys images (product category images)): " + e.getMessage() + "\n");
-            } 
+            }
         }
-        
+
         conn.close();
     }
 }

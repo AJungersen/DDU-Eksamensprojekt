@@ -9,15 +9,18 @@ import Classes.ProductCategory;
 import java.io.File;
 import java.io.FileInputStream;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.input.ContextMenuEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import repository.AdminDataBaseMethods;
 
@@ -25,32 +28,39 @@ import repository.AdminDataBaseMethods;
  *
  * @author chris
  */
-public class CreateProductsController implements Initializable {
+public class AdminAddImageToCategorysController implements Initializable {
     private final FileChooser fc = new FileChooser();
     private File selectedFiles;
     private AdminDataBaseMethods adbm = new AdminDataBaseMethods();
     
     @FXML
-    private ImageView imageViewProductPhoto;
+    private ChoiceBox<ProductCategory> choiceBoxCat;
     @FXML
-    private TextField textFieldName;
-    @FXML
-    private TextField textFieldPrice;
-    @FXML
-    private ChoiceBox<ProductCategory> choiceBoxProductCategory;
+    private ImageView CategoryImage;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         try {
-            choiceBoxProductCategory.getItems().clear();
-            choiceBoxProductCategory.getItems().addAll(ProductCategory.values());
+            choiceBoxCat.getItems().addAll(ProductCategory.values());
+
+            choiceBoxCat.setOnAction(event -> {
+                //System.out.println("test");
+                CategoryImage.setImage(choiceBoxCat.getSelectionModel().getSelectedItem().getImage());
+            });
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-    }    
+    }
 
     @FXML
-    private void addImage(ActionEvent event) throws Exception{
+    private void SetCategoryImage(ActionEvent event) throws Exception {
+        choiceBoxCat.getSelectionModel().getSelectedItem().setImage(new Image(new FileInputStream(selectedFiles)));
+        
+        adbm.bindImageToProductCategory(choiceBoxCat.getSelectionModel().getSelectedItem(), selectedFiles);
+    }
+
+    @FXML
+    private void SelectImage(ActionEvent event) throws Exception{
         fc.setTitle("Select files");
 
         //Starting route for file chooser
@@ -62,14 +72,6 @@ public class CreateProductsController implements Initializable {
         //selectedFiles = fc.showOpenMultipleDialog(null).get(0);
         selectedFiles = fc.showOpenDialog(null);
         
-        imageViewProductPhoto.setImage(new Image(new FileInputStream(selectedFiles)));
-    }
-
-    @FXML
-    private void createProduct(ActionEvent event) throws Exception{
-        Product product = new Product(textFieldName.getText(), Integer.parseInt(textFieldPrice.getText()), 
-                choiceBoxProductCategory.getSelectionModel().getSelectedItem());
-        
-        adbm.createProduct(product, selectedFiles);
+        CategoryImage.setImage(new Image(new FileInputStream(selectedFiles)));
     }
 }
