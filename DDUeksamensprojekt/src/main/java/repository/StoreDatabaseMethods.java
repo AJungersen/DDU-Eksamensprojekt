@@ -83,7 +83,7 @@ public class StoreDatabaseMethods {
         return shoppingCart;
     }
     /*public ArrayList<ShoppingCart> getAllCarts() throws SQLException, Exception {
-        ShoppingCart shoppingCart = new ShoppingCart();
+        ArrayList<ShoppingCart> shoppingCart = new ArrayList();
 
         Connection conn = null;
         Class.forName("org.sqlite.JDBC");
@@ -98,10 +98,10 @@ public class StoreDatabaseMethods {
         try {
             Statement stat = conn.createStatement();
 
-            ResultSet rs = stat.executeQuery("SELECT * FROM PurchasedShoppingCarts "
-                    + "WHERE user_ID = ('" + _user_ID + "') ORDER BY purchasedShoppingCarts_ID LIMIT '1'");
+            ResultSet rs = stat.executeQuery("SELECT * FROM PurchasedShoppingCarts ");
+                   
 
-            shoppingCart = new ShoppingCart(rs.getInt("purchasedShoppingCarts_ID"),
+            shoppingCart.add(new ShoppingCart(rs.getInt("purchasedShoppingCarts_ID"))),
                     LocalDate.parse(rs.getString("date")), null);
 
         } catch (SQLException e) {
