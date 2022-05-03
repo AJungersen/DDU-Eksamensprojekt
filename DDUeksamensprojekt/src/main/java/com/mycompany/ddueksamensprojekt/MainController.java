@@ -18,6 +18,8 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
+import javafx.scene.Cursor;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TableColumn;
@@ -71,22 +73,22 @@ public class MainController implements Initializable {
             for (ProductCategory p : ProductCategory.values()) {
                 System.out.println("\n" + p.asFormatedString());
             }
-            
+
             //calc panes per row
             panesPerRow = (int) Math.floor((anchorPaneCategories.getPrefWidth() - PaneSpace_X) / (paneSize_X + PaneSpace_X));
-            
+
             //update pane space x
             PaneSpace_X = (float) (anchorPaneCategories.getPrefWidth()
                     - (paneSize_X * panesPerRow))
                     / (2 + panesPerRow - 1);
-            
+
             //update anchor pane height
             float newHeight = (float) ((paneSize_Y + paneSPace_Y) * Math.ceil(ProductCategory.values().length / panesPerRow) + paneSPace_Y);
-            anchorPaneOnScrollPane.setPrefHeight(anchorPaneOnScrollPane.getPrefHeight() 
-                    - anchorPaneCategories.getPrefHeight() + newHeight );
-            
+            anchorPaneOnScrollPane.setPrefHeight(anchorPaneOnScrollPane.getPrefHeight()
+                    - anchorPaneCategories.getPrefHeight() + newHeight);
+
             anchorPaneCategories.setPrefHeight(newHeight);
-            
+
             //insert categories
             int column = 0;
             int row = 1;
@@ -107,8 +109,13 @@ public class MainController implements Initializable {
                 imgView.setFitWidth(paneSize_X);
                 imgView.setFitHeight(paneSize_Y);
 
+                //category text
+                Text text = new Text(pc.asFormatedString());
+
+                text.setStyle("-fx-fill-color: #333333");
+
                 //set mouse clicked on image view to switch to category
-                imgView.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                EventHandler<MouseEvent> clicked = new EventHandler<MouseEvent>() {
                     @Override
                     public void handle(MouseEvent event) {
                         App.setCurrentCategoryDisplaying(pc);
@@ -118,15 +125,30 @@ public class MainController implements Initializable {
                             System.out.println("Error in " + e.getMessage());;
                         }
                     }
-                });
+                };
 
-                //category text
-                Text text = new Text(pc.asFormatedString());
+                EventHandler<MouseEvent> entered = new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent event) {
+                        App.getStage().getScene().setCursor(Cursor.HAND);
+                    }
+                };
 
-                text.setStyle("-fx-fill-color: #333333");
-
+                EventHandler<MouseEvent> exited = new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent event) {
+                        App.getStage().getScene().setCursor(Cursor.DEFAULT);
+                    }
+                };
+                
                 stackPane.getChildren().add(imgView);
                 stackPane.getChildren().add(text);
+                
+                for (Node sp : stackPane.getChildren()) {
+                    sp.setOnMouseClicked(clicked);
+                    sp.setOnMouseEntered(entered);
+                    sp.setOnMouseExited(exited);
+                }
 
                 stackPane.setAlignment(text, Pos.BOTTOM_CENTER);
 
@@ -136,7 +158,7 @@ public class MainController implements Initializable {
                     row++;
                 }
             }
-            
+
             //insert last purchase
             Product p1 = new Product(0, "test1", null, 1, 4, ProductCategory.FRUGT_OG_GRØNT);
             Product p2 = new Product(0, "test2", null, 5, 4, ProductCategory.KØD_OG_FISK);
