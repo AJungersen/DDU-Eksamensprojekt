@@ -80,7 +80,7 @@
                   <Font name="Segoe UI Light Italic" size="21.0" />
                </font>
             </Text>
-            <TableView fx:id="tableViewLastPurchas" layoutX="32.0" layoutY="217.0" onMouseClicked="#goToSelectedProduct" prefHeight="276.0" prefWidth="803.0">
+            <TableView fx:id="tableViewLastPurchas" layoutX="32.0" layoutY="217.0" onMouseClicked="#goToSelectedProduct" prefHeight="276.0" prefWidth="803.0" stylesheets="@test.css">
                <columns>
                   <TableColumn fx:id="tableColumnImage" prefWidth="175.5" text="Billede" />
                   <TableColumn fx:id="tableColumnName" prefWidth="415.5" text="Navn" />

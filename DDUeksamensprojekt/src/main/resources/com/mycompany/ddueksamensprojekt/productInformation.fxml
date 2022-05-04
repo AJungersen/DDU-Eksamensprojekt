@@ -74,7 +74,7 @@
                   <Cursor fx:constant="DEFAULT" />
                </cursor>
             </TextField>
-            <Button layoutX="677.0" layoutY="221.0" mnemonicParsing="false" onAction="#addToCart" onMouseClicked="#addToCart" prefHeight="30.0" prefWidth="152.0" stylesheets="@design.css" text="Tilføj til kurv">
+            <Button layoutX="677.0" layoutY="221.0" mnemonicParsing="false" onAction="#addToCart" prefHeight="30.0" prefWidth="152.0" stylesheets="@design.css" text="Tilføj til kurv">
                <font>
                   <Font name="Segoe UI Semibold" size="14.0" />
                </font>
