@@ -1,7 +1,7 @@
 package com.mycompany.ddueksamensprojekt;
 
+import Classes.Cart;
 import Classes.ProductCategory;
-//import Classes.ShoppingCart;
 import Classes.User;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -23,7 +23,7 @@ public class App extends Application {
     private static Stage stage;
     private static Popup popup;
     private static ProductCategory currentCategoryDisplaying;
-    //public static ShoppingCart currentCart;
+    public static Cart currentCart;
     public static Product currentProduct;
 
     @Override
@@ -31,8 +31,8 @@ public class App extends Application {
         AdminDataBaseMethods.setProductCategorysImages();
 
         //scene = new Scene(loadFXML("loginUser"));
-        //scene = new Scene(loadFXML("AdminAddImageToCategorys"));
-        scene = new Scene(loadFXML("main"));
+        scene = new Scene(loadFXML("AdminAddImageToCategorys"));
+        //scene = new Scene(loadFXML("main"));
         
         stage.setScene(scene);
         stage.show();
