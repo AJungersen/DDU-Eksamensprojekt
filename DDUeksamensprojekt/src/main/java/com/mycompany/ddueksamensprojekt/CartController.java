@@ -6,6 +6,8 @@ package com.mycompany.ddueksamensprojekt;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -23,6 +25,9 @@ import javafx.stage.Stage;
  * @author Clara Maj
  */
 public class CartController implements Initializable {
+
+    ArrayList<TableViewDispalyPurchase> tableViewDispalyData = new ArrayList<>();
+
     @FXML
     TableView goods;
     @FXML
@@ -33,29 +38,42 @@ public class CartController implements Initializable {
     private TableColumn<TableViewDispalyPurchase, Integer> tableColumnPrice;
     @FXML
     private TableColumn<TableViewDispalyPurchase, Integer> tableColumnAmount;
+
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
+
+        HashMap<Product, Integer> hp = App.getCurrentCart().getProductsAsMap();
+
+        for (Product p : hp.keySet()) {
+            tableViewDispalyData.add(new TableViewDispalyPurchase(hp.get(p), p));
+        }
+
         tableColumnImage.setCellValueFactory(new PropertyValueFactory<>("displayImage"));
         tableColumnName.setCellValueFactory(new PropertyValueFactory<>("name"));
         tableColumnPrice.setCellValueFactory(new PropertyValueFactory<>("price"));
         tableColumnAmount.setCellValueFactory(new PropertyValueFactory<>("amount"));
-    }    
+        
+        goods.getItems().setAll(tableViewDispalyData);
+    }
+
     @FXML
     void openMain() throws Exception {
         App.setRoot("main");
     }
+
     @FXML
     void openProfile() throws Exception {
         App.setRoot("profile");
     }
+
     @FXML
     void openCatelog() throws Exception {
         App.setRoot("catelogView");
     }
+
     @FXML
     void openCheckOut(ActionEvent event) throws IOException {
 
@@ -63,8 +81,8 @@ public class CartController implements Initializable {
         Popup popup = new Popup();
 
         popup.getContent().addAll(App.loadFXML("checkOut").getChildrenUnmodifiable());
-        popup.setX(stage.getWidth()*1.3);
-        popup.setY(stage.getHeight()/2);
+        popup.setX(stage.getWidth() * 1.3);
+        popup.setY(stage.getHeight() / 2);
 
         App.setPopup(popup);
 

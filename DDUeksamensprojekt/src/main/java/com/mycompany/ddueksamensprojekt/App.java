@@ -99,4 +99,12 @@ public class App extends Application {
     public static void setCurrentProduct(Product currentProduct) {
         App.currentProduct = currentProduct;
     }
+
+    public static Cart getCurrentCart() {
+        return currentCart;
+    }
+
+    public static void setCurrentCart(Cart currentCart) {
+        App.currentCart = currentCart;
+    }
 }
