@@ -50,10 +50,11 @@ public class ProductInformationController implements Initializable {
         App.setRoot("cart");
     }
     @FXML
-    private void addToCart(){
+    private void addToCart() throws IOException{
         for(int i = 0; i < Integer.parseInt(numberOfProduct.getText()); i++){
             App.currentCart.getProductsAsList().add(product);
             //App.currentCart.getProductsAsList().add(App.currentProduct);
         }
+        App.setRoot("cart");
     }
 }

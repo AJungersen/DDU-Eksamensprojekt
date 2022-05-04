@@ -10,6 +10,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import javafx.stage.Popup;
 import repository.AdminDataBaseMethods;
 
@@ -23,7 +24,7 @@ public class App extends Application {
     private static Stage stage;
     private static Popup popup;
     private static ProductCategory currentCategoryDisplaying;
-    public static Cart currentCart;
+    public static Cart currentCart = new Cart(loggedInUser,new ArrayList());
     public static Product currentProduct;
 
     @Override
