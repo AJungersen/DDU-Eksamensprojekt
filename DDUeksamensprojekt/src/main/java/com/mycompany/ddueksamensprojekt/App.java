@@ -1,7 +1,7 @@
 package com.mycompany.ddueksamensprojekt;
 
 import Classes.ProductCategory;
-import Classes.ShoppingCart;
+//import Classes.ShoppingCart;
 import Classes.User;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -23,7 +23,7 @@ public class App extends Application {
     private static Stage stage;
     private static Popup popup;
     private static ProductCategory currentCategoryDisplaying;
-    public static ShoppingCart currentCart;
+    //public static ShoppingCart currentCart;
     public static Product currentProduct;
 
     @Override
