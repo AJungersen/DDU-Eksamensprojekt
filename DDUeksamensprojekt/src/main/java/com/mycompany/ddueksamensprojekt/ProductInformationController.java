@@ -32,6 +32,8 @@ public class ProductInformationController implements Initializable {
     private ImageView imageViewProduct;
     @FXML
     private TextField textFieldNumberOfProduct;
+    @FXML
+    private Text textProductName;
     /**
      * Initializes the controller class.
      */
@@ -39,7 +41,7 @@ public class ProductInformationController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         product = App.getCurrentProduct();
         
-        //price.setText(Float.toString(App.currentProduct.getPrice()));
+        textProductName.setText(product.getName());
         textFieldPrice.setText(Float.toString(product.getPrice()));
         textFieldStock.setText(Integer.toString(product.getStock()));
         imageViewProduct.setImage(product.getImage());
