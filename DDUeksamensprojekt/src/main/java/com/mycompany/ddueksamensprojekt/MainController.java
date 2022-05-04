@@ -120,7 +120,7 @@ public class MainController implements Initializable {
                     public void handle(MouseEvent event) {
                         App.setCurrentCategoryDisplaying(pc);
                         try {
-                            App.setRoot("ProductInformation");
+                            App.setRoot("CatelogView");
                         } catch (Exception e) {
                             System.out.println("Error in " + e.getMessage());;
                         }
