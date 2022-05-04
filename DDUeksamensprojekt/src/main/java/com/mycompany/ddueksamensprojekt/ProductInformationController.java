@@ -40,6 +40,6 @@ public class ProductInformationController implements Initializable {
     }
     @FXML
     private void addToCart(){
-        App.currentCart.getPurchasedProducts().put(App.currentProduct, new Integer((int) slider.getValue()));
+        App.currentCart.getProductsAsList().add(App.currentProduct);
     }
 }
