@@ -55,13 +55,13 @@ table(SavedShoppingCartsProducts){
     int amount
 }
 
-table(PurchasedShoppingCarts) {
-    PK purchasedShoppingCarts_ID
+table(Purchase) {
+    PK purchase_ID
     FK user_ID
     String date
 }
 
-table(PurchasedShoppingCartsProducts) {
+table(PurchasedProducts) {
     FK purchasedShoppingCarts_ID
     FK product_ID
     int amount

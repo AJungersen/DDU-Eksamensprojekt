@@ -7,7 +7,7 @@ package repository;
 
 import com.mycompany.ddueksamensprojekt.Product;
 import Classes.ProductCategory;
-import Classes.ShoppingCart;
+import Classes.Purchase;
 import java.awt.image.BufferedImage;
 import java.net.ConnectException;
 import java.security.interfaces.RSAKey;
@@ -29,8 +29,8 @@ public class StoreDatabaseMethods {
     //-----------------------------------------
     //---------- get latest purchase ----------
     //-----------------------------------------
-    public ShoppingCart getLatestPurchase(int _user_ID) throws SQLException, Exception {
-        ShoppingCart shoppingCart = new ShoppingCart();
+    public Purchase getLatestPurchase(int _user_ID) throws SQLException, Exception {
+        Purchase shoppingCart = new Purchase();
 
         Connection conn = null;
         Class.forName("org.sqlite.JDBC");
@@ -48,7 +48,7 @@ public class StoreDatabaseMethods {
             ResultSet rs = stat.executeQuery("SELECT * FROM PurchasedShoppingCarts "
                     + "WHERE user_ID = ('" + _user_ID + "') ORDER BY purchasedShoppingCarts_ID LIMIT '1'");
 
-            shoppingCart = new ShoppingCart(rs.getInt("purchasedShoppingCarts_ID"),
+            shoppingCart = new Purchase(rs.getInt("purchasedShoppingCarts_ID"),
                     LocalDate.parse(rs.getString("date")), null);
 
         } catch (SQLException e) {
@@ -101,7 +101,7 @@ public class StoreDatabaseMethods {
             ResultSet rs = stat.executeQuery("SELECT * FROM PurchasedShoppingCarts ");
                    
 
-            shoppingCart.add(new ShoppingCart(rs.getInt("purchasedShoppingCarts_ID"))),
+            shoppingCart.add(new Purchase(rs.getInt("purchasedShoppingCarts_ID"))),
                     LocalDate.parse(rs.getString("date")), null);
 
         } catch (SQLException e) {

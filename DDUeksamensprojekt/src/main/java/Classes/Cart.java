@@ -8,12 +8,14 @@ package Classes;
 import com.mycompany.ddueksamensprojekt.Product;
 import Classes.User;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  *
  * @author danie
  */
 public class Cart {
+
     User user;
     ArrayList<Product> products;
 
@@ -26,16 +28,29 @@ public class Cart {
         return user;
     }
 
-    public ArrayList<Product> getProducts() {
-        return products;
-    }
-
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public HashMap<Product, Integer> getProductsAsMap() {
+        HashMap<Product, Integer> map = new HashMap<>();
+
+        for (Product p : products) {
+            if (map.containsKey(p)) {
+                map.put(p, map.get(p) + 1);
+            } else {
+                map.put(p, 1);
+            }
+        }
+        return map;
+    }
+
+    public ArrayList<Product> getProductsAsList() {
+        return products;
     }
 
     public void setProducts(ArrayList<Product> products) {
         this.products = products;
     }
-    
+
 }
