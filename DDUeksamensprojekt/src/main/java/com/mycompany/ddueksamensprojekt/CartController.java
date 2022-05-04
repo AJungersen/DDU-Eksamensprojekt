@@ -10,7 +10,10 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.ImageView;
 import javafx.stage.Popup;
 import javafx.stage.Stage;
 
@@ -22,12 +25,24 @@ import javafx.stage.Stage;
 public class CartController implements Initializable {
     @FXML
     TableView goods;
+    @FXML
+    private TableColumn<TableViewDispalyPurchase, ImageView> tableColumnImage;
+    @FXML
+    private TableColumn<TableViewDispalyPurchase, String> tableColumnName;
+    @FXML
+    private TableColumn<TableViewDispalyPurchase, Integer> tableColumnPrice;
+    @FXML
+    private TableColumn<TableViewDispalyPurchase, Integer> tableColumnAmount;
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
+        tableColumnImage.setCellValueFactory(new PropertyValueFactory<>("displayImage"));
+        tableColumnName.setCellValueFactory(new PropertyValueFactory<>("name"));
+        tableColumnPrice.setCellValueFactory(new PropertyValueFactory<>("price"));
+        tableColumnAmount.setCellValueFactory(new PropertyValueFactory<>("amount"));
     }    
     @FXML
     void openMain() throws Exception {

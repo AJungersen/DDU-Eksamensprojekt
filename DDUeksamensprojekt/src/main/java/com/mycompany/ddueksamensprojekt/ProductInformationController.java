@@ -5,6 +5,7 @@
 package com.mycompany.ddueksamensprojekt;
 
 import static Classes.ProductCategory.SLIK_OG_SNACKS;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -12,6 +13,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 
 /**
@@ -20,21 +23,26 @@ import javafx.scene.text.Text;
  * @author Clara Maj
  */
 public class ProductInformationController implements Initializable {
+    Product product = new Product();
     @FXML
-    TextField price;
+    private TextField textFieldPrice;
     @FXML
-    TextField stock;
-    Product product = new Product("produkt", 20, SLIK_OG_SNACKS);
+    private TextField textFieldStock;
     @FXML
-    TextField numberOfProduct;
+    private ImageView imageViewProduct;
+    @FXML
+    private TextField textFieldNumberOfProduct;
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        product = App.getCurrentProduct();
+        
         //price.setText(Float.toString(App.currentProduct.getPrice()));
-        price.setText(Float.toString(product.getPrice()));
-        stock.setText("På lager");
+        textFieldPrice.setText(Float.toString(product.getPrice()));
+        textFieldStock.setText(Integer.toString(product.getStock()));
+        imageViewProduct.setImage(product.getImage());
         //stock.setText((App.currentProduct.getStock()>0 ? "på lager":"ikke på lager"));
     }    
      @FXML
@@ -51,10 +59,8 @@ public class ProductInformationController implements Initializable {
     }
     @FXML
     private void addToCart() throws IOException{
-        for(int i = 0; i < Integer.parseInt(numberOfProduct.getText()); i++){
+        for(int i = 0; i < Integer.parseInt(textFieldNumberOfProduct.getText()); i++){
             App.currentCart.getProductsAsList().add(product);
-            //App.currentCart.getProductsAsList().add(App.currentProduct);
         }
-        App.setRoot("cart");
     }
 }
