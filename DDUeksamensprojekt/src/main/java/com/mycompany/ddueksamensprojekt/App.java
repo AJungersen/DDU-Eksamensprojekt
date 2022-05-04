@@ -1,5 +1,6 @@
 package com.mycompany.ddueksamensprojekt;
 
+import Classes.Cart;
 import Classes.ProductCategory;
 import Classes.User;
 import javafx.application.Application;
@@ -22,6 +23,8 @@ public class App extends Application {
     private static Stage stage;
     private static Popup popup;
     private static ProductCategory currentCategoryDisplaying;
+    public static Cart currentCart;
+    public static Product currentProduct;
 
     @Override
     public void start(Stage stage) throws IOException, Exception {

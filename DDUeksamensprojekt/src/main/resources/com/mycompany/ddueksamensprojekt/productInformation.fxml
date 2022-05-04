@@ -19,7 +19,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="813.0" prefWidth="866.0" style="-fx-background-color: #40C54D;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.ddueksamensprojekt.ProductInformationController">
+<AnchorPane id="AnchorPane" prefHeight="813.0" prefWidth="866.0" style="-fx-background-color: #40C54D;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.ddueksamensprojekt.ProductInformationController">
    <children>
       <Label layoutX="349.0" layoutY="10.0" text="Præcis" textAlignment="CENTER">
          <font>
@@ -75,7 +75,7 @@
                   <Cursor fx:constant="DEFAULT" />
                </cursor>
             </TextField>
-            <Button layoutX="677.0" layoutY="221.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="152.0" stylesheets="@design.css" text="Tilføj til kurv">
+            <Button layoutX="677.0" layoutY="221.0" mnemonicParsing="false" onAction="#addToCart" prefHeight="30.0" prefWidth="152.0" stylesheets="@design.css" text="Tilføj til kurv">
                <font>
                   <Font name="Segoe UI Semibold" size="14.0" />
                </font>
@@ -117,7 +117,7 @@
                   <Font name="Segoe UI Light Italic" size="21.0" />
                </font>
             </Text>
-            <Slider layoutX="467.0" layoutY="294.0" prefHeight="14.0" prefWidth="142.0" />
+            <Slider fx:id="slider" layoutX="467.0" layoutY="294.0" prefHeight="14.0" prefWidth="142.0" />
             <Text layoutX="621.0" layoutY="306.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
                <font>
                   <Font name="Segoe UI Light" size="14.0" />
