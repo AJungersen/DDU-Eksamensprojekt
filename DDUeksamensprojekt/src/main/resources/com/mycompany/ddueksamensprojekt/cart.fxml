@@ -18,7 +18,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="771.0" prefWidth="868.0" style="-fx-background-color: #40C54D;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.ddueksamensprojekt.CartController">
+<AnchorPane id="AnchorPane" prefHeight="771.0" prefWidth="868.0" style="-fx-background-color: #40C54D;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.ddueksamensprojekt.CartController">
    <children>
       <Pane layoutX="763.0" prefHeight="104.0" prefWidth="105.0" style="-fx-background-color: #DFF2E1;">
          <children>
@@ -77,7 +77,7 @@
                   <Cursor fx:constant="DEFAULT" />
                </cursor>
             </TextField>
-            <TableView layoutX="32.0" layoutY="92.0" prefHeight="401.0" prefWidth="803.0">
+            <TableView fx:id="goods" layoutX="32.0" layoutY="92.0" prefHeight="401.0" prefWidth="803.0">
                <columns>
                   <TableColumn prefWidth="175.5" text="Billede" />
                   <TableColumn prefWidth="415.5" text="Navn" />

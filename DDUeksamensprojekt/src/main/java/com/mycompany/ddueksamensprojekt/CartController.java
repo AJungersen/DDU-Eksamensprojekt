@@ -10,6 +10,7 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.TableView;
 import javafx.stage.Popup;
 import javafx.stage.Stage;
 
@@ -19,13 +20,14 @@ import javafx.stage.Stage;
  * @author Clara Maj
  */
 public class CartController implements Initializable {
-
+    @FXML
+    TableView goods;
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        
     }    
     @FXML
     void openMain() throws Exception {
