@@ -38,6 +38,12 @@ public class Product {
         this.stock = stock;
         this.ProductCategory = productCategory;
     }
+
+    public Product(String name, float price, int stock) {
+        this.name = name;
+        this.price = price;
+        this.stock = stock;
+    }
     
     //used for tableview class
     public Product(Product product) {

@@ -5,6 +5,7 @@
 package com.mycompany.ddueksamensprojekt;
 
 import static Classes.ProductCategory.SLIK_OG_SNACKS;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -12,6 +13,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.text.Text;
 
 /**
@@ -52,7 +54,7 @@ public class ProductInformationController implements Initializable {
     @FXML
     private void addToCart() throws IOException{
         for(int i = 0; i < Integer.parseInt(numberOfProduct.getText()); i++){
-            App.currentCart.getProductsAsList().add(product);
+            App.currentCart.getProductsAsList().add(new Product(product.getName(),product.getPrice(),Integer.parseInt(numberOfProduct.getText())));
             //App.currentCart.getProductsAsList().add(App.currentProduct);
         }
         App.setRoot("cart");
