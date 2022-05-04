@@ -24,7 +24,7 @@ public class UserDatabaseMethods {
     private final String connectionString = "jdbc:sqlite:Database.db";
 
     //----------------------------------------------
-    //---------- check for matching emial ----------
+    //---------- check for matching email ----------
     //----------------------------------------------
     public boolean checkForMatchingEmail(String _email) throws SQLException, Exception {
         String databaseEmail = "";
