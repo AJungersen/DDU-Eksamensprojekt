@@ -33,19 +33,20 @@ import repository.StoreDatabaseMethods;
 public class CatelogViewController implements Initializable {
 
     private StoreDatabaseMethods sdm = new StoreDatabaseMethods();
-    private float paneSize_X;
-    private float paneSize_Y;
-    private float paneSpace_X;
-    private float paneSpace_Y;
+    private float paneSpace_X = 10;
+    private float paneSpace_Y = 10;
     private float panesPerRow;
-    private float imgSize_X;
-    private float imgSize_Y;
-    private float nameTextSize;
-    private float namepos_X;
-    private float namePos_Y;
-    private float priceTextSize;
-    private float pricePos_X;
-    private float pricePos_Y;
+    private float imgSize_X = 137;
+    private float imgSize_Y = 143;
+    private float nameTextSize = 14;
+    private float namepos_X = 16;
+    private float namePos_Y = 158;
+    private float priceTextSize = 12;
+    private float pricePos_X = 47;
+    private float pricePos_Y = 172;
+    private float textSpace = 5;
+    private float paneSize_X = 137;
+    private float paneSize_Y = pricePos_Y + priceTextSize;
     private ArrayList<Product> products = new ArrayList<>();
 
     @FXML
@@ -103,19 +104,20 @@ public class CatelogViewController implements Initializable {
                 imgView.setFitHeight(imgSize_Y);
 
                 //name text
-                Text nameText = new Text(namepos_X, namePos_Y, p.getName());
+                Text nameText = new Text(p.getName());
                 nameText.setFont(Font.font("italic", nameTextSize));
 
                 //nameText.setStyle("-fx-fill-color: #333333");
                 //price text
                 Text priceText = new Text(pricePos_X, pricePos_Y, Float.toString(p.getPrice()));
+                priceText.setId("priceText");
                 priceText.setFont(Font.font("italic", priceTextSize));
 
                 //set mouse clicked on image view to switch to category
                 EventHandler<MouseEvent> clicked = new EventHandler<MouseEvent>() {
                     @Override
                     public void handle(MouseEvent event) {
-                        //App.setCurrentCategoryDisplaying(pc);
+                        App.setCurrentProduct(p);
                         try {
                             App.setRoot("productInformation");
                         } catch (Exception e) {
@@ -123,7 +125,7 @@ public class CatelogViewController implements Initializable {
                         }
                     }
                 };
-                
+
                 EventHandler<MouseEvent> entered = new EventHandler<MouseEvent>() {
                     @Override
                     public void handle(MouseEvent event) {
@@ -150,8 +152,18 @@ public class CatelogViewController implements Initializable {
                     }
                 }
 
-                stackPane.setAlignment(nameText, Pos.CENTER);
-                stackPane.setAlignment(priceText, Pos.CENTER);
+                //stackPane.setAlignment(nameText, Pos.BASELINE_LEFT);
+                //stackPane.setAlignment(priceText, Pos.BASELINE_LEFT);
+
+                for (Node n : stackPane.getChildren()) {
+                    System.out.println(n.getId());
+                    if (n.getId() == "nameText") {
+                        n.setLayoutY(namePos_Y);
+
+                    } else if(n.getId() == "priceText") {
+                        n.setLayoutY(pricePos_Y);
+                    }
+                }
 
                 anchorPaneProducts.getChildren().add(stackPane);
                 if (column % panesPerRow == 0) {
@@ -159,7 +171,6 @@ public class CatelogViewController implements Initializable {
                     row++;
                 }
             }
-
         } catch (Exception e) {
             System.err.println(e.getMessage());
         }

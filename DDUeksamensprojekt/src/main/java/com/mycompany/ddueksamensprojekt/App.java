@@ -32,8 +32,8 @@ public class App extends Application {
         AdminDataBaseMethods.setProductCategorysImages();
 
         //scene = new Scene(loadFXML("loginUser"));
+        //scene = new Scene(loadFXML("AdminAddImageToCategorys"));
         scene = new Scene(loadFXML("main"));
-        //scene = new Scene(loadFXML("main"));
         
         stage.setScene(scene);
         stage.show();
@@ -90,5 +90,13 @@ public class App extends Application {
 
     public static ProductCategory getCurrentCategoryDisplaying() {
         return currentCategoryDisplaying;
+    }
+
+    public static Product getCurrentProduct() {
+        return currentProduct;
+    }
+
+    public static void setCurrentProduct(Product currentProduct) {
+        App.currentProduct = currentProduct;
     }
 }
