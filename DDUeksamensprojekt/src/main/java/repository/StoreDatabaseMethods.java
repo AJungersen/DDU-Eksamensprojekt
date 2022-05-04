@@ -82,6 +82,7 @@ public class StoreDatabaseMethods {
         conn.close();
         return shoppingCart;
     }
+
     /*public ArrayList<ShoppingCart> getAllCarts() throws SQLException, Exception {
         ArrayList<ShoppingCart> shoppingCart = new ArrayList();
 
@@ -135,4 +136,36 @@ public class StoreDatabaseMethods {
         conn.close();
         return shoppingCart;
     }*/
+    //-------------------------------------------------------
+    //---------- get products in specefic category ----------
+    //-------------------------------------------------------
+    public ArrayList<Product> getProductsInSpeceficCategory(ProductCategory _category) throws SQLException, Exception {
+        ArrayList<Product> products = new ArrayList<>();
+
+        Connection conn = null;
+        Class.forName("org.sqlite.JDBC");
+
+        try {
+            conn = DriverManager.getConnection(connectionString);
+        } catch (SQLException e) {
+            System.out.println("\n Database error (get products in specefic category (connection): " + e.getMessage() + "\n");
+        }
+
+        try {
+            Statement stat = conn.createStatement();
+
+            ResultSet rs = stat.executeQuery("SELECT * FROM Products "
+                    + "WHERE ProductCategory = ('" + _category.toString() + "')");
+
+            products = StoreLoadMethods.loadProducts(rs);
+
+        } catch (SQLException e) {
+            System.out.println("\n Database error (get products in specefic category (get products): " + e.getMessage() + "\n");
+        }
+
+        conn.close();
+
+        return products;
+    }
+
 }
