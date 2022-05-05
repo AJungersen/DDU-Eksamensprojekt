@@ -12,12 +12,12 @@ import javafx.scene.image.ImageView;
  *
  * @author chris
  */
-public class TableViewDispalyPurchase extends Product {
+public class TableViewDisplayPurchase extends Product {
 
     private Integer amount;
     private ImageView displayImage;
 
-    public TableViewDispalyPurchase(Integer amount, Product product) {
+    public TableViewDisplayPurchase(Integer amount, Product product) {
         super(product);
         this.amount = amount;
     }
