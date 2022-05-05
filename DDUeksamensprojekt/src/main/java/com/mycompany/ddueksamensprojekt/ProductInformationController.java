@@ -43,9 +43,8 @@ public class ProductInformationController implements Initializable {
         
         textProductName.setText(product.getName());
         textFieldPrice.setText(Float.toString(product.getPrice()));
-        textFieldStock.setText(Integer.toString(product.getStock()));
+        textFieldStock.setText(((product.getStock()>0) ? "på lager":"ikke på lager"));
         imageViewProduct.setImage(product.getImage());
-        //stock.setText((App.currentProduct.getStock()>0 ? "på lager":"ikke på lager"));
     }    
      @FXML
     private void openProfile() throws IOException {
