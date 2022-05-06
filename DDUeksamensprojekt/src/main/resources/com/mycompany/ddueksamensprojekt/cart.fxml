@@ -18,7 +18,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="771.0" prefWidth="868.0" style="-fx-background-color: #40C54D;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.ddueksamensprojekt.CartController">
+<AnchorPane id="AnchorPane" prefHeight="771.0" prefWidth="868.0" style="-fx-background-color: #40C54D;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.ddueksamensprojekt.CartController">
    <children>
       <Pane layoutX="763.0" prefHeight="104.0" prefWidth="105.0" style="-fx-background-color: #DFF2E1;">
          <children>
@@ -69,7 +69,7 @@
                   <Font name="Segoe UI Light Italic" size="21.0" />
                </font>
             </Text>
-            <TextField editable="false" layoutX="157.0" layoutY="524.0" prefHeight="40.0" prefWidth="168.0" promptText="Antal varer" style="-fx-background-radius: 0px; -fx-border-width: 0px 0px 3px 0px; -fx-border-color: #40C54D; -fx-background-color: #DFF2E1;">
+            <TextField fx:id="goodNumber" editable="false" layoutX="157.0" layoutY="524.0" prefHeight="40.0" prefWidth="168.0" promptText="Antal varer" style="-fx-background-radius: 0px; -fx-border-width: 0px 0px 3px 0px; -fx-border-color: #40C54D; -fx-background-color: #DFF2E1;">
                <font>
                   <Font size="17.0" />
                </font>
@@ -150,7 +150,7 @@
                   <Font name="Segoe UI Light Italic" size="21.0" />
                </font>
             </Text>
-            <TextField editable="false" layoutX="155.0" layoutY="573.0" prefHeight="40.0" prefWidth="168.0" promptText="Antal varer" style="-fx-background-radius: 0px; -fx-border-width: 0px 0px 3px 0px; -fx-border-color: #40C54D; -fx-background-color: #DFF2E1;">
+            <TextField fx:id="price" editable="false" layoutX="155.0" layoutY="573.0" prefHeight="40.0" prefWidth="168.0" promptText="Antal varer" style="-fx-background-radius: 0px; -fx-border-width: 0px 0px 3px 0px; -fx-border-color: #40C54D; -fx-background-color: #DFF2E1;">
                <font>
                   <Font size="17.0" />
                </font>

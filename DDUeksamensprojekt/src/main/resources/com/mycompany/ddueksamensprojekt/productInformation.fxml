@@ -18,7 +18,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="813.0" prefWidth="866.0" style="-fx-background-color: #40C54D;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.ddueksamensprojekt.ProductInformationController">
+<AnchorPane id="AnchorPane" prefHeight="813.0" prefWidth="866.0" style="-fx-background-color: #40C54D;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.ddueksamensprojekt.ProductInformationController">
    <children>
       <Label layoutX="349.0" layoutY="10.0" text="Præcis" textAlignment="CENTER">
          <font>
@@ -56,7 +56,7 @@
             <InnerShadow />
          </effect>
          <children>
-            <Text layoutX="20.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" text="(vare navn)">
+            <Text fx:id="textProductName" layoutX="20.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" text="(vare navn)">
                <font>
                   <Font name="Segoe UI Semibold" size="36.0" />
                </font>
@@ -98,7 +98,7 @@
                   </DropShadow>
                </effect>
             </Button>
-            <Text layoutX="331.0" layoutY="243.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Varelager:">
+            <Text layoutX="369.0" layoutY="244.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Varelager:">
                <font>
                   <Font name="Segoe UI Light Italic" size="21.0" />
                </font>
@@ -111,7 +111,7 @@
                   <Cursor fx:constant="DEFAULT" />
                </cursor>
             </TextField>
-            <Text layoutX="359.0" layoutY="307.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Antal valgt:">
+            <Text layoutX="364.0" layoutY="307.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Antal valgt:">
                <font>
                   <Font name="Segoe UI Light Italic" size="21.0" />
                </font>

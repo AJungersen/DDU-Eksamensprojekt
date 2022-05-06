@@ -14,6 +14,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.stage.Popup;
@@ -26,29 +27,38 @@ import javafx.stage.Stage;
  */
 public class CartController implements Initializable {
 
-    ArrayList<TableViewDispalyPurchase> tableViewDispalyData = new ArrayList<>();
-
+    ArrayList<TableViewDisplayPurchase> tableViewDispalyData = new ArrayList<>();
+    @FXML
+    TextField goodNumber;
+    @FXML
+    TextField price;
     @FXML
     TableView goods;
     @FXML
-    private TableColumn<TableViewDispalyPurchase, ImageView> tableColumnImage;
+    private TableColumn<TableViewDisplayPurchase, ImageView> tableColumnImage;
     @FXML
-    private TableColumn<TableViewDispalyPurchase, String> tableColumnName;
+    private TableColumn<TableViewDisplayPurchase, String> tableColumnName;
     @FXML
-    private TableColumn<TableViewDispalyPurchase, Integer> tableColumnPrice;
+    private TableColumn<TableViewDisplayPurchase, Integer> tableColumnPrice;
     @FXML
-    private TableColumn<TableViewDispalyPurchase, Integer> tableColumnAmount;
+    private TableColumn<TableViewDisplayPurchase, Integer> tableColumnAmount;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
+        int goodNumb = 0;
+        float allPrice = 0;
         HashMap<Product, Integer> hp = App.getCurrentCart().getProductsAsMap();
 
         for (Product p : hp.keySet()) {
-            tableViewDispalyData.add(new TableViewDispalyPurchase(hp.get(p), p));
+            tableViewDispalyData.add(new TableViewDisplayPurchase(hp.get(p), p));
+        }
+        
+        for (TableViewDisplayPurchase tvdp : tableViewDispalyData){
+            goodNumb += tvdp.getAmount();
+            allPrice += tvdp.getPrice()*tvdp.getAmount();
         }
 
         tableColumnImage.setCellValueFactory(new PropertyValueFactory<>("displayImage"));
@@ -57,6 +67,9 @@ public class CartController implements Initializable {
         tableColumnAmount.setCellValueFactory(new PropertyValueFactory<>("amount"));
         
         goods.getItems().setAll(tableViewDispalyData);
+        
+        goodNumber.setText(Integer.toString(goodNumb));
+        price.setText(Float.toString(allPrice));
     }
 
     @FXML
