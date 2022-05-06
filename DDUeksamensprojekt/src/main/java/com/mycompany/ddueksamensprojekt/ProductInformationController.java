@@ -5,17 +5,28 @@
 package com.mycompany.ddueksamensprojekt;
 
 import static Classes.ProductCategory.SLIK_OG_SNACKS;
+import java.awt.event.MouseEvent;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.animation.TranslateTransition;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.control.Button;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
+import javafx.scene.layout.VBox;
+import javafx.util.Duration;
+
 
 /**
  * FXML Controller class
@@ -32,6 +43,11 @@ public class ProductInformationController implements Initializable {
     private ImageView imageViewProduct;
     @FXML
     private TextField textFieldNumberOfProduct;
+    @FXML 
+    private VBox vbox;
+    private Parent fxml;
+    @FXML 
+    private Text returnButton;
     /**
      * Initializes the controller class.
      */
@@ -44,6 +60,14 @@ public class ProductInformationController implements Initializable {
         textFieldStock.setText(Integer.toString(product.getStock()));
         imageViewProduct.setImage(product.getImage());
         //stock.setText((App.currentProduct.getStock()>0 ? "på lager":"ikke på lager"));
+        
+        try {
+            fxml = FXMLLoader.load(getClass().getResource("confirmation.fxml"));
+            //vbox.getChildren().removeAll();
+            vbox.getChildren().setAll(fxml);            
+        } catch (IOException ex) {
+            Logger.getLogger(ProductInformationController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }    
      @FXML
     private void openProfile() throws IOException {
@@ -59,8 +83,47 @@ public class ProductInformationController implements Initializable {
     }
     @FXML
     private void addToCart() throws IOException{
+       try{
         for(int i = 0; i < Integer.parseInt(textFieldNumberOfProduct.getText()); i++){
             App.currentCart.getProductsAsList().add(product);
         }
+           openConfirmation();
+       }catch(Exception e){
+           
+       }
+       
+        
+    }
+    @FXML
+    private void openConfirmation () {
+        //returnButton.setVisible(true);
+        
+        // returnvbox.setVisible(false);
+       TranslateTransition t = new TranslateTransition(Duration.seconds(1),vbox);
+       t.setToY(vbox.getLayoutX()*0.8);
+       t.play();
+       t.setOnFinished((e)->{
+       }); 
+       TranslateTransition s = new TranslateTransition(Duration.seconds(1),returnButton);
+       s.setToY(38);
+       s.play();
+       s.setOnFinished((e)->{     
+       });
+       //returnvbox.setVisible(false);
+    }
+    
+    @FXML
+    public void closeConfirmation () {
+     TranslateTransition t = new TranslateTransition(Duration.seconds(1),vbox);
+       t.setToY(0);
+       t.play();
+       t.setOnFinished((e)->{     
+       }); 
+       TranslateTransition s = new TranslateTransition(Duration.seconds(1),returnButton);
+       s.setToY(0);
+       s.play();
+       s.setOnFinished((e)->{     
+       });
+       
     }
 }

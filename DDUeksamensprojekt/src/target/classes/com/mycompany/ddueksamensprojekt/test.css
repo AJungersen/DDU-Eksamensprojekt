@@ -58,11 +58,3 @@
 .table-view:last-of-type{
     -fx-border-bottom: 2px solid #009879;
 }
-
-.exitbutton{
-    -fx-fill:black;
-}
-
-.exitbutton:hover{
-    -fx-fill: red;
-}
