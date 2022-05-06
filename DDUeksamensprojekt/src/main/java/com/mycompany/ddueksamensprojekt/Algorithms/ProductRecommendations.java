@@ -9,6 +9,7 @@ import Classes.Cart;
 import com.mycompany.ddueksamensprojekt.Product;
 import Classes.ProductScore;
 import java.util.ArrayList;
+import repository.StoreDatabaseMethods;
 
 /**
  *
@@ -16,7 +17,8 @@ import java.util.ArrayList;
  */
 public class ProductRecommendations {
     /*public ArrayList<Product> getBestProduct(Product userProduct){
-        ArrayList<Product> products = db.getListOfProducts();
+        StoreDatabaseMethods sdm = new StoreDatabaseMethods();
+        ArrayList<Product> products = sdm.getListOfProducts();
         ArrayList<ProductScore> rankedList = new ArrayList();
         ArrayList<Product> returnList = new ArrayList();
         for(Product I: products){
@@ -39,8 +41,9 @@ public class ProductRecommendations {
         return returnList;
     }
     public float getFitnessOff(Product I, Product U){
-        ArrayList<Cart> userCarts = db.getUsersCarts();
-        ArrayList<Cart> allCarts = db.getAllCarts();
+        StoreDatabaseMethods sdm = new StoreDatabaseMethods();
+        ArrayList<Cart> userCarts = sdm.getUsersCarts();
+        ArrayList<Cart> allCarts = sdm.getAllCarts();
         int h = 0;
         int tot = 0;
         for(Cart C: userCarts){

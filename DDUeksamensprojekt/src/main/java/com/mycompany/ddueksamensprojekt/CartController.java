@@ -6,12 +6,15 @@ package com.mycompany.ddueksamensprojekt;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.stage.Popup;
@@ -23,39 +26,67 @@ import javafx.stage.Stage;
  * @author Clara Maj
  */
 public class CartController implements Initializable {
+
+    ArrayList<TableViewDisplayPurchase> tableViewDispalyData = new ArrayList<>();
+    @FXML
+    TextField goodNumber;
+    @FXML
+    TextField price;
     @FXML
     TableView goods;
     @FXML
-    private TableColumn<TableViewDispalyPurchase, ImageView> tableColumnImage;
+    private TableColumn<TableViewDisplayPurchase, ImageView> tableColumnImage;
     @FXML
-    private TableColumn<TableViewDispalyPurchase, String> tableColumnName;
+    private TableColumn<TableViewDisplayPurchase, String> tableColumnName;
     @FXML
-    private TableColumn<TableViewDispalyPurchase, Integer> tableColumnPrice;
+    private TableColumn<TableViewDisplayPurchase, Integer> tableColumnPrice;
     @FXML
-    private TableColumn<TableViewDispalyPurchase, Integer> tableColumnAmount;
+    private TableColumn<TableViewDisplayPurchase, Integer> tableColumnAmount;
+
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        int goodNumb = 0;
+        float allPrice = 0;
+        HashMap<Product, Integer> hp = App.getCurrentCart().getProductsAsMap();
+
+        for (Product p : hp.keySet()) {
+            tableViewDispalyData.add(new TableViewDisplayPurchase(hp.get(p), p));
+        }
         
+        for (TableViewDisplayPurchase tvdp : tableViewDispalyData){
+            goodNumb += tvdp.getAmount();
+            allPrice += tvdp.getPrice()*tvdp.getAmount();
+        }
+
         tableColumnImage.setCellValueFactory(new PropertyValueFactory<>("displayImage"));
         tableColumnName.setCellValueFactory(new PropertyValueFactory<>("name"));
         tableColumnPrice.setCellValueFactory(new PropertyValueFactory<>("price"));
         tableColumnAmount.setCellValueFactory(new PropertyValueFactory<>("amount"));
-    }    
+        
+        goods.getItems().setAll(tableViewDispalyData);
+        
+        goodNumber.setText(Integer.toString(goodNumb));
+        price.setText(Float.toString(allPrice));
+    }
+
     @FXML
     void openMain() throws Exception {
         App.setRoot("main");
     }
+
     @FXML
     void openProfile() throws Exception {
         App.setRoot("profile");
     }
+
     @FXML
     void openCatelog() throws Exception {
         App.setRoot("catelogView");
     }
+
     @FXML
     void openCheckOut(ActionEvent event) throws IOException {
 
@@ -63,8 +94,8 @@ public class CartController implements Initializable {
         Popup popup = new Popup();
 
         popup.getContent().addAll(App.loadFXML("checkOut").getChildrenUnmodifiable());
-        popup.setX(stage.getWidth()*1.3);
-        popup.setY(stage.getHeight()/2);
+        popup.setX(stage.getWidth() * 1.3);
+        popup.setY(stage.getHeight() / 2);
 
         App.setPopup(popup);
 

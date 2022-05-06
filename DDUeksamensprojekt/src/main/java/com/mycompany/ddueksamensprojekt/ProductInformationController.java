@@ -48,6 +48,8 @@ public class ProductInformationController implements Initializable {
     private Parent fxml;
     @FXML 
     private Text returnButton;
+    @FXML
+    private Text textProductName;
     /**
      * Initializes the controller class.
      */
@@ -55,9 +57,9 @@ public class ProductInformationController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         product = App.getCurrentProduct();
         
-        //price.setText(Float.toString(App.currentProduct.getPrice()));
+        textProductName.setText(product.getName());
         textFieldPrice.setText(Float.toString(product.getPrice()));
-        textFieldStock.setText(Integer.toString(product.getStock()));
+        textFieldStock.setText(((product.getStock()>0) ? "på lager":"ikke på lager"));
         imageViewProduct.setImage(product.getImage());
         //stock.setText((App.currentProduct.getStock()>0 ? "på lager":"ikke på lager"));
         
@@ -68,7 +70,9 @@ public class ProductInformationController implements Initializable {
         } catch (IOException ex) {
             Logger.getLogger(ProductInformationController.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }    
+
+    }
+
      @FXML
     private void openProfile() throws IOException {
         App.setRoot("profile");

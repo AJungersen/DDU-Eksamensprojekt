@@ -31,9 +31,9 @@ public class App extends Application {
     public void start(Stage stage) throws IOException, Exception {
         AdminDataBaseMethods.setProductCategorysImages();
 
-        //scene = new Scene(loadFXML("loginUser"));
+        scene = new Scene(loadFXML("loginUser"));
         //scene = new Scene(loadFXML("AdminAddImageToCategorys"));
-        scene = new Scene(loadFXML("main"));
+        //scene = new Scene(loadFXML("main"));
         
         stage.setScene(scene);
         stage.show();
@@ -98,5 +98,13 @@ public class App extends Application {
 
     public static void setCurrentProduct(Product currentProduct) {
         App.currentProduct = currentProduct;
+    }
+
+    public static Cart getCurrentCart() {
+        return currentCart;
+    }
+
+    public static void setCurrentCart(Cart currentCart) {
+        App.currentCart = currentCart;
     }
 }
