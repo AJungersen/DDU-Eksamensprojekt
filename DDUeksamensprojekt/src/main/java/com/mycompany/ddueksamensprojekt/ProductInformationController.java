@@ -45,6 +45,7 @@ public class ProductInformationController implements Initializable {
     private TextField textFieldNumberOfProduct;
     @FXML 
     private VBox vbox;
+    @FXML
     private Parent fxml;
     @FXML 
     private Text returnButton;
@@ -67,8 +68,9 @@ public class ProductInformationController implements Initializable {
             fxml = FXMLLoader.load(getClass().getResource("confirmation.fxml"));
             //vbox.getChildren().removeAll();
             vbox.getChildren().setAll(fxml);            
-        } catch (IOException ex) {
-            Logger.getLogger(ProductInformationController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            System.out.println("Error");
+            //Logger.getLogger(ProductInformationController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }
@@ -91,7 +93,7 @@ public class ProductInformationController implements Initializable {
         for(int i = 0; i < Integer.parseInt(textFieldNumberOfProduct.getText()); i++){
             App.currentCart.getProductsAsList().add(product);
         }
-           //openConfirmation();
+           openConfirmation();
        }catch(Exception e){
            
        }
