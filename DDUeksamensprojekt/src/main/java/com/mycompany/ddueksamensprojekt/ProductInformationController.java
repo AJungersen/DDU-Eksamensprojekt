@@ -122,8 +122,8 @@ public class ProductInformationController implements Initializable {
      TranslateTransition t = new TranslateTransition(Duration.seconds(1),vbox);
        t.setToY(0);
        t.play();
-       t.setOnFinished((e)->{     
-       }); 
+       t.setOnFinished((e)->{
+       });
        TranslateTransition s = new TranslateTransition(Duration.seconds(1),returnButton);
        s.setToY(0);
        s.play();
