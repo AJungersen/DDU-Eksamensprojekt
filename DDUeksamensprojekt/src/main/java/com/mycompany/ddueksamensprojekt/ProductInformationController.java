@@ -48,7 +48,6 @@ public class ProductInformationController implements Initializable {
     private Parent fxml;
     @FXML 
     private Text returnButton;
-    @FXML
     private Text textProductName;
     /**
      * Initializes the controller class.
@@ -91,14 +90,13 @@ public class ProductInformationController implements Initializable {
         for(int i = 0; i < Integer.parseInt(textFieldNumberOfProduct.getText()); i++){
             App.currentCart.getProductsAsList().add(product);
         }
-           openConfirmation();
+           //openConfirmation();
        }catch(Exception e){
            
        }
        
         
-    }
-    @FXML
+    }/*
     private void openConfirmation () {
         //returnButton.setVisible(true);
         
@@ -129,5 +127,5 @@ public class ProductInformationController implements Initializable {
        s.setOnFinished((e)->{     
        });
        
-    }
+    }*/
 }
