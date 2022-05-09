@@ -32,6 +32,7 @@ public class App extends Application {
         AdminDataBaseMethods.setProductCategorysImages();
 
         //scene = new Scene(loadFXML("loginUser"));
+        //scene = new Scene(loadFXML("mainAdmin"));
         //scene = new Scene(loadFXML("AdminAddImageToCategorys"));
         scene = new Scene(loadFXML("main"));
         

@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="372.0" prefWidth="900.0" style="-fx-background-color: #AAE2AF;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.ddueksamensprojekt.CheckOutController">
+   <children>
+      <Line endX="7.5" endY="179.0" layoutX="442.0" layoutY="91.0" startX="7.5" startY="-64.0" stroke="#333333" strokeWidth="3.0" />
+      <Button layoutX="356.0" layoutY="292.0" mnemonicParsing="false" prefHeight="52.0" prefWidth="189.0" stylesheets="@design.css" text="Betal">
+         <font>
+            <Font name="Segoe UI Semibold" size="18.0" />
+         </font>
+         <effect>
+            <DropShadow height="9.33" offsetY="2.0" radius="3.7475000000000005" width="7.66">
+               <color>
+                  <Color opacity="0.25" />
+               </color>
+            </DropShadow>
+         </effect>
+      </Button>
+      <Button layoutX="734.0" layoutY="14.0" mnemonicParsing="false" onAction="#closePopUp" prefHeight="30.0" prefWidth="152.0" stylesheets="@design.css" text="Tilbage">
+         <font>
+            <Font name="Segoe UI Semibold" size="14.0" />
+         </font>
+         <effect>
+            <DropShadow height="9.33" offsetY="2.0" radius="3.7475000000000005" width="7.66">
+               <color>
+                  <Color opacity="0.25" />
+               </color>
+            </DropShadow>
+         </effect>
+      </Button>
+      <TextField fx:id="textFieldEmail" layoutX="471.0" layoutY="112.0" prefHeight="33.0" prefWidth="334.0" promptText="Navn på kortet" style="-fx-background-radius: 0px; -fx-border-color: #40C54D; -fx-border-width: 0px 0px 0px 0px; -fx-background-color: #FFFFFF;">
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <effect>
+            <DropShadow height="11.0" offsetY="2.0" radius="4.165" width="7.66">
+               <color>
+                  <Color opacity="0.24511928856372833" />
+               </color>
+            </DropShadow>
+         </effect>
+      </TextField>
+      <TextField fx:id="textFieldEmail1" layoutX="470.0" layoutY="159.0" prefHeight="33.0" prefWidth="152.0" promptText="Udløbsdato" style="-fx-background-radius: 0px; -fx-border-color: #40C54D; -fx-border-width: 0px 0px 0px 0px; -fx-background-color: #FFFFFF;">
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <effect>
+            <DropShadow height="11.0" offsetY="2.0" radius="4.165" width="7.66">
+               <color>
+                  <Color opacity="0.24511928856372833" />
+               </color>
+            </DropShadow>
+         </effect>
+      </TextField>
+      <TextField fx:id="textFieldEmail11" layoutX="653.0" layoutY="159.0" prefHeight="33.0" prefWidth="152.0" promptText="CSV" style="-fx-background-radius: 0px; -fx-border-color: #40C54D; -fx-border-width: 0px 0px 0px 0px; -fx-background-color: #FFFFFF;">
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <effect>
+            <DropShadow height="11.0" offsetY="2.0" radius="4.165" width="7.66">
+               <color>
+                  <Color opacity="0.24511928856372833" />
+               </color>
+            </DropShadow>
+         </effect>
+      </TextField>
+      <TextField fx:id="textFieldEmail2" layoutX="471.0" layoutY="209.0" prefHeight="33.0" prefWidth="334.0" promptText="Kortnummer" style="-fx-background-radius: 0px; -fx-border-color: #40C54D; -fx-border-width: 0px 0px 0px 0px; -fx-background-color: #FFFFFF;">
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <effect>
+            <DropShadow height="11.0" offsetY="2.0" radius="4.165" width="7.66">
+               <color>
+                  <Color opacity="0.24511928856372833" />
+               </color>
+            </DropShadow>
+         </effect>
+      </TextField>
+      <Label layoutX="471.0" layoutY="65.0" text="Nyt kort?">
+         <font>
+            <Font name="Segoe UI Light Italic" size="20.0" />
+         </font>
+      </Label>
+      <Text layoutX="28.0" layoutY="127.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Antal varer:">
+         <font>
+            <Font name="Segoe UI Light Italic" size="21.0" />
+         </font>
+      </Text>
+      <TextField editable="false" layoutX="153.0" layoutY="101.0" prefHeight="40.0" prefWidth="168.0" promptText="Antal varer" style="-fx-background-radius: 0px; -fx-border-width: 0px 0px 3px 0px; -fx-border-color: #40C54D; -fx-background-color: transparent;">
+         <font>
+            <Font size="17.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor>
+      </TextField>
+      <Text layoutX="26.0" layoutY="179.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Samlede pris:">
+         <font>
+            <Font name="Segoe UI Light Italic" size="21.0" />
+         </font>
+      </Text>
+      <TextField editable="false" layoutX="152.0" layoutY="153.0" prefHeight="40.0" prefWidth="168.0" promptText="Antal varer" style="-fx-background-radius: 0px; -fx-border-width: 0px 0px 3px 0px; -fx-border-color: #40C54D; -fx-background-color: transparent;">
+         <font>
+            <Font size="17.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor>
+      </TextField>
+      <Label layoutX="26.0" layoutY="9.0" text="Check ud:">
+         <font>
+            <Font name="Segoe UI Semibold" size="40.0" />
+         </font>
+      </Label>
+      <Line endX="115.5" layoutX="97.0" layoutY="68.0" startX="-120.0" />
+      <Text layoutX="26.0" layoutY="234.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Vælg kort:">
+         <font>
+            <Font name="Segoe UI Light Italic" size="21.0" />
+         </font>
+      </Text>
+      <ChoiceBox layoutX="28.0" layoutY="242.0" prefHeight="33.0" prefWidth="298.0" />
+   </children>
+</AnchorPane>

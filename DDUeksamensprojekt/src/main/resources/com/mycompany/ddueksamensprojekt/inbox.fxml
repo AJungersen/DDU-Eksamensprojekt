@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.URL?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
@@ -13,12 +14,13 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.paint.Color?>
+<?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="621.0" prefWidth="866.0" style="-fx-background-color: D65434;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.ddueksamensprojekt.InboxController">
+<AnchorPane id="AnchorPane" prefHeight="621.0" prefWidth="866.0" style="-fx-background-color: #516DD2;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.ddueksamensprojekt.InboxController">
    <children>
-      <Label layoutX="349.0" layoutY="10.0" onDragDetected="#openMain" onMouseClicked="#openMain" text="Præcis" textAlignment="CENTER">
+      <Label layoutX="349.0" layoutY="10.0" onDragDetected="#openMain" onMouseClicked="#openMain" text="PRÆCIS" textAlignment="CENTER">
          <font>
             <Font name="Segoe UI Semibold" size="57.0" />
          </font>
@@ -26,7 +28,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Label>
-      <ImageView fitHeight="58.0" fitWidth="58.0" layoutX="786.0" layoutY="23.0" onMouseClicked="#openCart" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="58.0" fitWidth="58.0" layoutX="786.0" layoutY="23.0" onMouseClicked="#openShop" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@shopping-cart-icon.png" />
          </image>
@@ -37,7 +39,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </ImageView>
-      <Pane layoutY="104.0" prefHeight="525.0" prefWidth="866.0" style="-fx-background-color: F6DCD6;">
+      <Pane layoutY="104.0" prefHeight="525.0" prefWidth="866.0" style="-fx-background-color: #D6DCF6;">
          <effect>
             <InnerShadow />
          </effect>
@@ -47,19 +49,23 @@
                   <Font name="Segoe UI Semibold" size="36.0" />
                </font>
             </Text>
-            <Text layoutX="30.0" layoutY="115.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dine beskeder:">
+            <Text layoutX="30.0" layoutY="115.0" onMouseClicked="#openMessage" strokeType="OUTSIDE" strokeWidth="0.0" text="Dine beskeder:">
                <font>
                   <Font name="Segoe UI Light Italic" size="21.0" />
                </font>
             </Text>
-            <TableView layoutX="32.0" layoutY="130.0" onMouseClicked="#goToSelectedProduct" prefHeight="276.0" prefWidth="803.0">
+            <TableView layoutX="32.0" layoutY="130.0" prefHeight="276.0" prefWidth="803.0" styleClass="adminHeader">
                <columns>
                   <TableColumn prefWidth="236.0" text="Fra" />
                   <TableColumn prefWidth="418.5" text="Titel" />
                   <TableColumn prefWidth="147.5" text="Dato" />
                </columns>
+               <stylesheets>
+                  <URL value="@test.css" />
+                  <URL value="@adminProfile.css" />
+               </stylesheets>
             </TableView>
-            <Button layoutX="324.0" layoutY="445.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="219.0" style="-fx-background-color: D65434;" stylesheets="@design.css" text="Ny besked?">
+            <Button layoutX="324.0" layoutY="445.0" mnemonicParsing="false" onAction="#createMessage" prefHeight="30.0" prefWidth="219.0" style="-fx-background-color: #516DD2;" stylesheets="@design.css" text="Ny besked?">
                <font>
                   <Font name="Segoe UI Semibold" size="14.0" />
                </font>
@@ -70,8 +76,11 @@
                      </color>
                   </DropShadow>
                </effect>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Button>
-            <Button layoutX="700.0" layoutY="15.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="152.0" style="-fx-background-color: D65434;" stylesheets="@design.css" text="Tilbage">
+            <Button layoutX="700.0" layoutY="15.0" mnemonicParsing="false" onAction="#openMain" prefHeight="30.0" prefWidth="152.0" style="-fx-background-color: #516DD2;" stylesheets="@design.css" text="Tilbage">
                <font>
                   <Font name="Segoe UI Semibold" size="14.0" />
                </font>
@@ -82,8 +91,42 @@
                      </color>
                   </DropShadow>
                </effect>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button layoutX="77.0" layoutY="445.0" mnemonicParsing="false" onAction="#createMessageAdmin" prefHeight="30.0" prefWidth="219.0" style="-fx-background-color: #516DD2;" stylesheets="@design.css" text="Ny besked? (admin)">
+               <font>
+                  <Font name="Segoe UI Semibold" size="14.0" />
+               </font>
+               <effect>
+                  <DropShadow height="9.33" offsetY="2.0" radius="3.7475000000000005" width="7.66">
+                     <color>
+                        <Color opacity="0.25" />
+                     </color>
+                  </DropShadow>
+               </effect>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Button>
          </children>
       </Pane>
+      <Circle fill="DODGERBLUE" layoutX="53.0" layoutY="53.0" onMouseClicked="#openProfile" radius="29.0" stroke="BLACK" strokeType="INSIDE" style="-fx-stroke: transparent; -fx-fill: #D6DCF6;">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Circle>
+      <ImageView fitHeight="66.0" fitWidth="58.0" layoutX="24.0" layoutY="24.0" onMouseClicked="#openProfile" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@my-profile-icon-png-3.png" />
+         </image>
+         <effect>
+            <ColorAdjust brightness="0.1" contrast="-0.21" hue="1.0" saturation="-0.68" />
+         </effect>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ImageView>
    </children>
 </AnchorPane>

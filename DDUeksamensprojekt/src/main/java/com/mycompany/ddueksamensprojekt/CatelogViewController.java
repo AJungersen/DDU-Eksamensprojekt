@@ -9,8 +9,12 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+<<<<<<< HEAD
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.beans.value.ObservableValue;
+=======
+import java.util.regex.Pattern;
+>>>>>>> febc05daec04f4954d5c03b5091dabf142dcedc1
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -63,6 +67,8 @@ public class CatelogViewController implements Initializable {
 
     @FXML
     private Text textFieldCategory;
+    @FXML
+    private TextField userInput;
     @FXML
     private AnchorPane anchorPaneProducts;
     @FXML
@@ -282,9 +288,23 @@ public class CatelogViewController implements Initializable {
     private void openCart() throws IOException {
         App.setRoot("cart");
     }
+<<<<<<< HEAD
 
     @FXML
     private void updateProductsToSearch(KeyEvent event) {
         loadProducts();
+=======
+    @FXML
+    private void search() throws Exception{
+        ArrayList<Product> allProducts = sdm.getProductsInSpeceficCategory(App.getCurrentCategoryDisplaying());
+        ArrayList<Product> products = new ArrayList();
+        String search = userInput.getText();
+        for(Product P: allProducts){
+            if(Pattern.matches(".*" + search + "+.*",P.getName()) == true){
+                products.add(P);
+            }
+        }
+        //Clara noget der smider alle produkter P ind i fxml
+>>>>>>> febc05daec04f4954d5c03b5091dabf142dcedc1
     }
 }

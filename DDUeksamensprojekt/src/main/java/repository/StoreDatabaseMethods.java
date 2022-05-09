@@ -61,6 +61,7 @@ public class StoreDatabaseMethods {
         return purchase;
     }
 
+<<<<<<< HEAD
     //--------------------------------------
     //---------- get all purchase ----------
     //--------------------------------------
@@ -97,6 +98,47 @@ public class StoreDatabaseMethods {
         return allPurchases;
     }
 
+=======
+    public ArrayList<Product> getAllProducts() throws SQLException, Exception {
+        
+        ArrayList<Product> allProducts = new ArrayList<>();
+        
+        Connection conn = null;
+        Class.forName("org.sqlite.JDBC");
+        
+        //Skab forbindelse til databasen...
+        
+        try {          
+          conn = DriverManager.getConnection(connectionString);
+        } 
+        catch ( SQLException e ) {
+          //Skrive fejlhåndtering her
+          System.out.println("DB Error: " + e.getMessage());
+        }
+        
+        //Hent alle personer fra databasen v.h.a. SQL
+        try{ 
+            Statement stat = conn.createStatement();   
+
+            //Læser fra database alt data fra databasetabellen Product.   
+            ResultSet rs = stat.executeQuery("Product_ID, Name, Image, Price, Stock, ProductCategory");
+
+            //Løber data igennem via en løkke og skriver det up.    
+            while (rs.next()) {
+                allProducts.add(new Product(rs.getInt("Product_ID"), rs.getString("name"), Tools.convertBufferedImageToFxImage(ImageIO.read(rs.getBinaryStream("Image"))), rs.getFloat("Price"), rs.getInt("Stock"), ProductCategory.valueOf(rs.getString("ProductCategory"))));
+            }
+            rs.close();
+        }
+        catch ( SQLException e ) {
+            //Skrive fejlhåndtering her
+            System.out.println("DB Error: " + e.getMessage());
+        }
+        //Luk forbindelsen til databasen
+        conn.close();
+    
+        return allProducts;
+    }
+>>>>>>> febc05daec04f4954d5c03b5091dabf142dcedc1
     //-------------------------------------------------------
     //---------- get products in specefic category ----------
     //-------------------------------------------------------
@@ -128,5 +170,43 @@ public class StoreDatabaseMethods {
 
         return products;
     }
+    /*public ArrayList<Product> getAllCarts() throws SQLException, Exception {
+        StoreLoadMethods slm = new StoreLoadMethods();
+        ArrayList<Purchase> allCarts = new ArrayList<>();
+        
+        Connection conn = null;
+        Class.forName("org.sqlite.JDBC");
+        
+        //Skab forbindelse til databasen...
+        
+        try {          
+          conn = DriverManager.getConnection(connectionString);
+        } 
+        catch ( SQLException e ) {
+          //Skrive fejlhåndtering her
+          System.out.println("DB Error: " + e.getMessage());
+        }
+        
+        //Hent alle personer fra databasen v.h.a. SQL
+        try{ 
+            Statement stat = conn.createStatement();   
 
+            //Læser fra database alt data fra databasetabellen Product.   
+            ResultSet rs = stat.executeQuery("SELECT * FROM PurchasedShoppingCarts");
+
+            //Løber data igennem via en løkke og skriver det up.    
+            while (rs.next()) {
+                allCarts.add(new Purchase(rs.getInt("Product_ID"), rs.getString("name"), Tools.convertBufferedImageToFxImage(ImageIO.read(rs.getBinaryStream("Image"))), rs.getFloat("Price"), rs.getInt("Stock"), ProductCategory.valueOf(rs.getString("ProductCategory"))));
+            }
+            rs.close();
+        }
+        catch ( SQLException e ) {
+            //Skrive fejlhåndtering her
+            System.out.println("DB Error: " + e.getMessage());
+        }
+        //Luk forbindelsen til databasen
+        conn.close();
+    
+        return allProducts;
+    }*/
 }

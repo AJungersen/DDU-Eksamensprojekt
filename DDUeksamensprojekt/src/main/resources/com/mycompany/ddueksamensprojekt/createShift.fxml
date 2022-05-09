@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="373.0" prefWidth="360.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.ddueksamensprojekt.CreateShiftController">
+   <children>
+      <Pane prefHeight="596.0" prefWidth="672.0" style="-fx-background-color: #D6DCF6; -fx-border-color: #516DD2;">
+         <children>
+            <Button layoutX="79.0" layoutY="552.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="152.0" style="-fx-background-color: #516DD2;" stylesheets="@design.css" text="Opret">
+               <font>
+                  <Font name="Segoe UI Semibold" size="14.0" />
+               </font>
+               <effect>
+                  <DropShadow height="9.33" offsetY="2.0" radius="3.7475000000000005" width="7.66">
+                     <color>
+                        <Color opacity="0.25" />
+                     </color>
+                  </DropShadow>
+               </effect>
+            </Button>
+            <Button layoutX="435.0" layoutY="552.0" mnemonicParsing="false" onAction="#closePopUp" prefHeight="30.0" prefWidth="152.0" style="-fx-background-color: #516DD2;" stylesheets="@design.css" text="Annuller">
+               <font>
+                  <Font name="Segoe UI Semibold" size="14.0" />
+               </font>
+               <effect>
+                  <DropShadow height="9.33" offsetY="2.0" radius="3.7475000000000005" width="7.66">
+                     <color>
+                        <Color opacity="0.25" />
+                     </color>
+                  </DropShadow>
+               </effect>
+            </Button>
+            <TextArea layoutX="23.0" layoutY="120.0" prefHeight="152.0" prefWidth="629.0" />
+            <TextField editable="false" layoutX="23.0" layoutY="17.0" prefHeight="40.0" prefWidth="629.0" promptText="Titel" style="-fx-background-radius: 0px; -fx-border-width: 0px 0px 3px 0px; -fx-border-color: #516DD2; -fx-background-color: #D6DCF6;">
+               <font>
+                  <Font size="17.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="DEFAULT" />
+               </cursor>
+            </TextField>
+            <Label layoutX="23.0" layoutY="298.0" text="Ledige medarbejdere udfra timer:">
+               <font>
+                  <Font name="Segoe UI Light Italic" size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="23.0" layoutY="328.0" text="Vælg afdeling:">
+               <font>
+                  <Font name="Segoe UI Light Italic" size="14.0" />
+               </font>
+            </Label>
+            <ComboBox layoutX="117.0" layoutY="326.0" prefWidth="150.0" />
+            <ListView layoutX="23.0" layoutY="361.0" prefHeight="179.0" prefWidth="245.0" />
+            <ListView layoutX="399.0" layoutY="361.0" prefHeight="179.0" prefWidth="245.0" />
+            <Button layoutX="289.0" layoutY="361.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="94.0" style="-fx-background-color: #516DD2;" stylesheets="@design.css" text="TIlføj">
+               <font>
+                  <Font name="Segoe UI Semibold" size="14.0" />
+               </font>
+               <effect>
+                  <DropShadow height="9.33" offsetY="2.0" radius="3.7475000000000005" width="7.66">
+                     <color>
+                        <Color opacity="0.25" />
+                     </color>
+                  </DropShadow>
+               </effect>
+            </Button>
+            <Button layoutX="289.0" layoutY="400.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="94.0" style="-fx-background-color: #516DD2;" stylesheets="@design.css" text="Tilføj alle">
+               <font>
+                  <Font name="Segoe UI Semibold" size="14.0" />
+               </font>
+               <effect>
+                  <DropShadow height="9.33" offsetY="2.0" radius="3.7475000000000005" width="7.66">
+                     <color>
+                        <Color opacity="0.25" />
+                     </color>
+                  </DropShadow>
+               </effect>
+            </Button>
+            <Button layoutX="286.0" layoutY="474.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="94.0" style="-fx-background-color: #516DD2;" stylesheets="@design.css" text="Fjern">
+               <font>
+                  <Font name="Segoe UI Semibold" size="14.0" />
+               </font>
+               <effect>
+                  <DropShadow height="9.33" offsetY="2.0" radius="3.7475000000000005" width="7.66">
+                     <color>
+                        <Color opacity="0.25" />
+                     </color>
+                  </DropShadow>
+               </effect>
+            </Button>
+            <Button layoutX="286.0" layoutY="510.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="94.0" style="-fx-background-color: #516DD2;" stylesheets="@design.css" text="Fjern alle">
+               <font>
+                  <Font name="Segoe UI Semibold" size="14.0" />
+               </font>
+               <effect>
+                  <DropShadow height="9.33" offsetY="2.0" radius="3.7475000000000005" width="7.66">
+                     <color>
+                        <Color opacity="0.25" />
+                     </color>
+                  </DropShadow>
+               </effect>
+            </Button>
+            <Text layoutX="25.0" layoutY="101.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dato:">
+               <font>
+                  <Font name="Segoe UI Light Italic" size="21.0" />
+               </font>
+            </Text>
+            <TextField editable="false" layoutX="80.0" layoutY="72.0" prefHeight="40.0" prefWidth="109.0" promptText="dato" style="-fx-background-radius: 0px; -fx-border-width: 0px 0px 3px 0px; -fx-border-color: #516DD2; -fx-background-color: #D6DCF6;">
+               <font>
+                  <Font size="17.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="DEFAULT" />
+               </cursor>
+            </TextField>
+            <Text layoutX="225.0" layoutY="101.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tidspunkt:">
+               <font>
+                  <Font name="Segoe UI Light Italic" size="21.0" />
+               </font>
+            </Text>
+            <TextField editable="false" layoutX="319.0" layoutY="72.0" prefHeight="40.0" prefWidth="109.0" promptText="tid" style="-fx-background-radius: 0px; -fx-border-width: 0px 0px 3px 0px; -fx-border-color: #516DD2; -fx-background-color: #D6DCF6;">
+               <font>
+                  <Font size="17.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="DEFAULT" />
+               </cursor>
+            </TextField>
+         </children>
+         <effect>
+            <DropShadow />
+         </effect>
+      </Pane>
+   </children>
+</AnchorPane>

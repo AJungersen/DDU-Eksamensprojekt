@@ -27,7 +27,10 @@ public class MessageViewController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
-    
+    @FXML
+    private void closePopUp(ActionEvent event) throws Exception{
+        App.closePopup();
+    }
     
     
     

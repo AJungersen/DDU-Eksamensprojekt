@@ -53,15 +53,15 @@ public class MainController implements Initializable {
     @FXML
     private Text textWelcomeBackUser;
     @FXML
-    private TableColumn<TableViewDispalyPurchase, ImageView> tableColumnImage;
+    private TableColumn<TableViewDisplayPurchase, ImageView> tableColumnImage;
     @FXML
-    private TableColumn<TableViewDispalyPurchase, String> tableColumnName;
+    private TableColumn<TableViewDisplayPurchase, String> tableColumnName;
     @FXML
-    private TableColumn<TableViewDispalyPurchase, Integer> tableColumnPrice;
+    private TableColumn<TableViewDisplayPurchase, Integer> tableColumnPrice;
     @FXML
-    private TableColumn<TableViewDispalyPurchase, Integer> tableColumnAmount;
+    private TableColumn<TableViewDisplayPurchase, Integer> tableColumnAmount;
     @FXML
-    private TableView<TableViewDispalyPurchase> tableViewLastPurchas;
+    private TableView<TableViewDisplayPurchase> tableViewLastPurchas;
     @FXML
     private AnchorPane anchorPaneCategories;
     @FXML
@@ -113,6 +113,7 @@ public class MainController implements Initializable {
                 Text text = new Text(pc.asFormatedString());
 
                 text.setStyle("-fx-fill-color: #333333");
+                text.setStyle("-fx-effect: dropshadow(one-pass-box, #00ff15, 9.66, 0.62, 19.52, 21.12);");
 
                 //set mouse clicked on image view to switch to category
                 EventHandler<MouseEvent> clicked = new EventHandler<MouseEvent>() {
@@ -168,12 +169,12 @@ public class MainController implements Initializable {
             hp.put(p1, 1);
             hp.put(p2, 2);
 
-            ArrayList<TableViewDispalyPurchase> tableViewDispalyData = new ArrayList<>();
+            ArrayList<TableViewDisplayPurchase> tableViewDispalyData = new ArrayList<>();
 
             HashMap<Product, Integer> hm = sdm.getLatestPurchase(App.getLoggedInUser().getUser_ID()).getPurchasedProducts();
 
             for (Product p : hp.keySet()) {
-                tableViewDispalyData.add(new TableViewDispalyPurchase(hp.get(p), p));
+                tableViewDispalyData.add(new TableViewDisplayPurchase(hp.get(p), p));
             }
 
             tableColumnImage.setCellValueFactory(new PropertyValueFactory<>("displayImage"));
@@ -205,5 +206,9 @@ public class MainController implements Initializable {
             //send to 
             System.out.println(tableViewLastPurchas.getSelectionModel().getSelectedItem().getAmount());
         }
+    }
+    @FXML 
+    void openAdmin() throws Exception {
+        App.setRoot("mainAdmin");
     }
 }

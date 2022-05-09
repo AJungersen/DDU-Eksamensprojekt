@@ -12,7 +12,7 @@
 
 <AnchorPane id="AnchorPane" prefHeight="373.0" prefWidth="360.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.ddueksamensprojekt.MessageViewController">
    <children>
-      <Pane prefHeight="374.0" prefWidth="672.0" style="-fx-background-color: F6DCD6; -fx-border-color: D65434;">
+      <Pane prefHeight="374.0" prefWidth="672.0" style="-fx-background-color: #D6DCF6; -fx-border-color: #516DD2;">
          <children>
             <Label layoutX="10.0" layoutY="-5.0" text="(..titel..)">
                <font>
@@ -24,7 +24,7 @@
                   <Font name="Segoe UI Light Italic" size="20.0" />
                </font>
             </Label>
-            <Button layoutX="82.0" layoutY="322.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="152.0" style="-fx-background-color: D65434;" stylesheets="@design.css" text="Svar">
+            <Button layoutX="82.0" layoutY="322.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="152.0" style="-fx-background-color: #516DD2;" stylesheets="@design.css" text="Svar">
                <font>
                   <Font name="Segoe UI Semibold" size="14.0" />
                </font>
@@ -36,7 +36,7 @@
                   </DropShadow>
                </effect>
             </Button>
-            <Button layoutX="439.0" layoutY="322.0" mnemonicParsing="false" onAction="#closePopUp" prefHeight="30.0" prefWidth="152.0" style="-fx-background-color: D65434;" stylesheets="@design.css" text="Annuller">
+            <Button layoutX="439.0" layoutY="322.0" mnemonicParsing="false" onAction="#closePopUp" prefHeight="30.0" prefWidth="152.0" style="-fx-background-color: #516DD2;" stylesheets="@design.css" text="Annuller">
                <font>
                   <Font name="Segoe UI Semibold" size="14.0" />
                </font>
@@ -64,7 +64,7 @@
                   <Font name="Segoe UI Light Italic" size="20.0" />
                </font>
             </Label>
-            <Button layoutX="259.0" layoutY="322.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="152.0" style="-fx-background-color: D65434;" stylesheets="@design.css" text="Vidersend">
+            <Button layoutX="259.0" layoutY="322.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="152.0" style="-fx-background-color: #516DD2;" stylesheets="@design.css" text="Vidersend">
                <font>
                   <Font name="Segoe UI Semibold" size="14.0" />
                </font>
@@ -78,6 +78,9 @@
             </Button>
             <TextArea layoutX="23.0" layoutY="108.0" prefHeight="191.0" prefWidth="629.0" />
          </children>
+         <effect>
+            <DropShadow />
+         </effect>
       </Pane>
    </children>
 </AnchorPane>

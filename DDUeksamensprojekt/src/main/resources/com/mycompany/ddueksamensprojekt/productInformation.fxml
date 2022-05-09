@@ -12,6 +12,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.shape.Line?>
@@ -20,37 +21,6 @@
 
 <AnchorPane id="AnchorPane" prefHeight="813.0" prefWidth="866.0" style="-fx-background-color: #40C54D;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.ddueksamensprojekt.ProductInformationController">
    <children>
-      <Label layoutX="349.0" layoutY="10.0" text="Præcis" textAlignment="CENTER">
-         <font>
-            <Font name="Segoe UI Semibold" size="57.0" />
-         </font>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </Label>
-      <Circle fill="DODGERBLUE" layoutX="51.0" layoutY="52.0" radius="29.0" stroke="BLACK" strokeType="INSIDE" style="-fx-stroke: transparent; -fx-fill: #DFF2E1;" />
-      <ImageView fitHeight="66.0" fitWidth="58.0" layoutX="22.0" layoutY="23.0" onMouseClicked="#openProfile" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@my-profile-icon-png-3.png" />
-         </image>
-         <effect>
-            <ColorAdjust brightness="0.1" contrast="-0.21" hue="1.0" saturation="-0.68" />
-         </effect>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </ImageView>
-      <ImageView fitHeight="58.0" fitWidth="58.0" layoutX="786.0" layoutY="23.0" onMouseClicked="#openCart" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@shopping-cart-icon.png" />
-         </image>
-         <effect>
-            <ColorAdjust brightness="0.1" contrast="-0.21" hue="1.0" saturation="-0.68" />
-         </effect>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </ImageView>
       <Pane layoutY="104.0" prefHeight="710.0" prefWidth="866.0" style="-fx-background-color: DFF2E1;">
          <effect>
             <InnerShadow />
@@ -137,6 +107,54 @@
             <Line endX="769.0" layoutX="101.0" layoutY="394.0" startX="-100.0" stroke="#333333" strokeWidth="3.0" />
             <TextField fx:id="textFieldNumberOfProduct" layoutX="467.0" layoutY="286.0" prefHeight="25.0" prefWidth="168.0" promptText="0" />
          </children>
+      </Pane>
+      <VBox fx:id="vbox" layoutX="222.0" layoutY="-84.0" prefHeight="180.0" prefWidth="423.0" />
+      <Text fx:id="returnButton" layoutX="620.0" layoutY="97.0" onMouseClicked="#closeConfirmation" strokeType="OUTSIDE" strokeWidth="0.0" text="X">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Text>
+      <Pane layoutY="-3.0" prefHeight="106.0" prefWidth="866.0" style="-fx-background-color: #40C54D;">
+         <children>
+            <Label layoutX="349.0" layoutY="13.0" text="PRÆCIS" textAlignment="CENTER">
+               <font>
+                  <Font name="Segoe UI Semibold" size="57.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Label>
+            <Circle fill="DODGERBLUE" layoutX="43.0" layoutY="55.0" radius="29.0" stroke="BLACK" strokeType="INSIDE" style="-fx-stroke: transparent; -fx-fill: #DFF2E1;" />
+            <ImageView fitHeight="66.0" fitWidth="58.0" layoutX="14.0" layoutY="26.0" onMouseClicked="#openProfile" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@my-profile-icon-png-3.png" />
+               </image>
+               <effect>
+                  <ColorAdjust brightness="0.1" contrast="-0.21" hue="1.0" saturation="-0.68" />
+               </effect>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+            <ImageView fitHeight="58.0" fitWidth="58.0" layoutX="794.0" layoutY="29.0" onMouseClicked="#openCart" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@shopping-cart-icon.png" />
+               </image>
+               <effect>
+                  <ColorAdjust brightness="0.1" contrast="-0.21" hue="1.0" saturation="-0.68" />
+               </effect>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+         </children>
+         <effect>
+            <DropShadow>
+               <color>
+                  <Color opacity="0.43600866198539734" />
+               </color>
+            </DropShadow>
+         </effect>
       </Pane>
    </children>
 </AnchorPane>
