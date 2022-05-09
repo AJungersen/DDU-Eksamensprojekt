@@ -160,21 +160,21 @@ public class MainController implements Initializable {
                 }
             }
 
-            //insert last purchase
-            Product p1 = new Product(0, "test1", null, 1, 4, ProductCategory.FRUGT_OG_GRØNT);
+            //test
+            /*Product p1 = new Product(0, "test1", null, 1, 4, ProductCategory.FRUGT_OG_GRØNT);
             Product p2 = new Product(0, "test2", null, 5, 4, ProductCategory.KØD_OG_FISK);
 
             HashMap<Product, Integer> hp = new HashMap<>();
 
             hp.put(p1, 1);
             hp.put(p2, 2);
-
+            */
             ArrayList<TableViewDisplayPurchase> tableViewDispalyData = new ArrayList<>();
 
             HashMap<Product, Integer> hm = sdm.getLatestPurchase(App.getLoggedInUser().getUser_ID()).getPurchasedProducts();
 
-            for (Product p : hp.keySet()) {
-                tableViewDispalyData.add(new TableViewDisplayPurchase(hp.get(p), p));
+            for (Product p : hm.keySet()) {
+                tableViewDispalyData.add(new TableViewDisplayPurchase(hm.get(p), p));
             }
 
             tableColumnImage.setCellValueFactory(new PropertyValueFactory<>("displayImage"));

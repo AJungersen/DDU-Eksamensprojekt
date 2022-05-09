@@ -10,6 +10,7 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.TextField;
 
 /**
  * FXML Controller class
@@ -17,7 +18,12 @@ import javafx.fxml.Initializable;
  * @author Clara Maj
  */
 public class WalletCreateController implements Initializable {
-
+    @FXML
+    TextField cardHolder;
+    TextField cardNumber;
+    TextField expirationDate;
+    TextField CSV;
+    TextField cardName;
     /**
      * Initializes the controller class.
      */
@@ -33,6 +39,7 @@ public class WalletCreateController implements Initializable {
 
     @FXML
     private void saveCard() throws IOException {
+        
         App.closePopup();
     }
 }
