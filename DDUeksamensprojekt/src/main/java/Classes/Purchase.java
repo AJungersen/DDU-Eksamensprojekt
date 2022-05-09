@@ -23,6 +23,11 @@ public class Purchase {
     public Purchase() {
     }
 
+    public Purchase(int purchase_ID, LocalDate purchaseDate) {
+        this.purchase_ID = purchase_ID;
+        this.purchaseDate = purchaseDate;
+    }
+
     public Purchase(int shoppingCart_ID, LocalDate purchaseDate, HashMap<Product, Integer> purchasedProducts) {
         this.purchase_ID = shoppingCart_ID;
         this.purchaseDate = purchaseDate;

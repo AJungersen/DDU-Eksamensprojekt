@@ -43,7 +43,7 @@ public class SubcatelogViewController implements Initializable {
     }
 
     @FXML
-    public void search(){
+    private void search(){
         ArrayList<Product> allProducts = new ArrayList(); //senere skal dette udskiftes med databasekald
         ArrayList<Product> products = new ArrayList();
         String search = userInput.getText();

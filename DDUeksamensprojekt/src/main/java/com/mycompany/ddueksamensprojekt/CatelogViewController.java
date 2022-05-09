@@ -9,12 +9,14 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import java.util.regex.Pattern;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.Cursor;
 import javafx.scene.Node;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -51,6 +53,8 @@ public class CatelogViewController implements Initializable {
 
     @FXML
     private Text textFieldCategory;
+    @FXML
+    private TextField userInput;
     @FXML
     private AnchorPane anchorPaneProducts;
 
@@ -190,5 +194,16 @@ public class CatelogViewController implements Initializable {
     private void openCart() throws IOException {
         App.setRoot("cart");
     }
-
+    @FXML
+    private void search() throws Exception{
+        ArrayList<Product> allProducts = sdm.getProductsInSpeceficCategory(App.getCurrentCategoryDisplaying());
+        ArrayList<Product> products = new ArrayList();
+        String search = userInput.getText();
+        for(Product P: allProducts){
+            if(Pattern.matches(".*" + search + "+.*",P.getName()) == true){
+                products.add(P);
+            }
+        }
+        //Clara noget der smider alle produkter P ind i fxml
+    }
 }
