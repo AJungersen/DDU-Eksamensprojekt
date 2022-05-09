@@ -83,59 +83,45 @@ public class StoreDatabaseMethods {
         return shoppingCart;
     }
 
-    /*public ArrayList<ShoppingCart> getAllCarts() throws SQLException, Exception {
-        ArrayList<ShoppingCart> shoppingCart = new ArrayList();
-
+    public ArrayList<Product> getAllProducts() throws SQLException, Exception {
+        
+        ArrayList<Product> allProducts = new ArrayList<>();
+        
         Connection conn = null;
         Class.forName("org.sqlite.JDBC");
-
-        try {
-            conn = DriverManager.getConnection(connectionString);
-        } catch (SQLException e) {
-            System.out.println("\n Database error (get latest purchase (connection): " + e.getMessage() + "\n");
+        
+        //Skab forbindelse til databasen...
+        
+        try {          
+          conn = DriverManager.getConnection(connectionString);
+        } 
+        catch ( SQLException e ) {
+          //Skrive fejlhåndtering her
+          System.out.println("DB Error: " + e.getMessage());
         }
+        
+        //Hent alle personer fra databasen v.h.a. SQL
+        try{ 
+            Statement stat = conn.createStatement();   
 
-        //get info
-        try {
-            Statement stat = conn.createStatement();
+            //Læser fra database alt data fra databasetabellen Product.   
+            ResultSet rs = stat.executeQuery("Product_ID, Name, Image, Price, Stock, ProductCategory");
 
-            ResultSet rs = stat.executeQuery("SELECT * FROM PurchasedShoppingCarts ");
-                   
-
-            shoppingCart.add(new Purchase(rs.getInt("purchasedShoppingCarts_ID"))),
-                    LocalDate.parse(rs.getString("date")), null);
-
-        } catch (SQLException e) {
-            System.out.println("\n Database error (get latest purchase (connection): " + e.getMessage() + "\n");
-        }
-
-        //get items
-        try {
-            Statement stat = conn.createStatement();
-
-            ResultSet rs = stat.executeQuery("SELECT * FROM Products WHERE product_ID IN"
-                    + "(SELECT product_ID FROM PurchasedShoppingCartsProducts "
-                    + "WHERE purchasedShoppingCarts_ID = ('" + shoppingCart.getShoppingCart_ID() + "'));");
-
-            ArrayList<Product> products = StoreLoadMethods.loadProducts(rs);
-
-            HashMap<Product, Integer> shoppingCartProducts = new HashMap();
-            for (Product p : products) {
-                rs = stat.executeQuery("SELECT amount FROM PurchasedShoppingCartsProducts "
-                        + "WHERE product_ID = ('" + p.getItem_ID() + "');");
-
-                shoppingCartProducts.put(p, rs.getInt("amount"));
+            //Løber data igennem via en løkke og skriver det up.    
+            while (rs.next()) {
+                allProducts.add(new Product(rs.getInt("Product_ID"), rs.getString("name"), Tools.convertBufferedImageToFxImage(ImageIO.read(rs.getBinaryStream("Image"))), rs.getFloat("Price"), rs.getInt("Stock"), ProductCategory.valueOf(rs.getString("ProductCategory"))));
             }
-
-            shoppingCart.setPurchasedProducts(shoppingCartProducts);
-
-        } catch (SQLException e) {
-            System.out.println("\n Database error (get latest purchase (connection): " + e.getMessage() + "\n");
+            rs.close();
         }
-
+        catch ( SQLException e ) {
+            //Skrive fejlhåndtering her
+            System.out.println("DB Error: " + e.getMessage());
+        }
+        //Luk forbindelsen til databasen
         conn.close();
-        return shoppingCart;
-    }*/
+    
+        return allProducts;
+    }
     //-------------------------------------------------------
     //---------- get products in specefic category ----------
     //-------------------------------------------------------
@@ -167,5 +153,43 @@ public class StoreDatabaseMethods {
 
         return products;
     }
+    /*public ArrayList<Product> getAllCarts() throws SQLException, Exception {
+        StoreLoadMethods slm = new StoreLoadMethods();
+        ArrayList<Purchase> allCarts = new ArrayList<>();
+        
+        Connection conn = null;
+        Class.forName("org.sqlite.JDBC");
+        
+        //Skab forbindelse til databasen...
+        
+        try {          
+          conn = DriverManager.getConnection(connectionString);
+        } 
+        catch ( SQLException e ) {
+          //Skrive fejlhåndtering her
+          System.out.println("DB Error: " + e.getMessage());
+        }
+        
+        //Hent alle personer fra databasen v.h.a. SQL
+        try{ 
+            Statement stat = conn.createStatement();   
 
+            //Læser fra database alt data fra databasetabellen Product.   
+            ResultSet rs = stat.executeQuery("SELECT * FROM PurchasedShoppingCarts");
+
+            //Løber data igennem via en løkke og skriver det up.    
+            while (rs.next()) {
+                allCarts.add(new Purchase(rs.getInt("Product_ID"), rs.getString("name"), Tools.convertBufferedImageToFxImage(ImageIO.read(rs.getBinaryStream("Image"))), rs.getFloat("Price"), rs.getInt("Stock"), ProductCategory.valueOf(rs.getString("ProductCategory"))));
+            }
+            rs.close();
+        }
+        catch ( SQLException e ) {
+            //Skrive fejlhåndtering her
+            System.out.println("DB Error: " + e.getMessage());
+        }
+        //Luk forbindelsen til databasen
+        conn.close();
+    
+        return allProducts;
+    }*/
 }

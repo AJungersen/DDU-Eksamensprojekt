@@ -39,6 +39,8 @@ public class Product {
         this.ProductCategory = productCategory;
     }
 
+    
+    
     public Product(String name, float price, int stock) {
         this.name = name;
         this.price = price;

@@ -18,7 +18,7 @@ import repository.StoreDatabaseMethods;
 public class ProductRecommendations {
     /*public ArrayList<Product> getBestProduct(Product userProduct){
         StoreDatabaseMethods sdm = new StoreDatabaseMethods();
-        ArrayList<Product> products = sdm.getListOfProducts();
+        ArrayList<Product> products = sdm.getAllProducts();
         ArrayList<ProductScore> rankedList = new ArrayList();
         ArrayList<Product> returnList = new ArrayList();
         for(Product I: products){
