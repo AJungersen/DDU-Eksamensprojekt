@@ -76,4 +76,8 @@ public class InboxController implements Initializable {
 
         App.openPopup();
     }
+    @FXML
+    private void openProfile() throws Exception{
+        App.setRoot("profileAdmin");
+    }
 }

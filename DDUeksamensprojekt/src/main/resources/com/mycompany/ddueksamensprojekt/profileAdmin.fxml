@@ -21,9 +21,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="813.0" prefWidth="866.0" style="-fx-background-color: D65434;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.ddueksamensprojekt.ProfileAdminController">
+<AnchorPane id="AnchorPane" prefHeight="813.0" prefWidth="866.0" style="-fx-background-color: #516DD2;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.ddueksamensprojekt.ProfileAdminController">
    <children>
-      <Pane prefHeight="104.0" prefWidth="105.0" style="-fx-background-color: F6DCD6;" />
+      <Pane prefHeight="104.0" prefWidth="105.0" style="-fx-background-color: #D6DCF6;" />
       <Label layoutX="157.0" layoutY="10.0" onDragDetected="#openMain" onMouseClicked="#openMain" text="PRÆCIS (medarbejder)" textAlignment="CENTER">
          <font>
             <Font name="Segoe UI Semibold" size="57.0" />
@@ -32,7 +32,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Label>
-      <Circle fill="DODGERBLUE" layoutX="51.0" layoutY="52.0" radius="29.0" stroke="BLACK" strokeType="INSIDE" style="-fx-stroke: transparent; -fx-fill: F6DCD6;" />
+      <Circle fill="DODGERBLUE" layoutX="51.0" layoutY="52.0" radius="29.0" stroke="BLACK" strokeType="INSIDE" style="-fx-stroke: transparent; -fx-fill: #D6DCF6;" />
       <ImageView fitHeight="66.0" fitWidth="58.0" layoutX="22.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@my-profile-icon-png-3.png" />
@@ -55,7 +55,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </ImageView>
-      <Pane layoutY="104.0" prefHeight="710.0" prefWidth="866.0" style="-fx-background-color: F6DCD6;">
+      <Pane layoutY="104.0" prefHeight="710.0" prefWidth="866.0" style="-fx-background-color: #D6DCF6;">
          <effect>
             <InnerShadow />
          </effect>
@@ -70,7 +70,7 @@
                   <Font name="Segoe UI Light Italic" size="21.0" />
                </font>
             </Text>
-            <TextField layoutX="48.0" layoutY="553.0" prefHeight="40.0" prefWidth="269.0" promptText="Tlf nr" style="-fx-background-radius: 0px; -fx-border-width: 0px 0px 3px 0px; -fx-border-color: D65434; -fx-background-color: F6DCD6;">
+            <TextField layoutX="48.0" layoutY="553.0" prefHeight="40.0" prefWidth="269.0" promptText="Tlf nr" style="-fx-background-radius: 0px; -fx-border-width: 0px 0px 3px 0px; -fx-border-color: #516DD2; -fx-background-color: #D6DCF6;">
                <font>
                   <Font size="17.0" />
                </font>
@@ -95,7 +95,7 @@
                   <URL value="@adminProfile.css" />
                </stylesheets>
             </TableView>
-            <Button layoutX="700.0" layoutY="15.0" mnemonicParsing="false" onAction="#openMain" prefHeight="30.0" prefWidth="152.0" style="-fx-background-color: D65434;" stylesheets="@design.css" text="Tilbage">
+            <Button layoutX="700.0" layoutY="15.0" mnemonicParsing="false" onAction="#openMain" prefHeight="30.0" prefWidth="152.0" style="-fx-background-color: #516DD2;" stylesheets="@design.css" text="Tilbage">
                <font>
                   <Font name="Segoe UI Semibold" size="14.0" />
                </font>
@@ -114,7 +114,7 @@
                </font>
             </Text>
             <Line endX="707.0" layoutX="128.0" layoutY="490.0" startX="-100.0" />
-            <TextField layoutX="48.0" layoutY="605.0" prefHeight="40.0" prefWidth="269.0" promptText="Email" style="-fx-background-radius: 0px; -fx-border-width: 0px 0px 3px 0px; -fx-border-color: D65434; -fx-background-color: F6DCD6;">
+            <TextField layoutX="48.0" layoutY="605.0" prefHeight="40.0" prefWidth="269.0" promptText="Email" style="-fx-background-radius: 0px; -fx-border-width: 0px 0px 3px 0px; -fx-border-color: #516DD2; -fx-background-color: #D6DCF6;">
                <font>
                   <Font size="17.0" />
                </font>
@@ -122,7 +122,7 @@
                   <Cursor fx:constant="DEFAULT" />
                </cursor>
             </TextField>
-            <TextField layoutX="352.0" layoutY="555.0" prefHeight="40.0" prefWidth="269.0" promptText="Kodeord" style="-fx-background-radius: 0px; -fx-border-width: 0px 0px 3px 0px; -fx-border-color: D65434; -fx-background-color: F6DCD6;">
+            <TextField layoutX="352.0" layoutY="555.0" prefHeight="40.0" prefWidth="269.0" promptText="Kodeord" style="-fx-background-radius: 0px; -fx-border-width: 0px 0px 3px 0px; -fx-border-color: #516DD2; -fx-background-color: #D6DCF6;">
                <font>
                   <Font size="17.0" />
                </font>
@@ -130,7 +130,7 @@
                   <Cursor fx:constant="DEFAULT" />
                </cursor>
             </TextField>
-            <TextField layoutX="352.0" layoutY="607.0" prefHeight="40.0" prefWidth="269.0" promptText="Navn" style="-fx-background-radius: 0px; -fx-border-width: 0px 0px 3px 0px; -fx-border-color: D65434; -fx-background-color: F6DCD6;">
+            <TextField layoutX="352.0" layoutY="607.0" prefHeight="40.0" prefWidth="269.0" promptText="Navn" style="-fx-background-radius: 0px; -fx-border-width: 0px 0px 3px 0px; -fx-border-color: #516DD2; -fx-background-color: #D6DCF6;">
                <font>
                   <Font size="17.0" />
                </font>
@@ -138,7 +138,7 @@
                   <Cursor fx:constant="DEFAULT" />
                </cursor>
             </TextField>
-            <Button layoutX="666.0" layoutY="587.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="152.0" style="-fx-background-color: D65434;" stylesheets="@design.css" text="Gem ændringer">
+            <Button layoutX="666.0" layoutY="587.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="152.0" style="-fx-background-color: #516DD2;" stylesheets="@design.css" text="Gem ændringer">
                <font>
                   <Font name="Segoe UI Semibold" size="14.0" />
                </font>
@@ -150,7 +150,7 @@
                   </DropShadow>
                </effect>
             </Button>
-            <Button layoutX="643.0" layoutY="112.0" mnemonicParsing="false" onAction="#createWorker" prefHeight="40.0" prefWidth="190.0" style="-fx-background-color: D65434;" stylesheets="@design.css" text="Ny medarbejder? (admin)">
+            <Button layoutX="643.0" layoutY="112.0" mnemonicParsing="false" onAction="#createWorker" prefHeight="40.0" prefWidth="190.0" style="-fx-background-color: #516DD2;" stylesheets="@design.css" text="Ny medarbejder? (admin)">
                <font>
                   <Font name="Segoe UI Semibold" size="14.0" />
                </font>
