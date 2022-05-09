@@ -19,7 +19,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: D65434;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.ddueksamensprojekt.MainAdminController">
+<AnchorPane id="AnchorPane" prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: #516DD2;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.ddueksamensprojekt.MainAdminController">
    <children>
       <Label layoutX="323.0" layoutY="1.0" text="PRÆCIS(medarbejder)" textAlignment="CENTER">
          <font>
@@ -42,7 +42,7 @@
       </ImageView>
       <ScrollPane layoutX="-6.0" layoutY="85.0" prefHeight="730.0" prefWidth="1206.0">
         <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="2000.0" prefWidth="1203.0" style="-fx-background-color: F6DCD6;">
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="2000.0" prefWidth="1203.0" style="-fx-background-color: #D6DCF6;">
                <children>
                   <Text layoutX="30.0" layoutY="177.0" onMouseClicked="#openShifts" strokeType="OUTSIDE" strokeWidth="0.0" text="Vagtplan:">
                      <font>
@@ -60,7 +60,7 @@
                         <URL value="@adminProfile.css" />
                      </stylesheets>
                   </TableView>
-                  <Button layoutX="979.0" layoutY="46.0" mnemonicParsing="false" onAction="#openShifts" prefHeight="49.0" prefWidth="184.0" style="-fx-background-color: D65434;" stylesheets="@design.css" text="Stempel ind/ud">
+                  <Button layoutX="979.0" layoutY="46.0" mnemonicParsing="false" onAction="#openShifts" prefHeight="49.0" prefWidth="184.0" style="-fx-background-color: #516DD2;" stylesheets="@design.css" text="Stempel ind/ud">
                      <effect>
                         <DropShadow height="8.5" offsetY="2.0" radius="3.54" width="7.66">
                            <color>
@@ -75,7 +75,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <AnchorPane layoutX="4.0" layoutY="463.0" prefHeight="736.0" prefWidth="1187.0" style="-fx-background-color: E69784;" />
+                  <AnchorPane layoutX="4.0" layoutY="463.0" prefHeight="736.0" prefWidth="1187.0" style="-fx-background-color: #8497E6;" />
                   <Line endX="1076.0" layoutX="119.0" layoutY="461.0" startX="-119.0" stroke="#333333" strokeWidth="3.0" />
                   <ImageView fitHeight="85.0" fitWidth="70.0" layoutX="30.0" layoutY="28.0" pickOnBounds="true">
                      <image>
@@ -113,7 +113,7 @@
                         <Font name="Segoe UI Light Italic" size="21.0" />
                      </font>
                   </Text>
-                  <Button layoutX="766.0" layoutY="46.0" mnemonicParsing="false" onAction="#openInbox" prefHeight="49.0" prefWidth="184.0" style="-fx-background-color: D65434;" stylesheets="@design.css" text="Inbox">
+                  <Button layoutX="766.0" layoutY="46.0" mnemonicParsing="false" onAction="#openInbox" prefHeight="49.0" prefWidth="184.0" style="-fx-background-color: #516DD2;" stylesheets="@design.css" text="Inbox">
                      <effect>
                         <DropShadow height="8.5" offsetY="2.0" radius="3.54" width="7.66">
                            <color>
@@ -128,7 +128,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button layoutX="555.0" layoutY="46.0" mnemonicParsing="false" onAction="#createShifts" prefHeight="49.0" prefWidth="184.0" style="-fx-background-color: D65434;" stylesheets="@design.css" text="Opret vagt (admin)">
+                  <Button layoutX="555.0" layoutY="46.0" mnemonicParsing="false" onAction="#createShifts" prefHeight="49.0" prefWidth="184.0" style="-fx-background-color: #516DD2;" stylesheets="@design.css" text="Opret vagt (admin)">
                      <effect>
                         <DropShadow height="8.5" offsetY="2.0" radius="3.54" width="7.66">
                            <color>
@@ -150,7 +150,7 @@
             <InnerShadow />
          </effect>
       </ScrollPane>
-      <Circle fill="DODGERBLUE" layoutX="43.0" layoutY="43.0" onMouseClicked="#openProfile" radius="29.0" stroke="BLACK" strokeType="INSIDE" style="-fx-stroke: transparent; -fx-fill: F6DCD6;">
+      <Circle fill="DODGERBLUE" layoutX="43.0" layoutY="43.0" onMouseClicked="#openProfile" radius="29.0" stroke="BLACK" strokeType="INSIDE" style="-fx-stroke: transparent; -fx-fill: #D6DCF6;">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>

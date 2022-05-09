@@ -11,7 +11,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.ddueksamensprojekt.TotalShiftsController">
    <children>
-      <Pane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: F6DCD6; -fx-border-color: D65434;">
+      <Pane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #D6DCF6; -fx-border-color: #516DD2;">
          <children>
             <Text layoutX="14.0" layoutY="53.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tid arbejdet:">
                <font>
@@ -30,7 +30,7 @@
             </Text>
             <ListView layoutX="17.0" layoutY="109.0" prefHeight="275.0" prefWidth="233.0" />
             <ListView layoutX="344.0" layoutY="111.0" prefHeight="275.0" prefWidth="233.0" />
-            <Button layoutX="461.0" layoutY="14.0" mnemonicParsing="false" onAction="#closePopUp" prefHeight="30.0" prefWidth="127.0" style="-fx-background-color: D65434;" stylesheets="@design.css" text="Tilbage">
+            <Button layoutX="461.0" layoutY="14.0" mnemonicParsing="false" onAction="#closePopUp" prefHeight="30.0" prefWidth="127.0" style="-fx-background-color: #516DD2;" stylesheets="@design.css" text="Tilbage">
                <font>
                   <Font name="Segoe UI Semibold" size="14.0" />
                </font>

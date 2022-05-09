@@ -113,6 +113,7 @@ public class MainController implements Initializable {
                 Text text = new Text(pc.asFormatedString());
 
                 text.setStyle("-fx-fill-color: #333333");
+                text.setStyle("-fx-effect: dropshadow(ON_PASS_BOX, #00ff15, 9.66, 0.62, 19.52, 21.12);");
 
                 //set mouse clicked on image view to switch to category
                 EventHandler<MouseEvent> clicked = new EventHandler<MouseEvent>() {
@@ -205,5 +206,9 @@ public class MainController implements Initializable {
             //send to 
             System.out.println(tableViewLastPurchas.getSelectionModel().getSelectedItem().getAmount());
         }
+    }
+    @FXML 
+    void openAdmin() throws Exception {
+        App.setRoot("mainAdmin");
     }
 }
