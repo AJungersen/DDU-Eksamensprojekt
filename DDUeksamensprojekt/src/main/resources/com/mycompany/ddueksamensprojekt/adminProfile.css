@@ -1,0 +1,12 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : 9. maj 2022, 09.08.02
+    Author     : Clara Maj
+*/
+
+.adminHeader .column-header{
+    -fx-background-color: #BC3C49;
+}
