@@ -30,7 +30,7 @@ public class StoreDatabaseMethods {
     //---------- get latest purchase ----------
     //-----------------------------------------
     public Purchase getLatestPurchase(int _user_ID) throws SQLException, Exception {
-        Purchase shoppingCart = new Purchase();
+        Purchase purchase = new Purchase();
 
         Connection conn = null;
         Class.forName("org.sqlite.JDBC");
@@ -48,43 +48,24 @@ public class StoreDatabaseMethods {
             ResultSet rs = stat.executeQuery("SELECT * FROM PurchasedShoppingCarts "
                     + "WHERE user_ID = ('" + _user_ID + "') ORDER BY purchasedShoppingCarts_ID LIMIT '1'");
 
-            shoppingCart = new Purchase(rs.getInt("purchasedShoppingCarts_ID"),
+            purchase = new Purchase(rs.getInt("purchasedShoppingCarts_ID"),
                     LocalDate.parse(rs.getString("date")), null);
 
         } catch (SQLException e) {
             System.out.println("\n Database error (get latest purchase (connection): " + e.getMessage() + "\n");
         }
 
-        //get items
-        try {
-            Statement stat = conn.createStatement();
-
-            ResultSet rs = stat.executeQuery("SELECT * FROM Products WHERE product_ID IN"
-                    + "(SELECT product_ID FROM PurchasedShoppingCartsProducts "
-                    + "WHERE purchasedShoppingCarts_ID = ('" + shoppingCart.getShoppingCart_ID() + "'));");
-
-            ArrayList<Product> products = StoreLoadMethods.loadProducts(rs);
-
-            HashMap<Product, Integer> shoppingCartProducts = new HashMap();
-            for (Product p : products) {
-                rs = stat.executeQuery("SELECT amount FROM PurchasedShoppingCartsProducts "
-                        + "WHERE product_ID = ('" + p.getItem_ID() + "');");
-
-                shoppingCartProducts.put(p, rs.getInt("amount"));
-            }
-
-            shoppingCart.setPurchasedProducts(shoppingCartProducts);
-
-        } catch (SQLException e) {
-            System.out.println("\n Database error (get latest purchase (connection): " + e.getMessage() + "\n");
-        }
+        purchase.setPurchasedProducts(StoreLoadMethods.loadPurchasedProducts(conn, purchase.getPurchase_ID()));
 
         conn.close();
-        return shoppingCart;
+        return purchase;
     }
 
-    /*public ArrayList<ShoppingCart> getAllCarts() throws SQLException, Exception {
-        ArrayList<ShoppingCart> shoppingCart = new ArrayList();
+    //--------------------------------------
+    //---------- get all purchase ----------
+    //--------------------------------------
+    public ArrayList<Purchase> getAllPurchase() throws SQLException, Exception {
+        ArrayList<Purchase> allPurchases = new ArrayList<>();
 
         Connection conn = null;
         Class.forName("org.sqlite.JDBC");
@@ -100,42 +81,22 @@ public class StoreDatabaseMethods {
             Statement stat = conn.createStatement();
 
             ResultSet rs = stat.executeQuery("SELECT * FROM PurchasedShoppingCarts ");
-                   
-
-            shoppingCart.add(new Purchase(rs.getInt("purchasedShoppingCarts_ID"))),
-                    LocalDate.parse(rs.getString("date")), null);
-
+            while (rs.next()) {
+                allPurchases.add(new Purchase(rs.getInt("purchasedShoppingCarts_ID"),
+                        LocalDate.parse(rs.getString("date")), null));
+            }
         } catch (SQLException e) {
             System.out.println("\n Database error (get latest purchase (connection): " + e.getMessage() + "\n");
         }
-
-        //get items
-        try {
-            Statement stat = conn.createStatement();
-
-            ResultSet rs = stat.executeQuery("SELECT * FROM Products WHERE product_ID IN"
-                    + "(SELECT product_ID FROM PurchasedShoppingCartsProducts "
-                    + "WHERE purchasedShoppingCarts_ID = ('" + shoppingCart.getShoppingCart_ID() + "'));");
-
-            ArrayList<Product> products = StoreLoadMethods.loadProducts(rs);
-
-            HashMap<Product, Integer> shoppingCartProducts = new HashMap();
-            for (Product p : products) {
-                rs = stat.executeQuery("SELECT amount FROM PurchasedShoppingCartsProducts "
-                        + "WHERE product_ID = ('" + p.getItem_ID() + "');");
-
-                shoppingCartProducts.put(p, rs.getInt("amount"));
-            }
-
-            shoppingCart.setPurchasedProducts(shoppingCartProducts);
-
-        } catch (SQLException e) {
-            System.out.println("\n Database error (get latest purchase (connection): " + e.getMessage() + "\n");
+        for (Purchase p : allPurchases) {
+            p.setPurchasedProducts(StoreLoadMethods.loadPurchasedProducts(conn, p.getPurchase_ID()));
         }
 
         conn.close();
-        return shoppingCart;
-    }*/
+
+        return allPurchases;
+    }
+
     //-------------------------------------------------------
     //---------- get products in specefic category ----------
     //-------------------------------------------------------

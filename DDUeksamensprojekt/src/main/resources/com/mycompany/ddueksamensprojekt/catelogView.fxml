@@ -55,7 +55,7 @@
                   <Font name="Segoe UI Symbol" size="29.0" />
                </font>
             </Text>
-            <TextField layoutX="592.0" layoutY="28.0" prefHeight="40.0" prefWidth="318.0" promptText="Søg efter kategori" style="-fx-background-radius: 0px; -fx-border-width: 0px 0px 3px 0px; -fx-border-color: #40C54D; -fx-background-color: #DFF2E1;">
+            <TextField fx:id="textFieldSearchBar" layoutX="592.0" layoutY="28.0" onKeyTyped="#updateProductsToSearch" prefHeight="40.0" prefWidth="318.0" promptText="Søg efter kategori" style="-fx-background-radius: 0px; -fx-border-width: 0px 0px 3px 0px; -fx-border-color: #40C54D; -fx-background-color: #DFF2E1;">
                <font>
                   <Font size="17.0" />
                </font>

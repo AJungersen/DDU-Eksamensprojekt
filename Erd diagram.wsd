@@ -55,7 +55,7 @@ table(SavedShoppingCartsProducts){
     int amount
 }
 
-table(Purchase) {
+table(Purchases) {
     PK purchase_ID
     FK user_ID
     String date
@@ -75,6 +75,6 @@ Favorites ||--o{ Users
 Favorites ||--o{ Products
 
 SavedShoppingCarts ||--|{ SavedShoppingCartsProducts
-PurchasedShoppingCarts ||--{ PurchasedShoppingCartsProducts
+Purchases ||--{ PurchasedProducts
 
 @enduml

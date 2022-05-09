@@ -98,7 +98,7 @@ public class MainController implements Initializable {
                 //pos
                 stackPane.setLayoutX((PaneSpace_X * column) + (paneSize_X * (column - 1)));
                 stackPane.setLayoutY((paneSPace_Y * row) + (paneSize_Y * (row - 1)));
-
+                
                 //size
                 stackPane.setMinSize(paneSize_X, paneSize_Y);
                 stackPane.setMaxSize(paneSize_X, paneSize_Y);
