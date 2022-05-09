@@ -111,6 +111,9 @@
             </Button>
             <Line endX="123.5" layoutX="99.0" layoutY="54.0" startX="-99.0" />
          </children>
+         <effect>
+            <DropShadow />
+         </effect>
       </Pane>
    </children>
 </AnchorPane>

@@ -18,7 +18,7 @@
 
 <AnchorPane id="AnchorPane" prefHeight="621.0" prefWidth="866.0" style="-fx-background-color: D65434;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.ddueksamensprojekt.InboxController">
    <children>
-      <Label layoutX="349.0" layoutY="10.0" onDragDetected="#openMain" onMouseClicked="#openMain" text="Præcis" textAlignment="CENTER">
+      <Label layoutX="349.0" layoutY="10.0" onDragDetected="#openMain" onMouseClicked="#openMain" text="PRÆCIS" textAlignment="CENTER">
          <font>
             <Font name="Segoe UI Semibold" size="57.0" />
          </font>
@@ -26,7 +26,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Label>
-      <ImageView fitHeight="58.0" fitWidth="58.0" layoutX="786.0" layoutY="23.0" onMouseClicked="#openCart" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="58.0" fitWidth="58.0" layoutX="786.0" layoutY="23.0" onMouseClicked="#openShop" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@shopping-cart-icon.png" />
          </image>
@@ -47,19 +47,19 @@
                   <Font name="Segoe UI Semibold" size="36.0" />
                </font>
             </Text>
-            <Text layoutX="30.0" layoutY="115.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dine beskeder:">
+            <Text layoutX="30.0" layoutY="115.0" onMouseClicked="#openMessage" strokeType="OUTSIDE" strokeWidth="0.0" text="Dine beskeder:">
                <font>
                   <Font name="Segoe UI Light Italic" size="21.0" />
                </font>
             </Text>
-            <TableView layoutX="32.0" layoutY="130.0" onMouseClicked="#goToSelectedProduct" prefHeight="276.0" prefWidth="803.0">
+            <TableView layoutX="32.0" layoutY="130.0" prefHeight="276.0" prefWidth="803.0">
                <columns>
                   <TableColumn prefWidth="236.0" text="Fra" />
                   <TableColumn prefWidth="418.5" text="Titel" />
                   <TableColumn prefWidth="147.5" text="Dato" />
                </columns>
             </TableView>
-            <Button layoutX="324.0" layoutY="445.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="219.0" style="-fx-background-color: D65434;" stylesheets="@design.css" text="Ny besked?">
+            <Button layoutX="324.0" layoutY="445.0" mnemonicParsing="false" onAction="#createMessage" prefHeight="30.0" prefWidth="219.0" style="-fx-background-color: D65434;" stylesheets="@design.css" text="Ny besked?">
                <font>
                   <Font name="Segoe UI Semibold" size="14.0" />
                </font>
@@ -70,8 +70,11 @@
                      </color>
                   </DropShadow>
                </effect>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Button>
-            <Button layoutX="700.0" layoutY="15.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="152.0" style="-fx-background-color: D65434;" stylesheets="@design.css" text="Tilbage">
+            <Button layoutX="700.0" layoutY="15.0" mnemonicParsing="false" onAction="#openMain" prefHeight="30.0" prefWidth="152.0" style="-fx-background-color: D65434;" stylesheets="@design.css" text="Tilbage">
                <font>
                   <Font name="Segoe UI Semibold" size="14.0" />
                </font>
@@ -82,6 +85,24 @@
                      </color>
                   </DropShadow>
                </effect>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button layoutX="77.0" layoutY="445.0" mnemonicParsing="false" onAction="#createMessageAdmin" prefHeight="30.0" prefWidth="219.0" style="-fx-background-color: D65434;" stylesheets="@design.css" text="Ny besked? (admin)">
+               <font>
+                  <Font name="Segoe UI Semibold" size="14.0" />
+               </font>
+               <effect>
+                  <DropShadow height="9.33" offsetY="2.0" radius="3.7475000000000005" width="7.66">
+                     <color>
+                        <Color opacity="0.25" />
+                     </color>
+                  </DropShadow>
+               </effect>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Button>
          </children>
       </Pane>

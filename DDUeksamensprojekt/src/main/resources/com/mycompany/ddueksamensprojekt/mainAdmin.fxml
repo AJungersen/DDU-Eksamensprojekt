@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.URL?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
@@ -13,13 +14,14 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.paint.Color?>
+<?import javafx.scene.shape.Circle?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
 <AnchorPane id="AnchorPane" prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: D65434;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.ddueksamensprojekt.MainAdminController">
    <children>
-      <Label layoutX="404.0" layoutY="1.0" text="Præcis (Admin)" textAlignment="CENTER">
+      <Label layoutX="323.0" layoutY="1.0" text="PRÆCIS(medarbejder)" textAlignment="CENTER">
          <font>
             <Font name="Segoe UI Semibold" size="57.0" />
          </font>
@@ -27,7 +29,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Label>
-      <ImageView fitHeight="58.0" fitWidth="58.0" layoutX="1120.0" layoutY="14.0" onMouseClicked="#openCart" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="58.0" fitWidth="58.0" layoutX="1120.0" layoutY="14.0" onMouseClicked="#openShop" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@shopping-cart-icon.png" />
          </image>
@@ -42,19 +44,23 @@
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="2000.0" prefWidth="1203.0" style="-fx-background-color: F6DCD6;">
                <children>
-                  <Text layoutX="30.0" layoutY="177.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Vagtplan:">
+                  <Text layoutX="30.0" layoutY="177.0" onMouseClicked="#openShifts" strokeType="OUTSIDE" strokeWidth="0.0" text="Vagtplan:">
                      <font>
                         <Font name="Segoe UI Light Italic" size="21.0" />
                      </font>
                   </Text>
-                  <TableView layoutX="30.0" layoutY="185.0" onMouseClicked="#goToSelectedProduct" prefHeight="248.0" prefWidth="516.0">
+                  <TableView layoutX="30.0" layoutY="185.0" prefHeight="248.0" prefWidth="516.0" styleClass="adminHeader">
                     <columns>
                       <TableColumn prefWidth="322.5" text="Titel" />
                         <TableColumn prefWidth="99.0" text="Start" />
                         <TableColumn prefWidth="94.5" text="Slut" />
                     </columns>
+                     <stylesheets>
+                        <URL value="@test.css" />
+                        <URL value="@adminProfile.css" />
+                     </stylesheets>
                   </TableView>
-                  <Button layoutX="979.0" layoutY="46.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="184.0" style="-fx-background-color: D65434;" stylesheets="@design.css" text="Stempel ind/ud">
+                  <Button layoutX="979.0" layoutY="46.0" mnemonicParsing="false" onAction="#openShifts" prefHeight="49.0" prefWidth="184.0" style="-fx-background-color: D65434;" stylesheets="@design.css" text="Stempel ind/ud">
                      <effect>
                         <DropShadow height="8.5" offsetY="2.0" radius="3.54" width="7.66">
                            <color>
@@ -91,19 +97,38 @@
                         <Font size="15.0" />
                      </font>
                   </Text>
-                  <TableView layoutX="656.0" layoutY="185.0" onMouseClicked="#goToSelectedProduct" prefHeight="248.0" prefWidth="516.0">
+                  <TableView layoutX="656.0" layoutY="185.0" prefHeight="248.0" prefWidth="516.0" styleClass="adminHeader">
                      <columns>
                         <TableColumn prefWidth="322.5" text="Titel" />
                         <TableColumn prefWidth="99.0" text="Start" />
                         <TableColumn prefWidth="94.5" text="Slut" />
                      </columns>
+                     <stylesheets>
+                        <URL value="@test.css" />
+                        <URL value="@adminProfile.css" />
+                     </stylesheets>
                   </TableView>
-                  <Text layoutX="656.0" layoutY="177.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ledige vagter:">
+                  <Text layoutX="656.0" layoutY="177.0" onMouseClicked="#openFreeShifts" strokeType="OUTSIDE" strokeWidth="0.0" text="Ledige vagter:">
                      <font>
                         <Font name="Segoe UI Light Italic" size="21.0" />
                      </font>
                   </Text>
-                  <Button layoutX="766.0" layoutY="46.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="184.0" style="-fx-background-color: D65434;" stylesheets="@design.css" text="Inbox">
+                  <Button layoutX="766.0" layoutY="46.0" mnemonicParsing="false" onAction="#openInbox" prefHeight="49.0" prefWidth="184.0" style="-fx-background-color: D65434;" stylesheets="@design.css" text="Inbox">
+                     <effect>
+                        <DropShadow height="8.5" offsetY="2.0" radius="3.54" width="7.66">
+                           <color>
+                              <Color opacity="0.25" />
+                           </color>
+                        </DropShadow>
+                     </effect>
+                     <font>
+                        <Font name="Segoe UI Semibold" size="14.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Button layoutX="555.0" layoutY="46.0" mnemonicParsing="false" onAction="#createShifts" prefHeight="49.0" prefWidth="184.0" style="-fx-background-color: D65434;" stylesheets="@design.css" text="Opret vagt (admin)">
                      <effect>
                         <DropShadow height="8.5" offsetY="2.0" radius="3.54" width="7.66">
                            <color>
@@ -125,5 +150,21 @@
             <InnerShadow />
          </effect>
       </ScrollPane>
+      <Circle fill="DODGERBLUE" layoutX="43.0" layoutY="43.0" onMouseClicked="#openProfile" radius="29.0" stroke="BLACK" strokeType="INSIDE" style="-fx-stroke: transparent; -fx-fill: F6DCD6;">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Circle>
+      <ImageView fitHeight="66.0" fitWidth="58.0" layoutX="14.0" layoutY="14.0" onMouseClicked="#openProfile" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@my-profile-icon-png-3.png" />
+         </image>
+         <effect>
+            <ColorAdjust brightness="0.1" contrast="-0.21" hue="1.0" saturation="-0.68" />
+         </effect>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ImageView>
    </children>
 </AnchorPane>

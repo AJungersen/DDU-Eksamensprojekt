@@ -1,24 +1,22 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.mycompany.ddueksamensprojekt;
 
-import java.io.IOException;
+
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.stage.Popup;
-import javafx.stage.Stage;
 
 /**
  * FXML Controller class
  *
  * @author Clara Maj
  */
-public class MessageViewController implements Initializable {
+public class FreeShiftController implements Initializable {
 
     /**
      * Initializes the controller class.
@@ -31,7 +29,4 @@ public class MessageViewController implements Initializable {
     private void closePopUp(ActionEvent event) throws Exception{
         App.closePopup();
     }
-    
-    
-    
 }

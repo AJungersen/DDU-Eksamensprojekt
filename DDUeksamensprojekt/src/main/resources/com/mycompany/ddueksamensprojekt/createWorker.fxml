@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="406.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.ddueksamensprojekt.TotalShiftsController">
+   <children>
+      <Pane prefHeight="408.0" prefWidth="600.0" style="-fx-background-color: F6DCD6; -fx-border-color: D65434;">
+         <children>
+            <Text layoutX="14.0" layoutY="53.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ny medarbejder:">
+               <font>
+                  <Font name="Segoe UI Semibold" size="36.0" />
+               </font>
+            </Text>
+            <Button layoutX="461.0" layoutY="14.0" mnemonicParsing="false" onAction="#closePopUp" prefHeight="30.0" prefWidth="127.0" style="-fx-background-color: D65434;" stylesheets="@design.css" text="Tilbage">
+               <font>
+                  <Font name="Segoe UI Semibold" size="14.0" />
+               </font>
+               <effect>
+                  <DropShadow height="9.33" offsetY="2.0" radius="3.7475000000000005" width="7.66">
+                     <color>
+                        <Color opacity="0.25" />
+                     </color>
+                  </DropShadow>
+               </effect>
+            </Button>
+            <Text layoutX="14.0" layoutY="120.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Navn:">
+               <font>
+                  <Font name="Segoe UI Light Italic" size="21.0" />
+               </font>
+            </Text>
+            <TextField layoutX="90.0" layoutY="93.0" prefHeight="40.0" prefWidth="246.0" promptText="Jens Jensen" style="-fx-background-radius: 0px; -fx-border-width: 0px 0px 3px 0px; -fx-border-color: D65434; -fx-background-color: F6DCD6;">
+               <font>
+                  <Font size="17.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="DEFAULT" />
+               </cursor>
+            </TextField>
+            <Text layoutX="13.0" layoutY="171.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email:">
+               <font>
+                  <Font name="Segoe UI Light Italic" size="21.0" />
+               </font>
+            </Text>
+            <TextField layoutX="90.0" layoutY="144.0" prefHeight="40.0" prefWidth="248.0" promptText="Jens@Jensen.dk" style="-fx-background-radius: 0px; -fx-border-width: 0px 0px 3px 0px; -fx-border-color: D65434; -fx-background-color: F6DCD6;">
+               <font>
+                  <Font size="17.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="DEFAULT" />
+               </cursor>
+            </TextField>
+            <Text layoutX="13.0" layoutY="227.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tlf. nr:">
+               <font>
+                  <Font name="Segoe UI Light Italic" size="21.0" />
+               </font>
+            </Text>
+            <TextField layoutX="90.0" layoutY="200.0" prefHeight="40.0" prefWidth="249.0" promptText="+45 11 11 11 11" style="-fx-background-radius: 0px; -fx-border-width: 0px 0px 3px 0px; -fx-border-color: D65434; -fx-background-color: F6DCD6;">
+               <font>
+                  <Font size="17.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="DEFAULT" />
+               </cursor>
+            </TextField>
+            <Text layoutX="19.0" layoutY="279.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Kode:">
+               <font>
+                  <Font name="Segoe UI Light Italic" size="21.0" />
+               </font>
+            </Text>
+            <TextField layoutX="90.0" layoutY="252.0" prefHeight="40.0" prefWidth="250.0" promptText="Jensen123" style="-fx-background-radius: 0px; -fx-border-width: 0px 0px 3px 0px; -fx-border-color: D65434; -fx-background-color: F6DCD6;">
+               <font>
+                  <Font size="17.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="DEFAULT" />
+               </cursor>
+            </TextField>
+            <ImageView fitHeight="217.0" fitWidth="192.0" layoutX="373.0" layoutY="85.0" pickOnBounds="true">
+               <image>
+                  <Image url="@fruit-and-vegetables_tcm11-19016.jpg" />
+               </image>
+            </ImageView>
+            <Button layoutX="398.0" layoutY="315.0" mnemonicParsing="false" onAction="#closePopUp" prefHeight="30.0" prefWidth="127.0" style="-fx-background-color: D65434;" stylesheets="@design.css" text="Vælg billede">
+               <font>
+                  <Font name="Segoe UI Semibold" size="14.0" />
+               </font>
+               <effect>
+                  <DropShadow height="9.33" offsetY="2.0" radius="3.7475000000000005" width="7.66">
+                     <color>
+                        <Color opacity="0.25" />
+                     </color>
+                  </DropShadow>
+               </effect>
+            </Button>
+            <Button layoutX="117.0" layoutY="330.0" mnemonicParsing="false" onAction="#closePopUp" prefHeight="43.0" prefWidth="150.0" style="-fx-background-color: D65434;" stylesheets="@design.css" text="Gem medarbejder">
+               <font>
+                  <Font name="Segoe UI Semibold" size="14.0" />
+               </font>
+               <effect>
+                  <DropShadow height="9.33" offsetY="2.0" radius="3.7475000000000005" width="7.66">
+                     <color>
+                        <Color opacity="0.25" />
+                     </color>
+                  </DropShadow>
+               </effect>
+            </Button>
+         </children>
+      </Pane>
+      <Line endX="189.0" layoutX="109.0" layoutY="65.0" startX="-109.0" />
+   </children>
+</AnchorPane>

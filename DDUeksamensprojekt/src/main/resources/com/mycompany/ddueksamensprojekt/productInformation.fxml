@@ -116,7 +116,7 @@
       </Text>
       <Pane layoutY="-3.0" prefHeight="106.0" prefWidth="866.0" style="-fx-background-color: #40C54D;">
          <children>
-            <Label layoutX="349.0" layoutY="13.0" text="Præcis" textAlignment="CENTER">
+            <Label layoutX="349.0" layoutY="13.0" text="PRÆCIS" textAlignment="CENTER">
                <font>
                   <Font name="Segoe UI Semibold" size="57.0" />
                </font>
