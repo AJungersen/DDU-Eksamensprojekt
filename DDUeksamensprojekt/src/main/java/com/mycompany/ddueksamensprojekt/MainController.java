@@ -207,4 +207,8 @@ public class MainController implements Initializable {
             System.out.println(tableViewLastPurchas.getSelectionModel().getSelectedItem().getAmount());
         }
     }
+    @FXML 
+    void openAdmin() throws Exception {
+        App.setRoot("mainAdmin");
+    }
 }

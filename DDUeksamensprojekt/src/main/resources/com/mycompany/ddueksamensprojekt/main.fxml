@@ -91,6 +91,18 @@
                   </Button>
                   <AnchorPane fx:id="anchorPaneCategories" layoutX="4.0" layoutY="463.0" prefHeight="736.0" prefWidth="1187.0" style="-fx-background-color: #AAE2AF;" />
                   <Line endX="1076.0" layoutX="119.0" layoutY="461.0" startX="-119.0" stroke="#333333" strokeWidth="3.0" />
+                  <Button layoutX="990.0" layoutY="23.0" mnemonicParsing="false" onAction="#openAdmin" prefHeight="50.0" prefWidth="179.0" stylesheets="@design.css" text="Åben som medabrejder (admin)" textAlignment="CENTER" wrapText="true">
+                     <effect>
+                        <DropShadow height="8.5" offsetY="2.0" radius="3.54" width="7.66">
+                           <color>
+                              <Color opacity="0.25" />
+                           </color>
+                        </DropShadow>
+                     </effect>
+                     <font>
+                        <Font name="Segoe UI Semibold" size="14.0" />
+                     </font>
+                  </Button>
                </children>
             </AnchorPane>
         </content>
