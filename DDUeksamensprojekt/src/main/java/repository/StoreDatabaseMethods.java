@@ -61,7 +61,6 @@ public class StoreDatabaseMethods {
         return purchase;
     }
 
-<<<<<<< HEAD
     //--------------------------------------
     //---------- get all purchase ----------
     //--------------------------------------
@@ -98,7 +97,6 @@ public class StoreDatabaseMethods {
         return allPurchases;
     }
 
-=======
     public ArrayList<Product> getAllProducts() throws SQLException, Exception {
         
         ArrayList<Product> allProducts = new ArrayList<>();
@@ -138,7 +136,7 @@ public class StoreDatabaseMethods {
     
         return allProducts;
     }
->>>>>>> febc05daec04f4954d5c03b5091dabf142dcedc1
+    
     //-------------------------------------------------------
     //---------- get products in specefic category ----------
     //-------------------------------------------------------

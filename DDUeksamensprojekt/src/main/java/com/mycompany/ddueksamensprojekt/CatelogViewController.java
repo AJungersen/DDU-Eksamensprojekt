@@ -9,33 +9,21 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
-<<<<<<< HEAD
-import javafx.beans.property.ReadOnlyObjectWrapper;
-import javafx.beans.value.ObservableValue;
-=======
 import java.util.regex.Pattern;
->>>>>>> febc05daec04f4954d5c03b5091dabf142dcedc1
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
-import javafx.geometry.VPos;
 import javafx.scene.Cursor;
 import javafx.scene.Node;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
-import javafx.scene.text.TextBoundsType;
-import javax.swing.text.Position;
 import repository.StoreDatabaseMethods;
 import repository.Tools;
 
@@ -98,87 +86,6 @@ public class CatelogViewController implements Initializable {
                     * Math.ceil(ProductCategory.values().length / panesPerRow) + paneSpace_Y);
 
             anchorPaneProducts.setPrefHeight(newHeight);
-
-            /*//insert products
-            int column = 0;
-            int row = 1;
-
-            for (Product p : products) {
-                column++;
-                Pane pane = new Pane();
-
-                //pane pos
-                pane.setLayoutX((paneSpace_X * column) + (paneSize_X * (column - 1)));
-                pane.setLayoutY((paneSpace_Y * row) + (paneSize_Y * (row - 1)));
-
-                //pane size
-                pane.setMinSize(paneSize_X, paneSize_Y);
-                pane.setMaxSize(paneSize_X, paneSize_Y);
-
-                pane.setStyle("-fx-border-color: #666666");
-
-                //product image
-                ImageView imgView = new ImageView(p.getImage());
-
-                imgView.setFitWidth(imgSize_X);
-                imgView.setFitHeight(imgSize_Y);
-
-                //name text
-                p.setName(Tools.capitalizeFirstLetter(p.getName()));
-                Text nameText = new Text(namepos_X, namePos_Y, p.getName());
-                nameText.setFont(nameFont);
-                nameText.setTextAlignment(TextAlignment.LEFT);
-
-                //price text
-                Text priceText = new Text(pricePos_X, pricePos_Y, Float.toString(p.getPrice()));
-                priceText.setFont(priceFont);
-                priceText.setTextAlignment(TextAlignment.LEFT);
-
-                //set mouse clicked on image view to switch to product view
-                EventHandler<MouseEvent> clicked = new EventHandler<MouseEvent>() {
-                    @Override
-                    public void handle(MouseEvent event) {
-                        App.setCurrentProduct(p);
-                        try {
-                            App.setRoot("productInformation");
-                        } catch (Exception e) {
-                            System.out.println("Error in " + e.getMessage());;
-                        }
-                    }
-                };
-
-                EventHandler<MouseEvent> entered = new EventHandler<MouseEvent>() {
-                    @Override
-                    public void handle(MouseEvent event) {
-                        App.getStage().getScene().setCursor(Cursor.HAND);
-                    }
-                };
-
-                EventHandler<MouseEvent> exited = new EventHandler<MouseEvent>() {
-                    @Override
-                    public void handle(MouseEvent event) {
-                        App.getStage().getScene().setCursor(Cursor.DEFAULT);
-                    }
-                };
-
-                pane.getChildren().add(imgView);
-                pane.getChildren().add(nameText);
-                pane.getChildren().add(priceText);
-
-                for (Node sp : pane.getChildren()) {
-                    if (sp instanceof ImageView) {
-                        sp.setOnMouseClicked(clicked);
-                        sp.setOnMouseEntered(entered);
-                        sp.setOnMouseExited(exited);
-                    }
-                }
-
-                anchorPaneProducts.getChildren().add(pane);
-                if (column % panesPerRow == 0) {
-                    column = 0;
-                    row++;
-                }
-            }*/
             loadProducts();
         } catch (Exception e) {
             System.err.println(e.getMessage());
@@ -191,10 +98,11 @@ public class CatelogViewController implements Initializable {
         //insert products
         int column = 0;
         int row = 1;
-        
+
         for (Product p : products) {
-            //System.out.println(p.getName().toLowerCase().indexOf(textFieldSearchBar.getText().toLowerCase(), 0));
-            if (textFieldSearchBar.getText().isBlank() || (p.getName().toLowerCase().indexOf(textFieldSearchBar.getText().toLowerCase(), 0) == 0)) {
+            //if (textFieldSearchBar.getText().isBlank() || (p.getName().toLowerCase().indexOf(textFieldSearchBar.getText().toLowerCase(), 0) == 0)) {
+            if (textFieldSearchBar.getText().isBlank()
+                    || (Pattern.matches(".*" + textFieldSearchBar.getText().toLowerCase() + "+.*", p.getName().toLowerCase()))) {
 
                 column++;
                 Pane pane = new Pane();
@@ -288,23 +196,9 @@ public class CatelogViewController implements Initializable {
     private void openCart() throws IOException {
         App.setRoot("cart");
     }
-<<<<<<< HEAD
 
     @FXML
     private void updateProductsToSearch(KeyEvent event) {
         loadProducts();
-=======
-    @FXML
-    private void search() throws Exception{
-        ArrayList<Product> allProducts = sdm.getProductsInSpeceficCategory(App.getCurrentCategoryDisplaying());
-        ArrayList<Product> products = new ArrayList();
-        String search = userInput.getText();
-        for(Product P: allProducts){
-            if(Pattern.matches(".*" + search + "+.*",P.getName()) == true){
-                products.add(P);
-            }
-        }
-        //Clara noget der smider alle produkter P ind i fxml
->>>>>>> febc05daec04f4954d5c03b5091dabf142dcedc1
     }
 }
