@@ -21,11 +21,14 @@ public class App extends Application {
     
     private static User loggedInUser = new User();
     public static Scene scene;
+    public static int numberOfGoods = 0;
+    public static float priceOfGoods = 0;
     private static Stage stage;
     private static Popup popup;
     private static ProductCategory currentCategoryDisplaying;
     public static Cart currentCart = new Cart(loggedInUser,new ArrayList());
     public static Product currentProduct;
+    public static String lastSceneFxml;
 
     @Override
     public void start(Stage stage) throws IOException, Exception {
@@ -46,6 +49,10 @@ public class App extends Application {
         scene.setRoot(loadFXML(fxml));
         stage.sizeToScene();
         stage.centerOnScreen();
+    }
+    
+    static void switchToLastScene() throws IOException{
+        setRoot(lastSceneFxml);
     }
 
     static Parent loadFXML(String fxml) throws IOException {
@@ -107,5 +114,13 @@ public class App extends Application {
 
     public static void setCurrentCart(Cart currentCart) {
         App.currentCart = currentCart;
+    }
+
+    public static void setLastSceneFxml(String lastSceneFxml) {
+        App.lastSceneFxml = lastSceneFxml;
+    }
+
+    public static String getLastSceneFxml() {
+        return lastSceneFxml;
     }
 }

@@ -6,35 +6,26 @@
 package com.mycompany.ddueksamensprojekt;
 
 import Classes.ProductCategory;
-import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Cursor;
 import javafx.scene.Node;
-import javafx.scene.control.Button;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
-import javax.imageio.plugins.tiff.TIFFDirectory;
 import repository.StoreDatabaseMethods;
-import repository.Tools;
 
 /**
  *
@@ -44,7 +35,8 @@ public class MainController implements Initializable {
 
     StoreDatabaseMethods sdm = new StoreDatabaseMethods();
     ArrayList<StackPane> stackPanes = new ArrayList<>();
-
+    
+    private float boarderWith = 4f;
     private float paneSize_X = 286;
     private float paneSize_Y = 286;
     private float PaneSpace_X = 30;
@@ -70,8 +62,8 @@ public class MainController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         try {
-            textWelcomeBackUser.setText(App.getLoggedInUser().getName());
-            
+            textWelcomeBackUser.setText("Velkommen tilbage " + App.getLoggedInUser().getName());
+
             //calc panes per row
             panesPerRow = (int) Math.floor((anchorPaneCategories.getPrefWidth() - PaneSpace_X) / (paneSize_X + PaneSpace_X));
 
@@ -96,7 +88,7 @@ public class MainController implements Initializable {
                 //pos
                 stackPane.setLayoutX((PaneSpace_X * column) + (paneSize_X * (column - 1)));
                 stackPane.setLayoutY((paneSPace_Y * row) + (paneSize_Y * (row - 1)));
-                
+
                 //size
                 stackPane.setMinSize(paneSize_X, paneSize_Y);
                 stackPane.setMaxSize(paneSize_X, paneSize_Y);
@@ -104,14 +96,17 @@ public class MainController implements Initializable {
                 //category image
                 ImageView imgView = new ImageView(pc.getImage());
 
-                imgView.setFitWidth(paneSize_X);
-                imgView.setFitHeight(paneSize_Y);
+                imgView.setFitWidth(paneSize_X - boarderWith*2);
+                imgView.setFitHeight(paneSize_Y - boarderWith*2);
+
+                stackPane.setStyle("-fx-border-color: #333333;" + "-fx-border-width: " + boarderWith + ";");
 
                 //category text
                 Text text = new Text(pc.asFormatedString());
 
-                text.setStyle("-fx-fill-color: #333333");
-                text.setStyle("-fx-effect: dropshadow(one-pass-box, #00ff15, 9.66, 0.62, 19.52, 21.12);");
+                text.setStyle("-fx-fill-color: #333333;" + "-fx-font-size:30px;"
+                        + "-fx-font-family: Segoe UI Semibold;"
+                        + "-fx-effect: dropshadow(one-pass-box, #5C5C5C, 9.66, 0.62, 1,1);");
 
                 //set mouse clicked on image view to switch to category
                 EventHandler<MouseEvent> clicked = new EventHandler<MouseEvent>() {
@@ -139,10 +134,10 @@ public class MainController implements Initializable {
                         App.getStage().getScene().setCursor(Cursor.DEFAULT);
                     }
                 };
-                
+
                 stackPane.getChildren().add(imgView);
                 stackPane.getChildren().add(text);
-                
+
                 for (Node sp : stackPane.getChildren()) {
                     sp.setOnMouseClicked(clicked);
                     sp.setOnMouseEntered(entered);
@@ -166,7 +161,7 @@ public class MainController implements Initializable {
 
             hp.put(p1, 1);
             hp.put(p2, 2);
-            */
+             */
             ArrayList<TableViewDisplayPurchase> tableViewDispalyData = new ArrayList<>();
 
             HashMap<Product, Integer> hm = sdm.getLatestPurchase(App.getLoggedInUser().getUser_ID()).getPurchasedProducts();
@@ -190,11 +185,13 @@ public class MainController implements Initializable {
     @FXML
     void openProfile() throws Exception {
         App.setRoot("profile");
+        App.setLastSceneFxml("main");
     }
 
     @FXML
     void openCart() throws Exception {
         App.setRoot("cart");
+        App.setLastSceneFxml("main");
     }
 
     @FXML
@@ -205,7 +202,8 @@ public class MainController implements Initializable {
             System.out.println(tableViewLastPurchas.getSelectionModel().getSelectedItem().getAmount());
         }
     }
-    @FXML 
+
+    @FXML
     void openAdmin() throws Exception {
         App.setRoot("mainAdmin");
     }

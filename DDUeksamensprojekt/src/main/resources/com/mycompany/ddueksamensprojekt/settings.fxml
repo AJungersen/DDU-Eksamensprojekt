@@ -3,7 +3,6 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -46,7 +45,7 @@
                   </DropShadow>
                </effect>
             </Button>
-            <Button layoutX="83.0" layoutY="302.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="179.0" stylesheets="@design.css" text="Gem ændringer">
+            <Button layoutX="83.0" layoutY="302.0" mnemonicParsing="false" onAction="#updateUserInfo" prefHeight="30.0" prefWidth="179.0" stylesheets="@design.css" text="Gem ændringer">
                <font>
                   <Font name="Segoe UI Semibold" size="14.0" />
                </font>
@@ -58,16 +57,7 @@
                   </DropShadow>
                </effect>
             </Button>
-            <PasswordField layoutX="25.0" layoutY="242.0" prefHeight="33.0" prefWidth="296.0" promptText="Kodeord" style="-fx-background-radius: 0px; -fx-border-color: #40C54D; -fx-border-width: 0px 0px 0px 0px; -fx-background-color: #FFFFFF;">
-               <effect>
-                  <DropShadow height="7.77" offsetY="2.0" radius="3.3575" width="7.66">
-                     <color>
-                        <Color opacity="0.23999999463558197" />
-                     </color>
-                  </DropShadow>
-               </effect>
-            </PasswordField>
-            <TextField layoutX="25.0" layoutY="186.0" prefHeight="33.0" prefWidth="296.0" promptText="Email" style="-fx-background-radius: 0px; -fx-border-color: #40C54D; -fx-border-width: 0px 0px 0px 0px; -fx-background-color: #FFFFFF;">
+            <TextField fx:id="textFieldEmail" layoutX="25.0" layoutY="186.0" prefHeight="33.0" prefWidth="296.0" promptText="Email" style="-fx-background-radius: 0px; -fx-border-color: #40C54D; -fx-border-width: 0px 0px 0px 0px; -fx-background-color: #FFFFFF;">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
@@ -79,7 +69,7 @@
                   </DropShadow>
                </effect>
             </TextField>
-            <TextField layoutX="25.0" layoutY="129.0" prefHeight="33.0" prefWidth="296.0" promptText="Navn" style="-fx-background-radius: 0px; -fx-border-color: #40C54D; -fx-border-width: 0px 0px 0px 0px; -fx-background-color: #FFFFFF;">
+            <TextField fx:id="textFieldName" layoutX="25.0" layoutY="129.0" prefHeight="33.0" prefWidth="296.0" promptText="Navn" style="-fx-background-radius: 0px; -fx-border-color: #40C54D; -fx-border-width: 0px 0px 0px 0px; -fx-background-color: #FFFFFF;">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
@@ -91,11 +81,23 @@
                   </DropShadow>
                </effect>
             </TextField>
-            <Label layoutX="25.0" layoutY="85.0" text="Dine kort:">
+            <Label layoutX="25.0" layoutY="85.0" text="Dine oplysininger:">
                <font>
                   <Font name="Segoe UI Light Italic" size="20.0" />
                </font>
             </Label>
+            <Button layoutX="84.0" layoutY="245.0" mnemonicParsing="false" onAction="#changePassword" prefHeight="30.0" prefWidth="179.0" stylesheets="@design.css" text="Skift din kode">
+               <font>
+                  <Font name="Segoe UI Semibold" size="14.0" />
+               </font>
+               <effect>
+                  <DropShadow height="9.33" offsetY="2.0" radius="3.7475000000000005" width="7.66">
+                     <color>
+                        <Color opacity="0.25" />
+                     </color>
+                  </DropShadow>
+               </effect>
+            </Button>
          </children>
          <effect>
             <DropShadow />

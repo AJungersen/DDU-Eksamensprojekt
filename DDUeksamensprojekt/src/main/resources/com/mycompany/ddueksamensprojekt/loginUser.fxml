@@ -24,7 +24,7 @@
          <children>
             <Pane layoutX="-9.0" layoutY="243.0" prefHeight="340.0" prefWidth="478.0" style="-fx-background-color: #DFF2E1;">
                <children>
-                  <TextField fx:id="textFieldEmail" layoutX="72.0" layoutY="25.0" prefHeight="33.0" prefWidth="334.0" promptText="Email" style="-fx-background-radius: 0px; -fx-border-color: #40C54D; -fx-border-width: 0px 0px 0px 0px; -fx-background-color: #FFFFFF;">
+                  <TextField fx:id="textFieldEmail" layoutX="72.0" layoutY="25.0" prefHeight="33.0" prefWidth="334.0" promptText="Email" style="-fx-background-radius: 0px; -fx-border-color: #40C54D; -fx-border-width: 0px 0px 0px 0px; -fx-background-color: #FFFFFF;" text="test@gmail.com">
                      <opaqueInsets>
                         <Insets />
                      </opaqueInsets>
@@ -36,7 +36,7 @@
                         </DropShadow>
                      </effect>
                   </TextField>
-                  <PasswordField fx:id="passwordFieldPassword" layoutX="72.0" layoutY="82.0" prefHeight="33.0" prefWidth="334.0" promptText="Kodeord" style="-fx-background-radius: 0px; -fx-border-color: #40C54D; -fx-border-width: 0px 0px 0px 0px; -fx-background-color: #FFFFFF;">
+                  <PasswordField fx:id="passwordFieldPassword" layoutX="72.0" layoutY="82.0" prefHeight="33.0" prefWidth="334.0" promptText="Kodeord" style="-fx-background-radius: 0px; -fx-border-color: #40C54D; -fx-border-width: 0px 0px 0px 0px; -fx-background-color: #FFFFFF;" text="Test!12345">
                      <effect>
                         <DropShadow height="7.77" offsetY="2.0" radius="3.3575" width="7.66">
                            <color>

@@ -5,10 +5,12 @@
 package com.mycompany.ddueksamensprojekt;
 
 import static Classes.ProductCategory.SLIK_OG_SNACKS;
+import com.mycompany.ddueksamensprojekt.Algorithms.ProductRecommendations;
 import java.awt.event.MouseEvent;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -45,7 +47,6 @@ public class ProductInformationController implements Initializable {
     private TextField textFieldNumberOfProduct;
     @FXML 
     private VBox vbox;
-    @FXML
     private Parent fxml;
     @FXML 
     private Text returnButton;
@@ -72,12 +73,19 @@ public class ProductInformationController implements Initializable {
             System.out.println("Error");
             //Logger.getLogger(ProductInformationController.class.getName()).log(Level.SEVERE, null, ex);
         }
-
+        ProductRecommendations pr = new ProductRecommendations();
+        try {
+            ArrayList<Product> recommended = pr.getBestProduct(product);
+        } catch (Exception ex) {
+            Logger.getLogger(ProductInformationController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        //upload hele listen (den har de 5 bedste)
     }
 
      @FXML
     private void openProfile() throws IOException {
         App.setRoot("profile");
+        App.setLastSceneFxml("productInformation");
     }
     @FXML
     private void openMain() throws IOException {
@@ -86,6 +94,7 @@ public class ProductInformationController implements Initializable {
     @FXML
     private void openCart() throws IOException {
         App.setRoot("cart");
+        App.setLastSceneFxml("productInformation");
     }
     @FXML
     private void addToCart() throws IOException{
@@ -130,5 +139,10 @@ public class ProductInformationController implements Initializable {
        s.setOnFinished((e)->{     
        });
        
+    }
+
+    @FXML
+    private void goBack(ActionEvent event) throws Exception{
+        App.setRoot("catelogView");
     }
 }

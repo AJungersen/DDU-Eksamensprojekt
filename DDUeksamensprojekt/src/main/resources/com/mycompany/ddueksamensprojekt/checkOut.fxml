@@ -31,7 +31,7 @@
                   </DropShadow>
                </effect>
             </Button>
-            <TextField fx:id="textFieldEmail" layoutX="481.0" layoutY="119.0" prefHeight="33.0" prefWidth="334.0" promptText="Navn på kortet" style="-fx-background-radius: 0px; -fx-border-color: #40C54D; -fx-border-width: 0px 0px 0px 0px; -fx-background-color: #FFFFFF;">
+            <TextField fx:id="cardHolder" layoutX="476.0" layoutY="90.0" prefHeight="33.0" prefWidth="334.0" promptText="Navn på kortet" style="-fx-background-radius: 0px; -fx-border-color: #40C54D; -fx-border-width: 0px 0px 0px 0px; -fx-background-color: #FFFFFF;">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
@@ -43,12 +43,12 @@
                   </DropShadow>
                </effect>
             </TextField>
-            <Label layoutX="480.0" layoutY="77.0" text="Nyt kort?">
+            <Label layoutX="475.0" layoutY="48.0" text="Nyt kort?">
                <font>
                   <Font name="Segoe UI Light Italic" size="20.0" />
                </font>
             </Label>
-            <TextField fx:id="textFieldEmail1" layoutX="479.0" layoutY="169.0" prefHeight="33.0" prefWidth="152.0" promptText="Udløbsdato" style="-fx-background-radius: 0px; -fx-border-color: #40C54D; -fx-border-width: 0px 0px 0px 0px; -fx-background-color: #FFFFFF;">
+            <TextField fx:id="expirationDate" layoutX="474.0" layoutY="140.0" prefHeight="33.0" prefWidth="152.0" promptText="Udløbsdato" style="-fx-background-radius: 0px; -fx-border-color: #40C54D; -fx-border-width: 0px 0px 0px 0px; -fx-background-color: #FFFFFF;">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
@@ -60,7 +60,7 @@
                   </DropShadow>
                </effect>
             </TextField>
-            <TextField fx:id="textFieldEmail11" layoutX="663.0" layoutY="170.0" prefHeight="33.0" prefWidth="152.0" promptText="CSV" style="-fx-background-radius: 0px; -fx-border-color: #40C54D; -fx-border-width: 0px 0px 0px 0px; -fx-background-color: #FFFFFF;">
+            <TextField fx:id="CSV" layoutX="658.0" layoutY="141.0" prefHeight="33.0" prefWidth="152.0" promptText="CSV" style="-fx-background-radius: 0px; -fx-border-color: #40C54D; -fx-border-width: 0px 0px 0px 0px; -fx-background-color: #FFFFFF;">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
@@ -72,7 +72,7 @@
                   </DropShadow>
                </effect>
             </TextField>
-            <TextField fx:id="textFieldEmail2" layoutX="479.0" layoutY="220.0" prefHeight="33.0" prefWidth="334.0" promptText="Kortnummer" style="-fx-background-radius: 0px; -fx-border-color: #40C54D; -fx-border-width: 0px 0px 0px 0px; -fx-background-color: #FFFFFF;">
+            <TextField fx:id="cardNumber" layoutX="474.0" layoutY="191.0" prefHeight="33.0" prefWidth="334.0" promptText="Kortnummer" style="-fx-background-radius: 0px; -fx-border-color: #40C54D; -fx-border-width: 0px 0px 0px 0px; -fx-background-color: #FFFFFF;">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
@@ -109,7 +109,7 @@
                   <Font name="Segoe UI Light Italic" size="21.0" />
                </font>
             </Text>
-            <TextField editable="false" layoutX="161.0" layoutY="167.0" prefHeight="40.0" prefWidth="168.0" promptText="Antal varer" style="-fx-background-radius: 0px; -fx-border-width: 0px 0px 3px 0px; -fx-border-color: #40C54D; -fx-background-color: transparent;">
+            <TextField fx:id="totalPrice" editable="false" layoutX="161.0" layoutY="167.0" prefHeight="40.0" prefWidth="168.0" promptText="Antal varer" style="-fx-background-radius: 0px; -fx-border-width: 0px 0px 3px 0px; -fx-border-color: #40C54D; -fx-background-color: transparent;">
                <font>
                   <Font size="17.0" />
                </font>
@@ -117,7 +117,7 @@
                   <Cursor fx:constant="DEFAULT" />
                </cursor>
             </TextField>
-            <TextField editable="false" layoutX="161.0" layoutY="116.0" prefHeight="40.0" prefWidth="168.0" promptText="Antal varer" style="-fx-background-radius: 0px; -fx-border-width: 0px 0px 3px 0px; -fx-border-color: #40C54D; -fx-background-color: transparent;">
+            <TextField fx:id="goodNumber" editable="false" layoutX="161.0" layoutY="116.0" prefHeight="40.0" prefWidth="168.0" promptText="Antal varer" style="-fx-background-radius: 0px; -fx-border-width: 0px 0px 3px 0px; -fx-border-color: #40C54D; -fx-background-color: transparent;">
                <font>
                   <Font size="17.0" />
                </font>
@@ -141,6 +141,18 @@
                </font>
             </Label>
             <Line endX="115.5" layoutX="96.0" layoutY="73.0" startX="-120.0" />
+            <TextField fx:id="cardName" layoutX="475.0" layoutY="238.0" prefHeight="33.0" prefWidth="334.0" promptText="Navn som kortets gemmes under" style="-fx-background-radius: 0px; -fx-border-color: #40C54D; -fx-border-width: 0px 0px 0px 0px; -fx-background-color: #FFFFFF;">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <effect>
+                  <DropShadow height="11.0" offsetY="2.0" radius="4.165" width="7.66">
+                     <color>
+                        <Color opacity="0.24511928856372833" />
+                     </color>
+                  </DropShadow>
+               </effect>
+            </TextField>
          </children>
          <effect>
             <DropShadow />
