@@ -19,7 +19,7 @@ public class Purchase {
     private int purchase_ID;
     private LocalDate purchaseDate;
     private HashMap<Product, Integer> purchasedProducts;
-
+    
     public Purchase() {
     }
 
@@ -57,4 +57,5 @@ public class Purchase {
     public void setPurchasedProducts(HashMap<Product, Integer> purchasedProducts) {
         this.purchasedProducts = purchasedProducts;
     }
+    
 }

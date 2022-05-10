@@ -14,6 +14,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
@@ -38,10 +39,13 @@ public class ProfileController implements Initializable {
     private TableColumn<TableViewDisplayPurchase, Integer> tableColumnAmount;
     @FXML
     private TableView<TableViewDisplayPurchase> tableViewLastPurchas;
+    @FXML
+    private TextField textFieldNumberOfUsersPurchases;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         try {
+            //get purchases
             Product p1 = new Product(0, "test1", null, 1, 4, ProductCategory.DRIKKEVARER);
             Product p2 = new Product(0, "test2", null, 5, 4, ProductCategory.DRIKKEVARER);
 
@@ -64,17 +68,20 @@ public class ProfileController implements Initializable {
             tableColumnAmount.setCellValueFactory(new PropertyValueFactory<TableViewDisplayPurchase, Integer>("amount"));
 
             tableViewLastPurchas.getItems().setAll(tableViewDispalyData);
+            
+            //get number of purchases
+            textFieldNumberOfUsersPurchases.setText(Integer.toString(sdm.getNumberOfUseresPurchases(App.getLoggedInUser().getUser_ID())));
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
     }
     
     @FXML
-    private void goToSelectedProduct(MouseEvent event) {
-
-        if (tableViewLastPurchas.getFocusModel().getFocusedCell().getColumn() == 1) {
+    private void goToSelectedProduct(MouseEvent event) throws Exception {
+        if (tableViewLastPurchas.getFocusModel().getFocusedCell().getColumn() <= 1) {
             //send to product
-            System.out.println(tableViewLastPurchas.getSelectionModel().getSelectedItem().getAmount());
+            App.setCurrentProduct(tableViewLastPurchas.getSelectionModel().getSelectedItem());
+            App.setRoot("productInformation");
         }
     }
     
