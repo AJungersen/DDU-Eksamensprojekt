@@ -8,6 +8,7 @@ package com.mycompany.ddueksamensprojekt.Algorithms;
 import Classes.Cart;
 import com.mycompany.ddueksamensprojekt.Product;
 import Classes.ProductScore;
+import Classes.Purchase;
 import java.util.ArrayList;
 import repository.StoreDatabaseMethods;
 
@@ -16,7 +17,7 @@ import repository.StoreDatabaseMethods;
  * @author danie
  */
 public class ProductRecommendations {
-    /*public ArrayList<Product> getBestProduct(Product userProduct){
+    public ArrayList<Product> getBestProduct(Product userProduct){
         StoreDatabaseMethods sdm = new StoreDatabaseMethods();
         ArrayList<Product> products = sdm.getAllProducts();
         ArrayList<ProductScore> rankedList = new ArrayList();
@@ -42,11 +43,11 @@ public class ProductRecommendations {
     }
     public float getFitnessOff(Product I, Product U){
         StoreDatabaseMethods sdm = new StoreDatabaseMethods();
-        ArrayList<Cart> userCarts = sdm.getUsersCarts();
-        ArrayList<Cart> allCarts = sdm.getAllCarts();
+        ArrayList<Purchase> userCarts;
+        ArrayList<Purchase> allCarts = sdm.getAllPurchase();
         int h = 0;
         int tot = 0;
-        for(Cart C: userCarts){
+        for(Purchase C: userCarts){
             tot += 1;
             if(C.getProducts().contains(I) && C.getProducts().contains(U)){
                 h += 1;
@@ -65,5 +66,5 @@ public class ProductRecommendations {
         // 10 skal erstattes af variabel
         float score = 10*uf+10*af;
         return score;
-    }*/
+    }
 }

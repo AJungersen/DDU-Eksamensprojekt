@@ -19,7 +19,7 @@ public class Purchase {
     private int purchase_ID;
     private LocalDate purchaseDate;
     private HashMap<Product, Integer> purchasedProducts;
-
+    
     public Purchase() {
     }
 
