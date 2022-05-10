@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
@@ -41,7 +42,7 @@
                   </DropShadow>
                </effect>
             </Button>
-            <TextArea layoutX="23.0" layoutY="81.0" prefHeight="191.0" prefWidth="629.0" />
+            <TextArea layoutX="23.0" layoutY="81.0" prefHeight="191.0" prefWidth="629.0" stylesheets="@textArea.css" />
             <TextField editable="false" layoutX="23.0" layoutY="17.0" prefHeight="40.0" prefWidth="629.0" promptText="Titel" style="-fx-background-radius: 0px; -fx-border-width: 0px 0px 3px 0px; -fx-border-color: #516DD2; -fx-background-color: #D6DCF6;">
                <font>
                   <Font size="17.0" />
@@ -60,9 +61,17 @@
                   <Font name="Segoe UI Light Italic" size="14.0" />
                </font>
             </Label>
-            <ComboBox layoutX="117.0" layoutY="326.0" prefWidth="150.0" />
-            <ListView layoutX="23.0" layoutY="361.0" prefHeight="179.0" prefWidth="245.0" />
-            <ListView layoutX="399.0" layoutY="361.0" prefHeight="179.0" prefWidth="245.0" />
+            <ComboBox layoutX="117.0" layoutY="326.0" prefWidth="150.0" stylesheets="@combobox.css" />
+            <ListView layoutX="23.0" layoutY="361.0" prefHeight="179.0" prefWidth="245.0" stylesheets="@listviews.css">
+               <styleClass>
+                  <String fx:value="listview" />
+                  <String fx:value="list-cell" />
+               </styleClass></ListView>
+            <ListView layoutX="399.0" layoutY="361.0" prefHeight="179.0" prefWidth="245.0" stylesheets="@listviews.css">
+               <styleClass>
+                  <String fx:value="listview" />
+                  <String fx:value="list-cell" />
+               </styleClass></ListView>
             <Button layoutX="289.0" layoutY="361.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="94.0" style="-fx-background-color: #516DD2;" stylesheets="@design.css" text="TIlføj">
                <font>
                   <Font name="Segoe UI Semibold" size="14.0" />

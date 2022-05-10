@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
@@ -105,7 +106,18 @@
               </content>
             </ScrollPane>
             <Line endX="769.0" layoutX="101.0" layoutY="394.0" startX="-100.0" stroke="#333333" strokeWidth="3.0" />
-            <TextField fx:id="textFieldNumberOfProduct" layoutX="467.0" layoutY="286.0" prefHeight="25.0" prefWidth="168.0" promptText="0" />
+            <TextField fx:id="textFieldNumberOfProduct" layoutX="467.0" layoutY="282.0" prefHeight="33.0" prefWidth="50.0" promptText="0" style="-fx-background-radius: 0px; -fx-border-color: #40C54D; -fx-border-width: 0px 0px 0px 0px; -fx-background-color: #FFFFFF;">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <effect>
+                  <DropShadow height="11.0" offsetY="2.0" radius="4.165" width="7.66">
+                     <color>
+                        <Color opacity="0.24511928856372833" />
+                     </color>
+                  </DropShadow>
+               </effect>
+            </TextField>
          </children>
       </Pane>
       <VBox fx:id="vbox" layoutX="222.0" layoutY="-84.0" prefHeight="180.0" prefWidth="423.0" />
@@ -116,7 +128,7 @@
       </Text>
       <Pane layoutY="-3.0" prefHeight="106.0" prefWidth="866.0" style="-fx-background-color: #40C54D;">
          <children>
-            <Label layoutX="349.0" layoutY="13.0" text="PRÆCIS" textAlignment="CENTER">
+            <Label layoutX="349.0" layoutY="13.0" onMouseClicked="#openMain" text="PRÆCIS" textAlignment="CENTER">
                <font>
                   <Font name="Segoe UI Semibold" size="57.0" />
                </font>
