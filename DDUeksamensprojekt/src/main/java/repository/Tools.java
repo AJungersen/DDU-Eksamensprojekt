@@ -15,6 +15,7 @@ import javafx.scene.image.WritableImage;
  * @author chris
  */
 public class Tools {
+
     public static Image convertBufferedImageToFxImage(java.awt.image.BufferedImage image) {
         WritableImage wr = null;
         if (image != null) {
@@ -28,5 +29,10 @@ public class Tools {
         }
 
         return new ImageView(wr).getImage();
+    }
+
+    public static String capitalizeFirstLetter(String _stirngToBeCorveted) {
+        return _stirngToBeCorveted.substring(0, 1).toUpperCase()
+                + _stirngToBeCorveted.substring(1).toLowerCase();
     }
 }

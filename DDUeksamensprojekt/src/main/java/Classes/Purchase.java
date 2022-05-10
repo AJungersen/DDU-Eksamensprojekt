@@ -34,12 +34,12 @@ public class Purchase {
         this.purchasedProducts = purchasedProducts;
     }
 
-    public int getShoppingCart_ID() {
+    public int getPurchase_ID() {
         return purchase_ID;
     }
 
-    public void setShoppingCart_ID(int shoppingCart_ID) {
-        this.purchase_ID = shoppingCart_ID;
+    public void setPurchase_ID(int purchase_ID) {
+        this.purchase_ID = purchase_ID;
     }
 
     public LocalDate getPurchaseDate() {
