@@ -5,8 +5,8 @@
  */
 package Classes;
 
-import com.mycompany.ddueksamensprojekt.Product;
 import Classes.User;
+import com.mycompany.ddueksamensprojekt.Product;
 import java.util.ArrayList;
 import java.util.HashMap;
 
