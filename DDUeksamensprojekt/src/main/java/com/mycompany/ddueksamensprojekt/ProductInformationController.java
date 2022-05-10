@@ -47,7 +47,6 @@ public class ProductInformationController implements Initializable {
     private TextField textFieldNumberOfProduct;
     @FXML 
     private VBox vbox;
-    @FXML
     private Parent fxml;
     @FXML 
     private Text returnButton;
@@ -86,6 +85,7 @@ public class ProductInformationController implements Initializable {
      @FXML
     private void openProfile() throws IOException {
         App.setRoot("profile");
+        App.setLastSceneFxml("productInformation");
     }
     @FXML
     private void openMain() throws IOException {
@@ -94,6 +94,7 @@ public class ProductInformationController implements Initializable {
     @FXML
     private void openCart() throws IOException {
         App.setRoot("cart");
+        App.setLastSceneFxml("productInformation");
     }
     @FXML
     private void addToCart() throws IOException{
@@ -138,5 +139,10 @@ public class ProductInformationController implements Initializable {
        s.setOnFinished((e)->{     
        });
        
+    }
+
+    @FXML
+    private void goBack(ActionEvent event) throws Exception{
+        App.setRoot("catelogView");
     }
 }

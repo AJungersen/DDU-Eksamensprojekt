@@ -83,11 +83,7 @@ public class CartController implements Initializable {
     @FXML
     void openProfile() throws Exception {
         App.setRoot("profile");
-    }
-
-    @FXML
-    void openCatelog() throws Exception {
-        App.setRoot("catelogView");
+        App.setLastSceneFxml("cart");
     }
 
     @FXML
@@ -103,5 +99,11 @@ public class CartController implements Initializable {
         App.setPopup(popup);
 
         App.openPopup();
+    }
+
+    @FXML
+    private void goBack(ActionEvent event) throws Exception{
+        App.switchToLastScene();
+        App.setLastSceneFxml("cart");
     }
 }

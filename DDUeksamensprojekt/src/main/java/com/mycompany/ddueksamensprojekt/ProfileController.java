@@ -10,8 +10,10 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -100,9 +102,16 @@ public class ProfileController implements Initializable {
     @FXML
     private void openCart() throws IOException {
         App.setRoot("cart");
+        App.setLastSceneFxml("profile");
     }
     @FXML
     private void openMain() throws IOException {
         App.setRoot("main");
+    }
+
+    @FXML
+    private void goBack(ActionEvent event) throws Exception{
+        App.switchToLastScene();
+        App.setLastSceneFxml("profile");
     }
 }

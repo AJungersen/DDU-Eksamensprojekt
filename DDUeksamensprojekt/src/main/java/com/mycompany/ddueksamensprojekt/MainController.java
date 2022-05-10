@@ -185,11 +185,13 @@ public class MainController implements Initializable {
     @FXML
     void openProfile() throws Exception {
         App.setRoot("profile");
+        App.setLastSceneFxml("main");
     }
 
     @FXML
     void openCart() throws Exception {
         App.setRoot("cart");
+        App.setLastSceneFxml("main");
     }
 
     @FXML
