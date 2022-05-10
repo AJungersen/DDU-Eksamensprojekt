@@ -16,8 +16,6 @@ public class CreditCard {
     private String experationDate;
     private String cardNumber;
     private String cvv;
-    private String nameOfCardHolder;
-    private String nameOfCard;
 
     public CreditCard(int creditCard_ID, String experationDate, String cardNumber, String cvv) {
         this.creditCard_ID = creditCard_ID;
@@ -26,15 +24,6 @@ public class CreditCard {
         this.cvv = cvv;
     }
 
-    public CreditCard(int creditCard_ID, String experationDate, String cardNumber, String cvv, String nameOfCardHolder, String nameOfCard) {
-        this.creditCard_ID = creditCard_ID;
-        this.experationDate = experationDate;
-        this.cardNumber = cardNumber;
-        this.cvv = cvv;
-        this.nameOfCardHolder = nameOfCardHolder;
-        this.nameOfCard = nameOfCard;
-    }
-    
     public int getCreditCard_ID() {
         return creditCard_ID;
     }
