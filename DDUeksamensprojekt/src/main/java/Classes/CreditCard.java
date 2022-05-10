@@ -13,11 +13,11 @@ import java.time.LocalDate;
  */
 public class CreditCard {
     private int creditCard_ID;
-    private LocalDate experationDate;
+    private String experationDate;
     private String cardNumber;
     private String cvv;
 
-    public CreditCard(int creditCard_ID, LocalDate experationDate, String cardNumber, String cvv) {
+    public CreditCard(int creditCard_ID, String experationDate, String cardNumber, String cvv) {
         this.creditCard_ID = creditCard_ID;
         this.experationDate = experationDate;
         this.cardNumber = cardNumber;
@@ -28,11 +28,11 @@ public class CreditCard {
         return creditCard_ID;
     }
 
-    public LocalDate getExperationDate() {
+    public String getExperationDate() {
         return experationDate;
     }
 
-    public void setExperationDate(LocalDate experationDate) {
+    public void setExperationDate(String experationDate) {
         this.experationDate = experationDate;
     }
 
