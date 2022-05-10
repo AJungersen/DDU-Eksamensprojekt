@@ -230,6 +230,10 @@ public class UserDatabaseMethods {
         conn.close();
         return loggedInUser;
     }
+    
+    //--------------------------------------
+    //---------- save credit card ----------
+    //--------------------------------------
     public void saveCreditCard(CreditCard C, User U) throws SQLException, Exception {
         SecurityMethods sm = new SecurityMethods();
         Connection conn = null;
@@ -252,5 +256,28 @@ public class UserDatabaseMethods {
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }        
+    }
+    
+    //--------------------------------------
+    //---------- update user info ----------
+    //--------------------------------------
+    public void updateUserInfo (User _user, String _password) throws Exception, SQLException {
+        Connection conn = null;
+        Class.forName("org.sqlite.JDBC");
+
+        try {
+            conn = DriverManager.getConnection(connectionString);
+        } catch (SQLException e) {
+            System.out.println("\n Database error (get logged ind user (connection)): " + e.getMessage() + "\n");
+        }
+        
+        String sql = "UPDATE Users SET name = '" + _user.getName() + "',"
+                + " email = '" + _user.getEmail() + "', password = '" + _password + "' ;"; 
+        
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
     }
 }
