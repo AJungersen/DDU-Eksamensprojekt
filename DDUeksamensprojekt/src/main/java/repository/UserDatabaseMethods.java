@@ -172,7 +172,7 @@ public class UserDatabaseMethods {
 
                 while (rs.next()) {
                     creditCards.add(new CreditCard(rs.getInt("creditCard_ID"),
-                            LocalDate.parse(rs.getString("experationDate")),
+                            rs.getString("experationDate"),
                             rs.getString("cardNumber"), rs.getString("cvv")));
                 }
 
@@ -229,5 +229,28 @@ public class UserDatabaseMethods {
         }
         conn.close();
         return loggedInUser;
+    }
+    public void saveCreditCard(CreditCard C, User U) throws SQLException, Exception {
+        SecurityMethods sm = new SecurityMethods();
+        Connection conn = null;
+        Class.forName("org.sqlite.JDBC");
+        String sql;
+        
+        //Skab forbindelse til databasen...
+        try {          
+          conn = DriverManager.getConnection(connectionString);
+        } 
+        catch ( SQLException e ) {
+          //Skriver fejlhåndtering her
+          System.out.println("DB Error: " + e.getMessage());
+        }
+        
+        sql = "INSERT INTO CreditCards(wallet_ID,experationDate,cardNumber,cvv) VALUES('" + U.getWallet().getWallet_ID() + "','" + (C.getExperationDate()) + "','" + sm.hexString((C.getCardNumber())) + "','" + sm.hexString((C.getCvv())) + "');"; 
+        
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }        
     }
 }
