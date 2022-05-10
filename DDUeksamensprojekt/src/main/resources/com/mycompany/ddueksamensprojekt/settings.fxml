@@ -67,7 +67,7 @@
                   </DropShadow>
                </effect>
             </PasswordField>
-            <TextField layoutX="25.0" layoutY="186.0" prefHeight="33.0" prefWidth="296.0" promptText="Email" style="-fx-background-radius: 0px; -fx-border-color: #40C54D; -fx-border-width: 0px 0px 0px 0px; -fx-background-color: #FFFFFF;">
+            <TextField fx:id="textFieldEmail" layoutX="25.0" layoutY="186.0" prefHeight="33.0" prefWidth="296.0" promptText="Email" style="-fx-background-radius: 0px; -fx-border-color: #40C54D; -fx-border-width: 0px 0px 0px 0px; -fx-background-color: #FFFFFF;">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
@@ -79,7 +79,7 @@
                   </DropShadow>
                </effect>
             </TextField>
-            <TextField layoutX="25.0" layoutY="129.0" prefHeight="33.0" prefWidth="296.0" promptText="Navn" style="-fx-background-radius: 0px; -fx-border-color: #40C54D; -fx-border-width: 0px 0px 0px 0px; -fx-background-color: #FFFFFF;">
+            <TextField fx:id="textFieldName" layoutX="25.0" layoutY="129.0" prefHeight="33.0" prefWidth="296.0" promptText="Navn" style="-fx-background-radius: 0px; -fx-border-color: #40C54D; -fx-border-width: 0px 0px 0px 0px; -fx-background-color: #FFFFFF;">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
@@ -91,7 +91,7 @@
                   </DropShadow>
                </effect>
             </TextField>
-            <Label layoutX="25.0" layoutY="85.0" text="Dine kort:">
+            <Label layoutX="25.0" layoutY="85.0" text="Dine oplysininger:">
                <font>
                   <Font name="Segoe UI Light Italic" size="20.0" />
                </font>

@@ -70,7 +70,7 @@ public class MainController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         try {
-            textWelcomeBackUser.setText(App.getLoggedInUser().getName());
+            textWelcomeBackUser.setText("Velkommen tilbage " + App.getLoggedInUser().getName());
             
             //calc panes per row
             panesPerRow = (int) Math.floor((anchorPaneCategories.getPrefWidth() - PaneSpace_X) / (paneSize_X + PaneSpace_X));
