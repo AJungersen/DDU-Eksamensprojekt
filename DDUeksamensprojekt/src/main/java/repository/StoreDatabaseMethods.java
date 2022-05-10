@@ -60,6 +60,36 @@ public class StoreDatabaseMethods {
         conn.close();
         return purchase;
     }
+    
+    //--------------------------------------------------
+    //---------- get number of users purchase ----------
+    //--------------------------------------------------
+    public int getNumberOfUseresPurchases(int _user_ID) throws Exception, SQLException {
+        Connection conn = null;
+        Class.forName("org.sqlite.JDBC");
+
+        try {
+            conn = DriverManager.getConnection(connectionString);
+        } catch (SQLException e) {
+            System.out.println("\n Database error (get number of users purchase (connection): " + e.getMessage() + "\n");
+        }
+        
+        try {
+            Statement stat = conn.createStatement();
+            
+            ResultSet rs = stat.executeQuery("SELECT * FROM purchases WHERE user_ID = ('" + _user_ID + "');");
+            
+            conn.close();
+            
+            return rs.getFetchSize();
+        } catch (SQLException e) {
+            System.out.println("\n Database error (get number of users purchase (connection): " + e.getMessage() + "\n");
+            
+            conn.close();
+            
+            return 0;
+        }
+    }
 
     //--------------------------------------
     //---------- get all purchase ----------
@@ -80,9 +110,9 @@ public class StoreDatabaseMethods {
         try {
             Statement stat = conn.createStatement();
 
-            ResultSet rs = stat.executeQuery("SELECT * FROM PurchasedShoppingCarts ");
+            ResultSet rs = stat.executeQuery("SELECT * FROM Purchases ");
             while (rs.next()) {
-                allPurchases.add(new Purchase(rs.getInt("purchasedShoppingCarts_ID"),
+                allPurchases.add(new Purchase(rs.getInt("purchase_ID"),
                         LocalDate.parse(rs.getString("date")), null));
             }
         } catch (SQLException e) {
@@ -96,7 +126,10 @@ public class StoreDatabaseMethods {
 
         return allPurchases;
     }
-
+    
+    //--------------------------------------
+    //---------- get all products ----------
+    //--------------------------------------
     public ArrayList<Product> getAllProducts() throws SQLException, Exception {
         
         ArrayList<Product> allProducts = new ArrayList<>();

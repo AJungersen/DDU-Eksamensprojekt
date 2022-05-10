@@ -47,7 +47,7 @@ public class ProductRecommendations {
         ArrayList<Purchase> userCarts;
         ArrayList<Purchase> allCarts = sdm.getAllPurchase();
         for(Purchase C: allCarts){
-            if(App.getLoggedInUser().getUser_ID() == C.getUser().getUser_ID()){
+            if(App.getLoggedInUser().getUser_ID() == C.get){
                 userCarts.add(C);
             }
         }
