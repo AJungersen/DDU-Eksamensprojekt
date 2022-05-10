@@ -18,7 +18,7 @@ import com.mycompany.ddueksamensprojekt.App;
  * @author danie
  */
 public class ProductRecommendations {
-    public ArrayList<Product> getBestProduct(Product userProduct){
+    /*public ArrayList<Product> getBestProduct(Product userProduct) throws Exception{
         StoreDatabaseMethods sdm = new StoreDatabaseMethods();
         ArrayList<Product> products = sdm.getAllProducts();
         ArrayList<ProductScore> rankedList = new ArrayList();
@@ -72,5 +72,5 @@ public class ProductRecommendations {
         // 10 skal erstattes af variabel
         float score = 10*uf+10*af;
         return score;
-    }
+    }*/
 }
