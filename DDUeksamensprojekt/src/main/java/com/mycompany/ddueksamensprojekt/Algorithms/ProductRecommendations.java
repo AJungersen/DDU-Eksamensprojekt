@@ -9,6 +9,7 @@ import Classes.Cart;
 import com.mycompany.ddueksamensprojekt.Product;
 import Classes.ProductScore;
 import Classes.Purchase;
+import com.mycompany.ddueksamensprojekt.App;
 import java.util.ArrayList;
 import repository.StoreDatabaseMethods;
 
@@ -17,7 +18,7 @@ import repository.StoreDatabaseMethods;
  * @author danie
  */
 public class ProductRecommendations {
-    public ArrayList<Product> getBestProduct(Product userProduct){
+    public ArrayList<Product> getBestProduct(Product userProduct) throws Exception{
         StoreDatabaseMethods sdm = new StoreDatabaseMethods();
         ArrayList<Product> products = sdm.getAllProducts();
         ArrayList<ProductScore> rankedList = new ArrayList();
@@ -41,24 +42,24 @@ public class ProductRecommendations {
         }
         return returnList;
     }
-    public float getFitnessOff(Product I, Product U){
+    public float getFitnessOff(Product I, Product U) throws Exception{
         StoreDatabaseMethods sdm = new StoreDatabaseMethods();
-        ArrayList<Purchase> userCarts;
+        ArrayList<Purchase> userCarts = sdm.getAllUsersPurchases(App.getLoggedInUser().getUser_ID());
         ArrayList<Purchase> allCarts = sdm.getAllPurchase();
         int h = 0;
         int tot = 0;
         for(Purchase C: userCarts){
             tot += 1;
-            if(C.getProducts().contains(I) && C.getProducts().contains(U)){
+            if(C.getPurchasedProducts().containsKey(I) && C.getPurchasedProducts().containsKey(U)){
                 h += 1;
             }
         }
         float uf = h/tot;
         h = 0;
         tot = 0;
-        for(Cart C: allCarts){
+        for(Purchase C: allCarts){
             tot += 1;
-            if(C.getProducts().contains(I) && C.getProducts().contains(U)){
+            if(C.getPurchasedProducts().containsKey(I) && C.getPurchasedProducts().containsKey(U)){
                 h += 1;
             }
         }

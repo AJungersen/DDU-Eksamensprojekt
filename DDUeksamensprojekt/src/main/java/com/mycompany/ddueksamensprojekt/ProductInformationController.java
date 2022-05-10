@@ -5,10 +5,12 @@
 package com.mycompany.ddueksamensprojekt;
 
 import static Classes.ProductCategory.SLIK_OG_SNACKS;
+import com.mycompany.ddueksamensprojekt.Algorithms.ProductRecommendations;
 import java.awt.event.MouseEvent;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -72,7 +74,13 @@ public class ProductInformationController implements Initializable {
             System.out.println("Error");
             //Logger.getLogger(ProductInformationController.class.getName()).log(Level.SEVERE, null, ex);
         }
-
+        ProductRecommendations pr = new ProductRecommendations();
+        try {
+            ArrayList<Product> recommended = pr.getBestProduct(product);
+        } catch (Exception ex) {
+            Logger.getLogger(ProductInformationController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        //upload hele listen (den har de 5 bedste)
     }
 
      @FXML
