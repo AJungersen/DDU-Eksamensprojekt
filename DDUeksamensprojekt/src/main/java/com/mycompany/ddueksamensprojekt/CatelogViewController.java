@@ -40,14 +40,16 @@ import repository.Tools;
 public class CatelogViewController implements Initializable {
 
     private StoreDatabaseMethods sdm = new StoreDatabaseMethods();
+    private float boarderThikness = 2.5f;
     private float textSpace = 5;
+    
     private float paneSpace_X = 10;
     private float paneSpace_Y = 10;
     private float paneSize_X = 137;
     private float panesPerRow;
 
-    private float imgSize_X = 137;
-    private float imgSize_Y = 143;
+    private float imgSize_X = paneSize_X - 2*boarderThikness;
+    private float imgSize_Y = 143 - boarderThikness;
 
     private float nameTextSize = 14;
     private float namepos_X = 0;
@@ -134,13 +136,18 @@ public class CatelogViewController implements Initializable {
                 pane.setMinSize(paneSize_X, paneSize_Y);
                 pane.setMaxSize(paneSize_X, paneSize_Y);
 
-                pane.setStyle("-fx-border-color: #666666");
+                pane.setStyle("-fx-border-color: #666666;" +
+                        "-fx-border-width: " + boarderThikness + ";" +
+                        "-fx-background-color: #ffffff");
 
                 //product image
                 ImageView imgView = new ImageView(p.getImage());
 
                 imgView.setFitWidth(imgSize_X);
                 imgView.setFitHeight(imgSize_Y);
+                
+                imgView.setLayoutX(boarderThikness);
+                imgView.setLayoutY(boarderThikness);
 
                 //name text
                 p.setName(Tools.capitalizeFirstLetter(p.getName()));
@@ -164,12 +171,17 @@ public class CatelogViewController implements Initializable {
                 Circle lagerstatusCircle = new Circle(lagerstatusCirkel_X, lagerstatusCirkel_Y, lagerStatusCirkelSize);
                 if (p.getStock() != 0) {
                     if (p.getStock() <= fewProductsRemaning) {
+                        //few
                         lagerstatusCircle.setFill(Paint.valueOf("#F7DC6F"));
                     } else {
+                        //in stock
                         lagerstatusCircle.setFill(Paint.valueOf("#82E0AA"));
                     }
                 } else {
+                    //empty
                     lagerstatusCircle.setFill(Paint.valueOf("#F1948A"));
+                    //lagerstatusCircle.setFill(Paint.valueOf("#82E0AA"));
+                    lagerstatusCircle.setFill(Paint.valueOf("#F7DC6F"));
                 }
                 lagerstatusCircle.setCenterX(lagerstatusText.getLayoutX() + lagerstatusText.getBoundsInLocal().getWidth() + lagerStatusCirkelSize + 10);
 
@@ -206,12 +218,14 @@ public class CatelogViewController implements Initializable {
                 pane.getChildren().add(lagerstatusText);
                 pane.getChildren().add(lagerstatusCircle);
 
+                pane.setOnMouseClicked(clicked);
+                pane.setOnMouseEntered(entered);
+                pane.setOnMouseExited(exited);
+
                 for (Node sp : pane.getChildren()) {
-                    if (sp instanceof ImageView) {
-                        sp.setOnMouseClicked(clicked);
-                        sp.setOnMouseEntered(entered);
-                        sp.setOnMouseExited(exited);
-                    }
+                    sp.setOnMouseClicked(clicked);
+                    sp.setOnMouseEntered(entered);
+                    sp.setOnMouseExited(exited);
                 }
 
                 anchorPaneProducts.getChildren().add(pane);
