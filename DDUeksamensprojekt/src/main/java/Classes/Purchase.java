@@ -57,4 +57,5 @@ public class Purchase {
     public void setPurchasedProducts(HashMap<Product, Integer> purchasedProducts) {
         this.purchasedProducts = purchasedProducts;
     }
+    
 }
