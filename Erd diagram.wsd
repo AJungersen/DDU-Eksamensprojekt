@@ -32,6 +32,11 @@ table(Wallets) {
 table(CreditCards) {
     PK creditCard_ID
     FK wallet_ID
+    String experationdate
+    String cardnumber
+    String cvv
+    String nameOfCardHolder
+    String nameOfCard
 }
 
 table(Coupons) {
