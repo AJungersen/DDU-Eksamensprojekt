@@ -12,6 +12,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
+import javafx.stage.Popup;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -43,5 +45,20 @@ public class SettingsController implements Initializable {
     @FXML
     private void openProfile() throws IOException {
         App.setRoot("profile");
+    }
+    @FXML
+    public void changePassword(ActionEvent event) throws IOException {
+
+        Stage stage = App.getStage();
+        Popup popup = new Popup();
+
+        popup.getContent().addAll(App.loadFXML("changePassword").getChildrenUnmodifiable());
+        popup.setX(stage.getWidth()*1.3);
+        popup.setY(stage.getHeight()/2);
+
+        App.setPopup(popup);
+
+        App.openPopup();
+
     }
 }
