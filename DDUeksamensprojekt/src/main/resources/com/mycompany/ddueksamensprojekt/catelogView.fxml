@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
@@ -15,7 +16,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="790.0" prefWidth="984.0" style="-fx-background-color: #40C54D;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.ddueksamensprojekt.CatelogViewController">
+<AnchorPane id="AnchorPane" prefHeight="790.0" prefWidth="984.0" style="-fx-background-color: #40C54D;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.ddueksamensprojekt.CatelogViewController">
    <children>
       <Label layoutX="408.0" onMouseClicked="#openMain" text="PRÆCIS" textAlignment="CENTER">
          <font>
@@ -49,6 +50,9 @@
                <effect>
                   <ColorAdjust brightness="0.1" contrast="-0.21" hue="1.0" saturation="-0.68" />
                </effect>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </ImageView>
             <Text fx:id="textFieldCategory" layoutX="21.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" text="(..overkategori..)">
                <font>
@@ -60,6 +64,14 @@
                   <Font size="17.0" />
                </font>
             </TextField>
+            <Button layoutX="560.0" layoutY="30.0" mnemonicParsing="false" styleClass="exitbutton" stylesheets="@exit.css" text="X">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
          </children>
       </Pane>
       <Circle fill="DODGERBLUE" layoutX="43.0" layoutY="43.0" radius="29.0" stroke="BLACK" strokeType="INSIDE" style="-fx-stroke: transparent; -fx-fill: #DFF2E1;" />
