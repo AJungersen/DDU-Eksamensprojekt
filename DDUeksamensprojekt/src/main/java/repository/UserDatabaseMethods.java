@@ -261,23 +261,45 @@ public class UserDatabaseMethods {
     //--------------------------------------
     //---------- update user info ----------
     //--------------------------------------
-    public void updateUserInfo (User _user, String _password) throws Exception, SQLException {
+    public void updateUserInfo (User _user) throws Exception, SQLException {
         Connection conn = null;
         Class.forName("org.sqlite.JDBC");
 
         try {
             conn = DriverManager.getConnection(connectionString);
         } catch (SQLException e) {
-            System.out.println("\n Database error (get logged ind user (connection)): " + e.getMessage() + "\n");
+            System.out.println("\n Database error (update user info (connection)): " + e.getMessage() + "\n");
         }
         
         String sql = "UPDATE Users SET name = '" + _user.getName() + "',"
-                + " email = '" + _user.getEmail() + "', password = '" + _password + "' ;"; 
+                + " email = '" + _user.getEmail() + "';"; 
         
         try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.executeUpdate();
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            System.out.println("\n Database error (update user info (update info)): " + e.getMessage() + "\n");
+        }
+    }
+    
+    //------------------------------------------
+    //---------- update user password ----------
+    //------------------------------------------
+    public void updateUserPassword (String _password) throws Exception, SQLException {
+        Connection conn = null;
+        Class.forName("org.sqlite.JDBC");
+
+        try {
+            conn = DriverManager.getConnection(connectionString);
+        } catch (SQLException e) {
+            System.out.println("\n Database error (set user password (connection)): " + e.getMessage() + "\n");
+        }
+        
+        String sql = "UPDATE Users SET password = '" + _password + "' ;"; 
+        
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println("\n Database error (set user password (set password)): " + e.getMessage() + "\n");
         }
     }
 }
