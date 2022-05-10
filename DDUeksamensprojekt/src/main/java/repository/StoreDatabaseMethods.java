@@ -77,7 +77,7 @@ public class StoreDatabaseMethods {
         try {
             Statement stat = conn.createStatement();
             
-            ResultSet rs = stat.executeQuery("SELECT * FROM purchases WHERE user_ID = ('" + _user_ID + "');");
+            ResultSet rs = stat.executeQuery("SELECT user_ID FROM purchases WHERE user_ID = ('" + _user_ID + "');");
             
             conn.close();
             

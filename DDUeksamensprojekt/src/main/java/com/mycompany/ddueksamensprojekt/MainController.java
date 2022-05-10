@@ -70,10 +70,8 @@ public class MainController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         try {
-            for (ProductCategory p : ProductCategory.values()) {
-                System.out.println("\n" + p.asFormatedString());
-            }
-
+            textWelcomeBackUser.setText(App.getLoggedInUser().getName());
+            
             //calc panes per row
             panesPerRow = (int) Math.floor((anchorPaneCategories.getPrefWidth() - PaneSpace_X) / (paneSize_X + PaneSpace_X));
 
