@@ -70,11 +70,11 @@ public class ProfileController implements Initializable {
     }
     
     @FXML
-    private void goToSelectedProduct(MouseEvent event) {
-
-        if (tableViewLastPurchas.getFocusModel().getFocusedCell().getColumn() == 1) {
+    private void goToSelectedProduct(MouseEvent event) throws Exception {
+        if (tableViewLastPurchas.getFocusModel().getFocusedCell().getColumn() <= 1) {
             //send to product
-            System.out.println(tableViewLastPurchas.getSelectionModel().getSelectedItem().getAmount());
+            App.setCurrentProduct(tableViewLastPurchas.getSelectionModel().getSelectedItem());
+            App.setRoot("productInformation");
         }
     }
     
