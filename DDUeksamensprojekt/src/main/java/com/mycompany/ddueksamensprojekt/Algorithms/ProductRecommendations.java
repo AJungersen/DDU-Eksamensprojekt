@@ -9,6 +9,7 @@ import Classes.Cart;
 import com.mycompany.ddueksamensprojekt.Product;
 import Classes.ProductScore;
 import Classes.Purchase;
+import com.mycompany.ddueksamensprojekt.App;
 import java.util.ArrayList;
 import repository.StoreDatabaseMethods;
 
@@ -43,7 +44,7 @@ public class ProductRecommendations {
     }
     public float getFitnessOff(Product I, Product U) throws Exception{
         StoreDatabaseMethods sdm = new StoreDatabaseMethods();
-        ArrayList<Purchase> userCarts = sdm.getAllUserPurchase();
+        ArrayList<Purchase> userCarts = sdm.getAllUsersPurchases(App.getLoggedInUser().getUser_ID());
         ArrayList<Purchase> allCarts = sdm.getAllPurchase();
         int h = 0;
         int tot = 0;
