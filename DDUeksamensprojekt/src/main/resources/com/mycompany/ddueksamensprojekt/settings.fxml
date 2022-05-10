@@ -45,7 +45,7 @@
                   </DropShadow>
                </effect>
             </Button>
-            <Button layoutX="83.0" layoutY="302.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="179.0" stylesheets="@design.css" text="Gem ændringer">
+            <Button layoutX="83.0" layoutY="302.0" mnemonicParsing="false" onAction="#updateUserInfo" prefHeight="30.0" prefWidth="179.0" stylesheets="@design.css" text="Gem ændringer">
                <font>
                   <Font name="Segoe UI Semibold" size="14.0" />
                </font>

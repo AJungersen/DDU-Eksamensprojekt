@@ -284,7 +284,7 @@ public class UserDatabaseMethods {
     //------------------------------------------
     //---------- update user password ----------
     //------------------------------------------
-    public void updateUserPassword (String _password) throws Exception, SQLException {
+    public void updateUserPassword (int _user_ID, String _password) throws Exception, SQLException {
         Connection conn = null;
         Class.forName("org.sqlite.JDBC");
 
@@ -294,7 +294,8 @@ public class UserDatabaseMethods {
             System.out.println("\n Database error (set user password (connection)): " + e.getMessage() + "\n");
         }
         
-        String sql = "UPDATE Users SET password = '" + _password + "' ;"; 
+        String sql = "UPDATE Users SET password = '" + _password + "' "
+                + "WHERE user_ID = ('" + _user_ID + "');"; 
         
         try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.executeUpdate();

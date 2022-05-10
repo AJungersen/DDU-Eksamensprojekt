@@ -19,6 +19,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Popup;
 import javafx.stage.Stage;
+import repository.UserDatabaseMethods;
 
 /**
  * FXML Controller class
@@ -28,7 +29,8 @@ import javafx.stage.Stage;
 public class SettingsController implements Initializable {
 
     private User user = App.getLoggedInUser();
-
+    private UserDatabaseMethods udm = new UserDatabaseMethods();
+    
     @FXML
     private TextField textFieldEmail;
     @FXML
@@ -39,6 +41,10 @@ public class SettingsController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        updateVisualUserInfo();
+    }
+    
+    private void updateVisualUserInfo(){
         textFieldEmail.setText(user.getEmail());
         textFieldName.setText(user.getName());
     }
@@ -63,32 +69,23 @@ public class SettingsController implements Initializable {
         popup.setX(stage.getWidth() * 1.3);
         popup.setY(stage.getHeight() / 2);
 
-        for (Node n : popup.getContent()) {
-            System.out.println("test 1");
-            if (n instanceof Pane) {
-                System.out.println("test 2");
-                for (Node nP : ((Pane) n).getChildren()) {
-                    if (nP.getId() == "buttonCancel") {
-                        ((Button) nP).setOnAction(new EventHandler<ActionEvent>() {
-                            @Override
-                            public void handle(ActionEvent aevent) {
-                                App.closePopup();
-                            }
-                        });
-                    } else if (nP.getId() == "buttonChangePassword") {
-                        ((Button) nP).setOnAction(new EventHandler<ActionEvent>() {
-                            @Override
-                            public void handle(ActionEvent aevent) {
-                            }
-                        });
-                    }
-                }
-            }
-        }
-
         App.setPopup(popup);
 
         App.openPopup();
 
+    }
+
+    @FXML
+    private void updateUserInfo(ActionEvent event) throws Exception {
+        if(!udm.checkForMatchingEmail(textFieldEmail.getText().toLowerCase())) {
+            App.getLoggedInUser().setEmail(textFieldEmail.getText());
+            App.getLoggedInUser().setName(textFieldName.getText());
+            
+            user = App.getLoggedInUser();
+            
+            udm.updateUserInfo(user);
+            
+            updateVisualUserInfo();
+        }
     }
 }
