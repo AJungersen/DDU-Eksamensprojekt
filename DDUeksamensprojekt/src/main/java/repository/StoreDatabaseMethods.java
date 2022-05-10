@@ -239,19 +239,46 @@ public class StoreDatabaseMethods {
         return products;
     }
     
-    //-------------------------------------------------------
-    //---------- get products in specefic category ----------
-    //-------------------------------------------------------
-    public void saveCart(Cart _cart) throws Exception, SQLException {
+    //---------------------------------------
+    //---------- save cart to user ----------
+    //---------------------------------------
+    public void saveCartTo(Cart _cart) throws Exception, SQLException {
         Connection conn = null;
         Class.forName("org.sqlite.JDBC");
         
         try {
             conn = DriverManager.getConnection(connectionString);
         } catch (SQLException e) {
-            System.out.println("\n Database error (get products in specefic category (connection): " + e.getMessage() + "\n");
+            System.out.println("\n Database error (save cart to user (connection): " + e.getMessage() + "\n");
         }
         
-        String sql = "INSERT INTO ";
+        //crate shopping cart
+        String sql = "INSERT INTO savedShoppingCarts Values('" + _cart.getUser().getUser_ID() + "')";
+        
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println("\n Database error (save cart to user (create cart)): " + e.getMessage() + "\n");
+        }
+        
+        //get id of created cart
+        int shoppingCart_ID = 0;
+        try {
+            Statement stat = conn.createStatement();
+            
+            ResultSet rs  = stat.executeQuery("SELECT MAX(savedShoppingCart_ID) FROM savedShoppingCarts;");
+            
+            shoppingCart_ID = rs.getInt("MAX(savedShoppingCart_ID)");
+            
+        } catch (SQLException e) {
+            System.out.println("\n Database error (save cart to user (get created cart id)): " + e.getMessage() + "\n");
+        }
+        
+        //insert products
+        for(Product p : _cart.getProductsAsMap().keySet()) {
+            sql = "INSERT INTO savedShoppingCartsProducts Values ('" + shoppingCart_ID + "', '" + p.getItem_ID() + "', '" +  _cart.getProductsAsMap().get(p) + "')";
+        }
+        
+        conn.close();
     }
 }
