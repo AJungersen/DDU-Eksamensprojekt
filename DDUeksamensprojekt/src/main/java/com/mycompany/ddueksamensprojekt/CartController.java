@@ -70,6 +70,9 @@ public class CartController implements Initializable {
         
         goodNumber.setText(Integer.toString(goodNumb));
         price.setText(Float.toString(allPrice));
+        
+        App.numberOfGoods = goodNumb;
+        App.priceOfGoods = allPrice;
     }
 
     @FXML

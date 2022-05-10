@@ -21,6 +21,8 @@ public class App extends Application {
     
     private static User loggedInUser = new User();
     public static Scene scene;
+    public static int numberOfGoods = 0;
+    public static float priceOfGoods = 0;
     private static Stage stage;
     private static Popup popup;
     private static ProductCategory currentCategoryDisplaying;

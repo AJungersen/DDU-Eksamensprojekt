@@ -150,7 +150,7 @@ public class CatelogViewController implements Initializable {
                 imgView.setLayoutY(boarderThikness);
 
                 //name text
-                p.setName(Tools.capitalizeFirstLetter(p.getName()));
+         //       p.setName(Tools.capitalizeFirstLetter(p.getName()));
                 Text nameText = new Text(namepos_X, namePos_Y, p.getName());
                 nameText.setFont(nameFont);
                 nameText.setLayoutX(paneSize_X / 2 - nameText.getBoundsInLocal().getWidth() / 2);

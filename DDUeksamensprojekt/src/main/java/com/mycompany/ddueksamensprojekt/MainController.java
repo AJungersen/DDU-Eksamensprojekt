@@ -106,12 +106,16 @@ public class MainController implements Initializable {
 
                 imgView.setFitWidth(paneSize_X);
                 imgView.setFitHeight(paneSize_Y);
+                
+                stackPane.setStyle("-fx-border-color: #333333;" + "-fx-border-width: 10;");
 
                 //category text
                 Text text = new Text(pc.asFormatedString());
 
-                text.setStyle("-fx-fill-color: #333333");
-                text.setStyle("-fx-effect: dropshadow(one-pass-box, #00ff15, 9.66, 0.62, 19.52, 21.12);");
+                text.setStyle("-fx-fill-color: #333333;" + "-fx-font-size:30px;" +
+                        "-fx-font-family: Segoe UI Semibold;" + 
+                        "-fx-effect: dropshadow(one-pass-box, #5C5C5C, 9.66, 0.62, 1,1);");
+               
 
                 //set mouse clicked on image view to switch to category
                 EventHandler<MouseEvent> clicked = new EventHandler<MouseEvent>() {
