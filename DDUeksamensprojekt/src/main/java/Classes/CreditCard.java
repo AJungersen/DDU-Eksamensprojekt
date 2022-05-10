@@ -16,12 +16,16 @@ public class CreditCard {
     private String experationDate;
     private String cardNumber;
     private String cvv;
+    private String nameOfCardHolder;
+    private String nameOfCard;
 
-    public CreditCard(int creditCard_ID, String experationDate, String cardNumber, String cvv) {
+    public CreditCard(int creditCard_ID, String experationDate, String cardNumber, String cvv, String nameOfCardHolder, String nameOfCard) {
         this.creditCard_ID = creditCard_ID;
         this.experationDate = experationDate;
         this.cardNumber = cardNumber;
         this.cvv = cvv;
+        this.nameOfCardHolder = nameOfCardHolder;
+        this.nameOfCard = nameOfCard;
     }
 
     public int getCreditCard_ID() {
@@ -50,5 +54,21 @@ public class CreditCard {
 
     public void setCvv(String cvv) {
         this.cvv = cvv;
+    }
+
+    public String getNameOfCard() {
+        return nameOfCard;
+    }
+
+    public void setNameOfCard(String nameOfCard) {
+        this.nameOfCard = nameOfCard;
+    }
+
+    public String getNameOfCardHolder() {
+        return nameOfCardHolder;
+    }
+
+    public void setNameOfCardHolder(String nameOfCardHolder) {
+        this.nameOfCardHolder = nameOfCardHolder;
     }
 }

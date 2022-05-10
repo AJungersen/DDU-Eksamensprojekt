@@ -20,7 +20,7 @@ import javax.imageio.ImageIO;
  * @author chris
  */
 public class UserDatabaseMethods {
-
+    
     private final String connectionString = "jdbc:sqlite:Database.db";
 
     //----------------------------------------------
@@ -29,36 +29,36 @@ public class UserDatabaseMethods {
     public boolean checkForMatchingEmail(String _email) throws SQLException, Exception {
         String databaseEmail = "";
         _email = _email.toLowerCase();
-
+        
         Connection conn = null;
         Class.forName("org.sqlite.JDBC");
-
+        
         try {
             conn = DriverManager.getConnection(connectionString);
         } catch (SQLException e) {
             System.out.println("\n Database error (check for matching email (connection): " + e.getMessage() + "\n");
         }
-
+        
         try {
             Statement stat = conn.createStatement();
-
+            
             ResultSet rs = stat.executeQuery("select email from Users WHERE email = ('" + _email + "');");
-
+            
             rs.next();
-
+            
             databaseEmail = rs.getString("email");
-
+            
             rs.close();
         } catch (SQLException e) {
             //Skrive fejlhåndtering her
             System.out.println("\n Database error (check for matching email (resultset): " + e.getMessage() + "\n");
         }
-
+        
         if (_email.equalsIgnoreCase(databaseEmail)) {
             conn.close();
             return true;
         }
-
+        
         conn.close();
         return false;
     }
@@ -69,37 +69,37 @@ public class UserDatabaseMethods {
     public boolean checkForMatchingPassword(String _email, String _password) throws SQLException, Exception {
         String databasePassword = "";
         _email = _email.toLowerCase();
-
+        
         Connection conn = null;
         Class.forName("org.sqlite.JDBC");
-
+        
         try {
             conn = DriverManager.getConnection(connectionString);
         } catch (SQLException e) {
             System.out.println("\n Database error (check for matching password (connection)): " + e.getMessage() + "\n");
         }
-
+        
         try {
             Statement stat = conn.createStatement();
-
+            
             ResultSet rs = stat.executeQuery("select Password from Users WHERE Email = ('" + _email + "');");
-
+            
             rs.next();
-
+            
             databasePassword = rs.getString("Password");
-
+            
             rs.close();
-
+            
         } catch (SQLException e) {
             //Skrive fejlhåndtering her
             System.out.println("\n Database error (check for matching password (result set)): " + e.getMessage() + "\n");
         }
-
+        
         if (_password.equals(databasePassword)) {
             conn.close();
             return true;
         }
-
+        
         conn.close();
         return false;
     }
@@ -111,18 +111,18 @@ public class UserDatabaseMethods {
         Connection conn = null;
         Class.forName("org.sqlite.JDBC");
         String sql;
-
+        
         _newUser.setName(_newUser.getName().toLowerCase());
-
+        
         try {
             conn = DriverManager.getConnection(connectionString);
         } catch (SQLException e) {
             System.out.println("\n Database error (create user (connection)): " + e.getMessage() + "\n");
         }
-
+        
         sql = "INSERT INTO Users(name, email, password) "
                 + "VALUES('" + _newUser.getName() + "','" + _newUser.getEmail() + "', '" + _password + "');";
-
+        
         try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.executeUpdate();
         } catch (SQLException e) {
@@ -136,12 +136,12 @@ public class UserDatabaseMethods {
     //----------------------------------------
     public User getLoggedInUser(String _email) throws SQLException, Exception {
         User loggedInUser = new User();
-
+        
         _email = _email.toLowerCase();
-
+        
         Connection conn = null;
         Class.forName("org.sqlite.JDBC");
-
+        
         try {
             conn = DriverManager.getConnection(connectionString);
         } catch (SQLException e) {
@@ -151,33 +151,34 @@ public class UserDatabaseMethods {
         //get user info
         try {
             Statement stat = conn.createStatement();
-
+            
             ResultSet rs = stat.executeQuery("SELECT *, Wallets.funds FROM Users "
                     + "INNER JOIN Wallets ON Users.wallet_ID = Wallets.wallet_ID "
                     + "WHERE email = ('" + _email + "');");
-
+            
             rs.next();
-
+            
             loggedInUser = new User(rs.getInt("user_ID"), rs.getString("name"), rs.getString("email"),
                     new Wallet(rs.getInt("wallet_ID"), rs.getInt("funds"), null, null), null);
-
+            
             rs.close();
 
             //get wallet credit cards
             try {
                 rs = stat.executeQuery("SELECT * FROM Creditcards "
                         + "WHERE wallet_ID = ('" + loggedInUser.getWallet().getWallet_ID() + "')");
-
+                
                 ArrayList<CreditCard> creditCards = new ArrayList<>();
-
+                
                 while (rs.next()) {
                     creditCards.add(new CreditCard(rs.getInt("creditCard_ID"),
                             rs.getString("experationDate"),
-                            rs.getString("cardNumber"), rs.getString("cvv")));
+                            rs.getString("cardNumber"), rs.getString("cvv"), rs.getString("nameOfCardHolder"),
+                            rs.getString("nameOfCard")));
                 }
-
+                
                 loggedInUser.getWallet().setCreditCards(creditCards);
-
+                
             } catch (SQLException e) {
                 System.out.println("\n Database error (get logged ind user (get wallet creditcards)): " + e.getMessage() + "\n");
             }
@@ -186,51 +187,51 @@ public class UserDatabaseMethods {
             try {
                 rs = stat.executeQuery("SELEC * FROM Coupons "
                         + "WHERE wallet_ID = ('" + loggedInUser.getWallet().getWallet_ID() + "') ");
-
+                
                 ArrayList<Coupon> coupons = new ArrayList<>();
-
+                
                 while (rs.next()) {
                     coupons.add(new Coupon());
                 }
-
+                
                 loggedInUser.getWallet().setCupons(coupons);
-
+                
             } catch (SQLException e) {
                 System.out.println("\n Database error (get logged ind user (get wallet coupons)): " + e.getMessage() + "\n");
             }
 
             //get favorites
             try {
-
+                
                 rs = stat.executeQuery("SELECT * FROM products "
                         + "WHERE product_ID IN(SELECT product_ID FROM Favorites "
                         + "WHERE user_ID = ('" + loggedInUser.getUser_ID() + "'))");
-
+                
                 ArrayList<Product> favorites = new ArrayList<>();
-
+                
                 while (rs.next()) {
                     byte[] imgBytes = rs.getBytes("image");
                     ByteArrayInputStream bis = new ByteArrayInputStream(imgBytes);
                     BufferedImage bImage = ImageIO.read(bis);
-
-                    favorites.add(new Product(rs.getInt("product_ID"), rs.getString("name"), 
-                            Tools.convertBufferedImageToFxImage(bImage), rs.getInt("price"), 
+                    
+                    favorites.add(new Product(rs.getInt("product_ID"), rs.getString("name"),
+                            Tools.convertBufferedImageToFxImage(bImage), rs.getInt("price"),
                             rs.getInt("stock"), ProductCategory.valueOf(rs.getString("ProductCategory"))));
                 }
-
+                
                 loggedInUser.setFavorites(favorites);
-
+                
             } catch (SQLException e) {
                 System.out.println("\n Database error (get logged ind user (get user favorites)): " + e.getMessage() + "\n");
             }
-
+            
         } catch (SQLException e) {
             System.out.println("\n Database error (get logged ind user (result set get user)): " + e.getMessage() + "\n");
         }
         conn.close();
         return loggedInUser;
     }
-    
+
     //--------------------------------------
     //---------- save credit card ----------
     //--------------------------------------
@@ -239,17 +240,16 @@ public class UserDatabaseMethods {
         Connection conn = null;
         Class.forName("org.sqlite.JDBC");
         String sql;
-        
+
         //Skab forbindelse til databasen...
-        try {          
-          conn = DriverManager.getConnection(connectionString);
-        } 
-        catch ( SQLException e ) {
-          //Skriver fejlhåndtering her
-          System.out.println("DB Error: " + e.getMessage());
+        try {            
+            conn = DriverManager.getConnection(connectionString);
+        } catch (SQLException e) {
+            //Skriver fejlhåndtering her
+            System.out.println("DB Error: " + e.getMessage());
         }
         
-        sql = "INSERT INTO CreditCards(wallet_ID,experationDate,cardNumber,cvv) VALUES('" + U.getWallet().getWallet_ID() + "','" + (C.getExperationDate()) + "','" + sm.hexString((C.getCardNumber())) + "','" + sm.hexString((C.getCvv())) + "');"; 
+        sql = "INSERT INTO CreditCards(wallet_ID,experationDate,cardNumber,cvv) VALUES('" + U.getWallet().getWallet_ID() + "','" + (C.getExperationDate()) + "','" + sm.hexString((C.getCardNumber())) + "','" + sm.hexString((C.getCvv())) + "');";        
         
         try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.executeUpdate();
@@ -257,14 +257,14 @@ public class UserDatabaseMethods {
             System.out.println(e.getMessage());
         }        
     }
-    
+
     //--------------------------------------
     //---------- update user info ----------
     //--------------------------------------
-    public void updateUserInfo (User _user) throws Exception, SQLException {
+    public void updateUserInfo(User _user) throws Exception, SQLException {
         Connection conn = null;
         Class.forName("org.sqlite.JDBC");
-
+        
         try {
             conn = DriverManager.getConnection(connectionString);
         } catch (SQLException e) {
@@ -272,7 +272,7 @@ public class UserDatabaseMethods {
         }
         
         String sql = "UPDATE Users SET name = '" + _user.getName() + "',"
-                + " email = '" + _user.getEmail() + "';"; 
+                + " email = '" + _user.getEmail() + "';";        
         
         try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.executeUpdate();
@@ -280,14 +280,14 @@ public class UserDatabaseMethods {
             System.out.println("\n Database error (update user info (update info)): " + e.getMessage() + "\n");
         }
     }
-    
+
     //------------------------------------------
     //---------- update user password ----------
     //------------------------------------------
-    public void updateUserPassword (int _user_ID, String _password) throws Exception, SQLException {
+    public void updateUserPassword(int _user_ID, String _password) throws Exception, SQLException {
         Connection conn = null;
         Class.forName("org.sqlite.JDBC");
-
+        
         try {
             conn = DriverManager.getConnection(connectionString);
         } catch (SQLException e) {
@@ -295,7 +295,7 @@ public class UserDatabaseMethods {
         }
         
         String sql = "UPDATE Users SET password = '" + _password + "' "
-                + "WHERE user_ID = ('" + _user_ID + "');"; 
+                + "WHERE user_ID = ('" + _user_ID + "');";        
         
         try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.executeUpdate();

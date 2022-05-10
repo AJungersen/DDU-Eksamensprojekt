@@ -285,7 +285,25 @@ public class StoreDatabaseMethods {
     //---------------------------------
     //---------- Remove card ----------
     //---------------------------------
+    public void removeCard(int _card_ID) throws SQLException, Exception {
+        Connection conn = null;
+        Class.forName("org.sqlite.JDBC");
 
+        try {
+            conn = DriverManager.getConnection(connectionString);
+        } catch (SQLException e) {
+            System.out.println("\n Database error (remove card (connection): " + e.getMessage() + "\n");
+        }
+        
+        String sql = "DELETE FROM CreditCards WHERE creditCard_ID = ('" + _card_ID +"');"; 
+        
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println("\n Database error (remove card (remove)): " + e.getMessage() + "\n");
+        }
+    }
+    
     //------------------------------------
     //---------- make purcchase ----------
     //------------------------------------
