@@ -27,7 +27,7 @@ public class App extends Application {
     private static Stage stage;
     private static Popup popup;
     private static ProductCategory currentCategoryDisplaying;
-    public static Cart currentCart = new Cart(loggedInUser, new HashMap<Product, Integer>());
+    public static Cart currentCart = new Cart(loggedInUser, new ArrayList<Product>());
     public static Product currentProduct;
     public static String lastSceneFxml;
 
