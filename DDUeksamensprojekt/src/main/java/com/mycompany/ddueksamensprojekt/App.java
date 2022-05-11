@@ -11,6 +11,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import javafx.stage.Popup;
 import repository.AdminDataBaseMethods;
 
@@ -21,20 +22,23 @@ public class App extends Application {
     
     private static User loggedInUser = new User();
     public static Scene scene;
+    public static int numberOfGoods = 0;
+    public static float priceOfGoods = 0;
     private static Stage stage;
     private static Popup popup;
     private static ProductCategory currentCategoryDisplaying;
-    public static Cart currentCart = new Cart(loggedInUser,new ArrayList());
+    public static Cart currentCart = new Cart(loggedInUser, new HashMap<Product, Integer>());
     public static Product currentProduct;
+    public static String lastSceneFxml;
 
     @Override
     public void start(Stage stage) throws IOException, Exception {
         AdminDataBaseMethods.setProductCategorysImages();
 
-        scene = new Scene(loadFXML("loginUser"));
+        //scene = new Scene(loadFXML("loginUser"));
         //scene = new Scene(loadFXML("mainAdmin"));
         //scene = new Scene(loadFXML("AdminAddImageToCategorys"));
-        //scene = new Scene(loadFXML("main"));
+        scene = new Scene(loadFXML("main"));
         
         stage.setScene(scene);
         stage.show();
@@ -46,6 +50,10 @@ public class App extends Application {
         scene.setRoot(loadFXML(fxml));
         stage.sizeToScene();
         stage.centerOnScreen();
+    }
+    
+    static void switchToLastScene() throws IOException{
+        setRoot(lastSceneFxml);
     }
 
     static Parent loadFXML(String fxml) throws IOException {
@@ -107,5 +115,13 @@ public class App extends Application {
 
     public static void setCurrentCart(Cart currentCart) {
         App.currentCart = currentCart;
+    }
+
+    public static void setLastSceneFxml(String lastSceneFxml) {
+        App.lastSceneFxml = lastSceneFxml;
+    }
+
+    public static String getLastSceneFxml() {
+        return lastSceneFxml;
     }
 }

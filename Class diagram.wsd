@@ -14,6 +14,7 @@ class User {
     String email
     Wallet wallet
     Arraylsit<Products> favorites
+    ArrayList<Cart> savedCarts
 }
 
 
@@ -25,24 +26,38 @@ Class Wallet {
 }
 
 class CreditCard {
-    LocalDate experetionDate
+    int creditCard_ID
+    string experetionDate
     string cardNumber
     string cvv
-    string cardHoldersName
+    string nameOfCardHolder
+    string nameOfCard
 }
 
 class Coupon {
 
 }
 
-class shoppingCart {
-    int shoppingCart_ID
+class Purchase {
+    int purchase_ID
     LocalDate purchaseDate
     HashMap<Product, Integer> purchasedProducts
 }
 
 enum ProductCategory {
+    FRUGT_OG_GRØNT,
+    MEJERIPRODUKTER,
+    KØD_OG_FISK,
+    FROST,
+    PÅLÆG,
+    DRIKKEVARER,
+    BRØD_KIKS_OG_KAGER,
+    SLIK_OG_SNACKS;
+}
 
+class Cart {
+    User user
+    HashMap<Product, Integer> purchasedProducts
 }
 
 Wallet "1" o-- "0..*" Coupon

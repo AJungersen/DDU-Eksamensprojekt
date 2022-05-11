@@ -119,9 +119,25 @@ public class UserDatabaseMethods {
         } catch (SQLException e) {
             System.out.println("\n Database error (create user (connection)): " + e.getMessage() + "\n");
         }
+        
+        //create wallet
+        sql = "INSERT INTO Wallets (funds) VALUES ('" + 0 + "')";
+        
+        //get id
+        int wallet_ID = 0;
+        try {
+            Statement stat = conn.createStatement();
+            
+            ResultSet rs = stat.executeQuery("SELECT MAX(Wallet_ID) FROM wallets;");
+            
+            wallet_ID = rs.getInt("MAX(Wallet_ID)");
+            
+        } catch (SQLException e) {
+            System.out.println("\n Database error (create user (get wallet_ID)): " + e.getMessage() + "\n");
+        }
 
-        sql = "INSERT INTO Users(name, email, password) "
-                + "VALUES('" + _newUser.getName() + "','" + _newUser.getEmail() + "', '" + _password + "');";
+        sql = "INSERT INTO Users(wallet_ID, name, email, password) "
+                + "VALUES('" + wallet_ID + "', '" + _newUser.getName() + "','" + _newUser.getEmail() + "', '" + _password + "');";
 
         try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.executeUpdate();
@@ -159,7 +175,7 @@ public class UserDatabaseMethods {
             rs.next();
 
             loggedInUser = new User(rs.getInt("user_ID"), rs.getString("name"), rs.getString("email"),
-                    new Wallet(rs.getInt("wallet_ID"), rs.getInt("funds"), null, null), null);
+                    new Wallet(rs.getInt("wallet_ID"), rs.getInt("funds"), null, null), null, null);
 
             rs.close();
 
@@ -173,7 +189,8 @@ public class UserDatabaseMethods {
                 while (rs.next()) {
                     creditCards.add(new CreditCard(rs.getInt("creditCard_ID"),
                             rs.getString("experationDate"),
-                            rs.getString("cardNumber"), rs.getString("cvv")));
+                            rs.getString("cardNumber"), rs.getString("cvv"), rs.getString("nameOfCardHolder"),
+                            rs.getString("nameOfCard")));
                 }
 
                 loggedInUser.getWallet().setCreditCards(creditCards);
@@ -206,22 +223,39 @@ public class UserDatabaseMethods {
                         + "WHERE product_ID IN(SELECT product_ID FROM Favorites "
                         + "WHERE user_ID = ('" + loggedInUser.getUser_ID() + "'))");
 
-                ArrayList<Product> favorites = new ArrayList<>();
-
+                /*ArrayList<Product> favorites = new ArrayList<>();
+                
                 while (rs.next()) {
                     byte[] imgBytes = rs.getBytes("image");
                     ByteArrayInputStream bis = new ByteArrayInputStream(imgBytes);
                     BufferedImage bImage = ImageIO.read(bis);
 
-                    favorites.add(new Product(rs.getInt("product_ID"), rs.getString("name"), 
-                            Tools.convertBufferedImageToFxImage(bImage), rs.getInt("price"), 
+                    favorites.add(new Product(rs.getInt("product_ID"), rs.getString("name"),
+                            Tools.convertBufferedImageToFxImage(bImage), rs.getInt("price"),
                             rs.getInt("stock"), ProductCategory.valueOf(rs.getString("ProductCategory"))));
-                }
+                }*/
 
-                loggedInUser.setFavorites(favorites);
+                loggedInUser.setFavorites(StoreLoadMethods.loadProducts(rs));
 
             } catch (SQLException e) {
                 System.out.println("\n Database error (get logged ind user (get user favorites)): " + e.getMessage() + "\n");
+            }
+
+            //get saved shoppingCarts
+            try {
+                ArrayList<Cart> savedCarts = new ArrayList<>();
+
+                rs = stat.executeQuery("SELECT savedShoppingCart_ID FROM savedShoppingCarts "
+                        + "WHERE user_ID = ('" + loggedInUser.getUser_ID() + "') ;");
+
+                while (rs.next()) {
+                    savedCarts.add(new Cart(loggedInUser, 
+                            UserLoadMethods.loadSavedCartsProducts(conn, rs.getInt("savedShoppingCart_ID"))));
+                }
+                
+                loggedInUser.setSavedCarts(savedCarts);
+            } catch (SQLException e) {
+                System.out.println("\n Database error (get logged ind user (get saved carts)): " + e.getMessage() + "\n");
             }
 
         } catch (SQLException e) {
@@ -230,27 +264,223 @@ public class UserDatabaseMethods {
         conn.close();
         return loggedInUser;
     }
+
+    //--------------------------------------
+    //---------- update user info ----------
+    //--------------------------------------
+    public void updateUserInfo(User _user) throws Exception, SQLException {
+        Connection conn = null;
+        Class.forName("org.sqlite.JDBC");
+
+        try {
+            conn = DriverManager.getConnection(connectionString);
+        } catch (SQLException e) {
+            System.out.println("\n Database error (update user info (connection)): " + e.getMessage() + "\n");
+        }
+
+        String sql = "UPDATE Users SET name = '" + _user.getName() + "',"
+                + " email = '" + _user.getEmail() + "';";
+
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println("\n Database error (update user info (update info)): " + e.getMessage() + "\n");
+        }
+        conn.close();
+    }
+
+    //------------------------------------------
+    //---------- update user password ----------
+    //------------------------------------------
+    public void updateUserPassword(int _user_ID, String _password) throws Exception, SQLException {
+        Connection conn = null;
+        Class.forName("org.sqlite.JDBC");
+
+        try {
+            conn = DriverManager.getConnection(connectionString);
+        } catch (SQLException e) {
+            System.out.println("\n Database error (set user password (connection)): " + e.getMessage() + "\n");
+        }
+
+        String sql = "UPDATE Users SET password = '" + _password + "' "
+                + "WHERE user_ID = ('" + _user_ID + "');";
+
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println("\n Database error (set user password (set password)): " + e.getMessage() + "\n");
+        }
+        conn.close();
+    }
+
+    //--------------------------------------
+    //---------- save credit card ----------
+    //--------------------------------------
     public void saveCreditCard(CreditCard C, User U) throws SQLException, Exception {
         SecurityMethods sm = new SecurityMethods();
         Connection conn = null;
         Class.forName("org.sqlite.JDBC");
         String sql;
-        
+
         //Skab forbindelse til databasen...
-        try {          
-          conn = DriverManager.getConnection(connectionString);
-        } 
-        catch ( SQLException e ) {
-          //Skriver fejlhåndtering her
-          System.out.println("DB Error: " + e.getMessage());
+        try {
+            conn = DriverManager.getConnection(connectionString);
+        } catch (SQLException e) {
+            //Skriver fejlhåndtering her
+            System.out.println("DB Error: " + e.getMessage());
         }
-        
-        sql = "INSERT INTO CreditCards(wallet_ID,experationDate,cardNumber,cvv) VALUES('" + U.getWallet().getWallet_ID() + "','" + (C.getExperationDate()) + "','" + sm.hexString((C.getCardNumber())) + "','" + sm.hexString((C.getCvv())) + "');"; 
-        
+
+        sql = "INSERT INTO CreditCards(wallet_ID,experationDate,cardNumber,cvv) VALUES('" + U.getWallet().getWallet_ID() + "','" + (C.getExperationDate()) + "','" + sm.hexString((C.getCardNumber())) + "','" + sm.hexString((C.getCvv())) + "');";
+
         try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
-        }        
+        }
+        conn.close();
+    }
+
+    //---------------------------------
+    //---------- Remove card ----------
+    //---------------------------------
+    public void removeCard(int _card_ID) throws SQLException, Exception {
+        Connection conn = null;
+        Class.forName("org.sqlite.JDBC");
+
+        try {
+            conn = DriverManager.getConnection(connectionString);
+        } catch (SQLException e) {
+            System.out.println("\n Database error (remove card (connection): " + e.getMessage() + "\n");
+        }
+
+        String sql = "DELETE FROM CreditCards WHERE creditCard_ID = ('" + _card_ID + "');";
+
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println("\n Database error (remove card (remove)): " + e.getMessage() + "\n");
+        }
+        conn.close();
+    }
+
+    //---------------------------------------
+    //---------- save cart to user ----------
+    //---------------------------------------
+    public void saveCartToUser(Cart _cart) throws Exception, SQLException {
+        Connection conn = null;
+        Class.forName("org.sqlite.JDBC");
+
+        try {
+            conn = DriverManager.getConnection(connectionString);
+        } catch (SQLException e) {
+            System.out.println("\n Database error (save cart to user (connection): " + e.getMessage() + "\n");
+        }
+
+        //crate shopping cart
+        String sql = "INSERT INTO savedShoppingCarts Values('" + _cart.getUser().getUser_ID() + "')";
+
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println("\n Database error (save cart to user (create cart)): " + e.getMessage() + "\n");
+        }
+
+        //get id of created cart
+        int shoppingCart_ID = 0;
+        try {
+            Statement stat = conn.createStatement();
+
+            ResultSet rs = stat.executeQuery("SELECT MAX(savedShoppingCart_ID) FROM savedShoppingCarts;");
+
+            shoppingCart_ID = rs.getInt("MAX(savedShoppingCart_ID)");
+
+        } catch (SQLException e) {
+            System.out.println("\n Database error (save cart to user (get created cart id)): " + e.getMessage() + "\n");
+        }
+
+        //insert products
+        for (Product p : _cart.getProducts().keySet()) {
+            sql = "INSERT INTO savedShoppingCartsProducts Values ('" + shoppingCart_ID + "', "
+                    + "'" + p.getItem_ID() + "', '" + _cart.getProducts().get(p) + "')";
+
+            try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+                pstmt.executeUpdate();
+            } catch (SQLException e) {
+                System.out.println("\n Database error (save cart to user (insert products)): " + e.getMessage() + "\n");
+            }
+        }
+
+        conn.close();
+    }
+
+    //---------------------------------------
+    //---------- remove saved cart ----------
+    //---------------------------------------
+    public void removedSavedCart(int _savedShoppingCart_ID) throws SQLException, Exception {
+        Connection conn = null;
+        Class.forName("org.sqlite.JDBC");
+
+        try {
+            conn = DriverManager.getConnection(connectionString);
+        } catch (SQLException e) {
+            System.out.println("\n Database error (remove cart (connection): " + e.getMessage() + "\n");
+        }
+
+        String sql = "DELETE FROM savedShoppingCarts WHERE savedShoppingCarts_ID = ('" + _savedShoppingCart_ID + "');"
+                + "DELETE FROM savedShoppingCartsProducts WHERE savedShoppingCarts_ID = ('" + _savedShoppingCart_ID + "');";
+
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println("\n Database error (remove cart and products (remove)): " + e.getMessage() + "\n");
+        }
+        conn.close();
+    }
+
+    //-------------------------------------
+    //---------- add to favorits ----------
+    //-------------------------------------
+    public void addProductToFavorits(int _product_ID, int _user_ID) throws SQLException, Exception {
+        Connection conn = null;
+        Class.forName("org.sqlite.JDBC");
+
+        try {
+            conn = DriverManager.getConnection(connectionString);
+        } catch (SQLException e) {
+            System.out.println("\n Database error (add product to favorits (connection): " + e.getMessage() + "\n");
+        }
+        
+        String sql = "INSERT INTO Favorites VALUES('" + _user_ID + "' , '" + _product_ID + "');";
+        
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println("\n Database error (add product to favorits (insert): " + e.getMessage() + "\n");
+        }
+        conn.close();
+    }
+    
+    //------------------------------------------
+    //---------- remove from favorits ----------
+    //------------------------------------------
+    public void removeProductFromFavorits(int _product_ID, int _user_ID) throws SQLException, Exception {
+        Connection conn = null;
+        Class.forName("org.sqlite.JDBC");
+
+        try {
+            conn = DriverManager.getConnection(connectionString);
+        } catch (SQLException e) {
+            System.out.println("\n Database error (remove product from favorits (connection): " + e.getMessage() + "\n");
+        }
+        
+        String sql = "DELETE FROM Favorites "
+                + "WHERE (user_ID = ('" + _user_ID + "') AND product_ID = ('" + _product_ID + "'));";
+        
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println("\n Database error (remove product from favorits (remove): " + e.getMessage() + "\n");
+        }
+        conn.close();
     }
 }

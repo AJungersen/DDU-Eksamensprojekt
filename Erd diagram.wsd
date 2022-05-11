@@ -72,6 +72,11 @@ table(PurchasedProducts) {
     int amount
 }
 
+table(Favorites) {
+    FK user_ID
+    FK product_ID
+}
+
 Wallets ||--|| Users
 Wallets }o--|| CreditCards
 Wallets }o--|| Coupons

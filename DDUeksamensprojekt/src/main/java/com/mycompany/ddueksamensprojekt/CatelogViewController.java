@@ -191,6 +191,7 @@ public class CatelogViewController implements Initializable {
                     public void handle(MouseEvent event) {
                         App.setCurrentProduct(p);
                         try {
+                            App.setLastSceneFxml("catelogView");
                             App.setRoot("productInformation");
                         } catch (Exception e) {
                             System.out.println("Error in " + e.getMessage());;
@@ -240,6 +241,7 @@ public class CatelogViewController implements Initializable {
     @FXML
     private void openProfile() throws IOException {
         App.setRoot("profile");
+        App.setLastSceneFxml("catelogView");
     }
 
     @FXML
@@ -250,6 +252,7 @@ public class CatelogViewController implements Initializable {
     @FXML
     private void openCart() throws IOException {
         App.setRoot("cart");
+        App.setLastSceneFxml("catelogView");
     }
 
     @FXML
