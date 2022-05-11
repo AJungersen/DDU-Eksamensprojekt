@@ -43,12 +43,12 @@ public class WalletCreateController implements Initializable {
 
     @FXML
     private void saveCard() throws IOException, Exception {
-        /*UserDatabaseMethods udm = new UserDatabaseMethods();
+        UserDatabaseMethods udm = new UserDatabaseMethods();
         if(cardHolder.getText() != null && Pattern.matches("[0-9]{16}", cardNumber.getText()) && Pattern.matches("[\\d]{2}[/][\\d]{2}", expirationDate.getText()) && Pattern.matches("[\\d]{3}", CSV.getText()) && cardName != null){
-            udm.saveCreditCard(new CreditCard(-1, expirationDate.getText(), cardNumber.getText(), CSV.getText()), App.getLoggedInUser());
+            udm.saveCreditCard(new CreditCard(-1, expirationDate.getText(), cardNumber.getText(), CSV.getText(), cardHolder.getText(), cardName.getText()),App.getLoggedInUser());
         } else {
-            //send error message
-        }*/
+            System.out.println("ikke oprettet");
+        }
         App.closePopup();
     }
 }

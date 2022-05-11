@@ -23,6 +23,7 @@ public class ProductRecommendations {
         ArrayList<Product> products = sdm.getAllProducts();
         ArrayList<ProductScore> rankedList = new ArrayList();
         ArrayList<Product> returnList = new ArrayList();
+        System.out.println("products size er" + products.size());
         for(Product I: products){
             if(rankedList.size()<6){
                 rankedList.add(new ProductScore(I,(getFitnessOff(I,userProduct))));
