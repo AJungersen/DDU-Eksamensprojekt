@@ -223,8 +223,8 @@ public class UserDatabaseMethods {
                         + "WHERE product_ID IN(SELECT product_ID FROM Favorites "
                         + "WHERE user_ID = ('" + loggedInUser.getUser_ID() + "'))");
 
-                ArrayList<Product> favorites = new ArrayList<>();
-
+                /*ArrayList<Product> favorites = new ArrayList<>();
+                
                 while (rs.next()) {
                     byte[] imgBytes = rs.getBytes("image");
                     ByteArrayInputStream bis = new ByteArrayInputStream(imgBytes);
@@ -233,9 +233,9 @@ public class UserDatabaseMethods {
                     favorites.add(new Product(rs.getInt("product_ID"), rs.getString("name"),
                             Tools.convertBufferedImageToFxImage(bImage), rs.getInt("price"),
                             rs.getInt("stock"), ProductCategory.valueOf(rs.getString("ProductCategory"))));
-                }
+                }*/
 
-                loggedInUser.setFavorites(favorites);
+                loggedInUser.setFavorites(StoreLoadMethods.loadProducts(rs));
 
             } catch (SQLException e) {
                 System.out.println("\n Database error (get logged ind user (get user favorites)): " + e.getMessage() + "\n");
@@ -252,6 +252,8 @@ public class UserDatabaseMethods {
                     savedCarts.add(new Cart(loggedInUser, 
                             UserLoadMethods.loadSavedCartsProducts(conn, rs.getInt("savedShoppingCart_ID"))));
                 }
+                
+                loggedInUser.setSavedCarts(savedCarts);
             } catch (SQLException e) {
                 System.out.println("\n Database error (get logged ind user (get saved carts)): " + e.getMessage() + "\n");
             }
@@ -432,12 +434,53 @@ public class UserDatabaseMethods {
         } catch (SQLException e) {
             System.out.println("\n Database error (remove cart and products (remove)): " + e.getMessage() + "\n");
         }
+        conn.close();
     }
 
     //-------------------------------------
     //---------- add to favorits ----------
-    //------------------------------------- 
+    //-------------------------------------
+    public void addProductToFavorits(int _product_ID, int _user_ID) throws SQLException, Exception {
+        Connection conn = null;
+        Class.forName("org.sqlite.JDBC");
+
+        try {
+            conn = DriverManager.getConnection(connectionString);
+        } catch (SQLException e) {
+            System.out.println("\n Database error (add product to favorits (connection): " + e.getMessage() + "\n");
+        }
+        
+        String sql = "INSERT INTO Favorites VALUES('" + _user_ID + "' , '" + _product_ID + "');";
+        
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println("\n Database error (add product to favorits (insert): " + e.getMessage() + "\n");
+        }
+        conn.close();
+    }
+    
     //------------------------------------------
     //---------- remove from favorits ----------
     //------------------------------------------
+    public void removeProductFromFavorits(int _product_ID, int _user_ID) throws SQLException, Exception {
+        Connection conn = null;
+        Class.forName("org.sqlite.JDBC");
+
+        try {
+            conn = DriverManager.getConnection(connectionString);
+        } catch (SQLException e) {
+            System.out.println("\n Database error (remove product from favorits (connection): " + e.getMessage() + "\n");
+        }
+        
+        String sql = "DELETE FROM Favorites "
+                + "WHERE (user_ID = ('" + _user_ID + "') AND product_ID = ('" + _product_ID + "'));";
+        
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println("\n Database error (remove product from favorits (remove): " + e.getMessage() + "\n");
+        }
+        conn.close();
+    }
 }
