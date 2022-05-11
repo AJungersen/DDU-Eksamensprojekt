@@ -50,22 +50,28 @@ public class ProductRecommendations {
         ArrayList<Purchase> allCarts = sdm.getAllPurchase();
         int h = 0;
         int tot = 0;
-        for(Purchase C: userCarts){
-            tot += 1;
-            if(C.getPurchasedProducts().containsKey(I) && C.getPurchasedProducts().containsKey(U)){
+        float uf = 0;
+        float af = 0;
+        if(userCarts.size() != 0){
+            for(Purchase C: userCarts){
+                tot += 1;
+                if(C.getPurchasedProducts().containsKey(I) && C.getPurchasedProducts().containsKey(U)){
                 h += 1;
+                }
             }
+        uf += h/tot;
         }
-        float uf = h/tot;
         h = 0;
         tot = 0;
+        if(allCarts.size() != 0){
         for(Purchase C: allCarts){
             tot += 1;
             if(C.getPurchasedProducts().containsKey(I) && C.getPurchasedProducts().containsKey(U)){
                 h += 1;
             }
         }
-        float af = h/tot;
+        af += h/tot;
+        }
         // 10 skal erstattes af variabel
         float score = 10*uf+10*af;
         return score;
