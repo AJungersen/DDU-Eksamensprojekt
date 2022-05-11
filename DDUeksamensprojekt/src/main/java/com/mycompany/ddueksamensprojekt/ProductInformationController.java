@@ -76,7 +76,7 @@ public class ProductInformationController implements Initializable {
         }
         ProductRecommendations pr = new ProductRecommendations();
         try {
-            ArrayList<Product> recommended = pr.getBestProduct(product);
+            ArrayList<Product> recommended = pr.getBestProduct(product, 5);
         } catch (Exception ex) {
             Logger.getLogger(ProductInformationController.class.getName()).log(Level.SEVERE, null, ex);
         }
