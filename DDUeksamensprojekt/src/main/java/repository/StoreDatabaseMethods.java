@@ -166,7 +166,8 @@ public class StoreDatabaseMethods {
     //---------- get all products ----------
     //--------------------------------------
     public ArrayList<Product> getAllProducts() throws SQLException, Exception {
-
+        ArrayList<Product> allProducts  = new ArrayList<>();
+        
         Connection conn = null;
         Class.forName("org.sqlite.JDBC");
 
@@ -180,18 +181,16 @@ public class StoreDatabaseMethods {
             Statement stat = conn.createStatement();
 
             ResultSet rs = stat.executeQuery("SELECT * FROM Products");
-
-            conn.close();
-
-            return StoreLoadMethods.loadProducts(rs);
+            
+            allProducts = StoreLoadMethods.loadProducts(rs);
 
         } catch (SQLException e) {
-            System.out.println("\n Database error (get alle products (get products): " + e.getMessage() + "\n");
-
-            conn.close();
-
-            return new ArrayList<Product>();
+            System.out.println("\n Database error (get alle products (get products): " + e.getStackTrace() + "\n");
         }
+        
+        conn.close();
+        
+        return allProducts;
 
         /*
         ArrayList<Product> allProducts = new ArrayList<>();
@@ -300,8 +299,8 @@ public class StoreDatabaseMethods {
         }
 
         //insert products
-        for (Product p : _cart.getProducts().keySet()) {
-            sql = "INSERT INTO PurchasedProducts VALUES('" + purchase_ID + "', '" + p.getItem_ID() + "', '" + _cart.getProducts().get(p) + "');";
+        for (Product p : _cart.getProductsAsMap().keySet()) {
+            sql = "INSERT INTO PurchasedProducts VALUES('" + purchase_ID + "', '" + p.getItem_ID() + "', '" + _cart.getProductsAsMap().get(p) + "');";
 
             try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
                 pstmt.executeUpdate();

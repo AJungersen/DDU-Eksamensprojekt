@@ -108,18 +108,10 @@ public class ProductInformationController implements Initializable {
     @FXML
     private void addToCart() throws IOException {
         try {
-            System.out.println(product);
-            if (App.getCurrentCart().getProducts().containsKey(product)) {
-                System.out.println("contains");
-                App.getCurrentCart().getProducts().put(product,
-                        App.getCurrentCart().getProducts().get(product)
-                        + Integer.parseInt(textFieldNumberOfProduct.getText()));
-            } else {
-                System.out.println("dosent");
-                App.getCurrentCart().getProducts().put(product, 
-                        Integer.parseInt(textFieldNumberOfProduct.getText()));
+            for(int i = 0; i < Integer.parseInt(textFieldNumberOfProduct.getText()); i ++) {
+                App.getCurrentCart().getProductsAsList().add(product);
             }
-            //anton skal lige høres om dette, ellers har jeg et fix - kristus
+            
             openConfirmation();
         } catch (Exception e) {
 
