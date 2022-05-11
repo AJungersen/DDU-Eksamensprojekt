@@ -119,9 +119,25 @@ public class UserDatabaseMethods {
         } catch (SQLException e) {
             System.out.println("\n Database error (create user (connection)): " + e.getMessage() + "\n");
         }
+        
+        //create wallet
+        sql = "INSERT INTO Wallets (funds) VALUES ('" + 0 + "')";
+        
+        //get id
+        int wallet_ID = 0;
+        try {
+            Statement stat = conn.createStatement();
+            
+            ResultSet rs = stat.executeQuery("SELECT MAX(Wallet_ID) FROM wallets;");
+            
+            wallet_ID = rs.getInt("MAX(Wallet_ID)");
+            
+        } catch (SQLException e) {
+            System.out.println("\n Database error (create user (get wallet_ID)): " + e.getMessage() + "\n");
+        }
 
-        sql = "INSERT INTO Users(name, email, password) "
-                + "VALUES('" + _newUser.getName() + "','" + _newUser.getEmail() + "', '" + _password + "');";
+        sql = "INSERT INTO Users(wallet_ID, name, email, password) "
+                + "VALUES('" + wallet_ID + "', '" + _newUser.getName() + "','" + _newUser.getEmail() + "', '" + _password + "');";
 
         try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.executeUpdate();
