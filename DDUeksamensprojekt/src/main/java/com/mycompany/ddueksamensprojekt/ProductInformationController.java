@@ -16,6 +16,9 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Pattern;
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
 import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -325,6 +328,11 @@ public class ProductInformationController implements Initializable {
         t.play();
         t.setOnFinished((e) -> {
         });
+        TranslateTransition t1 = new TranslateTransition(Duration.seconds(1), vbox1);
+        t1.setToY(0);
+        t1.play();
+        t1.setOnFinished((e) -> {
+        });
         TranslateTransition s = new TranslateTransition(Duration.seconds(1), returnButton);
         s.setToY(0);
         s.play();
@@ -333,11 +341,12 @@ public class ProductInformationController implements Initializable {
 
     }
 
-    private void openConfirmationFavorites() {
+    @FXML
+    public void openConfirmationFavorites() {
         //returnButton.setVisible(true);
 
         // returnvbox.setVisible(false);
-        TranslateTransition t = new TranslateTransition(Duration.seconds(1), vbox);
+        TranslateTransition t = new TranslateTransition(Duration.seconds(1), vbox1);
         t.setToY(vbox.getLayoutX() * 0.8);
         t.play();
         t.setOnFinished((e) -> {
@@ -348,20 +357,12 @@ public class ProductInformationController implements Initializable {
         s.setOnFinished((e) -> {
         });
         //returnvbox.setVisible(false);
-    }
-
-    public void closeConfirmationFavorites() {
-        TranslateTransition t = new TranslateTransition(Duration.seconds(1), vbox);
-        t.setToY(0);
-        t.play();
-        t.setOnFinished((e) -> {
+        final Timeline timeline = new Timeline();
+        timeline.getKeyFrames().add(new KeyFrame(Duration.millis(5000)));
+        timeline.play();
+        timeline.setOnFinished((e)->{
+            closeConfirmation();
         });
-        TranslateTransition s = new TranslateTransition(Duration.seconds(1), returnButton);
-        s.setToY(0);
-        s.play();
-        s.setOnFinished((e) -> {
-        });
-
     }
 
     @FXML
