@@ -47,14 +47,14 @@ public class StoreLoadMethods {
             
             //get product
             ResultSet rs = stat.executeQuery("SELECT * FROM Products WHERE product_ID IN"
-                    + "(SELECT product_ID FROM PurchasedShoppingCartsProducts "
+                    + "(SELECT product_ID FROM PurchasedProducts "
                     + "WHERE purchasedShoppingCarts_ID = ('" + _purchase_ID + "'));");
 
             ArrayList<Product> products = StoreLoadMethods.loadProducts(rs);
             
             //get the amounts
             for (Product p : products) {
-                rs = stat.executeQuery("SELECT amount FROM PurchasedShoppingCartsProducts "
+                rs = stat.executeQuery("SELECT amount FROM PurchasedProducts "
                         + "WHERE product_ID = ('" + p.getItem_ID() + "');");
                 //set the products whit amounts
                 purchasedProducts.put(p, rs.getInt("amount"));

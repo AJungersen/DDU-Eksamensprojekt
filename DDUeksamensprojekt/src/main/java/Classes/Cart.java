@@ -17,9 +17,9 @@ import java.util.HashMap;
 public class Cart {
 
     User user;
-    ArrayList<Product> products;
+    private HashMap<Product, Integer> products;
 
-    public Cart(User user, ArrayList<Product> products) {
+    public Cart(User user, HashMap<Product, Integer> products) {
         this.user = user;
         this.products = products;
     }
@@ -32,7 +32,7 @@ public class Cart {
         this.user = user;
     }
 
-    public HashMap<Product, Integer> getProductsAsMap() {
+    /*public HashMap<Product, Integer> getProductsAsMap() {
         HashMap<Product, Integer> map = new HashMap<>();
 
         for (Product p : products) {
@@ -43,14 +43,12 @@ public class Cart {
             }
         }
         return map;
-    }
-
-    public ArrayList<Product> getProductsAsList() {
+    }*/
+    public HashMap<Product, Integer> getProducts() {
         return products;
     }
 
-    public void setProducts(ArrayList<Product> products) {
+    public void setProducts(HashMap<Product, Integer> products) {
         this.products = products;
     }
-
 }

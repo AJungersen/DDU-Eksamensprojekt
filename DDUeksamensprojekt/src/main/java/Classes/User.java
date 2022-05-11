@@ -18,14 +18,16 @@ public class User {
     private String name;
     private String email;
     private Wallet wallet;
-    private ArrayList<Product> favorites;
+    private ArrayList<Product> favorites = new ArrayList<>();
+    private ArrayList<Cart> savedCarts = new ArrayList<>();
 
-    public User(int user_ID, String name, String email, Wallet wallet, ArrayList<Product> favorites) {
+    public User(int user_ID, String name, String email, Wallet wallet, ArrayList<Product> favorites, ArrayList<Cart> savedCarts) {
         this.user_ID = user_ID;
         this.name = name;
         this.email = email;
         this.wallet = wallet;
         this.favorites = favorites;
+        this.savedCarts = savedCarts;
     }
     
     //sign up
@@ -71,5 +73,13 @@ public class User {
 
     public void setFavorites(ArrayList<Product> favorites) {
         this.favorites = favorites;
+    }
+
+    public ArrayList<Cart> getSavedCarts() {
+        return savedCarts;
+    }
+
+    public void setSavedCarts(ArrayList<Cart> savedCarts) {
+        this.savedCarts = savedCarts;
     }
 }

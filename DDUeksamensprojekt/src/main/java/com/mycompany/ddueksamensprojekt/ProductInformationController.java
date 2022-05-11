@@ -29,13 +29,13 @@ import javafx.scene.text.Text;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 
-
 /**
  * FXML Controller class
  *
  * @author Clara Maj
  */
 public class ProductInformationController implements Initializable {
+
     Product product = new Product();
     @FXML
     private TextField textFieldPrice;
@@ -45,30 +45,31 @@ public class ProductInformationController implements Initializable {
     private ImageView imageViewProduct;
     @FXML
     private TextField textFieldNumberOfProduct;
-    @FXML 
+    @FXML
     private VBox vbox;
     private Parent fxml;
-    @FXML 
+    @FXML
     private Text returnButton;
     @FXML
     private Text textProductName;
+
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         product = App.getCurrentProduct();
-        
+
         textProductName.setText(product.getName());
         textFieldPrice.setText(Float.toString(product.getPrice()));
-        textFieldStock.setText(((product.getStock()>0) ? "på lager":"ikke på lager"));
+        textFieldStock.setText(((product.getStock() > 0) ? "på lager" : "ikke på lager"));
         imageViewProduct.setImage(product.getImage());
         //stock.setText((App.currentProduct.getStock()>0 ? "på lager":"ikke på lager"));
-        
+
         try {
             fxml = FXMLLoader.load(getClass().getResource("confirmation.fxml"));
             //vbox.getChildren().removeAll();
-            vbox.getChildren().setAll(fxml);            
+            vbox.getChildren().setAll(fxml);
         } catch (Exception ex) {
             System.out.println("Error");
             //Logger.getLogger(ProductInformationController.class.getName()).log(Level.SEVERE, null, ex);
@@ -82,67 +83,79 @@ public class ProductInformationController implements Initializable {
         //upload hele listen (den har de 5 bedste)
     }
 
-     @FXML
+    @FXML
     private void openProfile() throws IOException {
         App.setRoot("profile");
         App.setLastSceneFxml("productInformation");
     }
+
     @FXML
     private void openMain() throws IOException {
         App.setRoot("main");
     }
+
     @FXML
     private void openCart() throws IOException {
         App.setRoot("cart");
         App.setLastSceneFxml("productInformation");
     }
+
     @FXML
-    private void addToCart() throws IOException{
-       try{
-        for(int i = 0; i < Integer.parseInt(textFieldNumberOfProduct.getText()); i++){
-            App.currentCart.getProductsAsList().add(product);
+    private void addToCart() throws IOException {
+        try {
+            System.out.println(product);
+            if (App.getCurrentCart().getProducts().containsKey(product)) {
+                System.out.println("contains");
+                App.getCurrentCart().getProducts().put(product,
+                        App.getCurrentCart().getProducts().get(product)
+                        + Integer.parseInt(textFieldNumberOfProduct.getText()));
+            } else {
+                System.out.println("dosent");
+                App.getCurrentCart().getProducts().put(product, 
+                        Integer.parseInt(textFieldNumberOfProduct.getText()));
+            }
+            //anton skal lige høres om dette, ellers har jeg et fix - kristus
+            openConfirmation();
+        } catch (Exception e) {
+
         }
-           openConfirmation();
-       }catch(Exception e){
-           
-       }
-       
-        
+
     }
-    private void openConfirmation () {
+
+    private void openConfirmation() {
         //returnButton.setVisible(true);
-        
+
         // returnvbox.setVisible(false);
-       TranslateTransition t = new TranslateTransition(Duration.seconds(1),vbox);
-       t.setToY(vbox.getLayoutX()*0.8);
-       t.play();
-       t.setOnFinished((e)->{
-       }); 
-       TranslateTransition s = new TranslateTransition(Duration.seconds(1),returnButton);
-       s.setToY(38);
-       s.play();
-       s.setOnFinished((e)->{     
-       });
-       //returnvbox.setVisible(false);
-    }
-    
-    @FXML
-    public void closeConfirmation () {
-     TranslateTransition t = new TranslateTransition(Duration.seconds(1),vbox);
-       t.setToY(0);
-       t.play();
-       t.setOnFinished((e)->{
-       });
-       TranslateTransition s = new TranslateTransition(Duration.seconds(1),returnButton);
-       s.setToY(0);
-       s.play();
-       s.setOnFinished((e)->{     
-       });
-       
+        TranslateTransition t = new TranslateTransition(Duration.seconds(1), vbox);
+        t.setToY(vbox.getLayoutX() * 0.8);
+        t.play();
+        t.setOnFinished((e) -> {
+        });
+        TranslateTransition s = new TranslateTransition(Duration.seconds(1), returnButton);
+        s.setToY(38);
+        s.play();
+        s.setOnFinished((e) -> {
+        });
+        //returnvbox.setVisible(false);
     }
 
     @FXML
-    private void goBack(ActionEvent event) throws Exception{
+    public void closeConfirmation() {
+        TranslateTransition t = new TranslateTransition(Duration.seconds(1), vbox);
+        t.setToY(0);
+        t.play();
+        t.setOnFinished((e) -> {
+        });
+        TranslateTransition s = new TranslateTransition(Duration.seconds(1), returnButton);
+        s.setToY(0);
+        s.play();
+        s.setOnFinished((e) -> {
+        });
+
+    }
+
+    @FXML
+    private void goBack(ActionEvent event) throws Exception {
         App.setRoot("catelogView");
     }
 }

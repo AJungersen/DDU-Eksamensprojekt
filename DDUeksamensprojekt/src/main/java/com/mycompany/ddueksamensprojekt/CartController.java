@@ -50,7 +50,7 @@ public class CartController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         int goodNumb = 0;
         float allPrice = 0;
-        HashMap<Product, Integer> hp = App.getCurrentCart().getProductsAsMap();
+        HashMap<Product, Integer> hp = App.getCurrentCart().getProducts();
 
         for (Product p : hp.keySet()) {
             tableViewDispalyData.add(new TableViewDisplayPurchase(hp.get(p), p));

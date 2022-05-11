@@ -232,77 +232,6 @@ public class StoreDatabaseMethods {
 
         return products;
     }
-
-    //---------------------------------------
-    //---------- save cart to user ----------
-    //---------------------------------------
-    public void saveCartTo(Cart _cart) throws Exception, SQLException {
-        Connection conn = null;
-        Class.forName("org.sqlite.JDBC");
-
-        try {
-            conn = DriverManager.getConnection(connectionString);
-        } catch (SQLException e) {
-            System.out.println("\n Database error (save cart to user (connection): " + e.getMessage() + "\n");
-        }
-
-        //crate shopping cart
-        String sql = "INSERT INTO savedShoppingCarts Values('" + _cart.getUser().getUser_ID() + "')";
-
-        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            pstmt.executeUpdate();
-        } catch (SQLException e) {
-            System.out.println("\n Database error (save cart to user (create cart)): " + e.getMessage() + "\n");
-        }
-
-        //get id of created cart
-        int shoppingCart_ID = 0;
-        try {
-            Statement stat = conn.createStatement();
-
-            ResultSet rs = stat.executeQuery("SELECT MAX(savedShoppingCart_ID) FROM savedShoppingCarts;");
-
-            shoppingCart_ID = rs.getInt("MAX(savedShoppingCart_ID)");
-
-        } catch (SQLException e) {
-            System.out.println("\n Database error (save cart to user (get created cart id)): " + e.getMessage() + "\n");
-        }
-
-        //insert products
-        for (Product p : _cart.getProductsAsMap().keySet()) {
-            sql = "INSERT INTO savedShoppingCartsProducts Values ('" + shoppingCart_ID + "', '" + p.getItem_ID() + "', '" + _cart.getProductsAsMap().get(p) + "')";
-
-            try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
-                pstmt.executeUpdate();
-            } catch (SQLException e) {
-                System.out.println("\n Database error (save cart to user (insert products)): " + e.getMessage() + "\n");
-            }
-        }
-
-        conn.close();
-    }
-    
-    //---------------------------------
-    //---------- Remove card ----------
-    //---------------------------------
-    public void removeCard(int _card_ID) throws SQLException, Exception {
-        Connection conn = null;
-        Class.forName("org.sqlite.JDBC");
-
-        try {
-            conn = DriverManager.getConnection(connectionString);
-        } catch (SQLException e) {
-            System.out.println("\n Database error (remove card (connection): " + e.getMessage() + "\n");
-        }
-        
-        String sql = "DELETE FROM CreditCards WHERE creditCard_ID = ('" + _card_ID +"');"; 
-        
-        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            pstmt.executeUpdate();
-        } catch (SQLException e) {
-            System.out.println("\n Database error (remove card (remove)): " + e.getMessage() + "\n");
-        }
-    }
     
     //------------------------------------
     //---------- make purcchase ----------
@@ -341,8 +270,8 @@ public class StoreDatabaseMethods {
         }
 
         //insert products
-        for (Product p : _cart.getProductsAsMap().keySet()) {
-            sql = "INSERT INTO PurchasedProducts VALUES('" + purchase_ID + "', '" + p.getItem_ID() + "', '" + _cart.getProductsAsMap().get(p) + "');";
+        for (Product p : _cart.getProducts().keySet()) {
+            sql = "INSERT INTO PurchasedProducts VALUES('" + purchase_ID + "', '" + p.getItem_ID() + "', '" + _cart.getProducts().get(p) + "');";
 
             try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
                 pstmt.executeUpdate();
@@ -350,5 +279,6 @@ public class StoreDatabaseMethods {
                 System.out.println("\n Database error (make purcahse (insert products)): " + e.getMessage() + "\n");
             }
         }
+        conn.close();
     }
 }
