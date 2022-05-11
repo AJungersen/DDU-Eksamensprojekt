@@ -47,7 +47,10 @@ public class ProductInformationController implements Initializable {
     private TextField textFieldNumberOfProduct;
     @FXML
     private VBox vbox;
+    @FXML
+    private VBox vbox1;
     private Parent fxml;
+    private Parent fxml1;
     @FXML
     private Text returnButton;
     @FXML
@@ -68,8 +71,10 @@ public class ProductInformationController implements Initializable {
 
         try {
             fxml = FXMLLoader.load(getClass().getResource("confirmation.fxml"));
+            fxml1 = FXMLLoader.load(getClass().getResource("confirmationFavorits.fxml"));
             //vbox.getChildren().removeAll();
             vbox.getChildren().setAll(fxml);
+            vbox1.getChildren().setAll(fxml1);
         } catch (Exception ex) {
             System.out.println("Error");
             //Logger.getLogger(ProductInformationController.class.getName()).log(Level.SEVERE, null, ex);
@@ -141,6 +146,38 @@ public class ProductInformationController implements Initializable {
 
     @FXML
     public void closeConfirmation() {
+        TranslateTransition t = new TranslateTransition(Duration.seconds(1), vbox);
+        t.setToY(0);
+        t.play();
+        t.setOnFinished((e) -> {
+        });
+        TranslateTransition s = new TranslateTransition(Duration.seconds(1), returnButton);
+        s.setToY(0);
+        s.play();
+        s.setOnFinished((e) -> {
+        });
+
+    }
+    
+    private void openConfirmationFavorites() {
+        //returnButton.setVisible(true);
+
+        // returnvbox.setVisible(false);
+        TranslateTransition t = new TranslateTransition(Duration.seconds(1), vbox);
+        t.setToY(vbox.getLayoutX() * 0.8);
+        t.play();
+        t.setOnFinished((e) -> {
+        });
+        TranslateTransition s = new TranslateTransition(Duration.seconds(1), returnButton);
+        s.setToY(38);
+        s.play();
+        s.setOnFinished((e) -> {
+        });
+        //returnvbox.setVisible(false);
+    }
+
+    @FXML
+    public void closeConfirmationFavorites() {
         TranslateTransition t = new TranslateTransition(Duration.seconds(1), vbox);
         t.setToY(0);
         t.play();
