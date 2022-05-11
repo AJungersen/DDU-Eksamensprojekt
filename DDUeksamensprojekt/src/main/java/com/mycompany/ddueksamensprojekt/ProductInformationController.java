@@ -92,6 +92,8 @@ public class ProductInformationController implements Initializable {
     @FXML
     private ImageView imageViewProduct;
     @FXML
+    private ImageView favImg;
+    @FXML
     private TextField textFieldNumberOfProduct;
     @FXML
     private VBox vbox;
@@ -105,6 +107,7 @@ public class ProductInformationController implements Initializable {
     private Text textProductName;
     @FXML
     private AnchorPane anchorPaneRelatedProducts;
+    private Image image = new Image("starFull.png");
 
     /**
      * Initializes the controller class.
@@ -352,6 +355,8 @@ public class ProductInformationController implements Initializable {
         //returnButton.setVisible(true);
 
         // returnvbox.setVisible(false);
+      //  favImg.setImage(image);
+        
         TranslateTransition t = new TranslateTransition(Duration.seconds(1), vbox1);
         t.setToY(vbox.getLayoutX() * 0.8);
         t.play();

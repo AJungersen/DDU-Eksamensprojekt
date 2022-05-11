@@ -20,7 +20,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="813.0" prefWidth="866.0" style="-fx-background-color: #40C54D;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.ddueksamensprojekt.ProductInformationController">
+<AnchorPane id="AnchorPane" prefHeight="813.0" prefWidth="866.0" style="-fx-background-color: #40C54D;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.ddueksamensprojekt.ProductInformationController">
    <children>
       <Pane layoutY="104.0" prefHeight="710.0" prefWidth="866.0" style="-fx-background-color: DFF2E1;">
          <effect>
@@ -45,7 +45,7 @@
                   <Cursor fx:constant="DEFAULT" />
                </cursor>
             </TextField>
-            <Button layoutX="677.0" layoutY="221.0" mnemonicParsing="false" onAction="#addToCart" prefHeight="30.0" prefWidth="152.0" stylesheets="@design.css" text="Tilføj til kurv">
+            <Button layoutX="683.0" layoutY="218.0" mnemonicParsing="false" onAction="#addToCart" prefHeight="30.0" prefWidth="152.0" stylesheets="@design.css" text="Tilføj til kurv">
                <font>
                   <Font name="Segoe UI Semibold" size="14.0" />
                </font>
@@ -69,7 +69,7 @@
                   </DropShadow>
                </effect>
             </Button>
-            <Text layoutX="331.0" layoutY="243.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Varelager:">
+            <Text layoutX="365.0" layoutY="244.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Varelager:">
                <font>
                   <Font name="Segoe UI Light Italic" size="21.0" />
                </font>
@@ -118,18 +118,14 @@
                   </DropShadow>
                </effect>
             </TextField>
-            <Button layoutX="677.0" layoutY="170.0" mnemonicParsing="false" onAction="#openConfirmationFavorites" prefHeight="30.0" prefWidth="152.0" stylesheets="@design.css" text="Tilføj til favoritter">
-               <font>
-                  <Font name="Segoe UI Semibold" size="14.0" />
-               </font>
-               <effect>
-                  <DropShadow height="9.33" offsetY="2.0" radius="3.7475000000000005" width="7.66">
-                     <color>
-                        <Color opacity="0.25" />
-                     </color>
-                  </DropShadow>
-               </effect>
-            </Button>
+            <ImageView fx:id="favImg" fitHeight="67.0" fitWidth="74.0" layoutX="352.0" layoutY="78.0" onMouseClicked="#openConfirmationFavorites" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@starYellow.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
          </children>
       </Pane>
       <VBox fx:id="vbox" layoutX="222.0" layoutY="-84.0" prefHeight="180.0" prefWidth="423.0" />
