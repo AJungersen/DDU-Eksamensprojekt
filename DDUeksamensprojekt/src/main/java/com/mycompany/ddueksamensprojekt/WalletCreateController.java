@@ -22,6 +22,7 @@ import repository.UserDatabaseMethods;
  * @author Clara Maj
  */
 public class WalletCreateController implements Initializable {
+
     @FXML
     TextField cardHolder = new TextField();
     @FXML
@@ -32,6 +33,7 @@ public class WalletCreateController implements Initializable {
     TextField CSV = new TextField();
     @FXML
     TextField cardName = new TextField();
+
     /**
      * Initializes the controller class.
      */
@@ -39,18 +41,21 @@ public class WalletCreateController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         System.out.println(App.getLoggedInUser().getWallet());
-    }    
-    
+    }
+
     @FXML
-    private void closePopUp(ActionEvent event) throws Exception{
+    private void closePopUp(ActionEvent event) throws Exception {
         App.closePopup();
     }
 
     @FXML
     private void saveCard() throws IOException, Exception {
         UserDatabaseMethods udm = new UserDatabaseMethods();
-        if(!cardHolder.getText().isBlank() && Pattern.matches("[\\d]{16}", cardNumber.getText()) && Pattern.matches("[\\d]{2}[/][\\d]{2}", expirationDate.getText()) && Pattern.matches("[\\d]{3}", CSV.getText()) && !cardName.getText().isBlank()){
-            udm.saveCreditCard(new CreditCard(-1, expirationDate.getText(), cardNumber.getText(), CSV.getText(), cardHolder.getText(), cardName.getText()),App.getLoggedInUser());
+        if (!cardHolder.getText().isBlank() && Pattern.matches("[\\d]{16}", cardNumber.getText()) && Pattern.matches("[\\d]{2}[/][\\d]{2}", expirationDate.getText()) && Pattern.matches("[\\d]{3}", CSV.getText()) && !cardName.getText().isBlank()) {
+            udm.saveCreditCard(new CreditCard(-1, expirationDate.getText(), cardNumber.getText(), CSV.getText(), cardHolder.getText(), cardName.getText()), App.getLoggedInUser());
+
+            App.getLoggedInUser().getWallet().setCreditCards(udm.getAllUsersCreditCards(App.getLoggedInUser().getUser_ID()));
+
         } else {
             System.out.println(!cardHolder.getText().isBlank());
             System.out.println(Pattern.matches("[\\d]{16}", cardNumber.getText()));

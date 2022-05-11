@@ -64,7 +64,7 @@
                   <Font size="17.0" />
                </font>
             </TextField>
-            <Button layoutX="560.0" layoutY="30.0" mnemonicParsing="false" styleClass="exitbutton" stylesheets="@exit.css" text="X">
+            <Button layoutX="560.0" layoutY="30.0" mnemonicParsing="false" onAction="#deleteSearch" styleClass="exitbutton" stylesheets="@exit.css" text="X">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>

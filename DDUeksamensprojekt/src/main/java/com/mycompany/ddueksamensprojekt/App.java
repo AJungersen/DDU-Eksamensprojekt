@@ -27,7 +27,7 @@ public class App extends Application {
     private static Stage stage;
     private static Popup popup;
     private static ProductCategory currentCategoryDisplaying;
-    public static Cart currentCart = new Cart(loggedInUser, new HashMap<Product, Integer>());
+    public static Cart currentCart = new Cart(loggedInUser, new ArrayList<Product>());
     public static Product currentProduct;
     public static String lastSceneFxml;
 
@@ -35,10 +35,10 @@ public class App extends Application {
     public void start(Stage stage) throws IOException, Exception {
         AdminDataBaseMethods.setProductCategorysImages();
 
-        //scene = new Scene(loadFXML("loginUser"));
+        scene = new Scene(loadFXML("loginUser"));
         //scene = new Scene(loadFXML("mainAdmin"));
         //scene = new Scene(loadFXML("AdminAddImageToCategorys"));
-        scene = new Scene(loadFXML("main"));
+        //scene = new Scene(loadFXML("main"));
         
         stage.setScene(scene);
         stage.show();

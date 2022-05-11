@@ -276,7 +276,7 @@ public class StoreDatabaseMethods {
         }
 
         //create purchase
-        String sql = "INSERT INTO Purchases VALUES('" + _user.getUser_ID() + "', '" + LocalDateTime.now().toString() + "');";
+        String sql = "INSERT INTO Purchases VALUES(?, '" + _user.getUser_ID() + "', '" + LocalDateTime.now().toString() + "');";
 
         try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.executeUpdate();
@@ -300,7 +300,7 @@ public class StoreDatabaseMethods {
 
         //insert products
         for (Product p : _cart.getProductsAsMap().keySet()) {
-            sql = "INSERT INTO PurchasedProducts VALUES('" + purchase_ID + "', '" + p.getItem_ID() + "', '" + _cart.getProductsAsMap().get(p) + "');";
+            sql = "INSERT INTO PurchasedProducts VALUES(?, '" + purchase_ID + "', '" + p.getItem_ID() + "', '" + _cart.getProductsAsMap().get(p) + "');";
 
             try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
                 pstmt.executeUpdate();

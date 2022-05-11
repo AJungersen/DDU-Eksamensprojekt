@@ -88,7 +88,7 @@
                   <TableColumn fx:id="tableColumnAmount" prefWidth="86.0" text="Antal" />
                </columns>
             </TableView>
-            <Button layoutX="324.0" layoutY="518.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="219.0" stylesheets="@design.css" text="Tilføj sidste køb til gemte kurv">
+            <Button layoutX="324.0" layoutY="518.0" mnemonicParsing="false" onAction="#saveLastPurchase" prefHeight="30.0" prefWidth="219.0" stylesheets="@design.css" text="Tilføj sidste køb til gemte kurv">
                <font>
                   <Font name="Segoe UI Semibold" size="14.0" />
                </font>

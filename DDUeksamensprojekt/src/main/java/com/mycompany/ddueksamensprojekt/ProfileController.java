@@ -4,6 +4,7 @@
  */
 package com.mycompany.ddueksamensprojekt;
 
+import Classes.Cart;
 import Classes.ProductCategory;
 import java.io.IOException;
 import java.net.URL;
@@ -22,6 +23,7 @@ import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import repository.StoreDatabaseMethods;
+import repository.UserDatabaseMethods;
 
 /**
  * FXML Controller class
@@ -29,7 +31,8 @@ import repository.StoreDatabaseMethods;
  * @author Clara Maj
  */
 public class ProfileController implements Initializable {
-    StoreDatabaseMethods sdm = new StoreDatabaseMethods();
+    private StoreDatabaseMethods sdm = new StoreDatabaseMethods();
+    private UserDatabaseMethods udm = new UserDatabaseMethods();
     
     @FXML
     private TableColumn<TableViewDisplayPurchase, Image> tableColumnImage;
@@ -113,5 +116,10 @@ public class ProfileController implements Initializable {
     private void goBack(ActionEvent event) throws Exception{
         App.switchToLastScene();
         App.setLastSceneFxml("profile");
+    }
+
+    @FXML
+    private void saveLastPurchase(ActionEvent event) throws Exception {
+        udm.saveCartToUser(new Cart(App.getLoggedInUser(),  sdm.getLatestPurchase(App.getLoggedInUser().getUser_ID()).getPurchasedProducts()));
     }
 }

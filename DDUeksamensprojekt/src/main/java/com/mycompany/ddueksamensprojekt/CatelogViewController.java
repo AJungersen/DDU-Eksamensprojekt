@@ -11,12 +11,14 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.regex.Pattern;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.VPos;
 import javafx.scene.Cursor;
 import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
@@ -75,8 +77,6 @@ public class CatelogViewController implements Initializable {
 
     @FXML
     private Text textFieldCategory;
-    @FXML
-    private TextField userInput;
     @FXML
     private AnchorPane anchorPaneProducts;
     @FXML
@@ -257,6 +257,12 @@ public class CatelogViewController implements Initializable {
 
     @FXML
     private void updateProductsToSearch(KeyEvent event) {
+        loadProducts();
+    }
+
+    @FXML
+    private void deleteSearch(ActionEvent event) {
+        textFieldSearchBar.clear();
         loadProducts();
     }
 }

@@ -17,7 +17,7 @@ import java.util.HashMap;
 public class Cart {
 
     User user;
-    private ArrayList<Product> products;
+    private ArrayList<Product> products = new ArrayList<>();
 
     public Cart(User user, HashMap<Product, Integer> products) {
         this.user = user;

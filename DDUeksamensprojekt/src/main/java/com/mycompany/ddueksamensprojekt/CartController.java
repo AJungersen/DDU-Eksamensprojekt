@@ -55,22 +55,22 @@ public class CartController implements Initializable {
         for (Product p : hp.keySet()) {
             tableViewDispalyData.add(new TableViewDisplayPurchase(hp.get(p), p));
         }
-        
-        for (TableViewDisplayPurchase tvdp : tableViewDispalyData){
+
+        for (TableViewDisplayPurchase tvdp : tableViewDispalyData) {
             goodNumb += tvdp.getAmount();
-            allPrice += tvdp.getPrice()*tvdp.getAmount();
+            allPrice += tvdp.getPrice() * tvdp.getAmount();
         }
 
         tableColumnImage.setCellValueFactory(new PropertyValueFactory<>("displayImage"));
         tableColumnName.setCellValueFactory(new PropertyValueFactory<>("name"));
         tableColumnPrice.setCellValueFactory(new PropertyValueFactory<>("price"));
         tableColumnAmount.setCellValueFactory(new PropertyValueFactory<>("amount"));
-        
+
         goods.getItems().setAll(tableViewDispalyData);
-        
+
         goodNumber.setText(Integer.toString(goodNumb));
         price.setText(Float.toString(allPrice));
-        
+
         App.numberOfGoods = goodNumb;
         App.priceOfGoods = allPrice;
     }
@@ -102,7 +102,7 @@ public class CartController implements Initializable {
     }
 
     @FXML
-    private void goBack(ActionEvent event) throws Exception{
+    private void goBack(ActionEvent event) throws Exception {
         App.switchToLastScene();
         App.setLastSceneFxml("cart");
     }

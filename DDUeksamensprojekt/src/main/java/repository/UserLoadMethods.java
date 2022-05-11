@@ -5,6 +5,7 @@
  */
 package repository;
 
+import Classes.CreditCard;
 import com.mycompany.ddueksamensprojekt.Product;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -18,6 +19,7 @@ import java.util.HashMap;
  * @author Christoffer
  */
 public class UserLoadMethods {
+
     //-----------------------------------------------
     //---------- load saved carts products ----------
     //-----------------------------------------------
@@ -25,14 +27,14 @@ public class UserLoadMethods {
         HashMap<Product, Integer> orderedProducts = new HashMap<>();
         try {
             Statement stat = conn.createStatement();
-            
+
             //get product
             ResultSet rs = stat.executeQuery("SELECT * FROM Products WHERE product_ID IN"
                     + "(SELECT product_ID FROM SavedShoppingCartsProducts "
                     + "WHERE purchasedShoppingCarts_ID = ('" + _savedCart_ID + "'));");
 
             ArrayList<Product> products = StoreLoadMethods.loadProducts(rs);
-            
+
             //get the amounts
             for (Product p : products) {
                 rs = stat.executeQuery("SELECT amount FROM SavedShoppingCartsProducts "
@@ -45,5 +47,21 @@ public class UserLoadMethods {
         }
 
         return orderedProducts;
+    }
+
+    //--------------------------------------
+    //---------- load creditcards ----------
+    //--------------------------------------
+    public static ArrayList<CreditCard> loadCreditCards(ResultSet rs) throws SQLException, Exception {
+        ArrayList<CreditCard> creditCards = new ArrayList<>();
+
+        while (rs.next()) {
+            creditCards.add(new CreditCard(rs.getInt("creditCard_ID"),
+                    rs.getString("experationDate"),
+                    rs.getString("cardNumber"), rs.getString("cvv"), rs.getString("nameOfCardHolder"),
+                    rs.getString("nameOfCard")));
+        }
+        
+        return creditCards;
     }
 }

@@ -16,7 +16,7 @@ import java.util.ArrayList;
 public class Wallet {
     private int wallet_ID;
     private int funds;
-    private ArrayList<CreditCard> creditCards;
+    private ArrayList<CreditCard> creditCards = new ArrayList<>();
     private ArrayList<Coupon> cupons;
 
     public Wallet() {
