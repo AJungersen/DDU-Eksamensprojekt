@@ -165,9 +165,36 @@ public class StoreDatabaseMethods {
     //---------- get all products ----------
     //--------------------------------------
     public ArrayList<Product> getAllProducts() throws SQLException, Exception {
+        
+        Connection conn = null;
+        Class.forName("org.sqlite.JDBC");
 
+        try {
+            conn = DriverManager.getConnection(connectionString);
+        } catch (SQLException e) {
+            System.out.println("\n Database error (get alle products (connection): " + e.getMessage() + "\n");
+        }
+        
+        try {
+            Statement stat = conn.createStatement();
+            
+            ResultSet rs = stat.executeQuery("SELECT * FROM Products");
+            
+            conn.close();   
+            
+            return StoreLoadMethods.loadProducts(rs);
+            
+        } catch (SQLException e) {
+            System.out.println("\n Database error (get alle products (get products): " + e.getMessage() + "\n");
+            
+            conn.close();   
+            
+            return new ArrayList<Product>();
+        }
+
+        /*
         ArrayList<Product> allProducts = new ArrayList<>();
-
+        
         Connection conn = null;
         Class.forName("org.sqlite.JDBC");
 
@@ -196,9 +223,11 @@ public class StoreDatabaseMethods {
             System.out.println("DB Error: " + e.getMessage());
         }
         //Luk forbindelsen til databasen
-        conn.close();
-
+        
         return allProducts;
+        
+        conn.close();   
+        */
     }
 
     //-------------------------------------------------------
@@ -232,7 +261,7 @@ public class StoreDatabaseMethods {
 
         return products;
     }
-    
+
     //------------------------------------
     //---------- make purcchase ----------
     //------------------------------------
