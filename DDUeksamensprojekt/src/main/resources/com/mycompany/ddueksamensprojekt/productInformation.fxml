@@ -118,13 +118,16 @@
                   </DropShadow>
                </effect>
             </TextField>
-            <ImageView fx:id="favImg" fitHeight="67.0" fitWidth="74.0" layoutX="352.0" layoutY="78.0" onMouseClicked="#openConfirmationFavorites" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="favImg" fitHeight="48.0" fitWidth="50.0" layoutX="352.0" layoutY="97.0" onMouseClicked="#openConfirmationFavorites" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@starYellow.png" />
+                  <Image url="@starFull.png" />
                </image>
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
+               <effect>
+                  <ColorAdjust brightness="-1.0" />
+               </effect>
             </ImageView>
          </children>
       </Pane>
