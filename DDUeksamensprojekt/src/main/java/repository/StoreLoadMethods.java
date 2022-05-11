@@ -48,7 +48,7 @@ public class StoreLoadMethods {
             //get product
             ResultSet rs = stat.executeQuery("SELECT * FROM Products WHERE product_ID IN"
                     + "(SELECT product_ID FROM PurchasedProducts "
-                    + "WHERE purchasedShoppingCarts_ID = ('" + _purchase_ID + "'));");
+                    + "WHERE purchase_ID = ('" + _purchase_ID + "'));");
 
             ArrayList<Product> products = StoreLoadMethods.loadProducts(rs);
             

@@ -43,19 +43,20 @@ public class StoreDatabaseMethods {
         try {
             Statement stat = conn.createStatement();
 
-            ResultSet rs = stat.executeQuery("SELECT * FROM PurchasedShoppingCarts "
-                    + "WHERE user_ID = ('" + _user_ID + "') ORDER BY purchasedShoppingCarts_ID LIMIT '1'");
+            ResultSet rs = stat.executeQuery("SELECT * FROM Purchases "
+                    + "WHERE user_ID = ('" + _user_ID + "') ORDER BY purchase_ID LIMIT '1'");
 
             purchase = new Purchase(rs.getInt("purchasedShoppingCarts_ID"),
                     LocalDate.parse(rs.getString("date")), null);
 
         } catch (SQLException e) {
-            System.out.println("\n Database error (get latest purchase (connection): " + e.getMessage() + "\n");
+            System.out.println("\n Database error (get latest purchase (get info): " + e.getMessage() + "\n");
         }
 
         purchase.setPurchasedProducts(StoreLoadMethods.loadPurchasedProducts(conn, purchase.getPurchase_ID()));
 
         conn.close();
+        
         return purchase;
     }
 
@@ -101,7 +102,7 @@ public class StoreDatabaseMethods {
         try {
             conn = DriverManager.getConnection(connectionString);
         } catch (SQLException e) {
-            System.out.println("\n Database error (get latest purchase (connection): " + e.getMessage() + "\n");
+            System.out.println("\n Database error (get all purchase (connection): " + e.getMessage() + "\n");
         }
 
         //get info
@@ -114,7 +115,7 @@ public class StoreDatabaseMethods {
                         LocalDate.parse(rs.getString("date")), null));
             }
         } catch (SQLException e) {
-            System.out.println("\n Database error (get latest purchase (connection): " + e.getMessage() + "\n");
+            System.out.println("\n Database error (get all purchases (get info): " + e.getMessage() + "\n");
         }
         for (Purchase p : allPurchases) {
             p.setPurchasedProducts(StoreLoadMethods.loadPurchasedProducts(conn, p.getPurchase_ID()));
@@ -150,7 +151,7 @@ public class StoreDatabaseMethods {
                         LocalDate.parse(rs.getString("date")), null));
             }
         } catch (SQLException e) {
-            System.out.println("\n Database error (get all users purcahses (connection): " + e.getMessage() + "\n");
+            System.out.println("\n Database error (get all users purcahses (info): " + e.getMessage() + "\n");
         }
         for (Purchase p : allPurchases) {
             p.setPurchasedProducts(StoreLoadMethods.loadPurchasedProducts(conn, p.getPurchase_ID()));
@@ -165,7 +166,7 @@ public class StoreDatabaseMethods {
     //---------- get all products ----------
     //--------------------------------------
     public ArrayList<Product> getAllProducts() throws SQLException, Exception {
-        
+
         Connection conn = null;
         Class.forName("org.sqlite.JDBC");
 
@@ -174,21 +175,21 @@ public class StoreDatabaseMethods {
         } catch (SQLException e) {
             System.out.println("\n Database error (get alle products (connection): " + e.getMessage() + "\n");
         }
-        
+
         try {
             Statement stat = conn.createStatement();
-            
+
             ResultSet rs = stat.executeQuery("SELECT * FROM Products");
-            
-            conn.close();   
-            
+
+            conn.close();
+
             return StoreLoadMethods.loadProducts(rs);
-            
+
         } catch (SQLException e) {
             System.out.println("\n Database error (get alle products (get products): " + e.getMessage() + "\n");
-            
-            conn.close();   
-            
+
+            conn.close();
+
             return new ArrayList<Product>();
         }
 
@@ -227,7 +228,7 @@ public class StoreDatabaseMethods {
         return allProducts;
         
         conn.close();   
-        */
+         */
     }
 
     //-------------------------------------------------------
