@@ -24,9 +24,13 @@ import repository.UserDatabaseMethods;
 public class WalletCreateController implements Initializable {
     @FXML
     TextField cardHolder = new TextField();
+    @FXML
     TextField cardNumber = new TextField();
+    @FXML
     TextField expirationDate = new TextField();
+    @FXML
     TextField CSV = new TextField();
+    @FXML
     TextField cardName = new TextField();
     /**
      * Initializes the controller class.
@@ -45,9 +49,14 @@ public class WalletCreateController implements Initializable {
     @FXML
     private void saveCard() throws IOException, Exception {
         UserDatabaseMethods udm = new UserDatabaseMethods();
-        if(!cardHolder.getText().isBlank() && Pattern.matches("[0-9]{16}", cardNumber.getText()) && Pattern.matches("[\\d]{2}[/][\\d]{2}", expirationDate.getText()) && Pattern.matches("[\\d]{3}", CSV.getText()) && !cardName.getText().isBlank()){
+        if(!cardHolder.getText().isBlank() && Pattern.matches("[\\d]{16}", cardNumber.getText()) && Pattern.matches("[\\d]{2}[/][\\d]{2}", expirationDate.getText()) && Pattern.matches("[\\d]{3}", CSV.getText()) && !cardName.getText().isBlank()){
             udm.saveCreditCard(new CreditCard(-1, expirationDate.getText(), cardNumber.getText(), CSV.getText(), cardHolder.getText(), cardName.getText()),App.getLoggedInUser());
         } else {
+            System.out.println(!cardHolder.getText().isBlank());
+            System.out.println(Pattern.matches("[\\d]{16}", cardNumber.getText()));
+            System.out.println(Pattern.matches("[\\d]{2}[/][\\d]{2}", expirationDate.getText()));
+            System.out.println(Pattern.matches("[\\d]{3}", CSV.getText()));
+            System.out.println(!cardName.getText().isBlank());
             System.out.println("ikke oprettet");
         }
         App.closePopup();

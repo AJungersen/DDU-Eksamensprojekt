@@ -336,7 +336,10 @@ public class UserDatabaseMethods {
             System.out.println("DB Error: " + e.getMessage());
         }
 
-        sql = "INSERT INTO CreditCards(wallet_ID,experationDate,cardNumber,cvv) VALUES('" + U.getWallet().getWallet_ID() + "','" + (C.getExperationDate()) + "','" + sm.hexString((C.getCardNumber())) + "','" + sm.hexString((C.getCvv())) + "');";
+        sql = "INSERT INTO CreditCards VALUES('" + U.getWallet().getWallet_ID() + "',"
+                + "'" + C.getExperationDate() + "','" + sm.hexString((C.getCardNumber())) + "',"
+                + "'" + sm.hexString((C.getCvv())) + "', '" + C.getNameOfCardHolder() + "', "
+                + "'" + C.getNameOfCard() + "');";
 
         try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.executeUpdate();
