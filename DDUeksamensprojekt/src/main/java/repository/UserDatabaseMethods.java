@@ -399,9 +399,9 @@ public class UserDatabaseMethods {
         }
 
         //insert products
-        for (Product p : _cart.getProducts().keySet()) {
+        for (Product p : _cart.getProductsAsMap().keySet()) {
             sql = "INSERT INTO savedShoppingCartsProducts Values ('" + shoppingCart_ID + "', "
-                    + "'" + p.getItem_ID() + "', '" + _cart.getProducts().get(p) + "')";
+                    + "'" + p.getItem_ID() + "', '" + _cart.getProductsAsMap().get(p) + "')";
 
             try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
                 pstmt.executeUpdate();

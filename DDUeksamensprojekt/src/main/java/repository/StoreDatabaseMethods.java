@@ -299,8 +299,8 @@ public class StoreDatabaseMethods {
         }
 
         //insert products
-        for (Product p : _cart.getProducts().keySet()) {
-            sql = "INSERT INTO PurchasedProducts VALUES('" + purchase_ID + "', '" + p.getItem_ID() + "', '" + _cart.getProducts().get(p) + "');";
+        for (Product p : _cart.getProductsAsMap().keySet()) {
+            sql = "INSERT INTO PurchasedProducts VALUES('" + purchase_ID + "', '" + p.getItem_ID() + "', '" + _cart.getProductsAsMap().get(p) + "');";
 
             try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
                 pstmt.executeUpdate();
