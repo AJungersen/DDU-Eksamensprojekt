@@ -129,7 +129,7 @@ public class ProductInformationController implements Initializable {
         ProductRecommendations pr = new ProductRecommendations();
         ArrayList<Product> relatedProducts = new ArrayList<>();
         try {
-            relatedProducts = pr.getBestProduct(product);
+            relatedProducts = pr.getBestProduct(product, 10);
         } catch (Exception ex) {
             Logger.getLogger(ProductInformationController.class.getName()).log(Level.SEVERE, null, ex);
         }

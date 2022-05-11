@@ -34,6 +34,7 @@ public class WalletCreateController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        System.out.println(App.getLoggedInUser().getWallet());
     }    
     
     @FXML
@@ -44,7 +45,7 @@ public class WalletCreateController implements Initializable {
     @FXML
     private void saveCard() throws IOException, Exception {
         UserDatabaseMethods udm = new UserDatabaseMethods();
-        if(cardHolder.getText() != null && Pattern.matches("[0-9]{16}", cardNumber.getText()) && Pattern.matches("[\\d]{2}[/][\\d]{2}", expirationDate.getText()) && Pattern.matches("[\\d]{3}", CSV.getText()) && cardName != null){
+        if(!cardHolder.getText().isBlank() && Pattern.matches("[0-9]{16}", cardNumber.getText()) && Pattern.matches("[\\d]{2}[/][\\d]{2}", expirationDate.getText()) && Pattern.matches("[\\d]{3}", CSV.getText()) && !cardName.getText().isBlank()){
             udm.saveCreditCard(new CreditCard(-1, expirationDate.getText(), cardNumber.getText(), CSV.getText(), cardHolder.getText(), cardName.getText()),App.getLoggedInUser());
         } else {
             System.out.println("ikke oprettet");

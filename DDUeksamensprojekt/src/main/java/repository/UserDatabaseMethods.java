@@ -123,8 +123,14 @@ public class UserDatabaseMethods {
         //create wallet
         sql = "INSERT INTO Wallets (funds) VALUES ('" + 0 + "')";
         
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println("\n Database error (create user (create wallet)): " + e.getMessage() + "\n");
+        }
+        
         //get id
-        int wallet_ID = 0;
+        int wallet_ID = -1;
         try {
             Statement stat = conn.createStatement();
             

@@ -39,7 +39,7 @@ public class ProductRecommendations {
             }
             }
         }System.out.println(rankedList.size());
-        for(int i = 0; i < size; i++){
+        for(int i = 0; i < size+1; i++){
             returnList.add(rankedList.get(i).getI());
         }
         return returnList;
