@@ -319,6 +319,12 @@ public class ProductInformationController implements Initializable {
         s.setOnFinished((e) -> {
         });
         //returnvbox.setVisible(false);
+        final Timeline timeline = new Timeline();
+        timeline.getKeyFrames().add(new KeyFrame(Duration.millis(5000)));
+        timeline.play();
+        timeline.setOnFinished((e)->{
+            closeConfirmation();
+        });
     }
 
     @FXML
