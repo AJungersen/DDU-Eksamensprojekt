@@ -118,10 +118,22 @@
                   </DropShadow>
                </effect>
             </TextField>
+            <Button layoutX="677.0" layoutY="170.0" mnemonicParsing="false" onAction="#openConfirmationFavorites" prefHeight="30.0" prefWidth="152.0" stylesheets="@design.css" text="Tilføj til favoritter">
+               <font>
+                  <Font name="Segoe UI Semibold" size="14.0" />
+               </font>
+               <effect>
+                  <DropShadow height="9.33" offsetY="2.0" radius="3.7475000000000005" width="7.66">
+                     <color>
+                        <Color opacity="0.25" />
+                     </color>
+                  </DropShadow>
+               </effect>
+            </Button>
          </children>
       </Pane>
       <VBox fx:id="vbox" layoutX="222.0" layoutY="-84.0" prefHeight="180.0" prefWidth="423.0" />
-      <VBox fx:id="vbox1" layoutX="232.0" layoutY="-74.0" prefHeight="180.0" prefWidth="423.0" />
+      <VBox fx:id="vbox1" layoutX="232.0" layoutY="-80.0" prefHeight="180.0" prefWidth="423.0" />
       <Text fx:id="returnButton" layoutX="620.0" layoutY="97.0" onMouseClicked="#closeConfirmation" strokeType="OUTSIDE" strokeWidth="0.0" text="X">
          <cursor>
             <Cursor fx:constant="HAND" />
