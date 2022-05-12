@@ -8,8 +8,11 @@ import Classes.CreditCard;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.regex.Pattern;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -45,14 +48,6 @@ public class WalletCreateController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         System.out.println(App.getLoggedInUser().getWallet());
-
-        System.out.println(App.getStage().getScene().getRoot());
-
-        for (Node n : ((Pane) App.getStage().getScene().getRoot().getChildrenUnmodifiable().get(0)).getChildrenUnmodifiable()) {
-            if (n instanceof ListView) {
-                System.out.println("test");
-            }
-        }
     }
 
     @FXML
@@ -69,6 +64,13 @@ public class WalletCreateController implements Initializable {
             App.getLoggedInUser().getWallet().setCreditCards(udm.getAllUsersCreditCards(App.getLoggedInUser().getUser_ID()));
 
             //this is gonna be uckly be prepared
+            for (Node n : ((Pane) App.getStage().getScene().getRoot().getChildrenUnmodifiable().get(0)).getChildrenUnmodifiable()) {
+                if (n instanceof ListView) {
+                    ObservableList<CreditCard> creditCards = FXCollections.observableList(App.getLoggedInUser().getWallet().getCreditCards());
+
+                    ((ListView) n).setItems(creditCards);
+                }
+            }
         } else {
             System.out.println(!cardHolder.getText().isBlank());
             System.out.println(Pattern.matches("[\\d]{16}", cardNumber.getText()));
