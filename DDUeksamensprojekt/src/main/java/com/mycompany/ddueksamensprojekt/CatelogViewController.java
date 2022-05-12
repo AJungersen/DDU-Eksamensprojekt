@@ -193,6 +193,7 @@ public class CatelogViewController implements Initializable {
                         try {
                             App.setLastSceneFxml("catelogView");
                             App.setRoot("productInformation");
+                            System.out.println("\n\n TEST TEST TEST TEST TEST \n\n");
                         } catch (Exception e) {
                             System.out.println("Error in " + e.getMessage());;
                         }

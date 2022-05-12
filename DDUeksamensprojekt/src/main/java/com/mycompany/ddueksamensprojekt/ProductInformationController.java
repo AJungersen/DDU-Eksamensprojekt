@@ -107,13 +107,19 @@ public class ProductInformationController implements Initializable {
     private Text textProductName;
     @FXML
     private AnchorPane anchorPaneRelatedProducts;
-    private Image image = new Image("starFull.png");
+    private Image image;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        try {
+            image = new Image(new FileInputStream("starFull.png"));
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        
         product = App.getCurrentProduct();
 
         textProductName.setText(product.getName());

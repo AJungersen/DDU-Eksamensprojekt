@@ -13,7 +13,11 @@ import java.util.regex.Pattern;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import repository.UserDatabaseMethods;
 
 /**
@@ -41,6 +45,14 @@ public class WalletCreateController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         System.out.println(App.getLoggedInUser().getWallet());
+
+        System.out.println(App.getStage().getScene().getRoot());
+
+        for (Node n : ((Pane) App.getStage().getScene().getRoot().getChildrenUnmodifiable().get(0)).getChildrenUnmodifiable()) {
+            if (n instanceof ListView) {
+                System.out.println("test");
+            }
+        }
     }
 
     @FXML
@@ -56,6 +68,7 @@ public class WalletCreateController implements Initializable {
 
             App.getLoggedInUser().getWallet().setCreditCards(udm.getAllUsersCreditCards(App.getLoggedInUser().getUser_ID()));
 
+            //this is gonna be uckly be prepared
         } else {
             System.out.println(!cardHolder.getText().isBlank());
             System.out.println(Pattern.matches("[\\d]{16}", cardNumber.getText()));
