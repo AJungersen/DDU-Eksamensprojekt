@@ -54,7 +54,7 @@ public class ChangePasswordController implements Initializable {
             
             //sucess message
             textErroField.setFill(Paint.valueOf("green"));
-            textErroField.setText("Pssword er opdateret");
+            textErroField.setText("Kodeordet er opdateret");
             
             passwordFieldNewPassword.setText("");
             passwordFielNewPasswordRepeat.setText("");
@@ -63,7 +63,7 @@ public class ChangePasswordController implements Initializable {
         } else {
             //error message
             textErroField.setFill(Paint.valueOf("red"));
-            textErroField.setText("Enten er det rigtige password ikke intastet, eller også matcher de to nye passwords ikke");
+            textErroField.setText("Enten er det rigtige kodeord ikke indtastet, eller også matcher de to nye kodeord ikke");
         }
     }
 

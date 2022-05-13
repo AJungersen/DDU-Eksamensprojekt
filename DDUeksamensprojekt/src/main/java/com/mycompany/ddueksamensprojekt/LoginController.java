@@ -66,10 +66,10 @@ public class LoginController {
                 //login
                 App.setRoot("main");
             } else {
-                textErrorMessage.setText("user dosen't exist or password dont match");
+                textErrorMessage.setText("Brugeren findes ikke eller koden matcher ikke");
             }
         } else {
-            textErrorMessage.setText("user dosen't exist or password dont match");
+            textErrorMessage.setText("Brugeren findes ikke eller koden matcher ikke");
         }
     }
 

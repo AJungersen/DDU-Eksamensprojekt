@@ -95,26 +95,26 @@ public class SignUpController {
 
                                     //hop vider/login mangler fxml App.setRoot("");
                                 } else {
-                                    textErrorMessage.setText("Password meets requirements, but donsen't match");
+                                    textErrorMessage.setText("Koden møder kravene men matcher ikke");
                                 }
                             } else {
-                                textErrorMessage.setText("Password is missing a uppercase character");
+                                textErrorMessage.setText("Koden mangler et stort bogstav");
                             }
                         } else {
-                            textErrorMessage.setText("Password is missing a special character");
+                            textErrorMessage.setText("Koden mangler et specielt tegn");
                         }
                     } else {
-                        textErrorMessage.setText("Password needs to be at least 8 characters long");
+                        textErrorMessage.setText("Koden skal være mindst 8 tegn langt");
 
                     }
                 } else {
-                    textErrorMessage.setText("Pleas insert a valid email");
+                    textErrorMessage.setText("Vær venlig at indsætte en valid email");
                 }
             } else {
-                textErrorMessage.setText("User already exist");
+                textErrorMessage.setText("Brugeren findes allerede");
             }
         } else {
-            textErrorMessage.setText("All fields need to be filled");
+            textErrorMessage.setText("Alle felterne skal være udfyldt");
             System.out.println(textErrorMessage.getText());
         }
 
