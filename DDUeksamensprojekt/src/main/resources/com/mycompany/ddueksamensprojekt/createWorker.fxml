@@ -13,7 +13,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="406.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.ddueksamensprojekt.TotalShiftsController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="406.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.ddueksamensprojekt.TotalShiftsController">
    <children>
       <Pane prefHeight="408.0" prefWidth="600.0" style="-fx-background-color: #D6DCF6; -fx-border-color: #516DD2;">
          <children>
@@ -71,7 +71,7 @@
                   </DropShadow>
                </effect>
             </Button>
-            <Button layoutX="117.0" layoutY="330.0" mnemonicParsing="false" onAction="#closePopUp" prefHeight="43.0" prefWidth="150.0" style="-fx-background-color: #516DD2;" stylesheets="@design.css" text="Gem medarbejder">
+            <Button layoutX="117.0" layoutY="351.0" mnemonicParsing="false" onAction="#closePopUp" prefHeight="43.0" prefWidth="150.0" style="-fx-background-color: #516DD2;" stylesheets="@design.css" text="Gem medarbejder">
                <font>
                   <Font name="Segoe UI Semibold" size="14.0" />
                </font>
@@ -120,6 +120,18 @@
                </effect>
             </TextField>
             <TextField layoutX="90.0" layoutY="254.0" prefHeight="33.0" prefWidth="248.0" promptText="Jensen123" style="-fx-background-radius: 0px; -fx-border-color: #40C54D; -fx-border-width: 0px 0px 0px 0px; -fx-background-color: #FFFFFF;">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <effect>
+                  <DropShadow height="11.0" offsetY="2.0" radius="4.165" width="7.66">
+                     <color>
+                        <Color opacity="0.24511928856372833" />
+                     </color>
+                  </DropShadow>
+               </effect>
+            </TextField>
+            <TextField layoutX="90.0" layoutY="299.0" prefHeight="33.0" prefWidth="248.0" promptText="Gentag koden" style="-fx-background-radius: 0px; -fx-border-color: #40C54D; -fx-border-width: 0px 0px 0px 0px; -fx-background-color: #FFFFFF;">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>

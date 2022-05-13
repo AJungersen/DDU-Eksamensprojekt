@@ -77,4 +77,30 @@ public class MainAdminController implements Initializable {
     void openProfile() throws Exception{
         App.setRoot("profileAdmin");
     }
+    @FXML
+    void createCategory() throws Exception{
+        Stage stage = App.getStage();
+        Popup popup = new Popup();
+
+        popup.getContent().addAll(App.loadFXML("createCategory").getChildrenUnmodifiable());
+        popup.setX(stage.getWidth()/2);
+        popup.setY(stage.getHeight()/2);
+
+        App.setPopup(popup);
+
+        App.openPopup();
+    }
+    @FXML
+    void createProduct() throws Exception{
+        Stage stage = App.getStage();
+        Popup popup = new Popup();
+
+        popup.getContent().addAll(App.loadFXML("createProduct").getChildrenUnmodifiable());
+        popup.setX(stage.getWidth()/2);
+        popup.setY(stage.getHeight()/2);
+
+        App.setPopup(popup);
+
+        App.openPopup();
+    }
 }

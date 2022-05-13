@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="373.0" prefWidth="360.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.ddueksamensprojekt.CreateCategoryController">
+   <children>
+      <Pane prefHeight="395.0" prefWidth="672.0" style="-fx-background-color: #D6DCF6; -fx-border-color: #516DD2;">
+         <children>
+            <Button layoutX="80.0" layoutY="327.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="152.0" style="-fx-background-color: #516DD2;" stylesheets="@design.css" text="Opret">
+               <font>
+                  <Font name="Segoe UI Semibold" size="14.0" />
+               </font>
+               <effect>
+                  <DropShadow height="9.33" offsetY="2.0" radius="3.7475000000000005" width="7.66">
+                     <color>
+                        <Color opacity="0.25" />
+                     </color>
+                  </DropShadow>
+               </effect>
+            </Button>
+            <Button layoutX="413.0" layoutY="327.0" mnemonicParsing="false" onAction="#closePopUp" prefHeight="30.0" prefWidth="152.0" style="-fx-background-color: #516DD2;" stylesheets="@design.css" text="Annuller">
+               <font>
+                  <Font name="Segoe UI Semibold" size="14.0" />
+               </font>
+               <effect>
+                  <DropShadow height="9.33" offsetY="2.0" radius="3.7475000000000005" width="7.66">
+                     <color>
+                        <Color opacity="0.25" />
+                     </color>
+                  </DropShadow>
+               </effect>
+            </Button>
+            <TextField editable="false" layoutX="23.0" layoutY="17.0" prefHeight="40.0" prefWidth="629.0" promptText="Titel" style="-fx-background-radius: 0px; -fx-border-width: 0px 0px 3px 0px; -fx-border-color: #516DD2; -fx-background-color: #D6DCF6;">
+               <font>
+                  <Font size="17.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="DEFAULT" />
+               </cursor>
+            </TextField>
+            <Label layoutX="23.0" layoutY="72.0" text="Vælg billede:">
+               <font>
+                  <Font name="Segoe UI Light Italic" size="20.0" />
+               </font>
+            </Label>
+            <Button layoutX="24.0" layoutY="102.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="112.0" style="-fx-background-color: #516DD2;" stylesheets="@design.css" text="Vælg billede">
+               <font>
+                  <Font name="Segoe UI Semibold" size="14.0" />
+               </font>
+               <effect>
+                  <DropShadow height="9.33" offsetY="2.0" radius="3.7475000000000005" width="7.66">
+                     <color>
+                        <Color opacity="0.25" />
+                     </color>
+                  </DropShadow>
+               </effect>
+            </Button>
+            <ImageView fitHeight="202.0" fitWidth="270.0" layoutX="382.0" layoutY="72.0" pickOnBounds="true" preserveRatio="true" />
+            <TextField layoutX="129.0" layoutY="148.0" onKeyTyped="#checkIfKeyTypedIsInteger" prefHeight="33.0" prefWidth="106.0" promptText="0" style="-fx-background-radius: 0px; -fx-border-color: #40C54D; -fx-border-width: 0px 0px 0px 0px; -fx-background-color: #FFFFFF;">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <effect>
+                  <DropShadow height="11.0" offsetY="2.0" radius="4.165" width="7.66">
+                     <color>
+                        <Color opacity="0.24511928856372833" />
+                     </color>
+                  </DropShadow>
+               </effect>
+            </TextField>
+            <Label layoutX="23.0" layoutY="149.0" text="Pris pr stk:">
+               <font>
+                  <Font name="Segoe UI Light Italic" size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="23.0" layoutY="198.0" text="Varelager:">
+               <font>
+                  <Font name="Segoe UI Light Italic" size="20.0" />
+               </font>
+            </Label>
+            <TextField layoutX="129.0" layoutY="197.0" onKeyTyped="#checkIfKeyTypedIsInteger" prefHeight="33.0" prefWidth="106.0" promptText="0" style="-fx-background-radius: 0px; -fx-border-color: #40C54D; -fx-border-width: 0px 0px 0px 0px; -fx-background-color: #FFFFFF;">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <effect>
+                  <DropShadow height="11.0" offsetY="2.0" radius="4.165" width="7.66">
+                     <color>
+                        <Color opacity="0.24511928856372833" />
+                     </color>
+                  </DropShadow>
+               </effect>
+            </TextField>
+         </children>
+         <effect>
+            <DropShadow />
+         </effect>
+      </Pane>
+   </children>
+</AnchorPane>
