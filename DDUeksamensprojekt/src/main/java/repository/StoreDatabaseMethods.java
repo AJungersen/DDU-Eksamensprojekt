@@ -44,10 +44,10 @@ public class StoreDatabaseMethods {
             Statement stat = conn.createStatement();
 
             ResultSet rs = stat.executeQuery("SELECT * FROM Purchases "
-                    + "WHERE user_ID = ('" + _user_ID + "') ORDER BY purchase_ID LIMIT '1'");
+                    + "WHERE user_ID = ('" + _user_ID + "') ORDER BY purchase_ID DESC LIMIT '1'");
 
-            purchase = new Purchase(rs.getInt("purchasedShoppingCarts_ID"),
-                    LocalDate.parse(rs.getString("date")), null);
+            purchase = new Purchase(rs.getInt("purchase_ID"),
+                    LocalDateTime.parse(rs.getString("date")), null);
 
         } catch (SQLException e) {
             System.out.println("\n Database error (get latest purchase (get info): " + e.getMessage() + "\n");
@@ -56,7 +56,7 @@ public class StoreDatabaseMethods {
         purchase.setPurchasedProducts(StoreLoadMethods.loadPurchasedProducts(conn, purchase.getPurchase_ID()));
 
         conn.close();
-        
+
         return purchase;
     }
 
@@ -64,6 +64,8 @@ public class StoreDatabaseMethods {
     //---------- get number of users purchase ----------
     //--------------------------------------------------
     public int getNumberOfUseresPurchases(int _user_ID) throws Exception, SQLException {
+        int numberOfPurchases = 0;
+
         Connection conn = null;
         Class.forName("org.sqlite.JDBC");
 
@@ -76,18 +78,19 @@ public class StoreDatabaseMethods {
         try {
             Statement stat = conn.createStatement();
 
-            ResultSet rs = stat.executeQuery("SELECT user_ID FROM purchases WHERE user_ID = ('" + _user_ID + "');");
+            ResultSet rs = stat.executeQuery("SELECT Purchase_ID FROM purchases WHERE user_ID = ('" + _user_ID + "');");
 
-            conn.close();
+            while (rs.next()) {
+                numberOfPurchases++;
+            }
 
-            return rs.getFetchSize();
         } catch (SQLException e) {
             System.out.println("\n Database error (get number of users purchase (connection): " + e.getMessage() + "\n");
-
-            conn.close();
-
-            return 0;
         }
+
+        conn.close();
+
+        return numberOfPurchases;
     }
 
     //--------------------------------------
@@ -112,7 +115,7 @@ public class StoreDatabaseMethods {
             ResultSet rs = stat.executeQuery("SELECT * FROM Purchases ");
             while (rs.next()) {
                 allPurchases.add(new Purchase(rs.getInt("purchase_ID"),
-                        LocalDate.parse(rs.getString("date")), null));
+                        LocalDateTime.parse(rs.getString("date")), null));
             }
         } catch (SQLException e) {
             System.out.println("\n Database error (get all purchases (get info): " + e.getMessage() + "\n");
@@ -148,7 +151,7 @@ public class StoreDatabaseMethods {
             ResultSet rs = stat.executeQuery("SELECT * FROM Purchases WHERE user_ID = ('" + _user_ID + "') ");
             while (rs.next()) {
                 allPurchases.add(new Purchase(rs.getInt("purchase_ID"),
-                        LocalDate.parse(rs.getString("date")), null));
+                        LocalDateTime.parse(rs.getString("date")), null));
             }
         } catch (SQLException e) {
             System.out.println("\n Database error (get all users purcahses (info): " + e.getMessage() + "\n");
@@ -166,8 +169,8 @@ public class StoreDatabaseMethods {
     //---------- get all products ----------
     //--------------------------------------
     public ArrayList<Product> getAllProducts() throws SQLException, Exception {
-        ArrayList<Product> allProducts  = new ArrayList<>();
-        
+        ArrayList<Product> allProducts = new ArrayList<>();
+
         Connection conn = null;
         Class.forName("org.sqlite.JDBC");
 
@@ -181,15 +184,15 @@ public class StoreDatabaseMethods {
             Statement stat = conn.createStatement();
 
             ResultSet rs = stat.executeQuery("SELECT * FROM Products");
-            
+
             allProducts = StoreLoadMethods.loadProducts(rs);
 
         } catch (SQLException e) {
             System.out.println("\n Database error (get alle products (get products): " + e.getStackTrace() + "\n");
         }
-        
+
         conn.close();
-        
+
         return allProducts;
 
         /*
@@ -290,9 +293,9 @@ public class StoreDatabaseMethods {
         try {
             Statement stat = conn.createStatement();
 
-            ResultSet rs = stat.executeQuery("SELECT MAX(Purcahse_ID) FORM Purchases;");
+            ResultSet rs = stat.executeQuery("SELECT MAX(Purchase_ID) FROM Purchases;");
 
-            purchase_ID = rs.getInt("MAX(Purcahse_ID)");
+            purchase_ID = rs.getInt("MAX(Purchase_ID)");
 
         } catch (SQLException e) {
             System.out.println("\n Database error (make purcahse (get purcahse ID)): " + e.getMessage() + "\n");
@@ -300,7 +303,7 @@ public class StoreDatabaseMethods {
 
         //insert products
         for (Product p : _cart.getProductsAsMap().keySet()) {
-            sql = "INSERT INTO PurchasedProducts VALUES(?, '" + purchase_ID + "', '" + p.getItem_ID() + "', '" + _cart.getProductsAsMap().get(p) + "');";
+            sql = "INSERT INTO PurchasedProducts VALUES('" + purchase_ID + "', '" + p.getItem_ID() + "', '" + _cart.getProductsAsMap().get(p) + "');";
 
             try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
                 pstmt.executeUpdate();

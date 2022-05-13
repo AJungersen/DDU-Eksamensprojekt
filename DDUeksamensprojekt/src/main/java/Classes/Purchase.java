@@ -8,6 +8,7 @@ package Classes;
 import com.mycompany.ddueksamensprojekt.App;
 import com.mycompany.ddueksamensprojekt.Product;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.HashMap;
 
 /**
@@ -17,18 +18,18 @@ import java.util.HashMap;
 public class Purchase {
 
     private int purchase_ID;
-    private LocalDate purchaseDate;
+    private LocalDateTime purchaseDate;
     private HashMap<Product, Integer> purchasedProducts;
     
     public Purchase() {
     }
 
-    public Purchase(int purchase_ID, LocalDate purchaseDate) {
+    public Purchase(int purchase_ID, LocalDateTime purchaseDate) {
         this.purchase_ID = purchase_ID;
         this.purchaseDate = purchaseDate;
     }
 
-    public Purchase(int shoppingCart_ID, LocalDate purchaseDate, HashMap<Product, Integer> purchasedProducts) {
+    public Purchase(int shoppingCart_ID, LocalDateTime purchaseDate, HashMap<Product, Integer> purchasedProducts) {
         this.purchase_ID = shoppingCart_ID;
         this.purchaseDate = purchaseDate;
         this.purchasedProducts = purchasedProducts;
@@ -42,11 +43,11 @@ public class Purchase {
         this.purchase_ID = purchase_ID;
     }
 
-    public LocalDate getPurchaseDate() {
+    public LocalDateTime getPurchaseDate() {
         return purchaseDate;
     }
 
-    public void setPurchaseDate(LocalDate purchaseDate) {
+    public void setPurchaseDate(LocalDateTime purchaseDate) {
         this.purchaseDate = purchaseDate;
     }
 

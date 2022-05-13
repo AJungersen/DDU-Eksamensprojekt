@@ -16,11 +16,11 @@ import java.util.HashMap;
  */
 public class Cart {
 
-    User user;
+    int cart_ID;
     private ArrayList<Product> products = new ArrayList<>();
 
-    public Cart(User user, HashMap<Product, Integer> products) {
-        this.user = user;
+    public Cart(int cart_ID, HashMap<Product, Integer> products) {
+        this.cart_ID = cart_ID;
         for (Product p : products.keySet()) {
             for (int i = 0; i < products.get(p); i++) {
                 this.products.add(p);
@@ -28,19 +28,15 @@ public class Cart {
         }
     }
 
-    public Cart(User user, ArrayList<Product> products) {
-        this.user = user;
+    public Cart(int cart_ID, ArrayList<Product> products) {
+        this.cart_ID = cart_ID;
         this.products = products;
     }
 
-    public User getUser() {
-        return user;
+    public int getCart_ID() {
+        return cart_ID;
     }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
+    
     public HashMap<Product, Integer> getProductsAsMap() {
         HashMap<Product, Integer> map = new HashMap<>();
 

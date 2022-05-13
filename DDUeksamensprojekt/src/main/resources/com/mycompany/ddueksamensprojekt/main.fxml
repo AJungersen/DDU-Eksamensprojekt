@@ -73,7 +73,7 @@
                     <columns>
                       <TableColumn fx:id="tableColumnImage" prefWidth="202.5" text="Billede" />
                       <TableColumn fx:id="tableColumnName" prefWidth="447.0" text="Navn" />
-                        <TableColumn fx:id="tableColumnPrice" prefWidth="116.5" text="Pris" />
+                        <TableColumn fx:id="tableColumnPrice" prefWidth="116.5" text="Stk. pris" />
                         <TableColumn fx:id="tableColumnAmount" prefWidth="132.5" text="Antal" />
                     </columns>
                   </TableView>

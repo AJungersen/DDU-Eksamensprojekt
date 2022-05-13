@@ -28,6 +28,11 @@ public class CreditCard {
         this.nameOfCard = nameOfCard;
     }
 
+    @Override
+    public String toString() {
+        return nameOfCard;
+    }
+
     public int getCreditCard_ID() {
         return creditCard_ID;
     }

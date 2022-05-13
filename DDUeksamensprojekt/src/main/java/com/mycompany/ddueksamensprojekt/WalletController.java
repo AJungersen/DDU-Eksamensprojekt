@@ -37,8 +37,6 @@ public class WalletController implements Initializable {
     @FXML
     private Button createCard;
     @FXML
-    private Button viewCard;
-    @FXML
     private ListView<CreditCard> cardview;
 
     /**
@@ -98,5 +96,9 @@ public class WalletController implements Initializable {
     @FXML
     private void openProfile() throws IOException {
         App.setRoot("profile");
+    }
+
+    @FXML
+    private void viewCard(ActionEvent event) {
     }
 }

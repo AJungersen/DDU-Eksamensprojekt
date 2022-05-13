@@ -165,7 +165,7 @@ public class MainController implements Initializable {
             ArrayList<TableViewDisplayPurchase> tableViewDispalyData = new ArrayList<>();
 
             HashMap<Product, Integer> hm = sdm.getLatestPurchase(App.getLoggedInUser().getUser_ID()).getPurchasedProducts();
-
+            
             for (Product p : hm.keySet()) {
                 tableViewDispalyData.add(new TableViewDisplayPurchase(hm.get(p), p));
             }
@@ -195,11 +195,12 @@ public class MainController implements Initializable {
     }
 
     @FXML
-    private void goToSelectedProduct(MouseEvent event) {
+    private void goToSelectedProduct(MouseEvent event) throws Exception{
 
-        if (tableViewLastPurchas.getFocusModel().getFocusedCell().getColumn() == 1) {
-            //send to 
-            System.out.println(tableViewLastPurchas.getSelectionModel().getSelectedItem().getAmount());
+        if (tableViewLastPurchas.getFocusModel().getFocusedCell().getColumn() <= 1) {
+            //send to product
+            App.setCurrentProduct(tableViewLastPurchas.getSelectionModel().getSelectedItem());
+            App.setRoot("productInformation");
         }
     }
 

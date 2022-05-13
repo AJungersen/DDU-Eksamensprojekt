@@ -84,7 +84,7 @@
                   </DropShadow>
                </effect>
             </TextField>
-            <Button layoutX="366.0" layoutY="300.0" mnemonicParsing="false" prefHeight="52.0" prefWidth="189.0" stylesheets="@design.css" text="Betal">
+            <Button layoutX="366.0" layoutY="300.0" mnemonicParsing="false" onAction="#checkOut" prefHeight="52.0" prefWidth="189.0" stylesheets="@design.css" text="Betal">
                <font>
                   <Font name="Segoe UI Semibold" size="18.0" />
                </font>
@@ -97,7 +97,7 @@
                </effect>
             </Button>
             <Line endX="7.5" endY="179.0" layoutX="443.0" layoutY="95.0" startX="7.5" startY="-64.0" stroke="#333333" strokeWidth="3.0" />
-            <ChoiceBox layoutX="37.0" layoutY="253.0" prefHeight="33.0" prefWidth="298.0" stylesheets="@combobox.css">
+            <ChoiceBox fx:id="choiceBoxUsersCards" layoutX="37.0" layoutY="253.0" prefHeight="33.0" prefWidth="298.0" stylesheets="@combobox.css">
                <styleClass>
                   <String fx:value="arrow" />
                   <String fx:value="arrow-button" />

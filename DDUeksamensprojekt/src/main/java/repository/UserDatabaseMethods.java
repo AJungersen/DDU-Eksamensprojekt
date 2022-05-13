@@ -199,7 +199,7 @@ public class UserDatabaseMethods {
 
             //get wallet coupons
             try {
-                rs = stat.executeQuery("SELEC * FROM Coupons "
+                rs = stat.executeQuery("SELECT * FROM Coupons "
                         + "WHERE wallet_ID = ('" + loggedInUser.getWallet().getWallet_ID() + "') ");
 
                 ArrayList<Coupon> coupons = new ArrayList<>();
@@ -245,10 +245,7 @@ public class UserDatabaseMethods {
                 rs = stat.executeQuery("SELECT savedShoppingCart_ID FROM savedShoppingCarts "
                         + "WHERE user_ID = ('" + loggedInUser.getUser_ID() + "') ;");
 
-                while (rs.next()) {
-                    savedCarts.add(new Cart(loggedInUser,
-                            UserLoadMethods.loadSavedCartsProducts(conn, rs.getInt("savedShoppingCart_ID"))));
-                }
+                savedCarts = UserLoadMethods.loadCarts(rs, conn);
 
                 loggedInUser.setSavedCarts(savedCarts);
             } catch (SQLException e) {
@@ -399,7 +396,7 @@ public class UserDatabaseMethods {
     //---------------------------------------
     //---------- save cart to user ----------
     //---------------------------------------
-    public void saveCartToUser(Cart _cart) throws Exception, SQLException {
+    public void saveCartToUser(Cart _cart, int _user_ID) throws Exception, SQLException {
         Connection conn = null;
         Class.forName("org.sqlite.JDBC");
 
@@ -410,7 +407,7 @@ public class UserDatabaseMethods {
         }
 
         //crate shopping cart
-        String sql = "INSERT INTO savedShoppingCarts Values(?, '" + _cart.getUser().getUser_ID() + "')";
+        String sql = "INSERT INTO savedShoppingCarts Values(?, '" + _user_ID + "')";
 
         try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.executeUpdate();
@@ -444,6 +441,38 @@ public class UserDatabaseMethods {
         }
 
         conn.close();
+    }
+
+    //-------------------------------------------
+    //---------- get users saved carts ----------
+    //-------------------------------------------
+    public ArrayList<Cart> getUsersSavedCarts(int _user_id) throws SQLException, Exception {
+        ArrayList<Cart> carts = new ArrayList<>();
+
+        Connection conn = null;
+        Class.forName("org.sqlite.JDBC");
+
+        try {
+            conn = DriverManager.getConnection(connectionString);
+        } catch (SQLException e) {
+            System.out.println("\n Database error (get users saved carts (connection): " + e.getMessage() + "\n");
+        }
+
+        try {
+            Statement stat = conn.createStatement();
+
+            ResultSet rs = stat.executeQuery("SELECT savedShoppingCart_ID FROM savedShoppingCarts "
+                    + "WHERE user_ID = ('" + _user_id + "') ;");
+
+            carts = UserLoadMethods.loadCarts(rs, conn);
+
+        } catch (SQLException e) {
+            System.out.println("\n Database error (get users saved carts (connection): " + e.getMessage() + "\n");
+        }
+        
+        conn.close();
+        
+        return carts;
     }
 
     //---------------------------------------

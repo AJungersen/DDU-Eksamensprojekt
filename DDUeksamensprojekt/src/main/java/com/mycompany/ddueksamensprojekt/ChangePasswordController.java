@@ -9,7 +9,11 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.paint.Paint;
+import javafx.scene.text.Text;
 import repository.SecurityMethods;
 import repository.Tools;
 import repository.UserDatabaseMethods;
@@ -23,15 +27,17 @@ public class ChangePasswordController implements Initializable {
     private SecurityMethods sm = new SecurityMethods();
     
     @FXML
-    private TextField textFieldOldPassword;
+    private Text textErroField;
     @FXML
-    private TextField textFieldNewPassword;
+    private PasswordField passwordFieldNewPassword;
     @FXML
-    private TextField textFieldNewPasswordRepeat;
+    private PasswordField passwordFielNewPasswordRepeat;
+    @FXML
+    private PasswordField passwordFieldOldPassword;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
+        textErroField.setText("");
     }
     @FXML
     private void closePopUp(ActionEvent event) throws Exception{
@@ -41,14 +47,28 @@ public class ChangePasswordController implements Initializable {
     @FXML
     private void changePassword(ActionEvent event) throws Exception {
         if(udm.checkForMatchingPassword(App.getLoggedInUser().getEmail(), 
-                sm.hexString(textFieldOldPassword.getText())) && 
-                textFieldNewPassword.getText().equals(textFieldNewPasswordRepeat.getText())){
+                sm.hexString(passwordFieldOldPassword.getText())) && 
+                passwordFieldNewPassword.getText().equals(passwordFielNewPasswordRepeat.getText())){
             udm.updateUserPassword(App.getLoggedInUser().getUser_ID(),
-                    sm.hexString(textFieldNewPassword.getText()));
+                    sm.hexString(passwordFieldNewPassword.getText()));
             
             //sucess message
+            textErroField.setFill(Paint.valueOf("green"));
+            textErroField.setText("Pssword er opdateret");
+            
+            passwordFieldNewPassword.setText("");
+            passwordFielNewPasswordRepeat.setText("");
+            passwordFieldOldPassword.setText("");
+            
         } else {
             //error message
+            textErroField.setFill(Paint.valueOf("red"));
+            textErroField.setText("Enten er det rigtige password ikke intastet, eller også matcher de to nye passwords ikke");
         }
+    }
+
+    @FXML
+    private void clearErrorMessage(KeyEvent event) {
+        textErroField.setText("");
     }
 }

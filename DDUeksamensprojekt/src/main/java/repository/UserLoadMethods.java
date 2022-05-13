@@ -5,6 +5,7 @@
  */
 package repository;
 
+import Classes.Cart;
 import Classes.CreditCard;
 import com.mycompany.ddueksamensprojekt.Product;
 import java.sql.Connection;
@@ -31,22 +32,36 @@ public class UserLoadMethods {
             //get product
             ResultSet rs = stat.executeQuery("SELECT * FROM Products WHERE product_ID IN"
                     + "(SELECT product_ID FROM SavedShoppingCartsProducts "
-                    + "WHERE purchasedShoppingCarts_ID = ('" + _savedCart_ID + "'));");
+                    + "WHERE savedShoppingCart_ID = ('" + _savedCart_ID + "'));");
 
             ArrayList<Product> products = StoreLoadMethods.loadProducts(rs);
 
             //get the amounts
             for (Product p : products) {
                 rs = stat.executeQuery("SELECT amount FROM SavedShoppingCartsProducts "
-                        + "WHERE product_ID = ('" + p.getItem_ID() + "');");
+                        + "WHERE product_ID = ('" + p.getItem_ID() + "') AND savedShoppingCart_ID = ('" + _savedCart_ID + "');");
                 //set the products whit amounts
                 orderedProducts.put(p, rs.getInt("amount"));
             }
         } catch (SQLException e) {
-            System.out.println("\n Database error (load saved carts products (connection): " + e.getMessage() + "\n");
+            System.out.println("\n Database error (load saved carts products (get carts): " + e.getMessage() + "\n");
         }
 
         return orderedProducts;
+    }
+
+    //--------------------------------------
+    //---------- load creditcards ----------
+    //--------------------------------------
+    public static ArrayList<Cart> loadCarts(ResultSet rs, Connection conn) throws SQLException, Exception {
+        ArrayList<Cart> carts = new ArrayList<>();
+        
+        while (rs.next()) {
+            carts.add(new Cart(rs.getInt("savedShoppingCart_ID"),
+                    UserLoadMethods.loadSavedCartsProducts(conn, rs.getInt("savedShoppingCart_ID"))));
+        }
+        
+        return carts;
     }
 
     //--------------------------------------
@@ -61,7 +76,7 @@ public class UserLoadMethods {
                     rs.getString("cardNumber"), rs.getString("cvv"), rs.getString("nameOfCardHolder"),
                     rs.getString("nameOfCard")));
         }
-        
+
         return creditCards;
     }
 }

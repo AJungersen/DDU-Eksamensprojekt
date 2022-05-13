@@ -4,6 +4,7 @@
  */
 package com.mycompany.ddueksamensprojekt;
 
+import Classes.Cart;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -17,8 +18,11 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Popup;
 import javafx.stage.Stage;
+import org.w3c.dom.UserDataHandler;
+import repository.UserDatabaseMethods;
 
 /**
  * FXML Controller class
@@ -26,14 +30,16 @@ import javafx.stage.Stage;
  * @author Clara Maj
  */
 public class CartController implements Initializable {
-
+    
+    private UserDatabaseMethods udm = new UserDatabaseMethods();
+    
     ArrayList<TableViewDisplayPurchase> tableViewDispalyData = new ArrayList<>();
     @FXML
     TextField goodNumber;
     @FXML
     TextField price;
     @FXML
-    TableView goods;
+    TableView<TableViewDisplayPurchase> goods;
     @FXML
     private TableColumn<TableViewDisplayPurchase, ImageView> tableColumnImage;
     @FXML
@@ -42,6 +48,8 @@ public class CartController implements Initializable {
     private TableColumn<TableViewDisplayPurchase, Integer> tableColumnPrice;
     @FXML
     private TableColumn<TableViewDisplayPurchase, Integer> tableColumnAmount;
+    @FXML
+    private TableColumn<TableViewDisplayPurchase, Integer> tableColumnTotalPrice;
 
     /**
      * Initializes the controller class.
@@ -65,6 +73,7 @@ public class CartController implements Initializable {
         tableColumnName.setCellValueFactory(new PropertyValueFactory<>("name"));
         tableColumnPrice.setCellValueFactory(new PropertyValueFactory<>("price"));
         tableColumnAmount.setCellValueFactory(new PropertyValueFactory<>("amount"));
+        tableColumnTotalPrice.setCellValueFactory(new PropertyValueFactory<>("total"));
 
         goods.getItems().setAll(tableViewDispalyData);
 
@@ -105,5 +114,23 @@ public class CartController implements Initializable {
     private void goBack(ActionEvent event) throws Exception {
         App.switchToLastScene();
         App.setLastSceneFxml("cart");
+    }
+
+    @FXML
+    private void goToProduct(MouseEvent event) throws Exception {
+        if (goods.getFocusModel().getFocusedCell().getColumn() <= 1) {
+            //send to product
+            App.setCurrentProduct(goods.getSelectionModel().getSelectedItem());
+            App.setRoot("productInformation");
+        }
+    }
+
+    @FXML
+    private void saveCart(ActionEvent event) throws Exception {
+        Cart cart = new Cart(-1, new ArrayList<Product>(goods.getSelectionModel().getSelectedItems()));
+        
+        udm.saveCartToUser(cart, App.getLoggedInUser().getUser_ID());
+        
+        App.getLoggedInUser().setSavedCarts(udm.getUsersSavedCarts(App.getLoggedInUser().getUser_ID()));
     }
 }

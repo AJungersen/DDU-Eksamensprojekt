@@ -16,6 +16,7 @@ public class TableViewDisplayPurchase extends Product {
 
     private Integer amount;
     private ImageView displayImage;
+    private float total;
 
     public TableViewDisplayPurchase(Integer amount, Product product) {
         super(product);
@@ -33,5 +34,9 @@ public class TableViewDisplayPurchase extends Product {
         iv.setFitHeight(50);
         
         return iv;
+    }
+
+    public float getTotal() {
+        return amount * getPrice();
     }
 }

@@ -20,6 +20,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import repository.StoreDatabaseMethods;
@@ -31,11 +32,12 @@ import repository.UserDatabaseMethods;
  * @author Clara Maj
  */
 public class ProfileController implements Initializable {
+
     private StoreDatabaseMethods sdm = new StoreDatabaseMethods();
     private UserDatabaseMethods udm = new UserDatabaseMethods();
-    
+
     @FXML
-    private TableColumn<TableViewDisplayPurchase, Image> tableColumnImage;
+    private TableColumn<TableViewDisplayPurchase, ImageView> tableColumnImage;
     @FXML
     private TableColumn<TableViewDisplayPurchase, String> tableColumnName;
     @FXML
@@ -62,25 +64,25 @@ public class ProfileController implements Initializable {
             ArrayList<TableViewDisplayPurchase> tableViewDispalyData = new ArrayList<>();
 
             HashMap<Product, Integer> hm = sdm.getLatestPurchase(App.getLoggedInUser().getUser_ID()).getPurchasedProducts();
-
-            for (Product p : hp.keySet()) {
-                tableViewDispalyData.add(new TableViewDisplayPurchase(hp.get(p), p));
+            
+            for (Product p : hm.keySet()) {
+                tableViewDispalyData.add(new TableViewDisplayPurchase(hm.get(p), p));
             }
 
-            tableColumnImage.setCellValueFactory(new PropertyValueFactory<TableViewDisplayPurchase, Image>("image"));
-            tableColumnName.setCellValueFactory(new PropertyValueFactory<TableViewDisplayPurchase, String>("name"));
-            tableColumnPrice.setCellValueFactory(new PropertyValueFactory<TableViewDisplayPurchase, Integer>("price"));
-            tableColumnAmount.setCellValueFactory(new PropertyValueFactory<TableViewDisplayPurchase, Integer>("amount"));
+            tableColumnImage.setCellValueFactory(new PropertyValueFactory<>("image"));
+            tableColumnName.setCellValueFactory(new PropertyValueFactory<>("name"));
+            tableColumnPrice.setCellValueFactory(new PropertyValueFactory<>("price"));
+            tableColumnAmount.setCellValueFactory(new PropertyValueFactory<>("amount"));
 
             tableViewLastPurchas.getItems().setAll(tableViewDispalyData);
-            
+
             //get number of purchases
             textFieldNumberOfUsersPurchases.setText(Integer.toString(sdm.getNumberOfUseresPurchases(App.getLoggedInUser().getUser_ID())));
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
     }
-    
+
     @FXML
     private void goToSelectedProduct(MouseEvent event) throws Exception {
         if (tableViewLastPurchas.getFocusModel().getFocusedCell().getColumn() <= 1) {
@@ -89,37 +91,42 @@ public class ProfileController implements Initializable {
             App.setRoot("productInformation");
         }
     }
-    
+
     @FXML
     private void openSettings() throws IOException {
         App.setRoot("settings");
-}
+    }
+
     @FXML
     private void openWallet() throws IOException {
         App.setRoot("wallet");
     }
+
     @FXML
     private void openLogin() throws IOException {
         App.setRoot("loginUser");
     }
+
     @FXML
     private void openCart() throws IOException {
         App.setRoot("cart");
         App.setLastSceneFxml("profile");
     }
+
     @FXML
     private void openMain() throws IOException {
         App.setRoot("main");
     }
 
     @FXML
-    private void goBack(ActionEvent event) throws Exception{
+    private void goBack(ActionEvent event) throws Exception {
         App.switchToLastScene();
         App.setLastSceneFxml("profile");
     }
 
     @FXML
     private void saveLastPurchase(ActionEvent event) throws Exception {
-        udm.saveCartToUser(new Cart(App.getLoggedInUser(),  sdm.getLatestPurchase(App.getLoggedInUser().getUser_ID()).getPurchasedProducts()));
+        udm.saveCartToUser(new Cart(-1, sdm.getLatestPurchase(App.getLoggedInUser().getUser_ID()).getPurchasedProducts()),
+                App.getLoggedInUser().getUser_ID());
     }
 }

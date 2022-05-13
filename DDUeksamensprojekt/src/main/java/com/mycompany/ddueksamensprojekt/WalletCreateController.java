@@ -7,8 +7,6 @@ package com.mycompany.ddueksamensprojekt;
 import Classes.CreditCard;
 import java.io.IOException;
 import java.net.URL;
-import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.regex.Pattern;
 import javafx.collections.FXCollections;
@@ -19,7 +17,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import repository.UserDatabaseMethods;
 

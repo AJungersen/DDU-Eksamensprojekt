@@ -35,4 +35,16 @@ public class Tools {
         return _stirngToBeCorveted.substring(0, 1).toUpperCase()
                 + _stirngToBeCorveted.substring(1).toLowerCase();
     }
+
+    public static boolean isInteger(String _stringToCheck) {
+        if (_stringToCheck == null) {
+            return false;
+        }
+        try {
+            int a = Integer.parseInt(_stringToCheck);
+        } catch (NumberFormatException nfe) {
+            return false;
+        }
+        return true;
+    }
 }

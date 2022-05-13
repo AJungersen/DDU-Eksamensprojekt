@@ -34,6 +34,7 @@ import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
@@ -43,6 +44,7 @@ import javafx.scene.shape.Circle;
 import javafx.scene.text.Font;
 import javafx.util.Duration;
 import repository.Tools;
+import repository.UserDatabaseMethods;
 
 /**
  * FXML Controller class
@@ -51,7 +53,8 @@ import repository.Tools;
  */
 public class ProductInformationController implements Initializable {
 
-    Product product = new Product();
+    private Product product = new Product();
+    private UserDatabaseMethods udm = new UserDatabaseMethods();
 
     private float boarderThikness = 2.5f;
     private float textSpace = 5;
@@ -85,6 +88,10 @@ public class ProductInformationController implements Initializable {
 
     private int fewProductsRemaning = 10;
 
+    private Image favImage;
+    private Image notFavImage;
+    private boolean imageIsFav;
+
     @FXML
     private TextField textFieldPrice;
     @FXML
@@ -107,21 +114,33 @@ public class ProductInformationController implements Initializable {
     private Text textProductName;
     @FXML
     private AnchorPane anchorPaneRelatedProducts;
-    private Image image;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        product = App.getCurrentProduct();
+
         try {
-            image = new Image(new FileInputStream("starFull.png"));
+            favImage = new Image(new FileInputStream("target/classes/com/mycompany/ddueksamensprojekt/starFull.png"));
+            notFavImage = new Image(new FileInputStream("target/classes/com/mycompany/ddueksamensprojekt/starYellow.png"));
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-        
-        product = App.getCurrentProduct();
 
+        for (Product p : App.getLoggedInUser().getFavorites()) {
+            if (p.getItem_ID() == product.getItem_ID()) {
+
+                favImg.setImage(favImage);
+
+                break;
+            } else {
+                favImg.setImage(notFavImage);
+            }
+        }
+
+        textFieldNumberOfProduct.setText("1");
         textProductName.setText(product.getName());
         textFieldPrice.setText(Float.toString(product.getPrice()));
         textFieldStock.setText(((product.getStock() > 0) ? "på lager" : "ikke på lager"));
@@ -184,7 +203,7 @@ public class ProductInformationController implements Initializable {
                     + "-fx-border-width: " + boarderThikness + ";"
                     + "-fx-background-color: #ffffff");
 
-            //product image
+            //product favImage
             ImageView imgView = new ImageView(p.getImage());
 
             imgView.setFitWidth(imgSize_X);
@@ -224,8 +243,6 @@ public class ProductInformationController implements Initializable {
             } else {
                 //empty
                 lagerstatusCircle.setFill(Paint.valueOf("#F1948A"));
-                //lagerstatusCircle.setFill(Paint.valueOf("#82E0AA"));
-                lagerstatusCircle.setFill(Paint.valueOf("#F7DC6F"));
             }
             lagerstatusCircle.setCenterX(lagerstatusText.getLayoutX() + lagerstatusText.getBoundsInLocal().getWidth() + lagerStatusCirkelSize + 10);
 
@@ -263,10 +280,9 @@ public class ProductInformationController implements Initializable {
             pane.getChildren().add(lagerstatusText);
             pane.getChildren().add(lagerstatusCircle);
 
-            pane.setOnMouseClicked(clicked);
+            /*pane.setOnMouseClicked(clicked);
             pane.setOnMouseEntered(entered);
-            pane.setOnMouseExited(exited);
-
+            pane.setOnMouseExited(exited);*/
             for (Node sp : pane.getChildren()) {
                 sp.setOnMouseClicked(clicked);
                 sp.setOnMouseEntered(entered);
@@ -331,7 +347,7 @@ public class ProductInformationController implements Initializable {
         final Timeline timeline = new Timeline();
         timeline.getKeyFrames().add(new KeyFrame(Duration.millis(5000)));
         timeline.play();
-        timeline.setOnFinished((e)->{
+        timeline.setOnFinished((e) -> {
             closeConfirmation();
         });
     }
@@ -356,13 +372,11 @@ public class ProductInformationController implements Initializable {
 
     }
 
-    @FXML
     public void openConfirmationFavorites() {
         //returnButton.setVisible(true);
 
         // returnvbox.setVisible(false);
-      //  favImg.setImage(image);
-        
+        //  favImg.setImage(favImage);
         TranslateTransition t = new TranslateTransition(Duration.seconds(1), vbox1);
         t.setToY(vbox.getLayoutX() * 0.8);
         t.play();
@@ -377,13 +391,47 @@ public class ProductInformationController implements Initializable {
         final Timeline timeline = new Timeline();
         timeline.getKeyFrames().add(new KeyFrame(Duration.millis(5000)));
         timeline.play();
-        timeline.setOnFinished((e)->{
+        timeline.setOnFinished((e) -> {
             closeConfirmation();
         });
     }
 
     @FXML
     private void goBack(ActionEvent event) throws Exception {
+        App.setCurrentCategoryDisplaying(product.getProductCategory());
         App.setRoot("catelogView");
+    }
+
+    @FXML
+    private void addToFavorits(javafx.scene.input.MouseEvent event) throws Exception {
+        if (imageIsFav) {
+            //remove
+            favImg.setImage(notFavImage);
+            imageIsFav = false;
+
+            udm.removeProductFromFavorits(product.getItem_ID(), App.getLoggedInUser().getUser_ID());
+            for (Product p : App.getLoggedInUser().getFavorites()) {
+                if (p.getItem_ID() == product.getItem_ID()) {
+
+                    App.getLoggedInUser().getFavorites().remove(p);
+
+                    break;
+                }
+            }
+        } else {
+            //add
+            favImg.setImage(favImage);
+            imageIsFav = true;
+
+            udm.addProductToFavorits(product.getItem_ID(), App.getLoggedInUser().getUser_ID());
+            App.getLoggedInUser().getFavorites().add(product);
+        }
+    }
+
+    @FXML
+    private void checkIfKeyTypedIsInteger(KeyEvent event) {
+        if (!Tools.isInteger(textFieldNumberOfProduct.getText())) {
+            textFieldNumberOfProduct.setText(textFieldNumberOfProduct.getText().replace(event.getCharacter(), ""));
+        }
     }
 }

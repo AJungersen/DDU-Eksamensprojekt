@@ -55,7 +55,7 @@ public class StoreLoadMethods {
             //get the amounts
             for (Product p : products) {
                 rs = stat.executeQuery("SELECT amount FROM PurchasedProducts "
-                        + "WHERE product_ID = ('" + p.getItem_ID() + "');");
+                        + "WHERE product_ID = ('" + p.getItem_ID() + "') AND purchase_ID = ('" + _purchase_ID + "');");
                 //set the products whit amounts
                 purchasedProducts.put(p, rs.getInt("amount"));
             }
