@@ -294,7 +294,6 @@ public class ProductInformationController implements Initializable {
                 column = 0;
                 row++;
             }
-
         }
     }
 
