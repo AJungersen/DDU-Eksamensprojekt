@@ -11,6 +11,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -66,16 +67,17 @@ public class ProfileController implements Initializable {
             HashMap<Product, Integer> hm = sdm.getLatestPurchase(App.getLoggedInUser().getUser_ID()).getPurchasedProducts();
             
             for (Product p : hm.keySet()) {
+                System.out.println(p.getImage());
                 tableViewDispalyData.add(new TableViewDisplayPurchase(hm.get(p), p));
             }
 
-            tableColumnImage.setCellValueFactory(new PropertyValueFactory<>("image"));
+            tableColumnImage.setCellValueFactory(new PropertyValueFactory<>("displayImage"));
             tableColumnName.setCellValueFactory(new PropertyValueFactory<>("name"));
             tableColumnPrice.setCellValueFactory(new PropertyValueFactory<>("price"));
             tableColumnAmount.setCellValueFactory(new PropertyValueFactory<>("amount"));
 
             tableViewLastPurchas.getItems().setAll(tableViewDispalyData);
-
+            
             //get number of purchases
             textFieldNumberOfUsersPurchases.setText(Integer.toString(sdm.getNumberOfUseresPurchases(App.getLoggedInUser().getUser_ID())));
         } catch (Exception e) {

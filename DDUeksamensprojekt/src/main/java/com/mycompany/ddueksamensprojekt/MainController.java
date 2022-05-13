@@ -167,6 +167,7 @@ public class MainController implements Initializable {
             HashMap<Product, Integer> hm = sdm.getLatestPurchase(App.getLoggedInUser().getUser_ID()).getPurchasedProducts();
             
             for (Product p : hm.keySet()) {
+                System.out.println(p.getImage());
                 tableViewDispalyData.add(new TableViewDisplayPurchase(hm.get(p), p));
             }
 
