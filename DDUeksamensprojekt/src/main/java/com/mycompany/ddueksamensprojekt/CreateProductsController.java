@@ -67,9 +67,9 @@ public class CreateProductsController implements Initializable {
 
     @FXML
     private void createProduct(ActionEvent event) throws Exception{
-        Product product = new Product(textFieldName.getText(), Integer.parseInt(textFieldPrice.getText()), 
+        /*Product product = new Product(textFieldName.getText(), Integer.parseInt(textFieldPrice.getText()), 
                 choiceBoxProductCategory.getSelectionModel().getSelectedItem());
         
-        adbm.createProduct(product, selectedFiles);
+        adbm.createProduct(product, selectedFiles);*/
     }
 }

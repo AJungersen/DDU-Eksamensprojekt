@@ -35,10 +35,11 @@ public class App extends Application {
     public void start(Stage stage) throws IOException, Exception {
         AdminDataBaseMethods.setProductCategorysImages();
 
-        scene = new Scene(loadFXML("loginUser"));
+        //scene = new Scene(loadFXML("loginUser"));
         //scene = new Scene(loadFXML("mainAdmin"));
         //scene = new Scene(loadFXML("AdminAddImageToCategorys"));
         //scene = new Scene(loadFXML("main"));
+        scene = new Scene(loadFXML("createProduct"));
         
         stage.setScene(scene);
         stage.show();

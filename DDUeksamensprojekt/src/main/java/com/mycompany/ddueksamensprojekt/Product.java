@@ -24,9 +24,10 @@ public class Product {
     }
     
     //create
-    public Product(String name, float price, ProductCategory ProductCategory) {
+    public Product(String name, float price, int stock, ProductCategory ProductCategory) {
         this.name = name;
         this.price = price;
+        this.stock = stock;
         this.ProductCategory = ProductCategory;
     }
     

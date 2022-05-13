@@ -47,4 +47,16 @@ public class Tools {
         }
         return true;
     }
+    
+    public static boolean isFloat(String _stringToCheck) {
+        if (_stringToCheck == null) {
+            return false;
+        }
+        try {
+            float a = Float.parseFloat(_stringToCheck);
+        } catch (NumberFormatException nfe) {
+            return false;
+        }
+        return true;
+    }
 }

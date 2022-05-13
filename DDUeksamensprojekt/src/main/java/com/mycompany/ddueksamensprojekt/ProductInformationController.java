@@ -429,8 +429,9 @@ public class ProductInformationController implements Initializable {
 
     @FXML
     private void checkIfKeyTypedIsInteger(KeyEvent event) {
-        if (!Tools.isInteger(textFieldNumberOfProduct.getText())) {
-            textFieldNumberOfProduct.setText(textFieldNumberOfProduct.getText().replace(event.getCharacter(), ""));
+        if (!Tools.isInteger(((TextField) event.getTarget()).getText())) {
+            ((TextField) event.getTarget()).setText(textFieldNumberOfProduct.getText().replace(event.getCharacter(), ""));
+            ((TextField) event.getTarget()).positionCaret(((TextField) event.getTarget()).getText().length());
         }
     }
 }
