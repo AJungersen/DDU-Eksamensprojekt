@@ -1,19 +1,65 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Text?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/16" fx:controller="com.mycompany.ddueksamensprojekt.AdminAddImageToCategorysController">
+<AnchorPane id="AnchorPane" prefHeight="332.0" prefWidth="515.0" style="-fx-background-color: #D6DCF6; -fx-border-color: #516DD2;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.ddueksamensprojekt.AdminAddImageToCategorysController">
    <children>
-      <ChoiceBox fx:id="choiceBoxCat" layoutX="14.0" layoutY="40.0" prefWidth="150.0" />
-      <Text layoutX="65.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Category" />
-      <ImageView fx:id="CategoryImage" fitHeight="345.0" fitWidth="335.0" layoutX="252.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true" style="-fx-border-color: #000000; -fx-border-style: solid; -fx-border-width: 5;" />
-      <Text layoutX="403.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Image" />
-      <Button layoutX="63.0" layoutY="87.0" mnemonicParsing="false" onAction="#SetCategoryImage" text="Add" />
-      <Button layoutX="40.0" layoutY="125.0" mnemonicParsing="false" onAction="#SelectImage" text="Select image" />
+      <ChoiceBox fx:id="choiceBoxCat" layoutX="26.0" layoutY="57.0" prefWidth="150.0" stylesheets="@combobox.css">
+         <styleClass>
+            <String fx:value="arrow" />
+            <String fx:value="arrow-button" />
+            <String fx:value="combo-box" />
+            <String fx:value="list-cell" />
+         </styleClass></ChoiceBox>
+      <ImageView fx:id="CategoryImage" fitHeight="260.0" fitWidth="252.0" layoutX="219.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true" style="-fx-border-color: #000000; -fx-border-style: solid; -fx-border-width: 5;" />
+      <Label layoutX="26.0" layoutY="27.0" text="Vælg kategori:">
+         <font>
+            <Font name="Segoe UI Light Italic" size="20.0" />
+         </font>
+      </Label>
+      <Button layoutX="25.0" layoutY="215.0" mnemonicParsing="false" onAction="#SetCategoryImage" prefHeight="30.0" prefWidth="152.0" style="-fx-background-color: #516DD2;" stylesheets="@design.css" text="Opret">
+         <font>
+            <Font name="Segoe UI Semibold" size="14.0" />
+         </font>
+         <effect>
+            <DropShadow height="9.33" offsetY="2.0" radius="3.7475000000000005" width="7.66">
+               <color>
+                  <Color opacity="0.25" />
+               </color>
+            </DropShadow>
+         </effect>
+      </Button>
+      <Button layoutX="26.0" layoutY="108.0" mnemonicParsing="false" onAction="#SelectImage" prefHeight="30.0" prefWidth="112.0" style="-fx-background-color: #516DD2;" stylesheets="@design.css" text="Vælg billede">
+         <font>
+            <Font name="Segoe UI Semibold" size="14.0" />
+         </font>
+         <effect>
+            <DropShadow height="9.33" offsetY="2.0" radius="3.7475000000000005" width="7.66">
+               <color>
+                  <Color opacity="0.25" />
+               </color>
+            </DropShadow>
+         </effect>
+      </Button>
+      <Button layoutX="25.0" layoutY="266.0" mnemonicParsing="false" onAction="#closePopUp" prefHeight="30.0" prefWidth="152.0" style="-fx-background-color: #516DD2;" stylesheets="@design.css" text="Annuller">
+         <font>
+            <Font name="Segoe UI Semibold" size="14.0" />
+         </font>
+         <effect>
+            <DropShadow height="9.33" offsetY="2.0" radius="3.7475000000000005" width="7.66">
+               <color>
+                  <Color opacity="0.25" />
+               </color>
+            </DropShadow>
+         </effect>
+      </Button>
    </children>
 </AnchorPane>
