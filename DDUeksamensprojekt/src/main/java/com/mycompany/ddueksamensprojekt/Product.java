@@ -29,6 +29,13 @@ public class Product {
         this.price = price;
         this.ProductCategory = ProductCategory;
     }
+    
+    public Product(String name, Image image, float price, int stock) {
+        this.name = name;
+        this.image = image;
+        this.price = price;
+        this.stock = stock;
+    }
 
     public Product(int item_ID, String name, Image image, float price, int stock, ProductCategory productCategory) {
         this.item_ID = item_ID;

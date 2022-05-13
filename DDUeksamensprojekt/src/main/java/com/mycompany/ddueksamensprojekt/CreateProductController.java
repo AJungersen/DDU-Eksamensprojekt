@@ -9,6 +9,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.regex.Pattern;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -16,6 +17,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
+import repository.StoreDatabaseMethods;
 
 /**
  *
@@ -28,7 +30,9 @@ public class CreateProductController implements Initializable {
     @FXML private TextField productSortiment;
     private final FileChooser fc = new FileChooser();
     private File selectedFiles;
+    private Image selectedImage;
     @FXML private ImageView productImage;
+    @FXML private TextField productCategory;
     /**
      * Initializes the controller class.
      */
@@ -53,11 +57,16 @@ public class CreateProductController implements Initializable {
         //selectedFiles = fc.showOpenMultipleDialog(null).get(0);
         selectedFiles = fc.showOpenDialog(null);
         
-        productImage.setImage(new Image(new FileInputStream(selectedFiles)));
+        selectedImage = new Image(new FileInputStream(selectedFiles));
+        
+        productImage.setImage(selectedImage);
     }
     @FXML
     private void createProduct(ActionEvent event) throws Exception{
-        
+        StoreDatabaseMethods sdm = new StoreDatabaseMethods();
+        if (!productName.getText().isBlank() && Pattern.matches("[\\d]", productPrice.getText()) && Pattern.matches("[\\d]", productSortiment.getText()) && !productCategory.getText().isBlank() ){
+            sdm.saveProduct(new Product(-1, productName.getText(), selectedImage, Float.parseFloat(productPrice.getText()), Integer.parseInt(productSortiment.getText()), productCategory.getText()));
+
         
         
         

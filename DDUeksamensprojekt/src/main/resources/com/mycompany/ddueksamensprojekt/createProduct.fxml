@@ -100,6 +100,23 @@
                   </DropShadow>
                </effect>
             </TextField>
+            <Label layoutX="39.0" layoutY="251.0" text="Kategori:">
+               <font>
+                  <Font name="Segoe UI Light Italic" size="20.0" />
+               </font>
+            </Label>
+            <TextField fx:id="productCategory" layoutX="129.0" layoutY="249.0" onKeyTyped="#checkIfKeyTypedIsInteger" prefHeight="33.0" prefWidth="106.0" promptText="..." style="-fx-background-radius: 0px; -fx-border-color: #40C54D; -fx-border-width: 0px 0px 0px 0px; -fx-background-color: #FFFFFF;">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <effect>
+                  <DropShadow height="11.0" offsetY="2.0" radius="4.165" width="7.66">
+                     <color>
+                        <Color opacity="0.24511928856372833" />
+                     </color>
+                  </DropShadow>
+               </effect>
+            </TextField>
          </children>
          <effect>
             <DropShadow />
