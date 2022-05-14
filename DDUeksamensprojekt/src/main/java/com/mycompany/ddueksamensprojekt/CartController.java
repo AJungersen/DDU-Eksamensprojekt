@@ -33,23 +33,23 @@ public class CartController implements Initializable {
     
     private UserDatabaseMethods udm = new UserDatabaseMethods();
     
-    ArrayList<TableViewDisplayPurchase> tableViewDispalyData = new ArrayList<>();
+    ArrayList<AdminProductViewController> tableViewDispalyData = new ArrayList<>();
     @FXML
     TextField goodNumber;
     @FXML
     TextField price;
     @FXML
-    TableView<TableViewDisplayPurchase> goods;
+    TableView<AdminProductViewController> goods;
     @FXML
-    private TableColumn<TableViewDisplayPurchase, ImageView> tableColumnImage;
+    private TableColumn<AdminProductViewController, ImageView> tableColumnImage;
     @FXML
-    private TableColumn<TableViewDisplayPurchase, String> tableColumnName;
+    private TableColumn<AdminProductViewController, String> tableColumnName;
     @FXML
-    private TableColumn<TableViewDisplayPurchase, Integer> tableColumnPrice;
+    private TableColumn<AdminProductViewController, Integer> tableColumnPrice;
     @FXML
-    private TableColumn<TableViewDisplayPurchase, Integer> tableColumnAmount;
+    private TableColumn<AdminProductViewController, Integer> tableColumnAmount;
     @FXML
-    private TableColumn<TableViewDisplayPurchase, Integer> tableColumnTotalPrice;
+    private TableColumn<AdminProductViewController, Integer> tableColumnTotalPrice;
 
     /**
      * Initializes the controller class.
@@ -61,10 +61,10 @@ public class CartController implements Initializable {
         HashMap<Product, Integer> hp = App.getCurrentCart().getProductsAsMap();
 
         for (Product p : hp.keySet()) {
-            tableViewDispalyData.add(new TableViewDisplayPurchase(hp.get(p), p));
+            tableViewDispalyData.add(new AdminProductViewController(hp.get(p), p));
         }
 
-        for (TableViewDisplayPurchase tvdp : tableViewDispalyData) {
+        for (AdminProductViewController tvdp : tableViewDispalyData) {
             goodNumb += tvdp.getAmount();
             allPrice += tvdp.getPrice() * tvdp.getAmount();
         }
