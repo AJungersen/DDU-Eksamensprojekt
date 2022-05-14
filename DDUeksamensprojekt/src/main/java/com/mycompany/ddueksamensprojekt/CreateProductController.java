@@ -76,15 +76,15 @@ public class CreateProductController implements Initializable {
 
         productImage.setImage(new Image(new FileInputStream(selectedFiles)));
     }
-
+    
     private void createProduct(ActionEvent event) throws Exception {
         AdminDataBaseMethods adm = new AdminDataBaseMethods();
 
         System.out.println(choiceBoxProductCategory.getSelectionModel().isEmpty());
         System.out.println(selectedFiles);
 
-        if (!productName.getText().isBlank() && productPrice.getText().isBlank() && 
-                productSortiment.getText().isBlank() && choiceBoxProductCategory.getSelectionModel().isEmpty()) {
+        if (!productName.getText().isBlank() && productPrice.getText().isBlank()
+                && productSortiment.getText().isBlank() && choiceBoxProductCategory.getSelectionModel().isEmpty()) {
 
             adm.createProduct(new Product(productName.getText(), Float.parseFloat(productPrice.getText()),
                     Integer.parseInt(productSortiment.getText()),
@@ -108,9 +108,15 @@ public class CreateProductController implements Initializable {
 
     @FXML
     private void checkIfKeyTypedIsFloat(KeyEvent event) {
-        if (!Tools.isFloat(((TextField) event.getTarget()).getText()) || ((TextField) event.getTarget()).getText().contains("d") || ((TextField) event.getTarget()).getText().contains("f")) {
-            ((TextField) event.getTarget()).setText(((TextField) event.getTarget()).getText().replace(event.getCharacter(), ""));
-
+        if (!Tools.isFloat(((TextField) event.getTarget()).getText()) || ((TextField) event.getTarget()).getText().contains("d") 
+                || ((TextField) event.getTarget()).getText().contains("f")) {
+            
+            if (event.getCharacter().equals(".")) {
+                String regex = "\\.";
+                ((TextField) event.getTarget()).setText(((TextField) event.getTarget()).getText().replaceFirst(regex, ""));
+            } else {
+                ((TextField) event.getTarget()).setText(((TextField) event.getTarget()).getText().replaceFirst(event.getCharacter(), ""));
+            }
             //update courser position to end
             ((TextField) event.getTarget()).positionCaret(((TextField) event.getTarget()).getText().length());
         }
