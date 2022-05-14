@@ -38,7 +38,6 @@ public class CreateProductController implements Initializable {
     private TextField productSortiment;
     private final FileChooser fc = new FileChooser();
     private File selectedFiles;
-    private Image selectedImage;
     @FXML
     private ImageView productImage;
     @FXML
@@ -84,8 +83,8 @@ public class CreateProductController implements Initializable {
         System.out.println(choiceBoxProductCategory.getSelectionModel().isEmpty());
         System.out.println(selectedFiles);
 
-        if (!productName.getText().isBlank() && Pattern.matches("[\\d]", productPrice.getText()) && Pattern.matches("[\\d]",
-                productSortiment.getText()) && choiceBoxProductCategory.getSelectionModel().isEmpty()) {
+        if (!productName.getText().isBlank() && productPrice.getText().isBlank() && 
+                productSortiment.getText().isBlank() && choiceBoxProductCategory.getSelectionModel().isEmpty()) {
 
             adm.createProduct(new Product(productName.getText(), Float.parseFloat(productPrice.getText()),
                     Integer.parseInt(productSortiment.getText()),
@@ -109,8 +108,7 @@ public class CreateProductController implements Initializable {
 
     @FXML
     private void checkIfKeyTypedIsFloat(KeyEvent event) {
-        System.out.println("float");
-        if (!Tools.isFloat(((TextField) event.getTarget()).getText()) || ((TextField) event.getTarget()).getText().contains("d")) {
+        if (!Tools.isFloat(((TextField) event.getTarget()).getText()) || ((TextField) event.getTarget()).getText().contains("d") || ((TextField) event.getTarget()).getText().contains("f")) {
             ((TextField) event.getTarget()).setText(((TextField) event.getTarget()).getText().replace(event.getCharacter(), ""));
 
             //update courser position to end

@@ -48,12 +48,12 @@ public class StoreDatabaseMethods {
 
             purchase = new Purchase(rs.getInt("purchase_ID"),
                     LocalDateTime.parse(rs.getString("date")), null);
-
+            
+            purchase.setPurchasedProducts(StoreLoadMethods.loadPurchasedProducts(conn, purchase.getPurchase_ID()));
+            
         } catch (SQLException e) {
             System.out.println("\n Database error (get latest purchase (get info): " + e.getMessage() + "\n");
         }
-
-        purchase.setPurchasedProducts(StoreLoadMethods.loadPurchasedProducts(conn, purchase.getPurchase_ID()));
 
         conn.close();
 

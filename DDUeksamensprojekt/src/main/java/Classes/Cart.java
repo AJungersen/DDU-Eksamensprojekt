@@ -39,18 +39,21 @@ public class Cart {
     
     public HashMap<Product, Integer> getProductsAsMap() {
         HashMap<Product, Integer> map = new HashMap<>();
-
+        HashMap<Product, Integer> temp = new HashMap<>();
+        
+        
         for (Product p : products) {
             if (map.size() > 0) {
                 for (Product mp : map.keySet()) {
                     if (p.getItem_ID() == mp.getItem_ID()) {
-                        map.put(mp, map.get(mp) + 1);
+                        temp.put(mp, map.get(mp) + 1);
 
                     } else {
-                        map.put(p, 1);
+                        temp.put(p, 1);
                     }
 
                 }
+                map = temp;
             } else {
                 map.put(p, 1);
             }
