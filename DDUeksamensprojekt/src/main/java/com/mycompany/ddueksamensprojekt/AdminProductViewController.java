@@ -7,6 +7,7 @@ import java.util.Comparator;
 import java.util.ResourceBundle;
 import java.util.function.Predicate;
 import java.util.regex.Pattern;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -216,8 +217,6 @@ public class AdminProductViewController implements Initializable {
             } else {
                 //empty
                 lagerstatusCircle.setFill(Paint.valueOf("#F1948A"));
-                //lagerstatusCircle.setFill(Paint.valueOf("#82E0AA"));
-                lagerstatusCircle.setFill(Paint.valueOf("#F7DC6F"));
             }
             lagerstatusCircle.setCenterX(lagerstatusText.getLayoutX() + lagerstatusText.getBoundsInLocal().getWidth() + lagerStatusCirkelSize + 10);
 
@@ -324,5 +323,15 @@ public class AdminProductViewController implements Initializable {
 
             loadProducts();
         }
+    }
+
+    @FXML
+    private void clearSearch(ActionEvent event) {
+        textFieldSearchBar.clear();
+        
+        curentProducts.clear();
+        curentProducts.addAll(allProducts);
+        
+        loadProducts();
     }
 }
