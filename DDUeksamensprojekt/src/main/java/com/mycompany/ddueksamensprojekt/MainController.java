@@ -45,15 +45,15 @@ public class MainController implements Initializable {
     @FXML
     private Text textWelcomeBackUser;
     @FXML
-    private TableColumn<TableViewDisplayPurchase, ImageView> tableColumnImage;
+    private TableColumn<AdminProductViewController, ImageView> tableColumnImage;
     @FXML
-    private TableColumn<TableViewDisplayPurchase, String> tableColumnName;
+    private TableColumn<AdminProductViewController, String> tableColumnName;
     @FXML
-    private TableColumn<TableViewDisplayPurchase, Integer> tableColumnPrice;
+    private TableColumn<AdminProductViewController, Integer> tableColumnPrice;
     @FXML
-    private TableColumn<TableViewDisplayPurchase, Integer> tableColumnAmount;
+    private TableColumn<AdminProductViewController, Integer> tableColumnAmount;
     @FXML
-    private TableView<TableViewDisplayPurchase> tableViewLastPurchas;
+    private TableView<AdminProductViewController> tableViewLastPurchas;
     @FXML
     private AnchorPane anchorPaneCategories;
     @FXML
@@ -162,13 +162,13 @@ public class MainController implements Initializable {
             hp.put(p1, 1);
             hp.put(p2, 2);
              */
-            ArrayList<TableViewDisplayPurchase> tableViewDispalyData = new ArrayList<>();
+            ArrayList<AdminProductViewController> tableViewDispalyData = new ArrayList<>();
 
             HashMap<Product, Integer> hm = sdm.getLatestPurchase(App.getLoggedInUser().getUser_ID()).getPurchasedProducts();
             
             for (Product p : hm.keySet()) {
                 System.out.println(p.getImage());
-                tableViewDispalyData.add(new TableViewDisplayPurchase(hm.get(p), p));
+                tableViewDispalyData.add(new AdminProductViewController(hm.get(p), p));
             }
 
             tableColumnImage.setCellValueFactory(new PropertyValueFactory<>("displayImage"));
