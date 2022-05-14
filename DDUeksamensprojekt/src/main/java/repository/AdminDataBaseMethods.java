@@ -83,6 +83,36 @@ public class AdminDataBaseMethods {
             e.printStackTrace();
         }
     }
+    
+    //----------------------------------------------------
+    //------------ Update product information  -----------
+    //----------------------------------------------------
+    public void updateUserInfo(Product _product, File _imageFile) throws Exception, SQLException {
+        Connection conn = null;
+        Class.forName("org.sqlite.JDBC");
+
+        try {
+            conn = DriverManager.getConnection(connectionString);
+        } catch (SQLException e) {
+            System.out.println("\n Database error (update user info (connection)): " + e.getMessage() + "\n");
+        }
+        
+        String sql = "UPDATE Products SET name = '" + _product.getName() + "',"
+                + "' image = ?, " +" Price = '" + _product.getPrice() + "', Stock ='" + _product.getStock() + "', "
+                + "ProductCateogry = '" + _product.getProductCategory().toString() + "';";
+        
+        FileInputStream fis = new FileInputStream(_imageFile);
+        
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setBinaryStream(2, fis, fis.available());
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println("\n Database error (update user info (update info)): " + e.getMessage() + "\n");
+            
+            e.printStackTrace();
+        }
+        conn.close();
+    }
 
     //----------------------------------------------------
     //---------- Bind image to product category ----------
