@@ -60,6 +60,30 @@ public class AdminDataBaseMethods {
         conn.close();
     }
 
+    //------------------------------------
+    //---------- delete product ----------
+    //------------------------------------
+    public void deleteProduct(int _product_ID) throws SQLException, Exception {
+        Connection conn = null;
+        Class.forName("org.sqlite.JDBC");
+
+        try {
+            conn = DriverManager.getConnection(staticConnectionString);
+        } catch (SQLException e) {
+            System.out.println("\n Database error (Delete product (connection)): " + e.getMessage() + "\n");
+        }
+        
+        String sql = "DELETE FORM Products WHERE product_ID = ('" + _product_ID + "');";
+
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println("\n Database error (delete product (delete): " + e.getMessage() + "\n");
+
+            e.printStackTrace();
+        }
+    }
+
     //----------------------------------------------------
     //---------- Bind image to product category ----------
     //----------------------------------------------------
