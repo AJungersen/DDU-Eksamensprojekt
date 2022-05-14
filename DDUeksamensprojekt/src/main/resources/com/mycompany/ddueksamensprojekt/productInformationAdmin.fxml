@@ -77,7 +77,7 @@
                   </DropShadow>
                </effect>
             </TextField>
-            <TextField fx:id="textFieldPrice" layoutX="468.0" layoutY="126.0" onKeyTyped="#checkIfKeyTypedIsInteger" prefHeight="33.0" prefWidth="150.0" promptText="0" style="-fx-background-radius: 0px; -fx-border-color: #40C54D; -fx-border-width: 0px 0px 0px 0px; -fx-background-color: #FFFFFF;">
+            <TextField fx:id="textFieldPrice" layoutX="468.0" layoutY="126.0" onKeyTyped="#checkIfKeyTypedIsFloat" prefHeight="33.0" prefWidth="150.0" promptText="0" style="-fx-background-radius: 0px; -fx-border-color: #40C54D; -fx-border-width: 0px 0px 0px 0px; -fx-background-color: #FFFFFF;">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
@@ -94,7 +94,7 @@
                   <Font name="Segoe UI Light Italic" size="21.0" />
                </font>
             </Text>
-            <ChoiceBox layoutX="468.0" layoutY="251.0" prefWidth="150.0" stylesheets="@combobox.css">
+            <ChoiceBox fx:id="comboboxCategory" layoutX="468.0" layoutY="251.0" prefWidth="150.0" stylesheets="@combobox.css">
                <styleClass>
                   <String fx:value="arrow" />
                   <String fx:value="arrow-button" />
@@ -121,7 +121,7 @@
                   </DropShadow>
                </effect>
             </Button>
-            <TextField layoutX="20.0" layoutY="30.0" onKeyTyped="#checkIfKeyTypedIsInteger" prefHeight="33.0" prefWidth="286.0" promptText="Produktnavn" style="-fx-background-radius: 0px; -fx-border-color: #40C54D; -fx-border-width: 0px 0px 0px 0px; -fx-background-color: #FFFFFF;">
+            <TextField fx:id="textFieldName" layoutX="20.0" layoutY="30.0" prefHeight="33.0" prefWidth="286.0" promptText="Produktnavn" style="-fx-background-radius: 0px; -fx-border-color: #40C54D; -fx-border-width: 0px 0px 0px 0px; -fx-background-color: #FFFFFF;">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
@@ -147,11 +147,6 @@
             </Button>
          </children>
       </Pane>
-      <Text fx:id="returnButton" layoutX="620.0" layoutY="97.0" onMouseClicked="#closeConfirmation" strokeType="OUTSIDE" strokeWidth="0.0" text="X">
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </Text>
       <Pane layoutY="-3.0" prefHeight="106.0" prefWidth="866.0" style="-fx-background-color: #516DD2;">
          <children>
             <Label layoutX="349.0" layoutY="13.0" onMouseClicked="#openMain" text="PRÆCIS" textAlignment="CENTER">
