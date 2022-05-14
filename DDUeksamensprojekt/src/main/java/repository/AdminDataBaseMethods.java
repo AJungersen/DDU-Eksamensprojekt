@@ -72,7 +72,7 @@ public class AdminDataBaseMethods {
         } catch (SQLException e) {
             System.out.println("\n Database error (Delete product (connection)): " + e.getMessage() + "\n");
         }
-        
+
         String sql = "DELETE FORM Products WHERE product_ID = ('" + _product_ID + "');";
 
         try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -146,7 +146,7 @@ public class AdminDataBaseMethods {
 
                     pc.setImage(Tools.convertBufferedImageToFxImage(bImage));
                 } else {
-                    System.out.println("\nfound no image for the produt category: " + pc.toString() + "\n");
+                    System.out.println("\n found no image for the produt category: " + pc.toString() + "\n");
                 }
             } catch (SQLException e) {
                 System.out.println("\n Database error (set product categorys images (product category images)): " + e.getMessage() + "\n");
