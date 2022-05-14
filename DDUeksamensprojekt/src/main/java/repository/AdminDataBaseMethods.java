@@ -87,7 +87,7 @@ public class AdminDataBaseMethods {
     //----------------------------------------------------
     //------------ Update product information  -----------
     //----------------------------------------------------
-    public void updateUserInfo(Product _product, File _imageFile) throws Exception, SQLException {
+    public void updateProductInfo(Product _product, File _imageFile) throws Exception, SQLException {
         Connection conn = null;
         Class.forName("org.sqlite.JDBC");
 

@@ -25,6 +25,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import repository.AdminDataBaseMethods;
+import repository.Tools;
 /**
  * FXML Controller class
  *
@@ -81,7 +82,14 @@ public class ProductInformationAdminController implements Initializable {
 
     @FXML
     private void checkIfKeyTypedIsInteger(KeyEvent event) {
-        
+        //check if int
+        if (!Tools.isInteger(((TextField) event.getTarget()).getText())) {
+            //if not remove that char
+            ((TextField) event.getTarget()).setText(((TextField) event.getTarget()).getText().replace(event.getCharacter(), ""));
+
+            //update courser position to end
+            ((TextField) event.getTarget()).positionCaret(((TextField) event.getTarget()).getText().length());
+        }
     }
 
     @FXML
