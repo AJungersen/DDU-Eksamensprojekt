@@ -14,7 +14,6 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
@@ -22,16 +21,11 @@
 
 <AnchorPane id="AnchorPane" prefHeight="491.0" prefWidth="866.0" style="-fx-background-color: #516DD2;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.ddueksamensprojekt.ProductInformationController">
    <children>
-      <Pane layoutY="104.0" prefHeight="409.0" prefWidth="866.0" style="-fx-background-color: D6DCF6;">
+      <Pane layoutY="104.0" prefHeight="436.0" prefWidth="866.0" style="-fx-background-color: D6DCF6;">
          <effect>
             <InnerShadow />
          </effect>
          <children>
-            <Text fx:id="textProductName" layoutX="20.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" text="(vare navn)">
-               <font>
-                  <Font name="Segoe UI Semibold" size="36.0" />
-               </font>
-            </Text>
             <Text layoutX="361.0" layoutY="115.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pris pr. stk.:">
                <font>
                   <Font name="Segoe UI Light Italic" size="21.0" />
@@ -49,7 +43,7 @@
                   </DropShadow>
                </effect>
             </Button>
-            <Button layoutX="677.0" layoutY="15.0" mnemonicParsing="false" onAction="#goBack" prefHeight="30.0" prefWidth="152.0" style="-fx-background-color: #516DD2;" stylesheets="@design.css" text="Tilbage">
+            <Button layoutX="677.0" layoutY="32.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="152.0" style="-fx-background-color: #516DD2;" stylesheets="@design.css" text="Tilbage">
                <font>
                   <Font name="Segoe UI Semibold" size="14.0" />
                </font>
@@ -76,7 +70,7 @@
                   <Image url="@green.jpg" />
                </image>
             </ImageView>
-            <TextField layoutX="468.0" layoutY="217.0" onKeyTyped="#checkIfKeyTypedIsInteger" prefHeight="33.0" prefWidth="98.0" promptText="0" style="-fx-background-radius: 0px; -fx-border-color: #40C54D; -fx-border-width: 0px 0px 0px 0px; -fx-background-color: #FFFFFF;">
+            <TextField layoutX="468.0" layoutY="217.0" onKeyTyped="#checkIfKeyTypedIsInteger" prefHeight="33.0" prefWidth="150.0" promptText="0" style="-fx-background-radius: 0px; -fx-border-color: #40C54D; -fx-border-width: 0px 0px 0px 0px; -fx-background-color: #FFFFFF;">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
@@ -88,7 +82,7 @@
                   </DropShadow>
                </effect>
             </TextField>
-            <TextField layoutX="468.0" layoutY="154.0" onKeyTyped="#checkIfKeyTypedIsInteger" prefHeight="33.0" prefWidth="98.0" promptText="0" style="-fx-background-radius: 0px; -fx-border-color: #40C54D; -fx-border-width: 0px 0px 0px 0px; -fx-background-color: #FFFFFF;">
+            <TextField layoutX="468.0" layoutY="154.0" onKeyTyped="#checkIfKeyTypedIsInteger" prefHeight="33.0" prefWidth="150.0" promptText="0" style="-fx-background-radius: 0px; -fx-border-color: #40C54D; -fx-border-width: 0px 0px 0px 0px; -fx-background-color: #FFFFFF;">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
@@ -100,7 +94,7 @@
                   </DropShadow>
                </effect>
             </TextField>
-            <TextField layoutX="468.0" layoutY="90.0" onKeyTyped="#checkIfKeyTypedIsInteger" prefHeight="33.0" prefWidth="98.0" promptText="0" style="-fx-background-radius: 0px; -fx-border-color: #40C54D; -fx-border-width: 0px 0px 0px 0px; -fx-background-color: #FFFFFF;">
+            <TextField layoutX="468.0" layoutY="90.0" onKeyTyped="#checkIfKeyTypedIsInteger" prefHeight="33.0" prefWidth="150.0" promptText="0" style="-fx-background-radius: 0px; -fx-border-color: #40C54D; -fx-border-width: 0px 0px 0px 0px; -fx-background-color: #FFFFFF;">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
@@ -144,10 +138,33 @@
                   </DropShadow>
                </effect>
             </Button>
+            <TextField layoutX="20.0" layoutY="30.0" onKeyTyped="#checkIfKeyTypedIsInteger" prefHeight="33.0" prefWidth="286.0" promptText="Produktnavn" style="-fx-background-radius: 0px; -fx-border-color: #40C54D; -fx-border-width: 0px 0px 0px 0px; -fx-background-color: #FFFFFF;">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <effect>
+                  <DropShadow height="11.0" offsetY="2.0" radius="4.165" width="7.66">
+                     <color>
+                        <Color opacity="0.24511928856372833" />
+                     </color>
+                  </DropShadow>
+               </effect>
+            </TextField>
+            <Text fill="RED" layoutX="506.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+            <Button layoutX="87.0" layoutY="392.0" mnemonicParsing="false" onAction="#addToCart" prefHeight="30.0" prefWidth="152.0" style="-fx-background-color: #516DD2;" stylesheets="@design.css" text="Vælg billede">
+               <font>
+                  <Font name="Segoe UI Semibold" size="14.0" />
+               </font>
+               <effect>
+                  <DropShadow height="9.33" offsetY="2.0" radius="3.7475000000000005" width="7.66">
+                     <color>
+                        <Color opacity="0.25" />
+                     </color>
+                  </DropShadow>
+               </effect>
+            </Button>
          </children>
       </Pane>
-      <VBox fx:id="vbox" layoutX="222.0" layoutY="-84.0" prefHeight="180.0" prefWidth="423.0" />
-      <VBox fx:id="vbox1" layoutX="232.0" layoutY="-80.0" prefHeight="180.0" prefWidth="423.0" />
       <Text fx:id="returnButton" layoutX="620.0" layoutY="97.0" onMouseClicked="#closeConfirmation" strokeType="OUTSIDE" strokeWidth="0.0" text="X">
          <cursor>
             <Cursor fx:constant="HAND" />
