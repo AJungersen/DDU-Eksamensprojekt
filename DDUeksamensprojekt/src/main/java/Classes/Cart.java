@@ -8,6 +8,7 @@ package Classes;
 import Classes.User;
 import com.mycompany.ddueksamensprojekt.Product;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashMap;
 
 /**
@@ -36,14 +37,43 @@ public class Cart {
     public int getCart_ID() {
         return cart_ID;
     }
-    
+
     public HashMap<Product, Integer> getProductsAsMap() {
         HashMap<Product, Integer> map = new HashMap<>();
-        HashMap<Product, Integer> temp = new HashMap<>();
-        
-        
+
+        Comparator<Product> sortIDAcending = new Comparator<Product>() {
+            @Override
+            public int compare(Product o1, Product o2) {
+                return o1.getItem_ID() - o2.getItem_ID();
+            }
+        };
+
+        products.sort(sortIDAcending);
+
+        int numberOfCourentProduct = 1;
+        Product prevItem = new Product();
+        int arrayPos = 0;
+
         for (Product p : products) {
-            if (map.size() > 0) {
+            if (p.getItem_ID() == prevItem.getItem_ID()) {
+                numberOfCourentProduct++;
+                
+                if (arrayPos == (products.size() - 1)) {
+                    System.out.println("hi");
+                    map.put(p, numberOfCourentProduct);
+                }
+            } else if(arrayPos > 0){
+                map.put(prevItem, numberOfCourentProduct);
+                numberOfCourentProduct = 1;
+            }
+
+            arrayPos++;
+            prevItem = p;
+            /*Integer count = map.get(p);
+            
+            map.put(p, (count == null) ? 1 : count + 1);
+             */
+ /*if (map.size() > 0) {
                 for (Product mp : map.keySet()) {
                     if (p.getItem_ID() == mp.getItem_ID()) {
                         temp.put(mp, map.get(mp) + 1);
@@ -56,7 +86,7 @@ public class Cart {
                 map = temp;
             } else {
                 map.put(p, 1);
-            }
+            }*/
         }
         return map;
     }
