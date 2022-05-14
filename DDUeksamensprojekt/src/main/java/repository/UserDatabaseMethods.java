@@ -144,7 +144,7 @@ public class UserDatabaseMethods {
         }
 
         sql = "INSERT INTO Users(wallet_ID, name, email, password) "
-                + "VALUES('" + wallet_ID + "', '" + _newUser.getName() + "','" + _newUser.getEmail() + "', '" + _password + "');";
+                + "VALUES('" + wallet_ID + "', '" + _newUser.getName() + "','" + _newUser.getEmail().toLowerCase() + "', '" + _password + "');";
 
         try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.executeUpdate();
