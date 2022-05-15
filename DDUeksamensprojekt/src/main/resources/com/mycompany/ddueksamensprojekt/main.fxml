@@ -20,7 +20,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: #40C54D;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.ddueksamensprojekt.MainController">
+<AnchorPane id="AnchorPane" prefHeight="800.0" prefWidth="1200.0" style="-fx-background-color: #40C54D;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.ddueksamensprojekt.MainController">
    <children>
       <ScrollPane layoutX="-6.0" layoutY="85.0" prefHeight="730.0" prefWidth="1206.0">
         <content>
@@ -78,6 +78,11 @@
          </effect>
       </ScrollPane>
       <VBox fx:id="vbox" layoutX="389.0" layoutY="-100.0" prefHeight="180.0" prefWidth="423.0" />
+      <Text fx:id="returnButton" layoutX="793.0" layoutY="68.0" onMouseClicked="#closeConfirmation" strokeType="OUTSIDE" strokeWidth="0.0" text="X">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Text>
       <Pane prefHeight="84.0" prefWidth="1200.0" style="-fx-background-color: #40C54D;">
          <children>
             <Circle fill="DODGERBLUE" layoutX="54.0" layoutY="43.0" onMouseClicked="#openProfile" radius="29.0" stroke="BLACK" strokeType="INSIDE" style="-fx-stroke: transparent; -fx-fill: #DFF2E1;">

@@ -72,7 +72,7 @@
                   </DropShadow>
                </effect>
             </Button>
-            <Button layoutX="130.0" layoutY="347.0" mnemonicParsing="false" onAction="#saveWorker" prefHeight="43.0" prefWidth="150.0" style="-fx-background-color: #516DD2;" stylesheets="@design.css" text="Gem medarbejder">
+            <Button layoutX="130.0" layoutY="347.0" mnemonicParsing="false" onAction="#createWorker" prefHeight="43.0" prefWidth="150.0" style="-fx-background-color: #516DD2;" stylesheets="@design.css" text="Gem medarbejder">
                <font>
                   <Font name="Segoe UI Semibold" size="14.0" />
                </font>
@@ -138,7 +138,7 @@
                   </DropShadow>
                </effect>
             </PasswordField>
-            <Text fx:id="textErrorMessage" fill="RED" layoutX="450.0" layoutY="375.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+            <Text fx:id="textErrorMessage" fill="RED" layoutX="386.0" layoutY="373.0" strokeType="OUTSIDE" strokeWidth="0.0" text=" " textAlignment="CENTER" wrappingWidth="150.0" />
          </children>
          <effect>
             <DropShadow />

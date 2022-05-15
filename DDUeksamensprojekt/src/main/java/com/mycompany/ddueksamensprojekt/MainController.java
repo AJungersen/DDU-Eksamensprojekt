@@ -202,7 +202,7 @@ public class MainController implements Initializable {
         }
 
         TranslateTransition t = new TranslateTransition(Duration.seconds(1), vbox);
-        t.setToY(vbox.getLayoutX() * 0.8);
+        t.setToY(vbox.getLayoutX() * 0.4);
         t.play();
         t.setOnFinished((e) -> {
         });
