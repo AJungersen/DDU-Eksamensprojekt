@@ -154,7 +154,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button layoutX="738.0" layoutY="25.0" mnemonicParsing="false" onAction="#createShifts" prefHeight="36.0" prefWidth="160.0" style="-fx-background-color: #516DD2;" stylesheets="@design.css" text="Opret vagt (admin)">
+                  <Button layoutX="738.0" layoutY="25.0" mnemonicParsing="false" onAction="#createShifts" prefHeight="36.0" prefWidth="160.0" style="-fx-background-color: #516DD2;" stylesheets="@design.css" text="Opret vagt ">
                      <effect>
                         <DropShadow height="8.5" offsetY="2.0" radius="3.54" width="7.66">
                            <color>
@@ -169,7 +169,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button layoutX="550.0" layoutY="25.0" mnemonicParsing="false" onAction="#createCategory" prefHeight="36.0" prefWidth="177.0" style="-fx-background-color: #516DD2;" stylesheets="@design.css" text="Skift billede på kategori (admin)">
+                  <Button layoutX="550.0" layoutY="25.0" mnemonicParsing="false" onAction="#createCategory" prefHeight="36.0" prefWidth="177.0" style="-fx-background-color: #516DD2;" stylesheets="@design.css" text="Skift billede på kategori">
                      <effect>
                         <DropShadow height="8.5" offsetY="2.0" radius="3.54" width="7.66">
                            <color>
@@ -184,7 +184,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button layoutX="380.0" layoutY="25.0" mnemonicParsing="false" onAction="#createProduct" prefHeight="36.0" prefWidth="160.0" style="-fx-background-color: #516DD2;" stylesheets="@design.css" text="Opret vare (admin)">
+                  <Button layoutX="380.0" layoutY="25.0" mnemonicParsing="false" onAction="#createProduct" prefHeight="36.0" prefWidth="160.0" style="-fx-background-color: #516DD2;" stylesheets="@design.css" text="Opret vare">
                      <effect>
                         <DropShadow height="8.5" offsetY="2.0" radius="3.54" width="7.66">
                            <color>
@@ -199,7 +199,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button layoutX="208.0" layoutY="25.0" mnemonicParsing="false" onAction="#openProductView" prefHeight="36.0" prefWidth="160.0" style="-fx-background-color: #516DD2;" stylesheets="@design.css" text="Vareoversigt (admin)">
+                  <Button layoutX="208.0" layoutY="25.0" mnemonicParsing="false" onAction="#openProductView" prefHeight="36.0" prefWidth="160.0" style="-fx-background-color: #516DD2;" stylesheets="@design.css" text="Vareoversigt">
                      <effect>
                         <DropShadow height="8.5" offsetY="2.0" radius="3.54" width="7.66">
                            <color>
