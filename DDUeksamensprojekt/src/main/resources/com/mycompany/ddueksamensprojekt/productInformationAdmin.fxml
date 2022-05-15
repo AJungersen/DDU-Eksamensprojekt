@@ -157,7 +157,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Label>
-            <Circle fill="DODGERBLUE" layoutX="43.0" layoutY="55.0" radius="29.0" stroke="BLACK" strokeType="INSIDE" style="-fx-stroke: transparent; -fx-fill: # D6DCF6;" />
+            <Circle fill="DODGERBLUE" layoutX="43.0" layoutY="55.0" radius="29.0" stroke="BLACK" strokeType="INSIDE" style="-fx-stroke: transparent; -fx-fill: #DFF2E1;" />
             <ImageView fitHeight="66.0" fitWidth="58.0" layoutX="14.0" layoutY="26.0" onMouseClicked="#openProfile" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@my-profile-icon-png-3.png" />
