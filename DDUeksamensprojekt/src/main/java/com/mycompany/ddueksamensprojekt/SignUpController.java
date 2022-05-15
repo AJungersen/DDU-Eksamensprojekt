@@ -8,6 +8,7 @@ package com.mycompany.ddueksamensprojekt;
 import Classes.Coupon;
 import Classes.CreditCard;
 import Classes.User;
+import Classes.UserType;
 import Classes.Wallet;
 import static com.mycompany.ddueksamensprojekt.App.scene;
 import repository.*;
@@ -90,7 +91,7 @@ public class SignUpController {
                                 //passwords is identicel
                                 if (passwordFieldPassword.getText().equals(passwordFieldrepeatPassword.getText())) {
 
-                                    udm.createUser(new User(textFieldName.getText(), textFieldEmail.getText()),
+                                    udm.createUser(new User(textFieldName.getText(), textFieldEmail.getText(), UserType.COSTUMER),
                                             sm.hexString(passwordFieldPassword.getText()));
 
                                     App.setLoggedInUser(udm.getLoggedInUser(textFieldEmail.getText()));

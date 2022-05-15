@@ -20,20 +20,23 @@ public class User {
     private Wallet wallet;
     private ArrayList<Product> favorites = new ArrayList<>();
     private ArrayList<Cart> savedCarts = new ArrayList<>();
+    private UserType userType;
 
-    public User(int user_ID, String name, String email, Wallet wallet, ArrayList<Product> favorites, ArrayList<Cart> savedCarts) {
+    public User(int user_ID, String name, String email, Wallet wallet, ArrayList<Product> favorites, ArrayList<Cart> savedCarts, UserType userType) {
         this.user_ID = user_ID;
         this.name = name;
         this.email = email;
         this.wallet = wallet;
         this.favorites = favorites;
         this.savedCarts = savedCarts;
+        this.userType = userType;
     }
     
     //sign up
-    public User(String name, String email) {
+    public User(String name, String email, UserType userType) {
         this.name = name;
         this.email = email;
+        this.userType = userType;
     }
 
     public User() {
@@ -81,5 +84,13 @@ public class User {
 
     public void setSavedCarts(ArrayList<Cart> savedCarts) {
         this.savedCarts = savedCarts;
+    }
+
+    public UserType getUserType() {
+        return userType;
+    }
+
+    public void setUserType(UserType userType) {
+        this.userType = userType;
     }
 }

@@ -143,8 +143,9 @@ public class UserDatabaseMethods {
             System.out.println("\n Database error (create user (get wallet_ID)): " + e.getMessage() + "\n");
         }
 
-        sql = "INSERT INTO Users(wallet_ID, name, email, password) "
-                + "VALUES('" + wallet_ID + "', '" + _newUser.getName() + "','" + _newUser.getEmail().toLowerCase() + "', '" + _password + "');";
+        sql = "INSERT INTO Users "
+                + "VALUES(?, '" + wallet_ID + "', '" + _newUser.getName() + "','" + _newUser.getEmail().toLowerCase() + "', "
+                + "'" + _password + "', '" + _newUser.getUserType().toString() + "');";
 
         try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.executeUpdate();
@@ -180,9 +181,9 @@ public class UserDatabaseMethods {
                     + "WHERE email = ('" + _email + "');");
 
             rs.next();
-
+            
             loggedInUser = new User(rs.getInt("user_ID"), rs.getString("name"), rs.getString("email"),
-                    new Wallet(rs.getInt("wallet_ID"), rs.getInt("funds"), null, null), null, null);
+                    new Wallet(rs.getInt("wallet_ID"), rs.getInt("funds"), null, null), null, null, UserType.valueOf(rs.getString("userType")));
 
             rs.close();
 
