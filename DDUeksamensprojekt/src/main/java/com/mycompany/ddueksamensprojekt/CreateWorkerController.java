@@ -162,31 +162,4 @@ public class CreateWorkerController implements Initializable {
             System.out.println(textErrorMessage.getText());
         }
     }
-    LocalDateTime timeForShift;
-    Callback callback = new Callback<TableView<Worker>, TableRow<Worker>>() {
-        @Override
-        public TableRow<Worker> call(TableView<Worker> param) {
-            return new TableRow<Worker>() {
-                @Override
-                protected void updateItem(Worker item, boolean empty) {
-                    super.updateItem(item, empty);
-                    try {
-                        if (item == null || empty) {
-                        } else {
-                            AdminDataBaseMethods adbm = new AdminDataBaseMethods();
-                            if (adbm.checkIfWotkerIsOnShiftThatDay(timeForShift, item.getUser_ID())) {
-                                //setStyle("-fx-background-color: " + HIGHLITE_COLOUR_DONE + ";");
-                            } else {
-                                //setStyle("-fx-background-color: " + HIGHLITE_COLOUR_MISSING + ";");
-
-                            }
-                        }
-                    } catch (Exception e) {
-                        System.out.println(e.getMessage());
-                    }
-                }
-            };
-        }
-
-    };
 }
