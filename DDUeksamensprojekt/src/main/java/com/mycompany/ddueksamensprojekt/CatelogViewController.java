@@ -180,8 +180,6 @@ public class CatelogViewController implements Initializable {
                 } else {
                     //empty
                     lagerstatusCircle.setFill(Paint.valueOf("#F1948A"));
-                    //lagerstatusCircle.setFill(Paint.valueOf("#82E0AA"));
-                    lagerstatusCircle.setFill(Paint.valueOf("#F7DC6F"));
                 }
                 lagerstatusCircle.setCenterX(lagerstatusText.getLayoutX() + lagerstatusText.getBoundsInLocal().getWidth() + lagerStatusCirkelSize + 10);
 

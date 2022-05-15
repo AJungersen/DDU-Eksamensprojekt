@@ -10,13 +10,18 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.ResourceBundle;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.animation.TranslateTransition;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Cursor;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -24,7 +29,9 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import javafx.util.Duration;
 import repository.StoreDatabaseMethods;
 
 /**
@@ -35,7 +42,7 @@ public class MainController implements Initializable {
 
     StoreDatabaseMethods sdm = new StoreDatabaseMethods();
     ArrayList<StackPane> stackPanes = new ArrayList<>();
-    
+
     private float boarderWith = 4f;
     private float paneSize_X = 286;
     private float paneSize_Y = 286;
@@ -58,128 +65,160 @@ public class MainController implements Initializable {
     private AnchorPane anchorPaneCategories;
     @FXML
     private AnchorPane anchorPaneOnScrollPane;
+    @FXML
+    private VBox vbox;
+    @FXML
+    private Text returnButton;
+    private Parent fxml;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         try {
-            textWelcomeBackUser.setText("Velkommen tilbage " + App.getLoggedInUser().getName());
+            fxml = FXMLLoader.load(getClass().getResource("guide.fxml"));
+            vbox.getChildren().setAll(fxml);
 
-            //calc panes per row
-            panesPerRow = (int) Math.floor((anchorPaneCategories.getPrefWidth() - PaneSpace_X) / (paneSize_X + PaneSpace_X));
+        } catch (Exception ex) {
+            System.out.println("Error");
 
-            //update pane space x
-            PaneSpace_X = (float) (anchorPaneCategories.getPrefWidth()
-                    - (paneSize_X * panesPerRow))
-                    / (2 + panesPerRow - 1);
+            try {
+                textWelcomeBackUser.setText("Velkommen tilbage " + App.getLoggedInUser().getName());
 
-            //update anchor pane height
-            float newHeight = (float) ((paneSize_Y + paneSPace_Y) * Math.ceil(ProductCategory.values().length / panesPerRow) + paneSPace_Y);
-            anchorPaneOnScrollPane.setPrefHeight(anchorPaneOnScrollPane.getPrefHeight()
-                    - anchorPaneCategories.getPrefHeight() + newHeight);
+                //calc panes per row
+                panesPerRow = (int) Math.floor((anchorPaneCategories.getPrefWidth() - PaneSpace_X) / (paneSize_X + PaneSpace_X));
 
-            anchorPaneCategories.setPrefHeight(newHeight);
+                //update pane space x
+                PaneSpace_X = (float) (anchorPaneCategories.getPrefWidth()
+                        - (paneSize_X * panesPerRow))
+                        / (2 + panesPerRow - 1);
 
-            //insert categories
-            int column = 0;
-            int row = 1;
-            for (ProductCategory pc : ProductCategory.values()) {
-                column++;
-                StackPane stackPane = new StackPane();
-                //pos
-                stackPane.setLayoutX((PaneSpace_X * column) + (paneSize_X * (column - 1)));
-                stackPane.setLayoutY((paneSPace_Y * row) + (paneSize_Y * (row - 1)));
+                //update anchor pane height
+                float newHeight = (float) ((paneSize_Y + paneSPace_Y) * Math.ceil(ProductCategory.values().length / panesPerRow) + paneSPace_Y);
+                anchorPaneOnScrollPane.setPrefHeight(anchorPaneOnScrollPane.getPrefHeight()
+                        - anchorPaneCategories.getPrefHeight() + newHeight);
 
-                //size
-                stackPane.setMinSize(paneSize_X, paneSize_Y);
-                stackPane.setMaxSize(paneSize_X, paneSize_Y);
+                anchorPaneCategories.setPrefHeight(newHeight);
 
-                //category image
-                ImageView imgView = new ImageView(pc.getImage());
+                //insert categories
+                int column = 0;
+                int row = 1;
+                for (ProductCategory pc : ProductCategory.values()) {
+                    column++;
+                    StackPane stackPane = new StackPane();
+                    //pos
+                    stackPane.setLayoutX((PaneSpace_X * column) + (paneSize_X * (column - 1)));
+                    stackPane.setLayoutY((paneSPace_Y * row) + (paneSize_Y * (row - 1)));
 
-                imgView.setFitWidth(paneSize_X - boarderWith*2);
-                imgView.setFitHeight(paneSize_Y - boarderWith*2);
+                    //size
+                    stackPane.setMinSize(paneSize_X, paneSize_Y);
+                    stackPane.setMaxSize(paneSize_X, paneSize_Y);
 
-                stackPane.setStyle("-fx-border-color: #333333;" + "-fx-border-width: " + boarderWith + ";");
+                    //category image
+                    ImageView imgView = new ImageView(pc.getImage());
 
-                //category text
-                Text text = new Text(pc.asFormatedString());
+                    imgView.setFitWidth(paneSize_X - boarderWith * 2);
+                    imgView.setFitHeight(paneSize_Y - boarderWith * 2);
 
-                text.setStyle("-fx-fill-color: #333333;" + "-fx-font-size:30px;"
-                        + "-fx-font-family: Segoe UI Semibold;"
-                        + "-fx-effect: dropshadow(one-pass-box, #5C5C5C, 9.66, 0.62, 1,1);");
+                    stackPane.setStyle("-fx-border-color: #333333;" + "-fx-border-width: " + boarderWith + ";");
 
-                //set mouse clicked on image view to switch to category
-                EventHandler<MouseEvent> clicked = new EventHandler<MouseEvent>() {
-                    @Override
-                    public void handle(MouseEvent event) {
-                        App.setCurrentCategoryDisplaying(pc);
-                        try {
-                            App.setRoot("CatelogView");
-                        } catch (Exception e) {
-                            System.out.println("Error in " + e.getMessage());;
+                    //category text
+                    Text text = new Text(pc.asFormatedString());
+
+                    text.setStyle("-fx-fill-color: #333333;" + "-fx-font-size:30px;"
+                            + "-fx-font-family: Segoe UI Semibold;"
+                            + "-fx-effect: dropshadow(one-pass-box, #5C5C5C, 9.66, 0.62, 1,1);");
+
+                    //set mouse clicked on image view to switch to category
+                    EventHandler<MouseEvent> clicked = new EventHandler<MouseEvent>() {
+                        @Override
+                        public void handle(MouseEvent event) {
+                            App.setCurrentCategoryDisplaying(pc);
+                            try {
+                                App.setRoot("CatelogView");
+                            } catch (Exception e) {
+                                System.out.println("Error in " + e.getMessage());;
+                            }
                         }
+                    };
+
+                    EventHandler<MouseEvent> entered = new EventHandler<MouseEvent>() {
+                        @Override
+                        public void handle(MouseEvent event) {
+                            App.getStage().getScene().setCursor(Cursor.HAND);
+                        }
+                    };
+
+                    EventHandler<MouseEvent> exited = new EventHandler<MouseEvent>() {
+                        @Override
+                        public void handle(MouseEvent event) {
+                            App.getStage().getScene().setCursor(Cursor.DEFAULT);
+                        }
+                    };
+
+                    stackPane.getChildren().add(imgView);
+                    stackPane.getChildren().add(text);
+
+                    for (Node sp : stackPane.getChildren()) {
+                        sp.setOnMouseClicked(clicked);
+                        sp.setOnMouseEntered(entered);
+                        sp.setOnMouseExited(exited);
                     }
-                };
 
-                EventHandler<MouseEvent> entered = new EventHandler<MouseEvent>() {
-                    @Override
-                    public void handle(MouseEvent event) {
-                        App.getStage().getScene().setCursor(Cursor.HAND);
+                    stackPane.setAlignment(text, Pos.BOTTOM_CENTER);
+
+                    anchorPaneCategories.getChildren().add(stackPane);
+                    if (column % panesPerRow == 0) {
+                        column = 0;
+                        row++;
                     }
-                };
-
-                EventHandler<MouseEvent> exited = new EventHandler<MouseEvent>() {
-                    @Override
-                    public void handle(MouseEvent event) {
-                        App.getStage().getScene().setCursor(Cursor.DEFAULT);
-                    }
-                };
-
-                stackPane.getChildren().add(imgView);
-                stackPane.getChildren().add(text);
-
-                for (Node sp : stackPane.getChildren()) {
-                    sp.setOnMouseClicked(clicked);
-                    sp.setOnMouseEntered(entered);
-                    sp.setOnMouseExited(exited);
                 }
 
-                stackPane.setAlignment(text, Pos.BOTTOM_CENTER);
-
-                anchorPaneCategories.getChildren().add(stackPane);
-                if (column % panesPerRow == 0) {
-                    column = 0;
-                    row++;
-                }
-            }
-
-            //test
-            /*Product p1 = new Product(0, "test1", null, 1, 4, ProductCategory.FRUGT_OG_GRØNT);
+                //test
+                /*Product p1 = new Product(0, "test1", null, 1, 4, ProductCategory.FRUGT_OG_GRØNT);
             Product p2 = new Product(0, "test2", null, 5, 4, ProductCategory.KØD_OG_FISK);
 
             HashMap<Product, Integer> hp = new HashMap<>();
 
             hp.put(p1, 1);
             hp.put(p2, 2);
-             */
-            ArrayList<TableViewDisplayPurchase> tableViewDispalyData = new ArrayList<>();
+                 */
+                ArrayList<TableViewDisplayPurchase> tableViewDispalyData = new ArrayList<>();
 
-            HashMap<Product, Integer> hm = sdm.getLatestPurchase(App.getLoggedInUser().getUser_ID()).getPurchasedProducts();
-            
-            for (Product p : hm.keySet()) {
-                System.out.println(p.getImage());
-                tableViewDispalyData.add(new TableViewDisplayPurchase(hm.get(p), p));
+                HashMap<Product, Integer> hm = sdm.getLatestPurchase(App.getLoggedInUser().getUser_ID()).getPurchasedProducts();
+
+                for (Product p : hm.keySet()) {
+                    System.out.println(p.getImage());
+                    tableViewDispalyData.add(new TableViewDisplayPurchase(hm.get(p), p));
+                }
+
+                tableColumnImage.setCellValueFactory(new PropertyValueFactory<>("displayImage"));
+                tableColumnName.setCellValueFactory(new PropertyValueFactory<>("name"));
+                tableColumnPrice.setCellValueFactory(new PropertyValueFactory<>("price"));
+                tableColumnAmount.setCellValueFactory(new PropertyValueFactory<>("amount"));
+
+                tableViewLastPurchas.getItems().setAll(tableViewDispalyData);
+
+            } catch (Exception e) {
+                System.out.println("\n error in main initiliza: " + e.getMessage() + "\n");
             }
 
-            tableColumnImage.setCellValueFactory(new PropertyValueFactory<>("displayImage"));
-            tableColumnName.setCellValueFactory(new PropertyValueFactory<>("name"));
-            tableColumnPrice.setCellValueFactory(new PropertyValueFactory<>("price"));
-            tableColumnAmount.setCellValueFactory(new PropertyValueFactory<>("amount"));
+            TranslateTransition t = new TranslateTransition(Duration.seconds(1), vbox);
+            t.setToY(vbox.getLayoutX() * 0.8);
+            t.play();
+            t.setOnFinished((e) -> {
+            });
+            TranslateTransition s = new TranslateTransition(Duration.seconds(1), returnButton);
+            s.setToY(38);
+            s.play();
+            s.setOnFinished((e) -> {
+            });
+            //returnvbox.setVisible(false);
+            final Timeline timeline = new Timeline();
+            timeline.getKeyFrames().add(new KeyFrame(Duration.millis(5000)));
+            timeline.play();
+            timeline.setOnFinished((e) -> {
+                closeConfirmation();
+            });
 
-            tableViewLastPurchas.getItems().setAll(tableViewDispalyData);
-
-        } catch (Exception e) {
-            System.out.println("\n error in main initiliza: " + e.getMessage() + "\n");
         }
     }
 
@@ -196,7 +235,7 @@ public class MainController implements Initializable {
     }
 
     @FXML
-    private void goToSelectedProduct(MouseEvent event) throws Exception{
+    private void goToSelectedProduct(MouseEvent event) throws Exception {
 
         if (tableViewLastPurchas.getFocusModel().getFocusedCell().getColumn() <= 1) {
             //send to product

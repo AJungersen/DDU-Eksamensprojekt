@@ -8,6 +8,7 @@ package com.mycompany.ddueksamensprojekt;
 import Classes.Coupon;
 import Classes.CreditCard;
 import Classes.User;
+import Classes.UserType;
 import Classes.Wallet;
 import static com.mycompany.ddueksamensprojekt.App.scene;
 import repository.*;
@@ -30,6 +31,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
+import javafx.stage.Popup;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 
 /**
@@ -88,7 +91,7 @@ public class SignUpController {
                                 //passwords is identicel
                                 if (passwordFieldPassword.getText().equals(passwordFieldrepeatPassword.getText())) {
 
-                                    udm.createUser(new User(textFieldName.getText(), textFieldEmail.getText()),
+                                    udm.createUser(new User(textFieldName.getText(), textFieldEmail.getText(), UserType.COSTUMER),
                                             sm.hexString(passwordFieldPassword.getText()));
 
                                     App.setLoggedInUser(udm.getLoggedInUser(textFieldEmail.getText()));
@@ -139,6 +142,20 @@ public class SignUpController {
             parent.getChildren().remove(anchor);
         });
         timeline.play();
+    }
+    
+    @FXML
+    void openTerms() throws Exception {
+        Stage stage = App.getStage();
+        Popup popup = new Popup();
+
+        popup.getContent().addAll(App.loadFXML("termsAndConditions").getChildrenUnmodifiable());
+        popup.setX(stage.getWidth()/2);
+        popup.setY(stage.getHeight()/2);
+
+        App.setPopup(popup);
+
+        App.openPopup();
     }
 }
     

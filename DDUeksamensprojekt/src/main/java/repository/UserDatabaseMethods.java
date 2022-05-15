@@ -143,8 +143,9 @@ public class UserDatabaseMethods {
             System.out.println("\n Database error (create user (get wallet_ID)): " + e.getMessage() + "\n");
         }
 
-        sql = "INSERT INTO Users(wallet_ID, name, email, password) "
-                + "VALUES('" + wallet_ID + "', '" + _newUser.getName() + "','" + _newUser.getEmail().toLowerCase() + "', '" + _password + "');";
+        sql = "INSERT INTO Users "
+                + "VALUES(?, '" + wallet_ID + "', '" + _newUser.getName() + "','" + _newUser.getEmail().toLowerCase() + "', "
+                + "'" + _password + "', '" + _newUser.getUserType().toString() + "');";
 
         try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.executeUpdate();
@@ -180,78 +181,8 @@ public class UserDatabaseMethods {
                     + "WHERE email = ('" + _email + "');");
 
             rs.next();
-
-            loggedInUser = new User(rs.getInt("user_ID"), rs.getString("name"), rs.getString("email"),
-                    new Wallet(rs.getInt("wallet_ID"), rs.getInt("funds"), null, null), null, null);
-
-            rs.close();
-
-            //get wallet credit cards
-            try {
-                rs = stat.executeQuery("SELECT * FROM Creditcards "
-                        + "WHERE wallet_ID = ('" + loggedInUser.getWallet().getWallet_ID() + "')");
-
-                loggedInUser.getWallet().setCreditCards(UserLoadMethods.loadCreditCards(rs));
-
-            } catch (SQLException e) {
-                System.out.println("\n Database error (get logged ind user (get wallet creditcards)): " + e.getMessage() + "\n");
-            }
-
-            //get wallet coupons
-            try {
-                rs = stat.executeQuery("SELECT * FROM Coupons "
-                        + "WHERE wallet_ID = ('" + loggedInUser.getWallet().getWallet_ID() + "') ");
-
-                ArrayList<Coupon> coupons = new ArrayList<>();
-
-                while (rs.next()) {
-                    coupons.add(new Coupon());
-                }
-
-                loggedInUser.getWallet().setCupons(coupons);
-
-            } catch (SQLException e) {
-                System.out.println("\n Database error (get logged ind user (get wallet coupons)): " + e.getMessage() + "\n");
-            }
-
-            //get favorites
-            try {
-
-                rs = stat.executeQuery("SELECT * FROM products "
-                        + "WHERE product_ID IN(SELECT product_ID FROM Favorites "
-                        + "WHERE user_ID = ('" + loggedInUser.getUser_ID() + "'))");
-
-                /*ArrayList<Product> favorites = new ArrayList<>();
-                
-                while (rs.next()) {
-                    byte[] imgBytes = rs.getBytes("image");
-                    ByteArrayInputStream bis = new ByteArrayInputStream(imgBytes);
-                    BufferedImage bImage = ImageIO.read(bis);
-
-                    favorites.add(new Product(rs.getInt("product_ID"), rs.getString("name"),
-                            Tools.convertBufferedImageToFxImage(bImage), rs.getInt("price"),
-                            rs.getInt("stock"), ProductCategory.valueOf(rs.getString("ProductCategory"))));
-                }*/
-                loggedInUser.setFavorites(StoreLoadMethods.loadProducts(rs));
-
-            } catch (SQLException e) {
-                System.out.println("\n Database error (get logged ind user (get user favorites)): " + e.getMessage() + "\n");
-            }
-
-            //get saved shoppingCarts
-            try {
-                ArrayList<Cart> savedCarts = new ArrayList<>();
-
-                rs = stat.executeQuery("SELECT savedShoppingCart_ID FROM savedShoppingCarts "
-                        + "WHERE user_ID = ('" + loggedInUser.getUser_ID() + "') ;");
-
-                savedCarts = UserLoadMethods.loadCarts(rs, conn);
-
-                loggedInUser.setSavedCarts(savedCarts);
-            } catch (SQLException e) {
-                System.out.println("\n Database error (get logged ind user (get saved carts)): " + e.getMessage() + "\n");
-            }
-
+            
+            loggedInUser = UserLoadMethods.loadUser(rs, conn, stat);
         } catch (SQLException e) {
             System.out.println("\n Database error (get logged ind user (result set get user)): " + e.getMessage() + "\n");
         }
