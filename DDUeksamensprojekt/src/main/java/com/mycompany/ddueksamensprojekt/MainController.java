@@ -6,6 +6,7 @@
 package com.mycompany.ddueksamensprojekt;
 
 import Classes.ProductCategory;
+import Classes.UserType;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -259,6 +260,8 @@ public class MainController implements Initializable {
 
     @FXML
     void openAdmin() throws Exception {
-        App.setRoot("mainAdmin");
+        if (App.getLoggedInUser().getUserType() == UserType.WORKER) {
+            App.setRoot("mainAdmin");
+        }
     }
 }
