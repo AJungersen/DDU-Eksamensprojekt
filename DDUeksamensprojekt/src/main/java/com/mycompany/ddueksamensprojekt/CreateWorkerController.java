@@ -4,6 +4,7 @@
  */
 package com.mycompany.ddueksamensprojekt;
 
+import Classes.User;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -15,6 +16,13 @@ import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import repository.*;
 import static com.mycompany.ddueksamensprojekt.App.scene;
+import java.io.FileInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.util.regex.Pattern;
+import javafx.scene.image.Image;
+import javafx.scene.input.KeyEvent;
+import javafx.stage.FileChooser;
 
 /**
  *
@@ -25,12 +33,24 @@ public class CreateWorkerController implements Initializable {
     /**
      * Initializes the controller class.
      */
-    z
+    @FXML
+    private TextField textFieldName;
+    @FXML
+    private TextField textFieldEmail;
+    @FXML
+    private TextField textFieldNumber;
+    @FXML
+    private PasswordField passwordFieldPassword;
+    @FXML
+    private PasswordField passwordFieldPasswordRepeat; 
+    @FXML
+    private Text textErrorMessage;
     @FXML
     private ImageView workerImage;
     private final FileChooser fc = new FileChooser();
     private File selectedFiles;
     private UserDatabaseMethods udm = new UserDatabaseMethods();
+    private SecurityMethods sm = new SecurityMethods();
     
     
     @Override
@@ -54,7 +74,7 @@ public class CreateWorkerController implements Initializable {
         //selectedFiles = fc.showOpenMultipleDialog(null).get(0);
         selectedFiles = fc.showOpenDialog(null);
 
-        productImage.setImage(new Image(new FileInputStream(selectedFiles)));
+        workerImage.setImage(new Image(new FileInputStream(selectedFiles)));
     }
      @FXML
     private void checkIfKeyTypedIsFloat(KeyEvent event) {
@@ -79,7 +99,7 @@ public class CreateWorkerController implements Initializable {
         if (!textFieldName.getText().isBlank()
                 && !textFieldNumber.getText().isBlank()
                 && !passwordFieldPassword.getText().isBlank()
-                && !passwordFieldrepeatPassword.getText().isBlank()
+                && !passwordFieldPasswordRepeat.getText().isBlank()
                 && !textFieldEmail.getText().isBlank()) {
 
             //Check if email already exist
@@ -102,7 +122,7 @@ public class CreateWorkerController implements Initializable {
                             if (!passwordFieldPassword.getText().equals(passwordFieldPassword.getText().toLowerCase())) {
 
                                 //passwords is identicel
-                                if (passwordFieldPassword.getText().equals(passwordFieldrepeatPassword.getText())) {
+                                if (passwordFieldPassword.getText().equals(passwordFieldPasswordRepeat.getText())) {
 
                                     udm.createUser(new User(textFieldName.getText(), textFieldEmail.getText()),
                                             sm.hexString(passwordFieldPassword.getText()));
@@ -133,4 +153,5 @@ public class CreateWorkerController implements Initializable {
             textErrorMessage.setText("Alle felterne skal være udfyldt");
             System.out.println(textErrorMessage.getText());
     }
+  }
 }
