@@ -7,6 +7,8 @@ package repository;
 
 import com.mycompany.ddueksamensprojekt.Product;
 import Classes.ProductCategory;
+import Classes.User;
+import Classes.Worker;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.File;
@@ -182,7 +184,43 @@ public class AdminDataBaseMethods {
         conn.close();
     }
     
-    //-------------------------------------------------------
-    //---------- Bind image to sub product product ----------
-    //-------------------------------------------------------
+    //-----------------------------------
+    //---------- Create worker ----------
+    //-----------------------------------
+    public void createWorker(Worker _newWorker, String _password) throws SQLException, Exception{
+        Connection conn = null;
+        Class.forName("org.sqlite.JDBC");
+
+        try {
+            conn = DriverManager.getConnection(staticConnectionString);
+        } catch (SQLException e) {
+            System.out.println("\n Database error (create worker (connection)): " + e.getMessage() + "\n");
+        }
+        
+        UserDatabaseMethods udm = new UserDatabaseMethods();
+        
+        udm.createUser(_newWorker, _password);
+        
+        int user_ID = -1;
+        
+        try {
+            Statement stat = conn.createStatement();
+            
+            ResultSet rs = stat.executeQuery("SELECT MAX(User_ID) FROM Users;");
+            
+            user_ID = rs.getInt("MAX(User_ID)");
+            
+        } catch (SQLException e) {
+            System.out.println("\n Database error (create worker (get user_ID)): " + e.getMessage() + "\n");
+        }
+        
+        
+        String sql = "INSERT INTO Workers VALUES('" + user_ID + "', '" + _newWorker.getPhoneNumber() + "');";
+        
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println("\n Database error (create worker (create worker)): " + e.getMessage() + "\n");
+        }
+    }
 }
