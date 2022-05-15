@@ -10,6 +10,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import javafx.stage.Popup;
@@ -30,6 +31,7 @@ public class App extends Application {
     public static Cart currentCart = new Cart(-1, new ArrayList<Product>());
     public static Product currentProduct;
     public static String lastSceneFxml;
+    private static final DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy/ HH:mm:ss");
 
     @Override
     public void start(Stage stage) throws IOException, Exception {
@@ -124,5 +126,9 @@ public class App extends Application {
 
     public static String getLastSceneFxml() {
         return lastSceneFxml;
+    }
+
+    public static DateTimeFormatter getDtf() {
+        return dtf;
     }
 }

@@ -111,11 +111,16 @@ public class CreateProductController implements Initializable {
         if (!Tools.isFloat(((TextField) event.getTarget()).getText()) || ((TextField) event.getTarget()).getText().contains("d") 
                 || ((TextField) event.getTarget()).getText().contains("f")) {
             
+            String text = ((TextField) event.getTarget()).getText();
+            
             if (event.getCharacter().equals(".")) {
                 String regex = "\\.";
-                ((TextField) event.getTarget()).setText(((TextField) event.getTarget()).getText().replaceFirst(regex, ""));
+                
+                String newText = new StringBuilder(new StringBuilder(text).reverse().toString().replaceFirst(regex, "")).reverse().toString();
+                
+                ((TextField) event.getTarget()).setText(newText);
             } else {
-                ((TextField) event.getTarget()).setText(((TextField) event.getTarget()).getText().replaceFirst(event.getCharacter(), ""));
+                ((TextField) event.getTarget()).setText(text.replaceFirst(event.getCharacter(), ""));
             }
             //update courser position to end
             ((TextField) event.getTarget()).positionCaret(((TextField) event.getTarget()).getText().length());

@@ -10,6 +10,7 @@ import Classes.ProductCategory;
 import Classes.Shift;
 import Classes.User;
 import Classes.Worker;
+import com.mycompany.ddueksamensprojekt.App;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.File;
@@ -21,6 +22,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import javafx.util.converter.LocalDateTimeStringConverter;
 import javax.imageio.ImageIO;
@@ -317,7 +319,7 @@ public class AdminDataBaseMethods {
 
             ResultSet rs = stat.executeQuery("SELECT shift_ID FROM Shifts where date = ('" + date.toString() + "') AND user_ID = ('" + _user_ID + "');");
             
-            dateOnJob = new LocalDateTimeStringConverter();
+            dateOnJob = LocalDateTime.parse(rs.getString("date"), App.getDtf());
             
         } catch (SQLException e) {
             //System.out.println("\n Database error (" + errorString + " (create shift)): " + e.getMessage() + "\n");
@@ -326,12 +328,12 @@ public class AdminDataBaseMethods {
 
             return false;
         }
-        if (rs) {
+        /*if (rs) {
 
-        } else {
+        } else {*/
             conn.close();
 
             return true;
-        }
+        //}
     }
 }
