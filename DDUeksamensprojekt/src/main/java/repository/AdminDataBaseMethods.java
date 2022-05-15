@@ -97,14 +97,12 @@ public class AdminDataBaseMethods {
             System.out.println("\n Database error (Delete product (connection)): " + e.getMessage() + "\n");
         }
 
-        String sql = "DELETE FORM Products WHERE product_ID = ('" + _product_ID + "');";
+        String sql = "DELETE FROM Products WHERE product_ID = ('" + _product_ID + "');";
 
         try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.executeUpdate();
         } catch (SQLException e) {
             System.out.println("\n Database error (delete product (delete): " + e.getMessage() + "\n");
-
-            e.printStackTrace();
         }
     }
 
@@ -124,29 +122,29 @@ public class AdminDataBaseMethods {
         FileInputStream fis;
         try {
             String sql = "UPDATE Products SET name = '" + _product.getName() + "',"
-                    + "' image = ?, " + " Price = '" + _product.getPrice() + "', Stock ='" + _product.getStock() + "', "
-                    + "ProductCateogry = '" + _product.getProductCategory().toString() + "' WHERE product_ID = ('" + _product.getItem_ID() + "');";
+                    + "image = ?, Price = '" + _product.getPrice() + "', Stock ='" + _product.getStock() + "', "
+                    + "ProductCategory = '" + _product.getProductCategory().toString() + "' WHERE product_ID = ('" + _product.getItem_ID() + "');";
 
             fis = new FileInputStream(_imageFile);
 
             try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
-                pstmt.setBinaryStream(2, fis, fis.available());
+                pstmt.setBinaryStream(1, fis, fis.available());
                 pstmt.executeUpdate();
             } catch (SQLException e) {
-                System.out.println("\n Database error (update product info (update info)): " + e.getMessage() + "\n");
+                System.out.println("\n Database error (update product info whit image (update info)): " + e.getMessage() + "\n");
             }
         } catch (NullPointerException e) {
             //Image has not been updated 
             String sql = "UPDATE Products SET name = '" + _product.getName() + "',"
                     + " Price = '" + _product.getPrice() + "', Stock ='" + _product.getStock() + "', "
-                    + "ProductCategory = '" + _product.getProductCategory().toString() + "';";
+                    + "ProductCategory = '" + _product.getProductCategory().toString() + "' WHERE product_ID = ('" + _product.getItem_ID() + "');";
 
             try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
                 pstmt.executeUpdate();
             } catch (SQLException e1) {
-                System.out.println("\n Database error (update product info (update info)): " + e1.getMessage() + "\n");
+                System.out.println("\n Database error (update product info whitout image (update info)): " + e1.getMessage() + "\n");
             }
-
+            
             System.out.println("dont worry its fine");
         }
 

@@ -41,6 +41,7 @@ public class AdminAddImageToCategorysController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         try {
+            System.out.println("test");
             choiceBoxCat.getItems().addAll(ProductCategory.values());
 
             choiceBoxCat.setOnAction(event -> {
@@ -74,5 +75,9 @@ public class AdminAddImageToCategorysController implements Initializable {
         selectedFiles = fc.showOpenDialog(null);
         
         CategoryImage.setImage(new Image(new FileInputStream(selectedFiles)));
+    }
+
+    @FXML
+    private void closePopUp(ActionEvent event) {
     }
 }

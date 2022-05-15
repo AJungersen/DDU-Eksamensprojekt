@@ -108,11 +108,11 @@ public class ProductInformationAdminController implements Initializable {
     @FXML
     private void saveProduct(ActionEvent event) throws Exception {
         AdminDataBaseMethods adm = new AdminDataBaseMethods();
-        System.out.println("test");
+        
         if(!textFieldName.getText().isBlank() && !textFieldPrice.getText().isBlank() &&
                 !textFieldStock.getText().isBlank() && !imageViewProduct.getImage().isError() && 
                 !comboboxCategory.getSelectionModel().isEmpty()){
-            System.out.println("test 2");
+            
             product.setImage(imageViewProduct.getImage());
             product.setName(textFieldName.getText());
             product.setPrice(Float.parseFloat(textFieldPrice.getText()));
@@ -163,6 +163,8 @@ public class ProductInformationAdminController implements Initializable {
     private void deleteProduct(ActionEvent event) throws Exception {
         AdminDataBaseMethods adm = new AdminDataBaseMethods();
         adm.deleteProduct(App.getCurrentProduct().getItem_ID());
+        
+        goBack(event);
     }
     
 

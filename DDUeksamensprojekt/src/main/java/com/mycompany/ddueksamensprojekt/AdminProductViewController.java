@@ -356,7 +356,7 @@ public class AdminProductViewController implements Initializable {
 
     @FXML
     void openMain() throws Exception {
-        App.setRoot("mianAdmin");
+        App.setRoot("mainAdmin");
     }
 
     private void search() {
