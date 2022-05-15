@@ -131,4 +131,10 @@ public class ProfileController implements Initializable {
         udm.saveCartToUser(new Cart(-1, sdm.getLatestPurchase(App.getLoggedInUser().getUser_ID()).getPurchasedProducts()),
                 App.getLoggedInUser().getUser_ID());
     }
+    
+    @FXML
+    private void openFavorites () throws Exception{
+        App.setRoot("favoritesView");
+    }
+        
 }
