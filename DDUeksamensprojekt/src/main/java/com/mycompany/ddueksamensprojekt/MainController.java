@@ -58,9 +58,21 @@ public class MainController implements Initializable {
     private AnchorPane anchorPaneCategories;
     @FXML
     private AnchorPane anchorPaneOnScrollPane;
+    @FXML
+    private VBox vbox;
+    @FXML
+    private Text returnButton;
+    private Parent fxml;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        try {
+            fxml = FXMLLoader.load(getClass().getResource("guide.fxml"));
+            vbox.getChildren().setAll(fxml);
+            
+        } catch (Exception ex) {
+            System.out.println("Error");        
+        
         try {
             textWelcomeBackUser.setText("Velkommen tilbage " + App.getLoggedInUser().getName());
 
@@ -181,6 +193,25 @@ public class MainController implements Initializable {
         } catch (Exception e) {
             System.out.println("\n error in main initiliza: " + e.getMessage() + "\n");
         }
+        
+        TranslateTransition t = new TranslateTransition(Duration.seconds(1), vbox);
+        t.setToY(vbox.getLayoutX() * 0.8);
+        t.play();
+        t.setOnFinished((e) -> {
+        });
+        TranslateTransition s = new TranslateTransition(Duration.seconds(1), returnButton);
+        s.setToY(38);
+        s.play();
+        s.setOnFinished((e) -> {
+        });
+        //returnvbox.setVisible(false);
+        final Timeline timeline = new Timeline();
+        timeline.getKeyFrames().add(new KeyFrame(Duration.millis(5000)));
+        timeline.play();
+        timeline.setOnFinished((e) -> {
+            closeConfirmation();
+        });
+        
     }
 
     @FXML
