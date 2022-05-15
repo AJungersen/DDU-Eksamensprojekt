@@ -85,7 +85,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <CheckBox layoutX="120.0" layoutY="246.0" mnemonicParsing="false" onAction="#openTerms" text="Acceptere du vores vilkår og betingelser?" />
+            <CheckBox layoutX="120.0" layoutY="246.0" mnemonicParsing="false" onMouseClicked="#openTerms" text="Acceptere du vores vilkår og betingelser?" />
          </children>
          <effect>
             <InnerShadow />
