@@ -218,8 +218,6 @@ public class MainController implements Initializable {
         timeline.setOnFinished((e) -> {
             closeConfirmation();
         });
-        System.out.println("test 10");
-
     }
 
     @FXML
