@@ -7,6 +7,7 @@ package repository;
 
 import com.mycompany.ddueksamensprojekt.Product;
 import Classes.ProductCategory;
+import Classes.Shift;
 import Classes.User;
 import Classes.Worker;
 import java.awt.image.BufferedImage;
@@ -19,6 +20,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import javax.imageio.ImageIO;
 
 /**
@@ -29,6 +31,21 @@ public class AdminDataBaseMethods {
 
     private final String connectionString = "jdbc:sqlite:Database.db";
     private static final String staticConnectionString = "jdbc:sqlite:Database.db";
+    private UserDatabaseMethods udm = new UserDatabaseMethods();
+    private UserLoadMethods ulm = new UserLoadMethods();
+
+    private Connection getConnection(String _errorString) throws SQLException, Exception {
+        Connection conn = null;
+        Class.forName("org.sqlite.JDBC");
+
+        try {
+            conn = DriverManager.getConnection(staticConnectionString);
+        } catch (SQLException e) {
+            System.out.println("\n Database error (" + _errorString + " (connection)): " + e.getMessage() + "\n");
+        }
+
+        return conn;
+    }
 
     //------------------------------------
     //---------- Create product ----------
@@ -85,7 +102,7 @@ public class AdminDataBaseMethods {
             e.printStackTrace();
         }
     }
-    
+
     //----------------------------------------------------
     //------------ Update product information  -----------
     //----------------------------------------------------
@@ -98,19 +115,19 @@ public class AdminDataBaseMethods {
         } catch (SQLException e) {
             System.out.println("\n Database error (update user info (connection)): " + e.getMessage() + "\n");
         }
-        
+
         String sql = "UPDATE Products SET name = '" + _product.getName() + "',"
-                + "' image = ?, " +" Price = '" + _product.getPrice() + "', Stock ='" + _product.getStock() + "', "
+                + "' image = ?, " + " Price = '" + _product.getPrice() + "', Stock ='" + _product.getStock() + "', "
                 + "ProductCateogry = '" + _product.getProductCategory().toString() + "';";
-        
+
         FileInputStream fis = new FileInputStream(_imageFile);
-        
+
         try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setBinaryStream(2, fis, fis.available());
             pstmt.executeUpdate();
         } catch (SQLException e) {
             System.out.println("\n Database error (update user info (update info)): " + e.getMessage() + "\n");
-            
+
             e.printStackTrace();
         }
         conn.close();
@@ -145,7 +162,7 @@ public class AdminDataBaseMethods {
         }
         conn.close();
     }
-    
+
     //--------------------------------------------------------
     //---------- Set sub/- product categorys images ----------
     //--------------------------------------------------------
@@ -183,11 +200,13 @@ public class AdminDataBaseMethods {
         }
         conn.close();
     }
-    
+
     //-----------------------------------
     //---------- Create worker ----------
     //-----------------------------------
-    public void createWorker(Worker _newWorker, String _password) throws SQLException, Exception{
+    public void createWorker(Worker _newWorker, String _password) throws SQLException, Exception {
+        udm.createUser(_newWorker, _password);
+
         Connection conn = null;
         Class.forName("org.sqlite.JDBC");
 
@@ -196,31 +215,82 @@ public class AdminDataBaseMethods {
         } catch (SQLException e) {
             System.out.println("\n Database error (create worker (connection)): " + e.getMessage() + "\n");
         }
-        
-        UserDatabaseMethods udm = new UserDatabaseMethods();
-        
-        udm.createUser(_newWorker, _password);
-        
+
         int user_ID = -1;
-        
+
         try {
             Statement stat = conn.createStatement();
-            
+
             ResultSet rs = stat.executeQuery("SELECT MAX(User_ID) FROM Users;");
-            
+
             user_ID = rs.getInt("MAX(User_ID)");
-            
+
         } catch (SQLException e) {
             System.out.println("\n Database error (create worker (get user_ID)): " + e.getMessage() + "\n");
         }
-        
-        
+
         String sql = "INSERT INTO Workers VALUES('" + user_ID + "', '" + _newWorker.getPhoneNumber() + "');";
-        
+
         try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.executeUpdate();
         } catch (SQLException e) {
             System.out.println("\n Database error (create worker (create worker)): " + e.getMessage() + "\n");
+        }
+    }
+
+    //-------------------------------------
+    //---------- Get all workers ----------
+    //-------------------------------------
+    public ArrayList<Worker> getAllWorkers() throws SQLException, Exception {
+        ArrayList<Worker> allWorkers = new ArrayList<>();
+        String errorString = "get all workers";
+
+        Connection conn = getConnection(errorString);
+
+        try {
+            Statement stat = conn.createStatement();
+
+            ResultSet rs = stat.executeQuery("SELECT *, Wallets.funds FROM Users "
+                    + "INNER JOIN Wallets ON Users.wallet_ID = Wallets.wallet_ID;");
+
+            while (rs.next()) {
+                allWorkers.add(new Worker(UserLoadMethods.loadUser(rs, conn, stat), null));
+            }
+        } catch (SQLException e) {
+            System.out.println("\n Database error ('" + errorString +  "' (get user info)): " + e.getMessage() + "\n");
+        }
+
+        for (Worker w : allWorkers) {
+
+            try {
+                Statement stat = conn.createStatement();
+
+                ResultSet rs = stat.executeQuery("SELECT phoneNumber FROM Workers WHER user_ID = ('" + "');");
+                
+                w.setPhoneNumber(rs.getString("phoneNumber"));
+                
+            } catch (Exception e) {
+                System.out.println("\n Database error ('" + errorString +  "' (get worker info)): " + e.getMessage() + "\n");
+            }
+        }
+
+        return allWorkers;
+    }
+    
+    //----------------------------------
+    //---------- create shift ----------
+    //----------------------------------
+    public void createShift(Shift _shift) throws SQLException, Exception{
+        String erroString = "create shift";
+        Connection conn = getConnection(erroString);
+        
+        String sql = "INSERT INTO Shifts VALUES(?, '" + _shift.getWorkerAssigned().getUser_ID() + "', '" + _shift.getDate().toString() + "',"
+                + "'" + _shift.getPeriod() + "', '" + _shift.getDescreption() + "');";
+        
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println("\n Database error (" + erroString + " (create shift)): " + e.getMessage() + "\n");
         }
     }
 }

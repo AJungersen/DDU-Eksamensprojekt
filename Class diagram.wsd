@@ -60,6 +60,12 @@ class Cart {
     HashMap<Product, Integer> purchasedProducts
 }
 
+class Shift {
+    LocalDateTime date
+    float period
+    String descreption
+}
+
 Wallet "1" o-- "0..*" Coupon
 Wallet "1" o-- "0..*" CreditCard
 User "1" o-- "0..1" Wallet

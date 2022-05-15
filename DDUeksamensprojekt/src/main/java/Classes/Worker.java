@@ -12,16 +12,22 @@ import java.util.ArrayList;
  *
  * @author Christoffer
  */
-public class Worker extends User{
+public class Worker extends User {
+
     String phoneNumber;
 
     public Worker(String phoneNumber, String name, String email, UserType userType) {
         super(name, email, userType);
         this.phoneNumber = phoneNumber;
     }
-    
+
     public Worker(String phoneNumber, int user_ID, String name, String email, Wallet wallet, ArrayList<Product> favorites, ArrayList<Cart> savedCarts, UserType userType) {
         super(user_ID, name, email, wallet, favorites, savedCarts, userType);
+        this.phoneNumber = phoneNumber;
+    }
+
+    public Worker(User u, String phoneNumber) {
+        super(u.getUser_ID(), u.getName(), u.getEmail(), u.getWallet(), u.getFavorites(), u.getSavedCarts(), u.getUserType());
         this.phoneNumber = phoneNumber;
     }
 
