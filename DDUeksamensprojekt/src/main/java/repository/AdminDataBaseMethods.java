@@ -20,7 +20,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import javafx.util.converter.LocalDateTimeStringConverter;
 import javax.imageio.ImageIO;
 
 /**
@@ -236,6 +238,8 @@ public class AdminDataBaseMethods {
         } catch (SQLException e) {
             System.out.println("\n Database error (create worker (create worker)): " + e.getMessage() + "\n");
         }
+
+        conn.close();
     }
 
     //-------------------------------------
@@ -257,7 +261,7 @@ public class AdminDataBaseMethods {
                 allWorkers.add(new Worker(UserLoadMethods.loadUser(rs, conn, stat), null));
             }
         } catch (SQLException e) {
-            System.out.println("\n Database error ('" + errorString +  "' (get user info)): " + e.getMessage() + "\n");
+            System.out.println("\n Database error ('" + errorString + "' (get user info)): " + e.getMessage() + "\n");
         }
 
         for (Worker w : allWorkers) {
@@ -266,31 +270,68 @@ public class AdminDataBaseMethods {
                 Statement stat = conn.createStatement();
 
                 ResultSet rs = stat.executeQuery("SELECT phoneNumber FROM Workers WHER user_ID = ('" + "');");
-                
+
                 w.setPhoneNumber(rs.getString("phoneNumber"));
-                
+
             } catch (Exception e) {
-                System.out.println("\n Database error ('" + errorString +  "' (get worker info)): " + e.getMessage() + "\n");
+                System.out.println("\n Database error ('" + errorString + "' (get worker info)): " + e.getMessage() + "\n");
             }
         }
 
+        conn.close();
+
         return allWorkers;
     }
-    
+
     //----------------------------------
     //---------- create shift ----------
     //----------------------------------
-    public void createShift(Shift _shift) throws SQLException, Exception{
-        String erroString = "create shift";
-        Connection conn = getConnection(erroString);
-        
+    public void createShift(Shift _shift) throws SQLException, Exception {
+        String errorString = "create shift";
+        Connection conn = getConnection(errorString);
+
         String sql = "INSERT INTO Shifts VALUES(?, '" + _shift.getWorkerAssigned().getUser_ID() + "', '" + _shift.getDate().toString() + "',"
                 + "'" + _shift.getPeriod() + "', '" + _shift.getDescreption() + "');";
-        
+
         try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.executeUpdate();
         } catch (SQLException e) {
-            System.out.println("\n Database error (" + erroString + " (create shift)): " + e.getMessage() + "\n");
+            System.out.println("\n Database error (" + errorString + " (create shift)): " + e.getMessage() + "\n");
+        }
+        conn.close();
+    }
+
+    //----------------------------------------------------------
+    //---------- Check if worker is on shift that day ----------
+    //----------------------------------------------------------
+    public boolean checkIfWotkerIsOnShiftThatDay(LocalDateTime date, int _user_ID) throws SQLException, Exception {
+
+        String errorString = "Check if worker is on shift that day";
+
+        Connection conn = getConnection(errorString);
+        
+        LocalDateTime dateOnJob;
+        
+        try {
+            Statement stat = conn.createStatement();
+
+            ResultSet rs = stat.executeQuery("SELECT shift_ID FROM Shifts where date = ('" + date.toString() + "') AND user_ID = ('" + _user_ID + "');");
+            
+            dateOnJob = new LocalDateTimeStringConverter();
+            
+        } catch (SQLException e) {
+            //System.out.println("\n Database error (" + errorString + " (create shift)): " + e.getMessage() + "\n");
+
+            conn.close();
+
+            return false;
+        }
+        if (rs) {
+
+        } else {
+            conn.close();
+
+            return true;
         }
     }
 }

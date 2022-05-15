@@ -15,6 +15,7 @@ class User {
     Wallet wallet
     Arraylsit<Products> favorites
     ArrayList<Cart> savedCarts
+    UserType userType
 }
 
 
@@ -40,35 +41,58 @@ class Coupon {
 
 class Purchase {
     int purchase_ID
-    LocalDate purchaseDate
+    LocalDateTime purchaseDate
     HashMap<Product, Integer> purchasedProducts
 }
 
 enum ProductCategory {
-    FRUGT_OG_GRØNT,
-    MEJERIPRODUKTER,
-    KØD_OG_FISK,
-    FROST,
-    PÅLÆG,
-    DRIKKEVARER,
-    BRØD_KIKS_OG_KAGER,
-    SLIK_OG_SNACKS;
+    FRUGT_OG_GRØNT
+    MEJERIPRODUKTER
+    KØD_OG_FISK
+    FROST
+    PÅLÆG
+    DRIKKEVARER
+    BRØD_KIKS_OG_KAGER
+    SLIK_OG_SNACKS
+}
+
+enum UserType {
+    COSTUMER
+    WORKER
 }
 
 class Cart {
     User user
-    HashMap<Product, Integer> purchasedProducts
+    ArrayList<Product> purchasedProducts
+}
+
+'medarbejder del
+class Worker {
+    String phoneNumber
 }
 
 class Shift {
+    int shift_ID
     LocalDateTime date
     float period
     String descreption
+    Worker workerAssigned
 }
 
-Wallet "1" o-- "0..*" Coupon
-Wallet "1" o-- "0..*" CreditCard
-User "1" o-- "0..1" Wallet
-shoppingCart "1" o-- "0..*" Products
+class Message {
+    int message_ID
+    LocalDateTime date
+    Worker sender
+    ArrayList<Worker> receivers
+    String message
+}
+
+Wallet "1" --o "0..*" Coupon
+Wallet "1" --* "0..*" CreditCard
+User "1" --* "1" Wallet
+Cart "1" --o "0..*" Products
+
+Worker --|> User
+Shift "1" *-- "1" Worker
 
 @enduml
