@@ -40,8 +40,8 @@ public class App extends Application {
         //scene = new Scene(loadFXML("loginUser"));
         //scene = new Scene(loadFXML("mainAdmin"));
         //scene = new Scene(loadFXML("AdminAddImageToCategorys"));  
-        //scene = new Scene(loadFXML("main"));
-        scene = new Scene(loadFXML("mainAdmin"));
+        scene = new Scene(loadFXML("main"));
+        //scene = new Scene(loadFXML("mainAdmin"));
         
         stage.setScene(scene);
         stage.show();

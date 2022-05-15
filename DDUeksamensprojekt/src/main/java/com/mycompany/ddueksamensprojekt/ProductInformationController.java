@@ -4,25 +4,37 @@
  */
 package com.mycompany.ddueksamensprojekt;
 
+import Classes.ProductCategory;
+import com.mycompany.ddueksamensprojekt.Algorithms.ProductRecommendations;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.VPos;
+import javafx.scene.Cursor;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Paint;
+import javafx.scene.shape.Circle;
 import javafx.scene.text.Font;
 import javafx.util.Duration;
 import repository.Tools;
@@ -139,7 +151,7 @@ public class ProductInformationController implements Initializable {
             System.out.println("Error");
             //Logger.getLogger(ProductInformationController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        /*ProductRecommendations pr = new ProductRecommendations();
+        ProductRecommendations pr = new ProductRecommendations();
         ArrayList<Product> relatedProducts = new ArrayList<>();
         try {
             relatedProducts = pr.getBestProduct(product, 10);
@@ -265,7 +277,7 @@ public class ProductInformationController implements Initializable {
             /*pane.setOnMouseClicked(clicked);
             pane.setOnMouseEntered(entered);
             pane.setOnMouseExited(exited);*/
-            /*for (Node sp : pane.getChildren()) {
+            for (Node sp : pane.getChildren()) {
                 sp.setOnMouseClicked(clicked);
                 sp.setOnMouseEntered(entered);
                 sp.setOnMouseExited(exited);
@@ -276,7 +288,7 @@ public class ProductInformationController implements Initializable {
                 column = 0;
                 row++;
             }
-        }*/
+        }
     }
 
     @FXML
@@ -299,11 +311,14 @@ public class ProductInformationController implements Initializable {
     @FXML
     private void addToCart() throws IOException {
         try {
-            for (int i = 0; i < Integer.parseInt(textFieldNumberOfProduct.getText()); i++) {
-                App.getCurrentCart().getProductsAsList().add(product);
-            }
+            if (Tools.isInteger(textFieldNumberOfProduct.getText()) && 
+                    Integer.parseInt(textFieldNumberOfProduct.getText()) <= product.getStock()) {
+                for (int i = 0; i < Integer.parseInt(textFieldNumberOfProduct.getText()); i++) {
+                    App.getCurrentCart().getProductsAsList().add(product);
+                }
 
-            openConfirmation();
+                openConfirmation();
+            }
         } catch (Exception e) {
 
         }
