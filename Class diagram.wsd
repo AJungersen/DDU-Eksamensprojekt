@@ -95,4 +95,7 @@ Cart "1" --o "0..*" Products
 Worker --|> User
 Shift "1" *-- "1" Worker
 
+ProductCategory "1" o-- "1" Products
+UserType "1" *-- "1" User
+
 @enduml
