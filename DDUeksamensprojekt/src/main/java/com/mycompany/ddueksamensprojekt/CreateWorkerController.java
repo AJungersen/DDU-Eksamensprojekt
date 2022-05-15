@@ -5,6 +5,7 @@
 package com.mycompany.ddueksamensprojekt;
 
 import Classes.User;
+import Classes.Worker;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -19,10 +20,14 @@ import static com.mycompany.ddueksamensprojekt.App.scene;
 import java.io.FileInputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.time.LocalDateTime;
 import java.util.regex.Pattern;
+import javafx.scene.control.TableRow;
+import javafx.scene.control.TableView;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.FileChooser;
+import javafx.util.Callback;
 
 /**
  *
@@ -42,7 +47,7 @@ public class CreateWorkerController implements Initializable {
     @FXML
     private PasswordField passwordFieldPassword;
     @FXML
-    private PasswordField passwordFieldPasswordRepeat; 
+    private PasswordField passwordFieldPasswordRepeat;
     @FXML
     private Text textErrorMessage;
     @FXML
@@ -51,16 +56,17 @@ public class CreateWorkerController implements Initializable {
     private File selectedFiles;
     private UserDatabaseMethods udm = new UserDatabaseMethods();
     private SecurityMethods sm = new SecurityMethods();
-    
-    
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
+    }
+
     @FXML
-    private void closePopUp(ActionEvent event) throws Exception{
+    private void closePopUp(ActionEvent event) throws Exception {
         App.closePopup();
     }
+
     @FXML
     private void selectImage(ActionEvent event) throws Exception {
         fc.setTitle("Select files");
@@ -76,11 +82,12 @@ public class CreateWorkerController implements Initializable {
 
         workerImage.setImage(new Image(new FileInputStream(selectedFiles)));
     }
-     @FXML
+
+    @FXML
     private void checkIfKeyTypedIsFloat(KeyEvent event) {
-        if (!Tools.isFloat(((TextField) event.getTarget()).getText()) || ((TextField) event.getTarget()).getText().contains("d") 
+        if (!Tools.isFloat(((TextField) event.getTarget()).getText()) || ((TextField) event.getTarget()).getText().contains("d")
                 || ((TextField) event.getTarget()).getText().contains("f")) {
-            
+
             if (event.getCharacter().equals(".")) {
                 String regex = "\\.";
                 ((TextField) event.getTarget()).setText(((TextField) event.getTarget()).getText().replaceFirst(regex, ""));
@@ -91,6 +98,7 @@ public class CreateWorkerController implements Initializable {
             ((TextField) event.getTarget()).positionCaret(((TextField) event.getTarget()).getText().length());
         }
     }
+
     @FXML
     private void createWorker(ActionEvent event) throws Exception {
         textErrorMessage.setText("");
@@ -117,7 +125,7 @@ public class CreateWorkerController implements Initializable {
                         //special caracahter
                         Pattern pattern = Pattern.compile("[^a-z0-9 ]", Pattern.CASE_INSENSITIVE);
                         if (pattern.matcher(passwordFieldPassword.getText()).find()) {
-                            
+
                             //upper case carachter
                             if (!passwordFieldPassword.getText().equals(passwordFieldPassword.getText().toLowerCase())) {
 
@@ -152,6 +160,6 @@ public class CreateWorkerController implements Initializable {
         } else {
             textErrorMessage.setText("Alle felterne skal være udfyldt");
             System.out.println(textErrorMessage.getText());
+        }
     }
-  }
 }
