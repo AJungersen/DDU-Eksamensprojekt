@@ -125,7 +125,7 @@ public class AdminDataBaseMethods {
         try {
             String sql = "UPDATE Products SET name = '" + _product.getName() + "',"
                     + "' image = ?, " + " Price = '" + _product.getPrice() + "', Stock ='" + _product.getStock() + "', "
-                    + "ProductCateogry = '" + _product.getProductCategory().toString() + "' WHERE product_ID = ();";
+                    + "ProductCateogry = '" + _product.getProductCategory().toString() + "' WHERE product_ID = ('" + _product.getItem_ID() + "');";
 
             fis = new FileInputStream(_imageFile);
 
