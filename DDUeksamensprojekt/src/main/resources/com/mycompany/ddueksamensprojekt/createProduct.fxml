@@ -18,7 +18,7 @@
    <children>
       <Pane prefHeight="395.0" prefWidth="672.0" style="-fx-background-color: #D6DCF6; -fx-border-color: #516DD2;">
          <children>
-            <Button layoutX="80.0" layoutY="327.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="152.0" style="-fx-background-color: #516DD2;" stylesheets="@design.css" text="Opret">
+            <Button layoutX="80.0" layoutY="327.0" mnemonicParsing="false" onAction="#createProduct" prefHeight="30.0" prefWidth="152.0" style="-fx-background-color: #516DD2;" stylesheets="@design.css" text="Opret">
                <font>
                   <Font name="Segoe UI Semibold" size="14.0" />
                </font>
@@ -42,7 +42,7 @@
                   </DropShadow>
                </effect>
             </Button>
-            <TextField fx:id="productName" editable="false" layoutX="23.0" layoutY="17.0" prefHeight="40.0" prefWidth="629.0" promptText="Titel" style="-fx-background-radius: 0px; -fx-border-width: 0px 0px 3px 0px; -fx-border-color: #516DD2; -fx-background-color: #D6DCF6;">
+            <TextField fx:id="productName" layoutX="23.0" layoutY="17.0" prefHeight="40.0" prefWidth="629.0" promptText="Titel" style="-fx-background-radius: 0px; -fx-border-width: 0px 0px 3px 0px; -fx-border-color: #516DD2; -fx-background-color: #D6DCF6;">
                <font>
                   <Font size="17.0" />
                </font>
