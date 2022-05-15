@@ -133,6 +133,7 @@ public class AdminProductViewController implements Initializable {
 
             //load allProducts
             allProducts = sdm.getAllProducts();
+            curentProducts.addAll(allProducts);
 
             //calc panes per row
             panesPerRow = (int) Math.floor((anchorPaneProducts.getPrefWidth() - paneSpace_X) / (paneSize_X + paneSpace_X));
@@ -155,7 +156,6 @@ public class AdminProductViewController implements Initializable {
 
     private void loadProducts() {
         anchorPaneProducts.getChildren().clear();
-
         //insert allProducts
         int column = 0;
         int row = 1;

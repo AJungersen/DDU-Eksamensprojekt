@@ -198,7 +198,7 @@ public class MainController implements Initializable {
             tableViewLastPurchas.getItems().setAll(tableViewDispalyData);
 
         } catch (Exception e) {
-            System.out.println("\n error in main initiliza: " + e.getMessage() + "\n");
+            System.out.println("\n error in main initilize: " + e.getMessage() + "\n");
         }
 
         TranslateTransition t = new TranslateTransition(Duration.seconds(1), vbox);
@@ -218,8 +218,6 @@ public class MainController implements Initializable {
         timeline.setOnFinished((e) -> {
             closeConfirmation();
         });
-        System.out.println("test 10");
-
     }
 
     @FXML
