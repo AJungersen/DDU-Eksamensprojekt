@@ -91,6 +91,22 @@ public class ProductInformationAdminController implements Initializable {
             ((TextField) event.getTarget()).positionCaret(((TextField) event.getTarget()).getText().length());
         }
     }
+    
+    @FXML
+    private void checkIfKeyTypedIsFloat(KeyEvent event) {
+        if (!Tools.isFloat(((TextField) event.getTarget()).getText()) || ((TextField) event.getTarget()).getText().contains("d") 
+                || ((TextField) event.getTarget()).getText().contains("f")) {
+            
+            if (event.getCharacter().equals(".")) {
+                String regex = "\\.";
+                ((TextField) event.getTarget()).setText(((TextField) event.getTarget()).getText().replaceFirst(regex, ""));
+            } else {
+                ((TextField) event.getTarget()).setText(((TextField) event.getTarget()).getText().replaceFirst(event.getCharacter(), ""));
+            }
+            //update courser position to end
+            ((TextField) event.getTarget()).positionCaret(((TextField) event.getTarget()).getText().length());
+        }
+    }
 
     @FXML
     private void deleteProduct(ActionEvent event) throws Exception {
