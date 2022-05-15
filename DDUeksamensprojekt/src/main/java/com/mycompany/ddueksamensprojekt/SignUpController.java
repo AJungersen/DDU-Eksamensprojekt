@@ -157,5 +157,6 @@ public class SignUpController {
 
         App.openPopup();
     }
+    
 }
     

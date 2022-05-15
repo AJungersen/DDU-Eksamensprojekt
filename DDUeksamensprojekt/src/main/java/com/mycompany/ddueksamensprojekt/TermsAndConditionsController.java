@@ -4,10 +4,22 @@
  */
 package com.mycompany.ddueksamensprojekt;
 
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+
 /**
  *
  * @author Clara Maj
  */
 public class TermsAndConditionsController {
     
+    @FXML
+    private void closePopUp(ActionEvent event) throws Exception{
+        App.closePopup();
+    }
+    @FXML
+    private void acceptTerms() throws Exception{
+        
+        App.closePopup();
+    }
 }
