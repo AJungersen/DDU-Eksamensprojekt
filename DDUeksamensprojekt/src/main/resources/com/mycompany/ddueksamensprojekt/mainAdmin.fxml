@@ -61,7 +61,7 @@
                         <URL value="@adminProfile.css" />
                      </stylesheets>
                   </TableView>
-                  <Button layoutX="997.0" layoutY="25.0" mnemonicParsing="false" onAction="#openShifts" prefHeight="49.0" prefWidth="184.0" style="-fx-background-color: #516DD2;" stylesheets="@design.css" text="Stempel ind/ud">
+                  <Button layoutX="1029.0" layoutY="25.0" mnemonicParsing="false" onAction="#openShifts" prefHeight="36.0" prefWidth="160.0" style="-fx-background-color: #516DD2;" stylesheets="@design.css" text="Stempel ind/ud">
                      <effect>
                         <DropShadow height="8.5" offsetY="2.0" radius="3.54" width="7.66">
                            <color>
@@ -139,7 +139,7 @@
                         <Font name="Segoe UI Light Italic" size="21.0" />
                      </font>
                   </Text>
-                  <Button layoutX="803.0" layoutY="25.0" mnemonicParsing="false" onAction="#openInbox" prefHeight="49.0" prefWidth="184.0" style="-fx-background-color: #516DD2;" stylesheets="@design.css" text="Inbox">
+                  <Button layoutX="908.0" layoutY="25.0" mnemonicParsing="false" onAction="#openInbox" prefHeight="36.0" prefWidth="108.0" style="-fx-background-color: #516DD2;" stylesheets="@design.css" text="Inbox">
                      <effect>
                         <DropShadow height="8.5" offsetY="2.0" radius="3.54" width="7.66">
                            <color>
@@ -154,7 +154,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button layoutX="610.0" layoutY="25.0" mnemonicParsing="false" onAction="#createShifts" prefHeight="49.0" prefWidth="184.0" style="-fx-background-color: #516DD2;" stylesheets="@design.css" text="Opret vagt (admin)">
+                  <Button layoutX="738.0" layoutY="25.0" mnemonicParsing="false" onAction="#createShifts" prefHeight="36.0" prefWidth="160.0" style="-fx-background-color: #516DD2;" stylesheets="@design.css" text="Opret vagt (admin)">
                      <effect>
                         <DropShadow height="8.5" offsetY="2.0" radius="3.54" width="7.66">
                            <color>
@@ -169,7 +169,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button layoutX="418.0" layoutY="25.0" mnemonicParsing="false" onAction="#createCategory" prefHeight="49.0" prefWidth="184.0" style="-fx-background-color: #516DD2;" stylesheets="@design.css" text="Opret kategori (admin)">
+                  <Button layoutX="550.0" layoutY="25.0" mnemonicParsing="false" onAction="#createCategory" prefHeight="36.0" prefWidth="177.0" style="-fx-background-color: #516DD2;" stylesheets="@design.css" text="Opret kategori (admin)">
                      <effect>
                         <DropShadow height="8.5" offsetY="2.0" radius="3.54" width="7.66">
                            <color>
@@ -184,7 +184,22 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button layoutX="225.0" layoutY="25.0" mnemonicParsing="false" onAction="#createProduct" prefHeight="49.0" prefWidth="184.0" style="-fx-background-color: #516DD2;" stylesheets="@design.css" text="Opret vare (admin)">
+                  <Button layoutX="380.0" layoutY="25.0" mnemonicParsing="false" onAction="#createProduct" prefHeight="36.0" prefWidth="160.0" style="-fx-background-color: #516DD2;" stylesheets="@design.css" text="Opret vare (admin)">
+                     <effect>
+                        <DropShadow height="8.5" offsetY="2.0" radius="3.54" width="7.66">
+                           <color>
+                              <Color opacity="0.25" />
+                           </color>
+                        </DropShadow>
+                     </effect>
+                     <font>
+                        <Font name="Segoe UI Semibold" size="14.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Button layoutX="208.0" layoutY="25.0" mnemonicParsing="false" onAction="#openProductView" prefHeight="36.0" prefWidth="160.0" style="-fx-background-color: #516DD2;" stylesheets="@design.css" text="Vareoversigt (admin)">
                      <effect>
                         <DropShadow height="8.5" offsetY="2.0" radius="3.54" width="7.66">
                            <color>
