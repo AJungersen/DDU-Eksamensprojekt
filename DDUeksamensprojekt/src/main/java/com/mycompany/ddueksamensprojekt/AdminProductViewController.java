@@ -156,13 +156,11 @@ public class AdminProductViewController implements Initializable {
 
     private void loadProducts() {
         anchorPaneProducts.getChildren().clear();
-        System.out.println("test");
         //insert allProducts
         int column = 0;
         int row = 1;
 
         for (Product p : curentProducts) {
-            System.out.println(p.getItem_ID());
             column++;
             Pane pane = new Pane();
 
