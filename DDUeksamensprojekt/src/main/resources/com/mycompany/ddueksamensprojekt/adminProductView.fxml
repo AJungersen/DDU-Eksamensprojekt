@@ -43,7 +43,7 @@
                   <AnchorPane fx:id="anchorPaneProducts" prefHeight="680.0" prefWidth="1000.0" style="-fx-background-color: #8497E6;" />
                </content>
             </ScrollPane>
-            <ImageView fitHeight="70.0" fitWidth="68.0" layoutX="920.0" layoutY="14.0" nodeOrientation="RIGHT_TO_LEFT" onMouseClicked="#search" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="70.0" fitWidth="68.0" layoutX="920.0" layoutY="14.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@search-icon-png-23.jpg" />
                </image>
@@ -54,7 +54,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </ImageView>
-            <TextField fx:id="textFieldSearchBar" layoutX="592.0" layoutY="28.0" prefHeight="40.0" prefWidth="318.0" promptText="Søg efter varer" style="-fx-background-radius: 0px; -fx-border-width: 0px 0px 3px 0px; -fx-border-color: #516DD2; -fx-background-color: D6DCF6;">
+            <TextField fx:id="textFieldSearchBar" layoutX="592.0" layoutY="28.0" onKeyTyped="#handleSearch" prefHeight="40.0" prefWidth="318.0" promptText="Søg efter varer" style="-fx-background-radius: 0px; -fx-border-width: 0px 0px 3px 0px; -fx-border-color: #516DD2; -fx-background-color: D6DCF6;">
                <font>
                   <Font size="17.0" />
                </font>
@@ -67,8 +67,24 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <ComboBox fx:id="comboBoxCategory" layoutX="49.0" layoutY="28.0" onMouseClicked="#showCategory" prefHeight="40.0" prefWidth="212.0" promptText="Vælg kateogri" stylesheets="@combobox.css" />
-            <ComboBox fx:id="comboBoxSort" layoutX="317.0" layoutY="28.0" onMouseClicked="#sortProducts" prefHeight="40.0" prefWidth="212.0" promptText="Sorter efter" stylesheets="@combobox.css" />
+            <ComboBox fx:id="comboBoxCategory" layoutX="49.0" layoutY="28.0" onAction="#handleShowCategory" prefHeight="40.0" prefWidth="212.0" promptText="Vælg kateogri" stylesheets="@combobox.css" />
+            <ComboBox fx:id="comboBoxSort" layoutX="317.0" layoutY="28.0" onAction="#handleSortProducts" prefHeight="40.0" prefWidth="212.0" promptText="Sorter efter" stylesheets="@combobox.css" />
+            <Button layoutX="285.0" layoutY="30.0" mnemonicParsing="false" onAction="#clearSort" styleClass="exitbutton" stylesheets="@exit.css" text="X">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button layoutX="17.0" layoutY="30.0" mnemonicParsing="false" onAction="#clearCategory" styleClass="exitbutton" stylesheets="@exit.css" text="X">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
          </children>
       </Pane>
       <Circle fill="DODGERBLUE" layoutX="43.0" layoutY="43.0" onMouseClicked="#openProfile" radius="29.0" stroke="BLACK" strokeType="INSIDE" style="-fx-stroke: transparent; -fx-fill: D6DCF6;" />

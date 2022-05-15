@@ -14,7 +14,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="406.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.ddueksamensprojekt.CreateWorkerController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="406.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.ddueksamensprojekt.CreateWorkerController">
    <children>
       <Pane prefHeight="408.0" prefWidth="600.0" style="-fx-background-color: #D6DCF6; -fx-border-color: #516DD2;">
          <children>
@@ -72,7 +72,7 @@
                   </DropShadow>
                </effect>
             </Button>
-            <Button layoutX="130.0" layoutY="347.0" mnemonicParsing="false" onAction="#saveWorker" prefHeight="43.0" prefWidth="150.0" style="-fx-background-color: #516DD2;" stylesheets="@design.css" text="Gem medarbejder">
+            <Button layoutX="130.0" layoutY="347.0" mnemonicParsing="false" onAction="#createWorker" prefHeight="43.0" prefWidth="150.0" style="-fx-background-color: #516DD2;" stylesheets="@design.css" text="Gem medarbejder">
                <font>
                   <Font name="Segoe UI Semibold" size="14.0" />
                </font>
@@ -108,7 +108,7 @@
                   </DropShadow>
                </effect>
             </TextField>
-            <TextField fx:id="textFieldNumber" layoutX="90.0" layoutY="202.0" onKeyTyped="#checkIfKeyTypedIsFloat" prefHeight="33.0" prefWidth="248.0" promptText="11 11 11 11" style="-fx-background-radius: 0px; -fx-border-color: #40C54D; -fx-border-width: 0px 0px 0px 0px; -fx-background-color: #FFFFFF;">
+            <TextField fx:id="textFieldNumber" layoutX="90.0" layoutY="202.0" prefHeight="33.0" prefWidth="248.0" promptText="11 11 11 11" style="-fx-background-radius: 0px; -fx-border-color: #40C54D; -fx-border-width: 0px 0px 0px 0px; -fx-background-color: #FFFFFF;">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
@@ -138,7 +138,7 @@
                   </DropShadow>
                </effect>
             </PasswordField>
-            <Text fx:id="textErrorMessage" fill="RED" layoutX="450.0" layoutY="375.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+            <Text fx:id="textErrorMessage" fill="RED" layoutX="386.0" layoutY="373.0" strokeType="OUTSIDE" strokeWidth="0.0" text=" " textAlignment="CENTER" wrappingWidth="150.0" />
          </children>
          <effect>
             <DropShadow />

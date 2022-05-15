@@ -8,6 +8,8 @@ table(Users) {
     FK wallet_ID
     String name
     String email
+    String password
+    String userType
 }
 
 table(Products) {
@@ -72,9 +74,18 @@ table(PurchasedProducts) {
     int amount
 }
 
-table(Favorites) {
+'medarbejdere
+table(Workers) {
     FK user_ID
-    FK product_ID
+    String phoneNumber
+}
+
+table(Shifts) {
+    PK shift_ID
+    FK user_ID
+    String date
+    float period
+    String description
 }
 
 Wallets ||--|| Users
@@ -86,5 +97,8 @@ Favorites ||--o{ Products
 
 SavedShoppingCarts ||--|{ SavedShoppingCartsProducts
 Purchases ||--{ PurchasedProducts
+
+Workers ||--|| Users
+Users ||--o{ Shifts
 
 @enduml

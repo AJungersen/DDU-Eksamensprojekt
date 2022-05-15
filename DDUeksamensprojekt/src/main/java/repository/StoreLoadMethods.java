@@ -31,7 +31,7 @@ public class StoreLoadMethods {
         while (_rs.next()) {
             products.add(new Product(_rs.getInt("product_ID"), _rs.getString("name"),
                     Tools.convertBufferedImageToFxImage(ImageIO.read(_rs.getBinaryStream("image"))),
-                    _rs.getInt("price"), _rs.getInt("stock"), ProductCategory.valueOf(_rs.getString("ProductCategory"))));
+                    _rs.getFloat("price"), _rs.getInt("stock"), ProductCategory.valueOf(_rs.getString("ProductCategory"))));
         }
 
         return products;

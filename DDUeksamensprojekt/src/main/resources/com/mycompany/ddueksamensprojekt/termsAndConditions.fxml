@@ -1,91 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="373.0" prefWidth="360.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.ddueksamensprojekt.WalletCreateController">
+<AnchorPane id="AnchorPane" prefHeight="656.0" prefWidth="360.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.ddueksamensprojekt.TermsAndConditionsController">
    <children>
-      <Pane prefHeight="374.0" prefWidth="360.0" style="-fx-background-color: #DFF2E1; -fx-border-color: #40C54D;">
+      <Pane prefHeight="656.0" prefWidth="360.0" style="-fx-background-color: #DFF2E1; -fx-border-color: #40C54D;">
          <children>
-            <Label layoutX="10.0" layoutY="-5.0" text="Opret kort:">
-               <font>
-                  <Font name="Segoe UI Semibold" size="40.0" />
-               </font>
-            </Label>
-            <TextField fx:id="cardHolder" layoutX="12.0" layoutY="123.0" prefHeight="33.0" prefWidth="334.0" promptText="Navn på kortholder" style="-fx-background-radius: 0px; -fx-border-color: #40C54D; -fx-border-width: 0px 0px 0px 0px; -fx-background-color: #FFFFFF;">
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-               <effect>
-                  <DropShadow height="11.0" offsetY="2.0" radius="4.165" width="7.66">
-                     <color>
-                        <Color opacity="0.24511928856372833" />
-                     </color>
-                  </DropShadow>
-               </effect>
-            </TextField>
-            <TextField fx:id="cardNumber" layoutX="10.0" layoutY="171.0" prefHeight="33.0" prefWidth="334.0" promptText="Kortnummer" style="-fx-background-radius: 0px; -fx-border-color: #40C54D; -fx-border-width: 0px 0px 0px 0px; -fx-background-color: #FFFFFF;">
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-               <effect>
-                  <DropShadow height="11.0" offsetY="2.0" radius="4.165" width="7.66">
-                     <color>
-                        <Color opacity="0.24511928856372833" />
-                     </color>
-                  </DropShadow>
-               </effect>
-            </TextField>
-            <TextField fx:id="expirationDate" layoutX="10.0" layoutY="220.0" prefHeight="33.0" prefWidth="152.0" promptText="mm/yy" style="-fx-background-radius: 0px; -fx-border-color: #40C54D; -fx-border-width: 0px 0px 0px 0px; -fx-background-color: #FFFFFF;">
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-               <effect>
-                  <DropShadow height="11.0" offsetY="2.0" radius="4.165" width="7.66">
-                     <color>
-                        <Color opacity="0.24511928856372833" />
-                     </color>
-                  </DropShadow>
-               </effect>
-            </TextField>
-            <TextField fx:id="CSV" layoutX="194.0" layoutY="220.0" prefHeight="33.0" prefWidth="152.0" promptText="CSV" style="-fx-background-radius: 0px; -fx-border-color: #40C54D; -fx-border-width: 0px 0px 0px 0px; -fx-background-color: #FFFFFF;">
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-               <effect>
-                  <DropShadow height="11.0" offsetY="2.0" radius="4.165" width="7.66">
-                     <color>
-                        <Color opacity="0.24511928856372833" />
-                     </color>
-                  </DropShadow>
-               </effect>
-            </TextField>
-            <TextField fx:id="cardName" layoutX="12.0" layoutY="273.0" prefHeight="33.0" prefWidth="334.0" promptText="Navn som kortet skal gemmes som" style="-fx-background-radius: 0px; -fx-border-color: #40C54D; -fx-border-width: 0px 0px 0px 0px; -fx-background-color: #FFFFFF;">
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-               <effect>
-                  <DropShadow height="11.0" offsetY="2.0" radius="4.165" width="7.66">
-                     <color>
-                        <Color opacity="0.24511928856372833" />
-                     </color>
-                  </DropShadow>
-               </effect>
-            </TextField>
-            <Label layoutX="10.0" layoutY="84.0" text="Kortoplysninger:">
-               <font>
-                  <Font name="Segoe UI Light Italic" size="20.0" />
-               </font>
-            </Label>
-            <Button layoutX="13.0" layoutY="323.0" mnemonicParsing="false" onAction="#saveCard" prefHeight="30.0" prefWidth="152.0" stylesheets="@design.css" text="Opret kort">
+            <Button layoutX="14.0" layoutY="601.0" mnemonicParsing="false" onAction="#acceptTerms" prefHeight="30.0" prefWidth="152.0" stylesheets="@design.css" text="Accepter?">
                <font>
                   <Font name="Segoe UI Semibold" size="14.0" />
                </font>
@@ -97,7 +26,12 @@
                   </DropShadow>
                </effect>
             </Button>
-            <Button layoutX="194.0" layoutY="323.0" mnemonicParsing="false" onAction="#closePopUp" prefHeight="30.0" prefWidth="152.0" stylesheets="@design.css" text="Annuller">
+            <Label layoutX="5.0" layoutY="2.0" text="Vilkår &amp; betingelser">
+               <font>
+                  <Font name="Segoe UI Semibold" size="36.0" />
+               </font>
+            </Label>
+            <Button layoutX="194.0" layoutY="601.0" mnemonicParsing="false" onAction="#closePopUp" prefHeight="30.0" prefWidth="152.0" stylesheets="@design.css" text="Afvis?">
                <font>
                   <Font name="Segoe UI Semibold" size="14.0" />
                </font>
@@ -110,6 +44,7 @@
                </effect>
             </Button>
             <Line endX="123.5" layoutX="99.0" layoutY="54.0" startX="-99.0" />
+            <Text fill="#464646" layoutX="11.0" layoutY="77.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Det følgende dokument indeholder oplysninger om vores databehandling.Vi indsamlet data med henblik på at vores betalingsservice skal fungerer samt for at forbedre kundeoplevelsen. Som kunde har du til enhver tid ret til at trække din samtykke til vores databehandling. Dette gør ikke tidligere databehandling ulovlig, men forhindrer fremtidig databehandling. Du har også mulighed for at få din data udleveret, hvilket højst må ske en måned efter din anmodning. Hvis udleveringen skulle forsinkes mere end det, skal der vedlægge en begrundelse fra vores side, og du har ret til at tage sagen i retten. Som organisation er vi selskabet præcis.dk I/S, og vi kan kontaktes på mailadressen kundeservice@praecis.dk eller på telefonnummeret +45 78 89 91 12. I tilfælde af behov for en databeskyttelsesrådgiver Bjarne Nielsen på E-mailadressen bnielsen@gdprConsulting.dk eller telefonnummeret +45 56 67 78 89. Databehandlingen sker med hjemmel i artikel 6 i Persondataforordningen af 27. april 2016 om beskyttelse af fysiske personer i forbindelse med behandling af personoplysninger og om fri udveksling af sådanne oplysninger. Oplysningerne deles på krypteret form med virksomheden, der ejer webshoppen, og eksporteres kun til andre lande såfremt virksomheden er registreret i et andet land. Præcis.dk beder om ret til at opbevare dataene op til et år efter sidste besøg på hjemmesiden. Du kan på et hvert tidspunkt anmode om at få slettet oplysninger, eller ændret forkerte oplysninger. Du har ret til at klage til tildsynsmyndigheden, som databeskyttelseslovens §2 bestemmer er Datatilsynet. Såfremt vi ændrer på formålet med databehandlingen, er vi forpligtet til at oplyse dig om dette. Vi benytter ikke automatiske afgørelser.Arten af de indsamlede oplysninger er e-mailadresser, finansielle oplysninger, og adfærdsoplysninger om tidligere køb af produkter. Accepterer du vilkårene for vores dataindsamling og behandling?" wrappingWidth="338.814453125" />
          </children>
          <effect>
             <DropShadow />

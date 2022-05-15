@@ -16,6 +16,9 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.ListCell;
+import javafx.scene.control.ListView;
 
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -24,6 +27,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
+import javafx.util.Callback;
 import repository.AdminDataBaseMethods;
 import repository.Tools;
 /**
@@ -43,22 +47,59 @@ public class ProductInformationAdminController implements Initializable {
     @FXML
     private TextField textFieldPrice;
     @FXML
-    private Text returnButton;
-    @FXML
-    private ChoiceBox<ProductCategory> comboboxCategory;
+    private ComboBox<ProductCategory> comboboxCategory;
     private final FileChooser fc = new FileChooser();
     private File selectedFiles;
+    private Product product;
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         try {
-            comboboxCategory.getItems().addAll(ProductCategory.values());
-
-            comboboxCategory.setOnAction(event -> {
-                imageViewProduct.setImage(comboboxCategory.getSelectionModel().getSelectedItem().getImage());
+            product = App.getCurrentProduct();
+            
+            imageViewProduct.setImage(product.getImage());
+            
+            textFieldName.setText(product.getName());
+            
+            textFieldPrice.setText(Float.toString(product.getPrice()));
+            
+            textFieldStock.setText(Integer.toString(product.getStock()));
+            
+            comboboxCategory.setCellFactory(new Callback<ListView<ProductCategory>, ListCell<ProductCategory>>() {
+                @Override
+                public ListCell<ProductCategory> call(ListView<ProductCategory> p) {
+                    return new ListCell<>() {
+                        @Override
+                        public void updateItem(ProductCategory item, boolean empty) {
+                            super.updateItem(item, empty);
+                            if (empty || item == null) {
+                                setText(null);
+                            } else {
+                                setText(item.asFormatedString());
+                            }
+                        }
+                    };
+                }
             });
+
+            comboboxCategory.setButtonCell(
+                    new ListCell<ProductCategory>() {
+                @Override
+                protected void updateItem(ProductCategory item, boolean empty) {
+                    super.updateItem(item, empty);
+                    if (empty) {
+                        setText("");
+                    } else {
+                        setText(item.asFormatedString());
+                    }
+                }
+            });
+            
+            comboboxCategory.getItems().addAll(ProductCategory.values());
+            comboboxCategory.getSelectionModel().select(product.getProductCategory());
+            
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
@@ -68,8 +109,18 @@ public class ProductInformationAdminController implements Initializable {
     private void saveProduct(ActionEvent event) throws Exception {
         AdminDataBaseMethods adm = new AdminDataBaseMethods();
         
-        if(!textFieldName.getText().isBlank() && textFieldPrice.getText().isBlank()
-                && textFieldStock.getText().isBlank()){
+        if(!textFieldName.getText().isBlank() && !textFieldPrice.getText().isBlank() &&
+                !textFieldStock.getText().isBlank() && !imageViewProduct.getImage().isError() && 
+                !comboboxCategory.getSelectionModel().isEmpty()){
+            
+            product.setImage(imageViewProduct.getImage());
+            product.setName(textFieldName.getText());
+            product.setPrice(Float.parseFloat(textFieldPrice.getText()));
+            product.setStock(Integer.parseInt(textFieldStock.getText()));
+            product.setProductCategory(comboboxCategory.getSelectionModel().getSelectedItem());
+            
+            App.setCurrentProduct(product);
+            
             adm.updateProductInfo(App.getCurrentProduct(), selectedFiles);
         }
     }
@@ -112,6 +163,8 @@ public class ProductInformationAdminController implements Initializable {
     private void deleteProduct(ActionEvent event) throws Exception {
         AdminDataBaseMethods adm = new AdminDataBaseMethods();
         adm.deleteProduct(App.getCurrentProduct().getItem_ID());
+        
+        goBack(event);
     }
     
 

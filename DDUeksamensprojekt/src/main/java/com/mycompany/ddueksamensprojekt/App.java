@@ -10,6 +10,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import javafx.stage.Popup;
@@ -30,16 +31,17 @@ public class App extends Application {
     public static Cart currentCart = new Cart(-1, new ArrayList<Product>());
     public static Product currentProduct;
     public static String lastSceneFxml;
+    private static final DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy/ HH:mm:ss");
 
     @Override
     public void start(Stage stage) throws IOException, Exception {
         AdminDataBaseMethods.setProductCategorysImages();
 
-        scene = new Scene(loadFXML("loginUser"));
+        //scene = new Scene(loadFXML("loginUser"));
         //scene = new Scene(loadFXML("mainAdmin"));
-        //scene = new Scene(loadFXML("AdminAddImageToCategorys"));
+        //scene = new Scene(loadFXML("AdminAddImageToCategorys"));  
         //scene = new Scene(loadFXML("main"));
-        //scene = new Scene(loadFXML("createProduct"));
+        scene = new Scene(loadFXML("mainAdmin"));
         
         stage.setScene(scene);
         stage.show();
@@ -124,5 +126,9 @@ public class App extends Application {
 
     public static String getLastSceneFxml() {
         return lastSceneFxml;
+    }
+
+    public static DateTimeFormatter getDtf() {
+        return dtf;
     }
 }

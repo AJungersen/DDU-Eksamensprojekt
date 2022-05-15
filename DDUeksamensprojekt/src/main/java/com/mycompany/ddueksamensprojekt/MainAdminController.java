@@ -61,6 +61,10 @@ public class MainAdminController implements Initializable {
         App.setRoot("inbox");
     }
     @FXML
+    void openProductView() throws Exception {
+        App.setRoot("adminProductView");
+    }
+    @FXML
     void createShifts() throws Exception{
         Stage stage = App.getStage();
         Popup popup = new Popup();

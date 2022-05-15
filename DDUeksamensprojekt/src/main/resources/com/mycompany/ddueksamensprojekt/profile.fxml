@@ -88,7 +88,7 @@
                   <TableColumn fx:id="tableColumnAmount" prefWidth="86.0" text="Antal" />
                </columns>
             </TableView>
-            <Button layoutX="324.0" layoutY="518.0" mnemonicParsing="false" onAction="#saveLastPurchase" prefHeight="30.0" prefWidth="219.0" stylesheets="@design.css" text="Tilføj sidste køb til gemte kurv">
+            <Button layoutX="201.0" layoutY="519.0" mnemonicParsing="false" onAction="#saveLastPurchase" prefHeight="30.0" prefWidth="219.0" stylesheets="@design.css" text="Tilføj sidste køb til gemte kurv">
                <font>
                   <Font name="Segoe UI Semibold" size="14.0" />
                </font>
@@ -137,6 +137,18 @@
                </effect>
             </Button>
             <Button layoutX="700.0" layoutY="15.0" mnemonicParsing="false" onAction="#goBack" prefHeight="30.0" prefWidth="152.0" stylesheets="@design.css" text="Tilbage">
+               <font>
+                  <Font name="Segoe UI Semibold" size="14.0" />
+               </font>
+               <effect>
+                  <DropShadow height="9.33" offsetY="2.0" radius="3.7475000000000005" width="7.66">
+                     <color>
+                        <Color opacity="0.25" />
+                     </color>
+                  </DropShadow>
+               </effect>
+            </Button>
+            <Button layoutX="463.0" layoutY="519.0" mnemonicParsing="false" onAction="#openFavorites" prefHeight="30.0" prefWidth="219.0" stylesheets="@design.css" text="Åben favoritter">
                <font>
                   <Font name="Segoe UI Semibold" size="14.0" />
                </font>
