@@ -299,9 +299,8 @@ public class AdminProductViewController implements Initializable {
                 public void handle(MouseEvent event) {
                     App.setCurrentProduct(p);
                     try {
-                        App.setLastSceneFxml("catelogView");
+                        App.setLastSceneFxml("adminProductView");
                         App.setRoot("productInformationAdmin");
-                        System.out.println("\n\n TEST TEST TEST TEST TEST \n\n");
                     } catch (Exception e) {
                         System.out.println("Error in " + e.getMessage());;
                     }

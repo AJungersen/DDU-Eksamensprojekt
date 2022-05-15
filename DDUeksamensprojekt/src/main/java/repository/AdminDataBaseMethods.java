@@ -13,6 +13,7 @@ import Classes.Worker;
 import com.mycompany.ddueksamensprojekt.App;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.sql.Connection;
@@ -120,20 +121,35 @@ public class AdminDataBaseMethods {
             System.out.println("\n Database error (update user info (connection)): " + e.getMessage() + "\n");
         }
 
-        String sql = "UPDATE Products SET name = '" + _product.getName() + "',"
-                + "' image = ?, " + " Price = '" + _product.getPrice() + "', Stock ='" + _product.getStock() + "', "
-                + "ProductCateogry = '" + _product.getProductCategory().toString() + "';";
+        FileInputStream fis;
+        try {
+            String sql = "UPDATE Products SET name = '" + _product.getName() + "',"
+                    + "' image = ?, " + " Price = '" + _product.getPrice() + "', Stock ='" + _product.getStock() + "', "
+                    + "ProductCateogry = '" + _product.getProductCategory().toString() + "' WHERE product_ID = ();";
 
-        FileInputStream fis = new FileInputStream(_imageFile);
+            fis = new FileInputStream(_imageFile);
 
-        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            pstmt.setBinaryStream(2, fis, fis.available());
-            pstmt.executeUpdate();
-        } catch (SQLException e) {
-            System.out.println("\n Database error (update user info (update info)): " + e.getMessage() + "\n");
+            try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+                pstmt.setBinaryStream(2, fis, fis.available());
+                pstmt.executeUpdate();
+            } catch (SQLException e) {
+                System.out.println("\n Database error (update product info (update info)): " + e.getMessage() + "\n");
+            }
+        } catch (NullPointerException e) {
+            //Image has not been updated 
+            String sql = "UPDATE Products SET name = '" + _product.getName() + "',"
+                    + " Price = '" + _product.getPrice() + "', Stock ='" + _product.getStock() + "', "
+                    + "ProductCategory = '" + _product.getProductCategory().toString() + "';";
 
-            e.printStackTrace();
+            try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+                pstmt.executeUpdate();
+            } catch (SQLException e1) {
+                System.out.println("\n Database error (update product info (update info)): " + e1.getMessage() + "\n");
+            }
+
+            System.out.println("dont worry its fine");
         }
+
         conn.close();
     }
 
@@ -311,16 +327,16 @@ public class AdminDataBaseMethods {
         String errorString = "Check if worker is on shift that day";
 
         Connection conn = getConnection(errorString);
-        
+
         LocalDateTime dateOnJob;
-        
+
         try {
             Statement stat = conn.createStatement();
 
             ResultSet rs = stat.executeQuery("SELECT shift_ID FROM Shifts where date = ('" + date.toString() + "') AND user_ID = ('" + _user_ID + "');");
-            
+
             dateOnJob = LocalDateTime.parse(rs.getString("date"), App.getDtf());
-            
+
         } catch (SQLException e) {
             //System.out.println("\n Database error (" + errorString + " (create shift)): " + e.getMessage() + "\n");
 
@@ -331,9 +347,9 @@ public class AdminDataBaseMethods {
         /*if (rs) {
 
         } else {*/
-            conn.close();
+        conn.close();
 
-            return true;
+        return true;
         //}
     }
 }
