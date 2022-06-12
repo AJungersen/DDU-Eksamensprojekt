@@ -23,13 +23,16 @@ public class ProductRecommendations {
         ArrayList<Product> products = sdm.getAllProducts();
         ArrayList<ProductScore> rankedList = new ArrayList();
         ArrayList<Product> returnList = new ArrayList();
+        ArrayList<Purchase> userCarts = sdm.getAllUsersPurchases(App.getLoggedInUser().getUser_ID());
+        ArrayList<Purchase> allCarts = sdm.getAllPurchase();
+        int counter = 0;
         System.out.println("products size er" + products.size());
         for(Product I: products){
             if(rankedList.isEmpty()){
-                rankedList.add(new ProductScore(I,(getFitnessOff(I,userProduct))));
+                rankedList.add(new ProductScore(I,(getFitnessOff(I,userProduct, userCarts, allCarts))));
             } else {
             if(I.getItem_ID() != userProduct.getItem_ID()){
-                ProductScore PS = new ProductScore(I,(getFitnessOff(I,userProduct)));
+                ProductScore PS = new ProductScore(I,(getFitnessOff(I,userProduct, userCarts, allCarts)));
                 for(int i = 0; i < rankedList.size(); i++){
                     if(PS.getScore() >= rankedList.get(i).getScore()){
                         rankedList.add(i, new ProductScore(PS.getI(),PS.getScore()));
@@ -44,10 +47,10 @@ public class ProductRecommendations {
         }
         return returnList;
     }
-    public float getFitnessOff(Product I, Product U) throws Exception{
+    public float getFitnessOff(Product I, Product U,ArrayList<Purchase> userCarts, ArrayList<Purchase> allCarts) throws Exception{
         StoreDatabaseMethods sdm = new StoreDatabaseMethods();
-        ArrayList<Purchase> userCarts = sdm.getAllUsersPurchases(App.getLoggedInUser().getUser_ID());
-        ArrayList<Purchase> allCarts = sdm.getAllPurchase();
+        //ArrayList<Purchase> userCarts = sdm.getAllUsersPurchases(App.getLoggedInUser().getUser_ID());
+        //ArrayList<Purchase> allCarts = sdm.getAllPurchase();
         int h = 0;
         int tot = 0;
         float uf = 0;
