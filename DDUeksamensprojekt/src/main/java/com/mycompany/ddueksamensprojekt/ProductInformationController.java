@@ -151,7 +151,7 @@ public class ProductInformationController implements Initializable {
             System.out.println("Error");
             //Logger.getLogger(ProductInformationController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        /*ProductRecommendations pr = new ProductRecommendations();
+        ProductRecommendations pr = new ProductRecommendations();
         ArrayList<Product> relatedProducts = new ArrayList<>();
         try {
             relatedProducts = pr.getBestProduct(product, 10);
@@ -277,7 +277,7 @@ public class ProductInformationController implements Initializable {
             /*pane.setOnMouseClicked(clicked);
             pane.setOnMouseEntered(entered);
             pane.setOnMouseExited(exited);*/
-            /*for (Node sp : pane.getChildren()) {
+            for (Node sp : pane.getChildren()) {
                 sp.setOnMouseClicked(clicked);
                 sp.setOnMouseEntered(entered);
                 sp.setOnMouseExited(exited);
@@ -288,7 +288,7 @@ public class ProductInformationController implements Initializable {
                 column = 0;
                 row++;
             }
-        }*/
+        }
     }
 
     @FXML
