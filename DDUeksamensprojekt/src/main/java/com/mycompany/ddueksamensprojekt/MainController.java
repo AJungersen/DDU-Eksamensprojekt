@@ -260,8 +260,9 @@ public class MainController implements Initializable {
 
     @FXML
     void openAdmin() throws Exception {
-        if (App.getLoggedInUser().getUserType() == UserType.WORKER) {
+        App.setRoot("mainAdmin");
+        /*if (App.getLoggedInUser().getUserType() == UserType.WORKER) {
             App.setRoot("mainAdmin");
-        }
+        }*/
     }
 }

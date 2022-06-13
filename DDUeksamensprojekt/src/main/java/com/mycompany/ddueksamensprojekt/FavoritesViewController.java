@@ -27,7 +27,7 @@ public class FavoritesViewController {
     @FXML
     private void openCart() throws IOException {
         App.setRoot("cart");
-        App.setLastSceneFxml("catelogView");
+        App.setLastSceneFxml("FavoritesViewController");
     }
 
     @FXML

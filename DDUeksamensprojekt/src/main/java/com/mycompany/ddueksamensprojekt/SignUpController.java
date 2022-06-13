@@ -95,8 +95,8 @@ public class SignUpController {
                                             sm.hexString(passwordFieldPassword.getText()));
 
                                     App.setLoggedInUser(udm.getLoggedInUser(textFieldEmail.getText()));
-
-                                    //hop vider/login mangler fxml App.setRoot("");
+                                    
+                                    App.setRoot("main");
                                 } else {
                                     textErrorMessage.setText("Koden møder kravene men matcher ikke");
                                 }

@@ -55,14 +55,18 @@ public class Cart {
         int arrayPos = 0;
 
         for (Product p : products) {
+            System.out.println(p.getName());
             if (p.getItem_ID() == prevItem.getItem_ID()) {
                 numberOfCourentProduct++;
-                
                 if (arrayPos == (products.size() - 1)) {
-                    System.out.println("hi");
                     map.put(p, numberOfCourentProduct);
                 }
-            } else if(arrayPos > 0){
+            } else if (arrayPos == products.size() - 1) {
+                map.put(p, 1);
+                if (products.size() > 1) {
+                    map.put(prevItem, numberOfCourentProduct);
+                }
+            } else if (arrayPos > 0) {
                 map.put(prevItem, numberOfCourentProduct);
                 numberOfCourentProduct = 1;
             }

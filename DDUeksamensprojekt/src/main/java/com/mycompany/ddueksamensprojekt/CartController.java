@@ -30,9 +30,9 @@ import repository.UserDatabaseMethods;
  * @author Clara Maj
  */
 public class CartController implements Initializable {
-    
+
     private UserDatabaseMethods udm = new UserDatabaseMethods();
-    
+
     ArrayList<TableViewDisplayPurchase> tableViewDispalyData = new ArrayList<>();
     @FXML
     TextField goodNumber;
@@ -56,32 +56,37 @@ public class CartController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        int goodNumb = 0;
-        float allPrice = 0;
-        HashMap<Product, Integer> hp = App.getCurrentCart().getProductsAsMap();
+        try {
+            int goodNumb = 0;
+            float allPrice = 0;
+            HashMap<Product, Integer> hp = App.getCurrentCart().getProductsAsMap();
+            System.out.println(hp.size());
+            for (Product p : hp.keySet()) {
+                //System.out.println(hp.size());
+                tableViewDispalyData.add(new TableViewDisplayPurchase(hp.get(p), p));
+            }
 
-        for (Product p : hp.keySet()) {
-            tableViewDispalyData.add(new TableViewDisplayPurchase(hp.get(p), p));
+            for (TableViewDisplayPurchase tvdp : tableViewDispalyData) {
+                goodNumb += tvdp.getAmount();
+                allPrice += tvdp.getPrice() * tvdp.getAmount();
+            }
+
+            tableColumnImage.setCellValueFactory(new PropertyValueFactory<>("displayImage"));
+            tableColumnName.setCellValueFactory(new PropertyValueFactory<>("name"));
+            tableColumnPrice.setCellValueFactory(new PropertyValueFactory<>("price"));
+            tableColumnAmount.setCellValueFactory(new PropertyValueFactory<>("amount"));
+            tableColumnTotalPrice.setCellValueFactory(new PropertyValueFactory<>("total"));
+
+            goods.getItems().setAll(tableViewDispalyData);
+
+            goodNumber.setText(Integer.toString(goodNumb));
+            price.setText(Float.toString(allPrice));
+
+            App.numberOfGoods = goodNumb;
+            App.priceOfGoods = allPrice;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
         }
-
-        for (TableViewDisplayPurchase tvdp : tableViewDispalyData) {
-            goodNumb += tvdp.getAmount();
-            allPrice += tvdp.getPrice() * tvdp.getAmount();
-        }
-
-        tableColumnImage.setCellValueFactory(new PropertyValueFactory<>("displayImage"));
-        tableColumnName.setCellValueFactory(new PropertyValueFactory<>("name"));
-        tableColumnPrice.setCellValueFactory(new PropertyValueFactory<>("price"));
-        tableColumnAmount.setCellValueFactory(new PropertyValueFactory<>("amount"));
-        tableColumnTotalPrice.setCellValueFactory(new PropertyValueFactory<>("total"));
-
-        goods.getItems().setAll(tableViewDispalyData);
-
-        goodNumber.setText(Integer.toString(goodNumb));
-        price.setText(Float.toString(allPrice));
-
-        App.numberOfGoods = goodNumb;
-        App.priceOfGoods = allPrice;
     }
 
     @FXML
@@ -128,9 +133,9 @@ public class CartController implements Initializable {
     @FXML
     private void saveCart(ActionEvent event) throws Exception {
         Cart cart = new Cart(-1, new ArrayList<Product>(goods.getSelectionModel().getSelectedItems()));
-        
+
         udm.saveCartToUser(cart, App.getLoggedInUser().getUser_ID());
-        
+
         App.getLoggedInUser().setSavedCarts(udm.getUsersSavedCarts(App.getLoggedInUser().getUser_ID()));
     }
 }

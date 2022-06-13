@@ -33,6 +33,7 @@ import javafx.scene.text.Text;
 import javafx.util.Callback;
 import repository.StoreDatabaseMethods;
 import repository.Tools;
+import repository.UserDatabaseMethods;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -109,8 +110,8 @@ public class AdminProductViewController implements Initializable {
                     return o2.getName().compareTo(o1.getName());
                 }
             }));
-
-            sortingMethods.add(new ProductSortingMethods("Lagers status stigende", new Comparator<Product>() {
+            
+            sortingMethods.add(new ProductSortingMethods("Lager status stigende", new Comparator<Product>() {
                 @Override
                 public int compare(Product o1, Product o2) {
                     return o2.getStock() - o1.getStock();
@@ -363,15 +364,7 @@ public class AdminProductViewController implements Initializable {
         if (!textFieldSearchBar.getText().isBlank()) {
             Predicate<Product> search = (p) -> !Pattern.matches(".*" + textFieldSearchBar.getText().toLowerCase() + "+.*", p.getName().toLowerCase());
 
-            curentProducts.clear();
-            curentProducts.addAll(allProducts);
-
             curentProducts.removeIf(search);
-            
-            //celar category
-            comboBoxCategory.getSelectionModel().clearSelection();
-            
-            loadProducts();
         }
     }
 
@@ -379,19 +372,7 @@ public class AdminProductViewController implements Initializable {
         if (!comboBoxCategory.getSelectionModel().isEmpty()) {
             Predicate<Product> search = (p) -> !p.getProductCategory().equals(comboBoxCategory.getSelectionModel().getSelectedItem());
 
-            curentProducts.clear();
-            curentProducts.addAll(allProducts);
-
             curentProducts.removeIf(search);
-
-            sortProducts();
-            
-            //clear search
-            textFieldSearchBar.clear();
-            
-            //search();
-
-            loadProducts();
         }
     }
 
@@ -399,54 +380,53 @@ public class AdminProductViewController implements Initializable {
         System.out.println("test test");
         if (!comboBoxSort.getSelectionModel().isEmpty()) {
             curentProducts.sort(comboBoxSort.getSelectionModel().getSelectedItem().getComparator());
-
-            loadProducts();
         }
     }
 
     @FXML
     private void clearSearch(ActionEvent event) {
         textFieldSearchBar.clear();
-
-        curentProducts.clear();
-        curentProducts.addAll(allProducts);
-
-        loadProducts();
+        handleSorting();
     }
 
     @FXML
     private void clearSort(ActionEvent event) {
         comboBoxSort.getSelectionModel().clearSelection();
         comboBoxSort.setPromptText(comboBoxSortPrompText);
-
-        curentProducts.clear();
-        curentProducts.addAll(allProducts);
-
-        loadProducts();
+        handleSorting();
     }
-
+    
     @FXML
     private void clearCategory(ActionEvent event) {
         comboBoxCategory.getSelectionModel().clearSelection();
+        handleSorting();
+    }
 
+    private void handleSorting() {
         curentProducts.clear();
         curentProducts.addAll(allProducts);
-
+        
+        search();
+        
+        showCategory();
+        
+        sortProducts();
+        
         loadProducts();
     }
 
     @FXML
     private void handleShowCategory(ActionEvent event) {
-        showCategory();
+        handleSorting();
     }
 
     @FXML
     private void handleSortProducts(ActionEvent event) {
-        sortProducts();
+        handleSorting();
     }
 
     @FXML
     private void handleSearch(KeyEvent event) {
-        search();
+        handleSorting();
     }
 }

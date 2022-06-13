@@ -84,6 +84,8 @@ public class CheckOutController implements Initializable {
             
             App.setCurrentCart(new Cart(-1, new ArrayList<>()));
             
+            App.setRoot("cart");
+            
             closePopUp(event);
         }
     }
