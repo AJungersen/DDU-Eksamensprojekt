@@ -1,0 +1,324 @@
+%%%Preamble-----------------------------------------------------------------------------------
+\documentclass[12pt]{article}
+
+
+%%%Generelle pakker
+%\usepackage{pdfpages} %Sammenlimning af PDF-er
+\usepackage[utf8]{inputenc} % til at skrive æÆøØåÅ.
+\usepackage[danish]{babel} %LaTeX ved, at du vil have tingene på dansk (Men hvorfor?)
+\usepackage{verbatim} %Til at udkommentere større sektioner, samt til at skrive plain tekst
+
+
+%%%Generelt Layout
+\usepackage[margin=1.0in]{geometry} %Kontrol af margin
+    \setlength\parindent{0pt} %Ingen indentering
+\usepackage{fancyhdr} %Sidehoved/fod
+    \usepackage{lastpage} %Til at tælle sidste side
+    \setlength{\headheight}{15pt} %Ellers er headheight for lille, ikke noget stort problem
+\usepackage{graphicx} %Funktionalitet til \includegraphics
+	\graphicspath{{./figurer/}} %Specificerer graphics-path
+\usepackage{enumitem} %Layout til lister
+\usepackage[colorlinks = true,
+			linkcolor = blue,
+			urlcolor  = blue,
+			citecolor = blue,
+			anchorcolor = blue]{hyperref} %Kontrol af hyperlinks
+\usepackage[dvipsnames]{xcolor} %Til at farve ting
+\usepackage{array} %Til yderligere kontrol over tabeller
+
+
+%%%Store utilities
+\usepackage{amsmath} %Formattering af matematik
+\usepackage{amsfonts} %Symboler
+\usepackage{amssymb} %Flere symboler
+
+%%%Små utilities
+\DeclareMathSymbol{*}{\mathbin}{symbols}{"01} %Erstatter * med \cdot i matematik-udtryk
+\usepackage{actuarialsymbol} %Aktuar-notation
+
+
+%%%Tikz
+\usepackage{tikz} %Til at programmere grafik
+	\usetikzlibrary{positioning, shapes.geometric, arrows}
+%Manual - https://www.bu.edu/math/files/2013/08/tikzpgfmanual.pdf
+
+
+%%%Grafik utilities
+\usepackage{framed} %Til at lave bokse med \fbox
+\usepackage{tcolorbox} %Til at lave farvede bokse med \tcolorbox
+
+
+%%%Nye kommandoer
+	%%%Bogstavlignende symboler
+		\newcommand{\mR}{\mathbb{R}}
+		\newcommand{\mZ}{\mathbb{Z}}
+		\newcommand{\mN}{\mathbb{N}}
+		\newcommand{\mQ}{\mathbb{Q}}
+		\newcommand{\mC}{\mathbb{C}}
+		
+		\newcommand{\cA}{\mathcal{A}}
+		\newcommand{\cB}{\mathcal{B}}
+		\newcommand{\cC}{\mathcal{C}}
+		\newcommand{\cD}{\mathcal{D}}
+		\newcommand{\cE}{\mathcal{E}}
+		\newcommand{\cF}{\mathcal{F}}
+		\newcommand{\cG}{\mathcal{G}}
+		\newcommand{\cH}{\mathcal{H}}
+		\newcommand{\cP}{\mathcal{P}}
+		\newcommand{\cN}{\mathcal{N}}
+
+	%%%Grænseværdi-shorthands
+		\newcommand{\limn}{\lim_{n\rightarrow \infty}}
+		\newcommand{\forn}{\hspace{10pt} \text{for} \hspace{6pt} n \rightarrow \infty}
+		\newcommand{\konv}[1]{\overset{#1}{\rightarrow}}
+
+
+%%%Titelindstillinger
+\title{Feature Overview}
+\author{Rasmus Munkner}
+\date{\today}
+
+
+%%%Sidehoved/fod instillinger
+\pagestyle{fancy} %For at tænde for sidehoved og fod
+\rhead{Højre sidehoved} %Højre sidehoved
+\chead{} %Midterste sidehoved
+\lhead{Venstre sidehoved} %Venstre sidehoved
+\rfoot{Side \thepage{} af \pageref*{LastPage}} %Højre sidefod
+\cfoot{} %Midterste sidefod
+\lfoot{} %Venstre sidefod
+
+
+%%%Hoveddokument------------------------------------------------------------------------------
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+
+\section{Introduktion}
+Dette dokument er tænkt som en række grundlæggende demonstrationer af, hvad man kan gøre med \LaTeX, samt som en skabelon til at skrive afleveringer og opgavebesvarelser ud fra.\\
+
+Meget ofte er det ikke muligt at læse ud af pdf'en alene, hvordan man får den til at se ud som den gør. Sørg derfor for også at læse og forstå koden. Nogle gange vil koden indeholde \% efterfuldt af \textcolor{ForestGreen}{grøn} tekst. Dette er kommentarer som IKKE dukker op i pdf'en.
+
+\section{Afsnit}
+Afsnit laves i LaTeX ved at benytte \textbackslash section\{"Afsnittes navn"\}. Hvis man i stedet benytter \textbackslash section*\{"Afsnittes navn"\} bliver afsnittet ikke nummereret.
+
+\subsection{Underafsnit}
+På tilsvarende vis kan underafsnit laves med kommandoerne \textbackslash subsection\{"Underafsnittes navn"\} og subsection*\{"Underafsnittes navn"\}.
+
+\section{Lister}
+Man kan lave lister i LaTeX ved at benytte \textbackslash itemize eller \textbackslash enumerate.\\
+
+Vi kan lave en unummerret liste med \textbackslash itemize
+\begin{itemize}
+\item Første ting på listen
+\item Anden ting på listen
+\item Tredje ting på listen
+\end{itemize}
+Hvis vi gerne vil have tal på indgangene i listen kan vi i stedet bruge \textbackslash enumerate
+\begin{enumerate}
+\item Første ting på listen
+\item Anden ting på listen
+\item Tredje ting på listen
+\end{enumerate}
+Man kan også ændre, hvilken form for nummerering listen bruger ved at tilføje [label = "En eller anden form for label"]
+\begin{enumerate}[label = \alph*)]
+\item En mulig label er "\textbackslash alph*)"
+\item En mulig label er "\textbackslash roman*)"
+\item En mulig label er "\textbackslash arabic*)"
+\item Og google kender nok nogle flere
+\end{enumerate}
+Man kan også specificere labels en ad gangen.
+\begin{itemize}
+\item [Første label -] Første ting på listen
+\item [Anden label)] Anden ting på listen
+\item ['Tredje label'] Tredje ting på listen
+\end{itemize}
+Lister kan også indlejres i andre lister
+\begin{enumerate}
+    \item Første niveau
+    \begin{enumerate}
+        \item Andet niveau
+        \begin{enumerate}[label = \roman*)] %Her kan labels også sættes manuelt
+            \item Tredje niveau
+        \end{enumerate}
+    \end{enumerate}
+\end{enumerate}
+
+\section{Formattering af matematik}
+For at skrive matematik i LaTeX skal man markere matematikken med \$-tegn eller benytte \textbackslash align*.\\
+
+Her er en førstegradsligning $5 = 3x + 1$. Herunder en vist en andengradsligning. $$x^2 - x +1 = 0$$
+Man kan også lave flere ligninger som står pænt i forhold til hinanden.
+\begin{align*}
+(x+1)^1 &= x + y \\
+(x+y)^2 &= x^2 + 2xy + y^2 \\
+(x+y)^3 &= x^3 + 3x^2y + 3xy^2 + y^3 \\
+&\vdots \\
+(x+y)^n &= \sum_{k=0}^n \binom{n}{k} x^k y^{n-k}
+\end{align*}
+
+Bemærk i \textbackslash align* brugen af '\textbackslash\textbackslash' til at skifte linje og brugen af '\&' til at fortælle \LaTeX, hvordan ligningerne skal stå i forhold til hinanden.\\
+
+\newpage
+\section{Figurer}
+For at tilføje en figur benytter man ofte \textbackslash begin\{figure\} og \textbackslash includegraphics.
+
+\begin{figure}[h!] %h! betyder, at figuren skal være her. Hvis man ikke fortæller LaTeX dette er figurens placering en smule liberal
+    \centering %Centerer figuren
+    \includegraphics[width = 0.8\textwidth]{poisson.png} %Tegner selve figuren, bemærk at poisson.png er navnet på det billede som LaTeX indlæser i dette tilfælde
+    \caption{\textbackslash Caption kommandoen angiver teksten der hører til figuren} %Angiver figurbeskrivelsen
+    %\label{fig:my_label} %Man kan tilføje labels til figurer så de er nemme at referere til. Det er ikke umiddelbart noget der er værd at bekymre sig om.
+\end{figure}
+
+Hvis man gerne vil have sin figur indrammet kan kan benytte \textbackslash fbox.
+
+\begin{figure}[h!]
+    \centering %Centerer figuren
+    \fbox{
+    \includegraphics[width = 0.8\textwidth]{poisson.png}} %Tegner selve figuren
+    \caption{\textbackslash Caption kommandoen angiver teksten der hører til figuren} %Angiver figurbeskrivelsen
+    %\label{fig:my_label} %Man kan tilføje labels til figurer så de er nemme at referere til. Det er ikke umiddelbart noget der er værd at bekymre sig om.
+\end{figure}
+
+\section{Tabeller}
+Man kan tegne tabeller ved brug af \textbackslash tabular. Når man bruger denne kommando skal man også angive, hvor mange kolonner man vil have.
+
+\begin{tabular}{c|c|c} % c|c|c angiver at der er tre centrerede kolonner, og at der  er lodrette linjer imellem dem.
+1 & 2 & 3 \\
+4 & 5 & 6 \\
+7 & 8 & 9
+\end{tabular}
+
+Det er ofte en fordel at placere en tabel inde i en figur.
+
+\begin{figure}[h!]
+\centering
+\begin{tabular}{l|rc} %Her angiver l en venstrecentreret kolonne, r en højrecentreret kolonne og c en midtercetreret kolonne
+1 & 2 & 3 \\
+\hline %Vandrette linjer laver man med \hline
+Noget tekst til at strække tabellen & 5 & 6 \\
+7 & Og lidt mere tekst & 9
+\end{tabular}
+\end{figure}
+Her er et eksempel på en sandhedstabel, husk at starte og slutte med \$\$:
+$$
+\begin{array}{|c|c|c|c|c|c|c|c|}\hline
+  
+    p & q & r & (p \wedge q) \vee r & p \vee r & q \vee r & (p \vee r) \wedge (q \vee r) & (p \wedge q) \Leftrightarrow r \vee (p \vee r) \wedge (q \vee r)\\\hline\hline
+    T & T & T & T & T & T & T & \textcolor{ForestGreen}{\mathbf{T}}\\\hline
+    T & T & F & T & T & T & T & \textcolor{ForestGreen}{\mathbf{T}}\\\hline
+    T & F & T & T & T & T & T & \textcolor{ForestGreen}{\mathbf{T}}\\\hline
+    T & F & F & F & T & F & F & \textcolor{ForestGreen}{\mathbf{T}}\\\hline
+    F & T & T & T & T & T & T & \textcolor{ForestGreen}{\mathbf{T}}\\\hline
+    F & T & F & F & F & T & F & \textcolor{ForestGreen}{\mathbf{T}}\\\hline
+    F & F & T & T & T & T & T & \textcolor{ForestGreen}{\mathbf{T}}\\\hline
+    F & F & F & F & F & F & F & \textcolor{ForestGreen}{\mathbf{T}}\\\hline
+   
+\end{array}
+$$
+\section{Forbudte tegn}
+LaTeX kan ikke lide, hvis man skriver f.eks. \% uden at sætte en '\textbackslash' før \%-tegnet. Det er, fordi LaTeX i så fald tror, at man vil skrive en kommentar \\ %Og det var jo ikke meningen.
+
+Tilsvarende gør sig gældende for \#, '\textbackslash' og \{, samt sikkert mange flere. Hvis der er et tegn man ikke kan skrive kan det ofte ordnes ved at slå det relevante tegn op i \href{http://tug.ctan.org/info/symbols/comprehensive/symbols-a4.pdf}{denne pdf} (særligt relevant er s.15)
+
+\section{Fodnoter}
+Man kan tilføje fodnoter ved at benytte \textbackslash footnote\footnote{Eksempelvis er dette en fodnote.}.
+
+\section{Tom plads}
+Nogle gange er der brug for noget \hspace{20mm} tom plads. Det kan man opnå med \textbackslash hspace for horisontal tom plads og \textbackslash vspace for vertikal tom plads. Det er ofte en god ide at angive mængden af tom plads i milimeter (mm).\\ \vspace{-7mm}
+
+Bemærk at man kan tilføje "negativ" tom plads, hvis der er for god plads under en figur eller sådan noget.
+
+\section{\textbf{Fed tekst}, \textit{Kursiv tekst}, \texttt{Og andre typer tekst}}
+Man kan formatere sin tekst på en masse måder ved at benytte \textbackslash text kommandoer. Af disse er det nok særligt \textbf{fed} og \textit{kursiv} der har relevans, og fordi de er så vigtige kan man bare trykke \texttt{ctrl b} for \textbf{fed tekst} eller \textsc{ctrl i} for \textit{kursiv tekst}.
+
+\section{Vigtige matematiske symboler}
+Herunder en en række vigtige symboler vist, man kan finde flere symboler og deres syntaks \href{http://tug.ctan.org/info/symbols/comprehensive/symbols-a4.pdf}{denne pdf}. (Bemærk, at \textbackslash quad bare er tom plads så det ser pænt ud)\\
+
+\begin{align*}
+& %Bare layout
+\in             \quad
+\subseteq       \quad
+\subseteq       \quad
+\cap            \quad
+\cup            \quad
+\neq            \quad
+\geq            \quad
+\leq            \quad
+\equiv          \quad
+\rightarrow     \quad
+\Rightarrow     \quad
+\Leftrightarrow \quad
+\frac{a}{b}     \quad
+\neg            \quad
+\forall         \quad
+\exists         \quad
+\int_a^b        \quad
+\sum_{i=1}^n    \quad
+\infty          \quad
+\lim_{n \rightarrow \infty} \quad
+\sup_{x > 0}    \quad
+\\ %Bare layout
+&  %Bare layout
+\mid            \quad
+\nmid           \quad
+\underbrace{
+\mN             \quad
+\mZ             \quad
+\mQ             \quad
+\mR             \quad
+\mC
+}_{\text{Ikke standardkommandoer, se preamble}} \quad
+\alpha          \quad
+\beta           \quad
+\gamma          \quad
+\Gamma          \quad
+\delta          \quad
+\Delta          \quad
+\varepsilon     \quad
+\lambda         \quad
+\lambda         \quad
+\eta            \quad
+\sigma          \quad
+\Sigma          \quad
+\chi            \quad
+\xi             \quad
+\theta          \quad
+\Theta          \quad
+\\ %Bare layout
+&  %Bare layout
+\bigcup_{n = 1}^\infty                          \quad
+\bigcap_{n = 1}^\infty                          \quad
+\sim            \quad
+\binom{n}{k}    \quad
+\overset{(\dagger)}{=}                          \quad
+\nabla          \quad
+\exp            \quad
+\log            \quad
+\sqrt{x}        \quad
+\sqrt[n]{x}     \quad
+\actsymb[d][c]{X}{a}[b]                         \quad %Man behøver ikke alle 4 top/sub-scripts
+\end{align*}
+
+Såfremt man vil have sub- eller superscripts som ikke kun består af et enkelt tegn, så skal man sætte \{'er omkring sub- eller superscriptet. F.eks. som $x^{\theta y}$ eller $a_{f(n)}$.\\
+
+Nogle gange kan man også risikere at have store udtryk i parenteser. For at parenteserne har den rigtige størrelse skal man nogle gange tilføje \textbackslash left og \textbackslash right.
+\begin{align*}
+( \sum_{i=1}^\infty \bigcup_{j = i}^\infty A_j )
+\quad
+\left( \sum_{i=1}^\infty \bigcup_{j = i}^\infty A_j \right)
+\quad
+[ \sum_{i=1}^\infty \bigcup_{j = i}^\infty A_j ]
+\quad
+\left[ \sum_{i=1}^\infty \bigcup_{j = i}^\infty A_j \right]
+\quad
+\{ \sum_{i=1}^\infty \bigcup_{j = i}^\infty A_j \}
+\quad
+\left\{ \sum_{i=1}^\infty \bigcup_{j = i}^\infty A_j \right\}
+\end{align*}
+
+
+
+\end{document}
